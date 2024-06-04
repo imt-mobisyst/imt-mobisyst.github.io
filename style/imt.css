@@ -16,6 +16,12 @@ body {
   font-family: Copperplate, Verdana, sans-serif;
 }
 
+article {
+  font-size: 12pt;
+  border-left: solid 8pt var(--color-grey);
+  padding-bottom: 80pt;
+}
+
 h3 {
   margin: 20pt 0pt 12pt 0pt;
   font-size: 12pt;
@@ -39,36 +45,6 @@ hr {
   border-style: dotted;
   border-color: rgb(184,184,184);
   padding-top: 14pt;
-}
-
-table{
-  margin: 10pt 20pt 5pt 20pt ;
-  border-collapse:collapse;
-}
-
-table tr{
-  border-width: 1px 0px 1px 0px ;
-  border-style:solid;
-  border-color:rgb(184,184,184);
-  min-width: 20pt;
-}
-
-table tr:first-child{
-  border-width: 0pt 0pt 1pt 0pt ;
-}
-
-table tr td{
-  border-width: 0pt 1pt 0pt 1pt ;
-  border-style:solid;
-  border-color:rgb(184,184,184);
-  padding: 5pt;
-  min-width: 20pt;
-}
-
-article {
-  font-size: 12pt;
-  border-left: solid 8pt var(--color-grey);
-  padding-bottom: 80pt;
 }
 
 header{
