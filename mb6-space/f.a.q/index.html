@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Jouer avec sudo - HackaGames</title>
+        <title>F.A.Q - HackaGames</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -37,6 +37,39 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Install <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../configure-pi3/" class="dropdown-item">On Pi3</a>
+</li>
+                                    
+<li>
+    <a href="../configure-pi4/" class="dropdown-item">On Pi4</a>
+</li>
+                                    
+<li>
+    <a href="../configure-station/" class="dropdown-item">Station</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Robots <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../robot-pibot/" class="dropdown-item">Pibot</a>
+</li>
+                                    
+<li>
+    <a href="../robot-ezbot/" class="dropdown-item">Ezbot</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">F.A.Q</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -45,6 +78,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../robot-ezbot/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -63,9 +106,9 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#jouer-avec-sudo" class="nav-link">Jouer avec sudo</a>
+            <li class="nav-item" data-level="1"><a href="#frequent-asked-questions" class="nav-link">Frequent Asked Questions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#autoriser-une-commande-specifique" class="nav-link">Autoriser une commande spécifique</a>
+            <li class="nav-item" data-level="2"><a href="#comment-configurer-aux-petits-oignon-sudo" class="nav-link">Comment configurer aux petits oignon sudo ?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -76,14 +119,14 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="jouer-avec-sudo">Jouer avec sudo</h1>
+<h1 id="frequent-asked-questions">Frequent Asked Questions</h1>
+<h2 id="comment-configurer-aux-petits-oignon-sudo">Comment configurer aux petits oignon sudo ?</h2>
 <p><code>sudo</code> est parramétrable et permet d'autoriser finnement les accés et les droits des utilisateur sur les action senssible sur la machine.
 Le plus simple est de creer des fichiers de config spécifique dans le répétoire approprié:</p>
 <pre><code class="language-sh">sudo mkdir /etc/sudoers.d            # si besoin
 sudo touch /etc/sudoers.d/myConfigs  
 </code></pre>
-<h2 id="autoriser-une-commande-specifique">Autoriser une commande spécifique</h2>
-<p>Il est possible d'autoriser un utilisateur sur une commande spécifique par exemple (la commande <code>whereis xxx</code> permet de récupérer le chemin sur une commande <code>xxx</code>):</p>
+<p>Il est donc possible d'autoriser un utilisateur sur une commande spécifique par exemple (la commande <code>whereis xxx</code> permet de récupérer le chemin sur une commande <code>xxx</code>):</p>
 <pre><code class="language-sh">User     ALL=(ALL:ALL) /path/cmd
 </code></pre>
 <p>Et même l'autoriser à le faire sans mot de passe:</p>
