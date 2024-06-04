@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>HackaGames</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">HackaGames</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#mobisyst-ros-packages-documentation" class="nav-link">MobiSyst ROS Packages Documentation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#hello-world-with-ros2" class="nav-link">Hello-World with ROS2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#imt-mobisyst-packages" class="nav-link">IMT-Mobisyst packages</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="mobisyst-ros-packages-documentation">MobiSyst ROS Packages Documentation</h1>
+<p>Curent version: <strong>Ubuntu-22.install04 LTS</strong> / <strong>ROS2 iron</strong></p>
+<h3 id="ubuntu-2204-lts">Ubuntu-22.04 LTS</h3>
+<p>First the OS on your machine: </p>
+<ul>
+<li>On a <em>Raspberry Pi</em> you can follows the guides: <a href="./docs/configure-pi3.md">Ubuntu22.04 on A Pi3 computer</a></li>
+<li>On a <em>x86</em> machine get help from the communty: <a href="https://ubuntu.com/">official website</a> - <a href="https://www.ubuntu-fr.org/">french community</a></li>
+<li>To configure a standard PC station: <a href="./docs/configure-station.md">Ubuntu22.04 on a PC Station</a></li>
+</ul>
+<h3 id="ros2-dev-environment-2204-lts">ROS2 dev. environment-22.04 LTS</h3>
+<p>Some install script for classical install:</p>
+<ul>
+<li><a href="./bin/install-ros-setup">install-ros-setup</a> - only setup <code>apt</code> to target offical ROS repo.</li>
+<li><a href="./bin/install-ros">install-ros</a> - install ROS iron from the official repo in desktop mode.</li>
+<li><a href="./bin/install-gazebo">install-gazebo</a> - install ROS-Gazebo</li>
+<li><a href="./bin/install-realsense">install-realsense</a> - install dev. environement: RealSense</li>
+</ul>
+<p>Otherwize, you can go through the manual instructions or execute the appropriate install scrips in <a href="./bin">bin</a> directory:</p>
+<h3 id="manual-installation">Manual Installation</h3>
+<pre><code class="language-sh">git clone https://bitbucket.org/imt-mobisyst/mb6-space
+cd mb6-space
+</code></pre>
+<p>This install process follows the instruction on <a href="https://docs.ros.org/en/iron/Installation/Ubuntu-Install-Debians.html">docs.ros.org</a></p>
+<p>In short :</p>
+<pre><code class="language-sh">sudo apt install -y curl software-properties-common
+sudo add-apt-repository universe -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release &amp;&amp; echo $UBUNTU_CODENAME) main&quot; | sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
+
+sudo apt update
+sudo apt install -y ros-dev-tools # ament-cmake-python
+</code></pre>
+<p>Then install (use one of the options): </p>
+<pre><code class="language-sh">sudo apt install -y ros-iron-ros-base # for minimal install
+sudo apt install -y ros-iron-desktop # for developers install (include visualtization etc.)
+sudo apt install -y ros-iron-desktop-full # for not missing anything
+</code></pre>
+<p>You can setup your terminal with ROS2 environment: </p>
+<pre><code class="language-sh">source /opt/ros/iron/setup.bash
+</code></pre>
+<h2 id="hello-world-with-ros2">Hello-World with ROS2</h2>
+<p>This workspace include a default simple ROS package <code>draft-mb6</code> into <code>pkg-draft</code> directory.
+You can build it with <code>colcon build</code>,
+then, inform your environment of the existance of new ROS resources <code>source ./install/setup.bash</code>.</p>
+<p>In fact, the <code>run-commands.bash</code> would also do the job (<code>source ./install/setup.bash</code>).
+You can make your own <code>run-commands.bash</code> and automitically source this on your terminal...</p>
+<pre><code class="language-sh">echo &quot;
+
+# mb6 ROS environment:
+source ~/mb6-space/bin/run-commands.bash&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+<p>(optional) you can add a <code>domain-id</code> to allow several ROS2 virtual networks to work on a same phisical network (<a href="https://docs.ros.org/en/humble/Concepts/About-Domain-ID.html">doc</a>)</p>
+<pre><code>export ROS_DOMAIN_ID=42
+</code></pre>
+<p>Push the <code>source</code> and <code>export</code> commands on your bashrc file.</p>
+<p>Finally launch a talker and a listerner in two terminals <code>ros2 run draft_mb6 py_listerner</code> and <code>ros2 run draft_mb6 cpp_talker</code>.</p>
+<p>For going further follow the draft tutorirals:</p>
+<ul>
+<li><a href="./docs/tuto-ros2-intro.md">ROS2 introduction</a></li>
+<li><a href="./docs/tuto-draft-pkg.md">package create</a></li>
+<li><a href="./docs/tuto-draft-python.md">python node</a></li>
+<li><a href="./docs/tuto-draft-cpp.md">cpp node</a></li>
+</ul>
+<p><strong>Hokuyo Laser Range</strong> </p>
+<p>Just use the <code>urg_node</code> form the ROS <code>urg_node</code> package.
+It requires that the linux user is in dialout group.</p>
+<pre><code class="language-sh">sudo apt install -y ros-iron-urg-node
+sudo usermod -a -G dialout `whoami`
+</code></pre>
+<p><strong>RealSense</strong></p>
+<p>Use the <code>vcpkg</code> tool as <a href="https://github.com/IntelRealSense/librealsense">recommended</a>.</p>
+<pre><code class="language-sh">cd 
+git clone https://github.com/Microsoft/vcpkg.git .vcpkg
+~/.vcpkg/bootstrap-vcpkg.sh
+~/.vcpkg/vcpkg install realsense2
+pip install pyrealsense2
+</code></pre>
+<p>You can connect the camera and test with <code>./bin/test-realsense-cam.py</code> script.</p>
+<p><strong>Gazebo Simulation</strong></p>
+<p>ROS compliant version of gazebo can be installed from <code>ros-iron-gazebo-xxx</code> packeges.
+The <a href="./bin/install-gazebo">install-gazebo</a> script provide the list of usefull packages.</p>
+<p>More on Gazebo-Ros: <a href="https://docs.ros.org/en/iron/Tutorials/Advanced/Simulators/Gazebo/Simulation-Gazebo.html">docs.ros.org</a></p>
+<p>The IMT-MobiSyst simulated Robot is configured on a specific repo: <code>git clone https://bitbucket.org/imt-mobisyst/pkg-tsim</code></p>
+<pre><code class="language-sh">source ./bin/run-commands.bash
+./bin/install-gazebo
+git clone https://bitbucket.org/imt-mobisyst/pkg-tsim
+colcon build
+</code></pre>
+<p><strong>Cuda</strong></p>
+<h2 id="imt-mobisyst-packages">IMT-Mobisyst packages</h2>
+<p>Your <em>mb6-space</em> workspace is now ready to welcome robotic packages.
+Depending of your need, you can install and build the relevant mb6's packages...</p>
+<h3 id="robots">Robots</h3>
+<p>functions
+The robot bases and modules relies on ros packages to install and built them: </p>
+<pre><code class="language-sh">cd ~/mb6-space
+git clone git@bitbucket.org:imt-mobisyst/pkg-NAME
+pkg-NAME/bin/install
+colcon build
+</code></pre>
+<ul>
+<li><strong>TurtleBots</strong> : Package <a href="https://bitbucket.org/imt-mobisyst/pkg-tbot">pkg-tbot</a> (howevers, the packages are installed and configured on onboard Pi3 computer)</li>
+<li><strong>Robulab</strong> : Package <a href="https://bitbucket.org/imt-mobisyst/robulab">pkg-robulab</a> </li>
+<li><strong>AlpagaDrone</strong> Refers to <code>mb6-playload/alpaga/</code> repositoty</li>
+<li><strong>fetch</strong>: </li>
+<li><strong>drone playload</strong>: </li>
+</ul>
+<h3 id="modules">Modules:</h3>
+<p>The robot bases and modules relies on ros packages to install and built them: </p>
+<pre><code class="language-sh">cd ~/mb6-space
+git clone git@bitbucket.org:imt-mobisyst/pkg-NAME
+pkg-NAME/bin/install
+colcon build
+</code></pre>
+<ul>
+<li><a href="https://bitbucket.org/imt-mobisyst/pkg-toons">pkg-toons</a> <strong>To</strong>p<strong>o</strong>logical <strong>N</strong>avigation and <strong>S</strong>LAM regroups ROS2 packages that includes usefull elements for topological control of a mobile robot.</li>
+<li><a href="https://bitbucket.org/imt-mobisyst/pkg-viscene">pkg-viscene</a> <strong>Vi</strong>sion based <strong>Scene</strong> regnition.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.5.3
+Build Date UTC : 2024-06-04 08:25:37.734994+00:00
+-->

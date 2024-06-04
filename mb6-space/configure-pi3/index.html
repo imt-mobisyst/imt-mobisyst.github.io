@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>OS Instalation on Pi3 - HackaGames</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">HackaGames</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#os-instalation-on-pi3" class="nav-link">OS Instalation on Pi3</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#ubuntu-via-imager" class="nav-link">Ubuntu via imager:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#install" class="nav-link">Install:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#manual-install" class="nav-link">Manual Install:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#current-use-of-pibot" class="nav-link">Current use of pibot:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="os-instalation-on-pi3">OS Instalation on Pi3</h1>
+<p>Version Rasbery-Pi3 with Ubuntu 22.04.</p>
+<p>Need Raspberry <em>Pi-Imager</em> from <a href="https://www.raspberrypi.com/software">www.raspberrypi.com</a> (not from apt...).</p>
+<h2 id="ubuntu-via-imager">Ubuntu via imager:</h2>
+<ol>
+<li>Select our os <code>other general-purpose OS &gt; Ubuntu 22.04 (SERVER 64-BIT)</code></li>
+<li>Select the SD-Card to overwrite</li>
+<li>set parameters (Advanced Options:)</li>
+<li>choose a pibot number <em>XX</em> between 20 and 80.</li>
+<li>hostname: 'pibotXX'</li>
+<li>enable SSH (password auth)</li>
+<li>username: bot</li>
+<li>password: bot</li>
+<li>LAN:<ul>
+<li><em>IoT IMT Nord Europe</em> : <code>72Hin@R*</code></li>
+</ul>
+</li>
+</ol>
+<p>Try <strong>Custom Image</strong>: Section: <em>Modify existing image</em> on https://opensource.com/article/21/7/custom-raspberry-pi-image</p>
+<h2 id="install">Install:</h2>
+<p>You can process a classical install from <a href="../bin/install-pi3">install-pi3</a> script or go on <strong>Manual Install</strong> section.
+Attention, the script also install ROS in <em>ros-base</em> configuration and mb6 elements.</p>
+<pre><code class="language-sh">cd
+git clone https://bitbucket.org/imt-mobisyst/mb6-space
+cd mb6-space
+./bin/install-pi3
+</code></pre>
+<h2 id="manual-install">Manual Install:</h2>
+<p>If necessary, update ntp serveurs conf and restart timesyncd service:</p>
+<pre><code class="language-sh">date
+sudo nano /etc/systemd/timesyncd.comf
+sudo service systemd-timesyncd restart
+</code></pre>
+<p>You can set: <code>NTP=0.fr.pool.ntp.org 1.fr.pool.ntp.org 2.fr.pool.ntp.org 3.fr.pool.ntp.org</code></p>
+<p>Or fix manually the date:</p>
+<pre><code class="language-sh">date
+sudo date -s &quot;2022-05-14 15:42:30&quot;
+sudo apt update
+</code></pre>
+<p>Clone <code>mb6-space</code>:</p>
+<pre><code class="language-sh">cd
+git config --global http.sslverify false
+git clone https://bitbucket.org/imt-mobisyst/mb6-space.git
+</code></pre>
+<p>Update and get some soft:</p>
+<p>First configure <code>apt</code> needrestart from "interactive" (that promt an interactive windows to specify which services to resart after an apt update) to "automatic".
+Edit the <code>/etc/needrestart/needrestart.conf</code> file, to change the line <code>#$nrconf{restart} = 'i';</code> to  <code>$nrconf{restart} = 'a';</code>.</p>
+<pre><code class="language-sh">## OR:
+sudo cp deps/install-pi3-needrestart.conf /etc/needrestart/needrestart.conf
+</code></pre>
+<p>You can now use <code>apt</code> in a more silent and autonomous mode...</p>
+<pre><code class="language-sh">sudo apt update
+sudo apt remove cloud-init
+sudo apt install -y build-essential meld
+sudo apt upgrade -y
+</code></pre>
+<h3 id="dhcp-server-on-eth0">DHCP Server on Eth0:</h3>
+<p>The idea is to permit a direct connexion between a Suppervision-machine and the tbot-machin.
+First set up a static configuration on your PI:
+Set static <code>eth0</code> configuration, in  <code>/etc/netplan/</code>.</p>
+<pre><code class="language-sh">sudo nano /etc/netplan/60-static-eth0.yaml
+</code></pre>
+<pre><code class="language-yaml"># Static Configuration
+network:
+    ethernets:
+        renderer: networkd
+        eth0:
+            dhcp4: no
+            addresses:
+                - 192.168.1.1/24
+    version: 2
+</code></pre>
+<pre><code class="language-sh">## OR:
+sudo cp deps/install-pi3-60-static-eth0.yaml /etc/netplan/60-static-eth0.yam
+</code></pre>
+<p>sudo netplan apply</p>
+<p>sudo cp deps/install-pi3-dhcpd.conf /etc/dhcp/dhcpd.conf``)</p>
+<pre><code class="language-sh">sudo netplan apply
+</code></pre>
+<p>Then inatll and configure <code>isc-dhcp-server</code> (To notice this server is deprecied from 2022)</p>
+<pre><code class="language-sh">sudo apt install isc-dhcp-server
+</code></pre>
+<p>Edit: <code>/etc/dhcp/dhcpd.conf</code> like:</p>
+<pre><code class="language-conf"># This is a very basic subnet declaration.
+
+subnet 10.10.0.0 netmask 255.255.0.0 {
+  range 10.10.1.20 10.10.1.80;
+  option domain-name-servers 8.8.8.8, 8.8.4.4;
+  option routers 10.10.1.1;
+}
+</code></pre>
+<p>Set <code>eth0</code> on <code>/etc/default/isc-dhcp-server</code> Interfaces v4.</p>
+<pre><code class="language-sh">## OR:
+sudo cp deps/install-pi3-dhcpd.conf /etc/dhcp/dhcpd.conf
+sudo cp deps/install-pi3-dhcp-server /etc/default/isc-dhcp-server
+</code></pre>
+<pre><code class="language-sh">sudo service isc-dhcp-server restart
+</code></pre>
+<p>NotaBene: ethernet need to be connected at starttime (or isc-dhcp-server restarted)...</p>
+<p><strong>To debug:</strong></p>
+<pre><code class="language-sh">systemctl status isc-dhcp-server.service # get the PID
+journalctl _PID=2690
+</code></pre>
+<p>The pibot is reachable in direct ethernet connexion (10.10.1.1 or pibotXX.local).</p>
+<h3 id="wifi">Wifi</h3>
+<p>To add Wifi</p>
+<pre><code class="language-sh">nano /etc/netplan/50-cloud-init.yaml
+</code></pre>
+<h3 id="robotic-workspace">robotic workspace:</h3>
+<p>You can return on <a href="../README.md">README.md</a> for more detail on ROS2 install.
+The script <code>bin/install-ros-setup</code> configure ubuntu for ROS installation.</p>
+<p>Then pibot relies on <code>ros-base</code> and <code>urg-node</code>.</p>
+<pre><code class="language-sh">bin/install-ros-setup
+
+export ROSDISTRO=iron
+sudo apt install -y \
+  ros-$ROSDISTRO-ros-base \
+  ros-$ROSDISTRO-urg-node
+
+sudo usermod -a -G dialout `whoami`
+</code></pre>
+<p>Your good to build mb6-space:</p>
+<pre><code class="language-sh">source /opt/ros/iron/setup.bash
+colcon build
+</code></pre>
+<h3 id="some-specifics-elements-for-pi3">Some specifics elements for Pi3:</h3>
+<ul>
+<li>The specific <em>run-commands</em> to source is <code>./bin/pibot-run-commands.bash</code>. It permits to set a specific ROS domain to the <em>pibot</em>.</li>
+</ul>
+<p>Edit <code>~/.bashrc</code>, and add:</p>
+<pre><code class="language-sh">
+# mb6 ROS environment:
+source ~/mb6-space/bin/pibot-run-commands.bash
+</code></pre>
+<h2 id="current-use-of-pibot">Current use of pibot:</h2>
+<h3 id="configuration-for-turtlebot">Configuration for turtlebot:</h3>
+<p>Install <code>pkg-tbot</code> to get turtlebot drivers.</p>
+<h3 id="system-control">system control</h3>
+<p>Service creation: <a href="https://linuxhandbook.com/create-systemd-services/">on linuxhandbook</a></p>
+<pre><code class="language-sh">sudo cp ./resources/pibot.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable pibot.service
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

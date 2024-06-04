@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Instalation de l'OS pour Pi3 - HackaGames</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">HackaGames</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#instalation-de-los-pour-pi3" class="nav-link">Instalation de l'OS pour Pi3</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#ubuntu-via-limager" class="nav-link">Ubuntu via l'imager:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#premiere-connection-log-botbot" class="nav-link">Premiere connection log (bot:bot):</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#few-manual-config" class="nav-link">Few manual config</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#instalation-de-ros-1-and-2" class="nav-link">Instalation de ROS (1 and 2)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#aleternative-ubuntu-manuel" class="nav-link">Aleternative - Ubuntu manuel</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="instalation-de-los-pour-pi3">Instalation de l'OS pour Pi3</h1>
+<p>Version Rasbery-Pi3 with Ubuntu 20.04. (idéal pour une cohabitation ROS/ROS2)</p>
+<p>Requiére Raspberry <em>Pi-Imager</em> </p>
+<pre><code class="language-bash">sudo apt install rpi-imager 
+rpi-imager
+</code></pre>
+<h2 id="ubuntu-via-limager">Ubuntu via l'imager:</h2>
+<p>(cf. section <strong>Ubuntu manuel</strong> pour une alternative <em>'par les fichiers'</em>)</p>
+<p>Preparer une Pi from scratch:</p>
+<p>Dans imager: </p>
+<ol>
+<li>sélectionner une image Ubuntu Server 20.04 lts 64bit (other general-purpose OS).</li>
+<li>selectionner la carte SD</li>
+<li>dans paramétres: <ul>
+<li>hostname: <strong>pibot00.local</strong></li>
+<li>enable SSH with password auth.</li>
+<li>set username/passord: bot/bot </li>
+<li>set lan: Pirate-INE/pine0kio</li>
+</ul>
+</li>
+<li>ecrire la carte SD</li>
+</ol>
+<h2 id="premiere-connection-log-botbot">Premiere connection log (bot:bot):</h2>
+<pre><code class="language-sh">sudo su
+timedatectl
+timedatectl set-timezone Europe/Paris
+timedatectl set-time &quot;2022-07-07 12:00:30&quot;
+timedatectl
+apt update
+apt upgarde
+apt install git curl sshfs build-essential
+apt install avahi-deamon # for .local
+</code></pre>
+<p>Il est normalement possible ensuite de se logger par le réseaux: </p>
+<pre><code class="language-sh">ssh bot@pibot00.local
+</code></pre>
+<h2 id="few-manual-config">Few manual config</h2>
+<p>For some strange resons the .local is activated only after a ping from the Pi to the Pi...</p>
+<pre><code class="language-sh">ping -c 3 pibot00.local 
+</code></pre>
+<pre><code class="language-sh"># Manually set date
+sudo date -s &quot;05/05/2022 15:42:30&quot;
+# or:
+timedatectl set-time &quot;2022-05-05 15:42:30&quot;
+
+# List wifi connections
+# should be connected to pirateINE
+sudo wpa_cli -i wlan0 list_networks
+
+# change wifi connection
+sudo wpa_cli -i wlan0 select_network network_id
+</code></pre>
+<h2 id="instalation-de-ros-1-and-2">Instalation de ROS (1 and 2)</h2>
+<h3 id="ros1">ROS1</h3>
+<p>Then ROS (base version): <a href="http://wiki.ros.org/noetic/Installation/Ubuntu">doc</a></p>
+<pre><code class="language-sh">sudo sh -c 'echo &quot;deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list'
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+sudo apt update
+sudo apt install -y ros-noetic-ros-base
+echo &quot;source /opt/ros/noetic/setup.bash&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+sudo rosdep init
+rosdep update
+</code></pre>
+<h3 id="ros2">ROS2</h3>
+<p>And ROS2 <a href="https://docs.ros.org/en/foxy/Installation.html">doc</a></p>
+<p>Prepare: </p>
+<pre><code class="language-sh">sudo apt update
+sudo apt install -y curl gnupg2 lsb-release
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
+ -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release &amp;&amp; echo $UBUNTU_CODENAME) main&quot; | sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
+</code></pre>
+<p>Install # ROS2 (foxy): </p>
+<pre><code class="language-sh">sudo apt update
+sudo apt install -y ros-foxy-ros-base ros-foxy-demo-nodes-py ros-foxy-ros1-bridge
+echo &quot;source /opt/ros/foxy/setup.bash&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<p><strong>But its seems no possible to have ROS1 and ROS2 in a same shell...</strong></p>
+<p>Test : (into 2 terminals)</p>
+<pre><code class="language-sh">ros2 run demo_nodes_py talker
+ros2 run demo_nodes_py listener
+</code></pre>
+<h3 id="bridge-ros1-ros2">bridge (ROS1-ROS2)</h3>
+<p>(suppose linstallation du packet <code>ros-foxy-ros1-bridge</code> cf. section <strong>ROS2</strong>)</p>
+<p>Test bridge (<a href="https://github.com/ros2/ros1_bridge">README</a>):</p>
+<pre><code class="language-sh">#shell A
+source /opt/ros/noetic/setup.bash
+roscore &amp;
+rosrun rospy_tutorials talker
+#shell B
+ros2 run ros1_bridge dynamic_bridge
+#shell C
+ros2 run demo_nodes_py listener
+</code></pre>
+<p>à noter, le <code>dynamic_bridge</code> porte bien son nom, le topic ROS1 apparait en ROS2 uniquement quant deux noeuds de pert et d'autre échangent des infos par le topic en question.</p>
+<h2 id="aleternative-ubuntu-manuel">Aleternative - Ubuntu manuel</h2>
+<p>Sauté si vous avais suivi la secion <strong>Avec Imager</strong></p>
+<p>Preparer une Pi from scratch:</p>
+<p>Dans imager: </p>
+<ol>
+<li>sélectionner une image Ubuntu Server 20.04 lts 64bit (other general-purpose OS).</li>
+<li>selectionner la carte SD</li>
+<li>ecrire la carte SD</li>
+</ol>
+<p>Configure the network (in <code>network-config</code> file)</p>
+<pre><code>wifis:
+  wlan0:
+    dhcp4: true
+    optional: true
+    access-points:
+      &quot;Pirate-INE&quot;:
+        password: &quot;pine0kio&quot;
+</code></pre>
+<p>At first log (ubuntu:ubuntu):</p>
+<pre><code class="language-sh">echo 'pibot00' &gt; /etc/hostname       
+adduser bot              # with bot password
+usermod -a -G sudo bot
+usermod -a -G dialout bot
+sudo shutdown -r now
+</code></pre>
+<p>Then:</p>
+<pre><code class="language-sh">sudo userdel -r ubuntu
+</code></pre>
+<p>Or... Set the user name and the hostname in user-data file </p>
+<pre><code>chpasswd:
+  expire: false
+  list:
+  - bot:bot
+
+hostname: pibot01
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
