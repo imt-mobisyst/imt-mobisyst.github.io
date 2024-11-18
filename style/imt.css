@@ -81,7 +81,8 @@ header p {
 
 section {
   clear: left;
-  margin: 10pt 10pt;
+  padding-top: 10pt;
+  margin: 0pt 10pt;
 }
 
 /* Boxes... */
@@ -116,7 +117,7 @@ section {
 
 section h2 {
   color: var(--color-main);
-  margin: 32pt 0pt 8pt 0pt;
+  margin: 12pt 0pt 8pt 0pt;
   font-size: 14pt;
 }
 
