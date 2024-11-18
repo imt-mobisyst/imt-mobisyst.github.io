@@ -65,6 +65,19 @@
 <li>
     <a href="../robot-ezbot/" class="dropdown-item">Ezbot</a>
 </li>
+                                    
+<li>
+    <a href="../robot-stage/" class="dropdown-item">Stage</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Packages <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../pkg-basic/" class="dropdown-item">Basic</a>
+</li>
                                 </ul>
                             </li>
                             <li class="navitem">
@@ -105,12 +118,95 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#pibot-robot" class="nav-link">Pibot Robot</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#get-started" class="nav-link">Get Started.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#get-started-v2-from-mb6_sapce" class="nav-link">Get Started v2 (from mb6_sapce)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#get-started-v3-hard-linked" class="nav-link">Get Started v3 (hard linked)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pibot-configuration" class="nav-link">Pibot Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#shutdown-check-list" class="nav-link">Shutdown Check List</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h1 id="pibot-robot">Pibot Robot</h1>
+<pre><code class="language-sh">ros2 launch slam_toolbox online_sync_launch.py
+</code></pre>
+<p>The mobile robot <em>Pibot</em> is built on top of a <a href="https://www.turtlebot.com/turtlebot2/">Kobuki</a> an <a href="https://hokuyo-usa.com/">Hokuyo</a> laser range supervised with a raspberry-Pi3 computer card. </p>
+<p>The <a href="https://docs.ros.org/">ROS2</a> middleware is adapted to this configuration in the <a href="https://github.com/imt-mobisyst/pkg-tbot">pkg-tbot</a> project.</p>
+<p><img alt="Picture of a Pibot" src="../figs/naked-pibot.png" /></p>
+<p>A <strong>pibotXX</strong> is automaticaly configured on <code>IOT IMT Nord Europe</code> <em>WiFi</em> with a fixed <em>IP</em>: <code>10.89.5.XX</code>.</p>
+<h2 id="get-started">Get Started.</h2>
+<p>After turning on the robot, the control software is started.
+At this point the robot is already ready to be controled. </p>
+<p>The operator from its computer station need to identify and configure the <em>Pibot</em> domain identifier (Domain_ID) and then start a <em>teleop</em> for instance.</p>
+<p><em>Pibot</em> is automaticly connected to <code>IOT IMT Nord Europe</code> <em>WiFi</em> (be sure that your computer is on the same network) with a <em>Domain_ID</em> matching its <em>Pibot</em> number. 
+For instance <code>pibot22</code> is configured with <code>22</code>.</p>
+<p>On your <em>ROS</em> terminal:</p>
+<pre><code class="language-sh">export ROS_DOMAIN_ID=22
+ros2 node list
+ros2 topic list 
+</code></pre>
+<p>At this point, you can verify that laser is publishing data into the <code>/scan</code> topic and that <code>multiplexer</code> node is started.
+The multiplexer from <a href="https://github.com/imt-mobisyst/pkg-basic">basic_node</a> package, listen to several command sources to select the most appropriate one. </p>
+<p>So you can take control with a classical <em>teleop</em> node connected to the <code>multi/cmd_teleop</code> topic, start slam capability etc...</p>
+<pre><code class="language-sh">ros2 run teleop_twist_keyboard teleop_twist_keyboard cmd_vel:=/multi/cmd_teleop
+ros2 launch slam_toolbox online_sync_launch.py
+...
+</code></pre>
+<p>To notice that your autonomous control should send velocity messages to <code>multi/cmd_nav</code> (<code>/multi/cmd_teleop</code> is reserved to human teleoperation).</p>
+<h2 id="get-started-v2-from-mb6_sapce">Get Started v2 (from <em>mb6_sapce</em>)</h2>
+<p>From <em>mb6_sapce</em> directory, it is possible to configure once for all the <code>ROS_DOMAIN_ID</code> by editing the <code>config.toml</code> and sourcing <code>./bin/run-commands.bash</code></p>
+<pre><code class="language-sh">cd /path/to/mb6_space
+gedit config.toml
+source ./bin/run-commands.bash
+</code></pre>
+<p>Each new terminal will be open on the same configuration.
+You can then, connect your __pibotXX_ with <code>rviz2</code>.</p>
+<pre><code class="language-sh">rviz2 rviz-conf/simple-pibot.rviz
+</code></pre>
+<p>you can also try <em>SLAM</em>: </p>
+<pre><code class="language-sh"># Terminal 1
+ros2 launch slam_toolbox online_sync_launch.py
+
+# Terminal 2
+rviz2 rviz-conf/pibot-with-map.rviz
+</code></pre>
+<h2 id="get-started-v3-hard-linked">Get Started v3 (hard linked)</h2>
+<h2 id="pibot-configuration">Pibot Configuration</h2>
+<p><em>Pibot</em> relies on several ros packages: </p>
+<ul>
+<li>[mb6-space] on the pibot branch for install and service configuration.</li>
+<li><a href="https://github.com/imt-mobisyst/pkg-tbot">pkg-tbot</a> for <em>Kobuki</em> + laser drivers and configurations.</li>
+<li><a href="https://github.com/imt-mobisyst/pkg-basic">pkg-basic</a> to allow basic/simple controls and tools.</li>
+</ul>
+<h2 id="shutdown-check-list">Shutdown Check List</h2>
+<ol>
+<li>Connectect the <em>Pibot</em> with <em>SSH</em>.</li>
+<li><code>sudo poweroff</code> ou <code>sudo shutdown -h now</code>.</li>
+<li>Wait to be sure the shutdown process is terminated.</li>
+<li>Switch-off the robot.</li>
+<li>Plug the robot to permit its recharge.</li>
+</ol></div>
             </div>
         </div>
 
