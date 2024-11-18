@@ -37,6 +37,76 @@
                             <li class="navitem active">
                                 <a href="." class="nav-link">Home</a>
                             </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -45,6 +115,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="tuto-kick-off/ros-basics/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -63,8 +143,24 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#lecture-mobile-robotic" class="nav-link">Lecture - Mobile Robotic</a>
+            <li class="nav-item" data-level="1"><a href="#larm-logiciel-et-architecture-pour-la-robotique-mobile-software-and-architecture-for-mobile-robotics" class="nav-link">LARM - Logiciel et Architecture pour la Robotique Mobile - Software and Architecture for Mobile-Robotics</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#this-support" class="nav-link">This support</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#challenge" class="nav-link">Challenge</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#going-further" class="nav-link">Going further</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#contact" class="nav-link">Contact</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -72,7 +168,71 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="lecture-mobile-robotic">Lecture - Mobile Robotic</h1></div>
+<h1 id="larm-logiciel-et-architecture-pour-la-robotique-mobile-software-and-architecture-for-mobile-robotics">LARM - Logiciel et Architecture pour la Robotique Mobile - Software and Architecture for Mobile-Robotics</h1>
+<p>Here a lecture on software and architecture for mobile robots at the <a href="http://www.imt-nord-europe.fr">IMT-Nord</a> engineering school.</p>
+<p>This lecture is an introduction on how to develop a modular control and supervision software for a mobile platform.
+The notions are illustrated with tutorials based on Linux/<a href="https://ros.org/">ROS</a> and <a href="http://kobuki.yujinrobot.com/">Kobuki/Turtlebot2</a> robot.</p>
+<p>Introduction - <a href="https://raw.githubusercontent.com/ceri-num/uv-larm/master/notions/sld-intro.pdf">pdf version</a></p>
+<h2 id="this-support">This support</h2>
+<p>This support is stored on <a href="https://github.com">github</a> shared thanks to <a href="https://www.gitbook.com">gitbook</a>.</p>
+<ul>
+<li>On gitbook: <a href="https://ceri-num.gitbook.io/uv-larm/">https://ceri-num.gitbook.io/uv-larm/</a></li>
+<li>On GitHub: <a href="https://github.com/ceri-num/uv-larm">https://github.com/ceri-num/uv-larm</a></li>
+</ul>
+<!--
+## UV-LARM 2022-2023:
+
+Week 2 to 6/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
+---------------|---------|---------|-----------|----------|---------|
+Morning        | No      | No      | Yes       | No       | Yes     | 
+Afernoon       | No      | Yes     | Yes       | No       | Yes     | 
+
+Week 9 to 13/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
+----------------|---------|---------|-----------|----------|---------|
+Morning         | Yes     | Yes     | Yes       | No       | Yes     | 
+Afernoon        | Yes     | Yes     | No        | No       | Yes     | 
+
+Week 16 to 20/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
+-----------------|---------|---------|-----------|----------|---------|
+Morning          | Yes     | Yes     | Yes       | No       | Yes     | 
+Afernoon         | Yes     | Yes     | No        | No       | Yes     | 
+
+Week 23 to 27/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
+-----------------|---------|---------|-----------|----------|---------|
+Morning          | Yes     | Yes     | Yes       | Yes      | Yes     | 
+Afernoon         | Yes     | No      | No        | No       | Yes     | 
+-->
+
+<h2 id="challenge">Challenge</h2>
+<p>The evaluation mainly consists in the realization of an application involving specific challenges:</p>
+<ul>
+<li>Autonomous Control of an <strong>AGV</strong> (Automated Guided Vehicle)</li>
+<li>Mapping and Localization</li>
+<li>Research and recognition of an object</li>
+</ul>
+<!-- 2023-2024 groups: [on partage](https://partage.imt.fr/index.php/s/zkQbXMsrWdp2RQd) -->
+
+<h2 id="going-further">Going further</h2>
+<p>Most of the content and supports for learning robotics architecture are already shared on the internet.
+We try to orient the students through project realizations rather than to provide an exhaustive definition of concepts and implementations.
+This course relies on the <a href="http://www.ros.org/">ROS</a> middleware for practical sessions, the ROS doc tutorials and ros-packages' descriptions: <a href="https://docs.ros.org">docs.ros.org</a>.</p>
+<p>You also can find an excellent virtual working environment and resources on <a href="https://www.theconstructsim.com/">TheConstruct</a>.</p>
+<!-- ## Presentations
+
+Slide generation is based on [marp](https://marp.app/) and the associated puggin in [VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode).
+
+To attach the appropriate style, go in `VS Code` parameters (Bottom left corner)
+
+- search for `marp:theme`
+- select the workspace tab
+- add element `style/imt.css`.
+
+Then, search `marp:html` and enable all html elements.
+-->
+
+<h2 id="contact">Contact</h2>
+<p>For comments, questions, corrections, feel free to contact:</p>
+<p><a href="mailto://guillaume.lozenguez@imt-nord-europe.fr">Guillaume Lozenguez</a> (coordinator, but not the only author here).</p></div>
             </div>
         </div>
 
@@ -157,5 +317,5 @@
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-11-18 20:11:53.139417+00:00
+Build Date UTC : 2024-11-18 20:33:28.297931+00:00
 -->

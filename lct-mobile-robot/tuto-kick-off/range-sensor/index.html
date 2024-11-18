@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Range Sensor - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../tuto-level-up/package/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../camera-driver/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#range-sensor" class="nav-link">Range sensor</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#get-scan-data" class="nav-link">Get Scan Data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#a-first-node-logging-the-scan" class="nav-link">A first node logging the scan</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#from-laserscan-to-pointcloud" class="nav-link">From LaserScan to PointCloud</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="range-sensor">Range sensor</h1>
+<p><em>Range sensors</em> are robot sensor permitting to detect obstacles and determine a distance to it.
+Basic range sensors (infrared, ultrasonic, laser) produce a unique measure considering a given direction at a time.
+By making the sensor rotating, it is possible to get measurements on a plan around the sensor.</p>
+<p>Hokuhyo, equipping the <strong>Tbot</strong>, is typically a kind of rotating lidar sensor (<strong>l</strong>aser <strong>i</strong>maging or <strong>li</strong>ght <strong>d</strong>etection <strong>a</strong>nd <strong>r</strong>anging).
+The goal here is to integrate an almost 360 obstacle detection to generate safe robot movement.</p>
+<p>More complex lidar permits 3D measurements (i.e. in several plans at a time).</p>
+<h2 id="get-scan-data">Get Scan Data</h2>
+<p>Well, let’s visualize the laser scan in <em>rviz2</em>.
+For that, verify that the user has the right to read data on the device.
+By connecting the laser sensor, a access file appears in Linux <code>/dev</code> directory named <code>ttyACM0</code>.
+Verify the owner of the file:</p>
+<pre><code class="language-console">ls -l /dev | egrep ttyACM
+</code></pre>
+<p>Normally <code>/dev/ttyACM0</code> is owned by user <code>root</code> and group <code>dialout</code> with <code>crw-rw----</code> right, mining that owner and all members of the group can read (<code>r</code>) and write (<code>w</code>) and all the other users have no access to the resource.
+Verify that <code>bot</code> is a member of the group <code>dialout</code></p>
+<pre><code class="language-console">cat /etc/group | egrep dialout 
+</code></pre>
+<p>Cool.
+Let run a driver to convert device I/O to ros messages.
+ROS driver for hokuyo laser range is embedded in the urg_node package </p>
+<pre><code class="language-console">ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0
+</code></pre>
+<p>Specifying the <code>serial_port</code> file requires to activate arguments with <code>--ros-args</code> and pass a file path using <code>-p</code> parameter command line flag. 
+All of this is specific to <a href="https://docs.ros.org/en/iron/Concepts/Basic/About-Parameters.html">ROS parameters</a>.</p>
+<p>From that point data are streamed in <code>/scan</code> topic.
+It is possible to check it with <code>ros2 topic list</code> and <code>ros2 topic echo scan</code>.</p>
+<p>Now you can visualize it on <em>rviz2</em> program.
+Start <em>rviz2</em> in a terminal, <em>add</em> a flux <em>laserScan</em> and configure it in <code>/scan</code> topic.
+Nothing appears and it is normal.
+<em>Rviz2</em> global option is configured on <em>map</em> frame, and nothing permits to set the position of the laser sensor in the map.
+The laser-scan frame is named <em>laser</em>.
+Change this information into global options and set the laser-scan size to <code>0,1</code> for a better display.</p>
+<p>Stop everything.</p>
+<p>Perform the same exercise to visualize simulated LaserScan from Gazebo simulator:</p>
+<pre><code>ros2 launch tbot_sim challenge-1.launch.py
+</code></pre>
+<p>Warning: the scan topic and/or the laser-scan frame can have different names.</p>
+<h2 id="a-first-node-logging-the-scan">A first node logging the scan</h2>
+<p>First, we will initialize a node <code>scan_echo</code>.</p>
+<p>Edit a new file <code>scan_echo.py</code> with a very simple code :</p>
+<pre><code class="language-python">def main():
+    print('Move move move !')
+
+if __name__ == '_main__' :
+    main()
+</code></pre>
+<p>Test your <code>scan_echo</code> node:</p>
+<pre><code class="language-python">python3 scan_echo.py
+</code></pre>
+<p>In a first version, you should:</p>
+<ul>
+<li>Initialize the <em>rosclient</em> (rclpy)</li>
+<li>Connect <a href="https://docs.ros2.org/iron/api/sensor_msgs/msg/LaserScan.html">sensor_msgs LaserScan</a>.</li>
+<li>Log continuously the received data</li>
+</ul>
+<pre><code class="language-python">#!python3
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+
+rosNode= None
+
+def scan_callback(scanMsg):
+    global rosNode
+    rosNode.get_logger().info( f&quot;scan:\n{scanMsg}&quot; )
+
+rclpy.init()
+rosNode= Node('scan_interpreter')
+rosNode.create_subscription( LaserScan, 'scan', scan_callback, 10)
+
+while True :
+    rclpy.spin_once( rosNode )
+scanInterpret.destroy_node()
+rclpy.shutdown()
+</code></pre>
+<p>Test your <code>scan_echo.py</code> node, with the hokuyo laser and on simulation.</p>
+<p>Modify the logger to print only the information into the <code>header</code> and the number of ranges.</p>
+<h2 id="from-laserscan-to-pointcloud">From LaserScan to PointCloud</h2>
+<p><strong>LaserScan</strong> provides both the recorded bean distances (ranges) and the meta information permitting converting the distances on points in a regular Cartesian frame (i.e. the angle between beans).</p>
+<p>In a python, the conversion would look like this:</p>
+<pre><code class="language-python">obstacles= []
+angle= scanMsg.angle_min
+for aDistance in scanMsg.ranges :
+    if 0.1 &lt; aDistance and aDistance &lt; 5.0 :
+        aPoint= [
+            math.cos(angle) * aDistance,
+            math.sin(angle) * aDistance
+        ]
+        obstacles.append(aPoint)
+    angle+= scanMsg.angle_increment
+</code></pre>
+<p>The exercise consists in modifying the scan callback function to generate the point cloud list.
+To log a sample of the point cloud:</p>
+<pre><code class="language-python">sample= [ [ round(p[0], 2), round(p[1], 2) ] for p in  obstacles[10:20] ]
+self.get_logger().info( f&quot; obs({len(obstacles)}) ...{sample}...&quot; )
+</code></pre>
+<p>Finally, it is possible to publish this result in a <code>PointCloud</code> message and to visualize it on <em>rviz2</em> in a superposition of the LaserScan. </p>
+<p><em>PointCloud</em> is based on <code>geometry_msgs.Point32</code> with float coordinate.
+The creation of <em>Point32</em> will require explicite cast.</p>
+<pre><code class="language-python">aPoint= Point32()
+aPoint.x= (float)(math.cos(angle) * aDistance)
+aPoint.y= (float)(math.sin( angle ) * aDistance)
+aPoint.z= (float)(0)
+</code></pre>
+<!--
+- [Doc to create PointCloud](https://docs.ros.org/en/iron/Releases/Release-Galactic-Geochelone.html#python-point-cloud2-utilities-available)
+--></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

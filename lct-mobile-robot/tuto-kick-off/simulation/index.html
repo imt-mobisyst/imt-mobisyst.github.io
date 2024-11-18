@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Simulation - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../move/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../tuto-level-up/package/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#simulation-in-ros" class="nav-link">Simulation in ROS</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#gazebo-simulator" class="nav-link">Gazebo Simulator</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gazebo-installation" class="nav-link">Gazebo Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#launch-your-first-gazebo-simulation" class="nav-link">Launch your first Gazebo Simulation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#quiz-on-challenge-1" class="nav-link">Quiz on challenge 1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#visualizing-data" class="nav-link">Visualizing data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#controlling-the-simulated-robot" class="nav-link">Controlling the Simulated Robot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tuto_sim" class="nav-link">tuto_sim</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="simulation-in-ros">Simulation in ROS</h1>
+<h2 id="gazebo-simulator">Gazebo Simulator</h2>
+<p><a href="http://gazebosim.org/">Gazebo</a> is a 3D simulator.
+It makes it possible to rapidly test algorithms, design robots, perform regression testing, and train AI systems using realistic scenarios.
+Gazebo is integrated with ROS and supports various robots out of the box.</p>
+<p>Gazebo is heavily used by the DARPA challenges (cf. <a href="https://en.wikipedia.org/wiki/Gazebo_simulator">Wikipedia</a>).
+You can see videos online (<a href="https://www.youtube.com/watch?v=v6-heLIg85o">example</a>) and even load the maps and robot model that are available.</p>
+<h2 id="gazebo-installation">Gazebo Installation</h2>
+<p>Verify that <em>Gazebo</em> is installed using:</p>
+<pre><code class="language-console">dpkg -l | grep gazebo
+</code></pre>
+<p>You should have at least the following packages:</p>
+<pre><code>ii  gazebo                                          11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - Binaries
+ii  gazebo-common                                   11.10.2+dfsg-1                          all          Open Source Robotics Simulator - Shared files
+ii  gazebo-plugin-base                              11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - base plug-ins
+ii  libgazebo-dev                                   11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - Development Files
+ii  libgazebo11:amd64                               11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - shared library
+ii  ros-iron-gazebo-dev                             3.7.0-3jammy.20230622.191804            amd64        Provides a cmake config for the default version of Gazebo for the ROS distribution.
+ii  ros-iron-gazebo-msgs                            3.7.0-3jammy.20231117.090251            amd64        Message and service data structures for interacting with Gazebo from ROS2.
+ii  ros-iron-gazebo-plugins                         3.7.0-3jammy.20231117.111548            amd64        Robot-independent Gazebo plugins for sensors, motors and dynamic reconfigurable components.
+ii  ros-iron-gazebo-ros                             3.7.0-3jammy.20231117.104944            amd64        Utilities to interface with Gazebo through ROS.
+ii  ros-iron-gazebo-ros-pkgs                        3.7.0-3jammy.20231117.114324            amd64        Interface for using ROS with the Gazebo simulator.
+ii  ros-iron-turtlebot3-gazebo                      2.2.5-4jammy.20231117.114359            amd64        Gazebo simulation package for the TurtleBot3
+</code></pre>
+<p>Install missing packages using:</p>
+<pre><code class="language-console">sudo apt install &lt;pakage_name&gt;
+</code></pre>
+<h2 id="launch-your-first-gazebo-simulation">Launch your first Gazebo Simulation</h2>
+<p>If <code>$ROS_WORKSPACE/pkg-tsim</code> is <em>not</em> installed:</p>
+<pre><code class="language-console">export ROS_WORKSPACE=$HOME/ros_ws
+mkdir $ROS_WORKSPACE
+cd $ROS_WORKSPACE
+git clone https://bitbucket.org/imt-mobisyst/pkg-tsim
+colcon build
+source $ROS_WORKSPACE/install/setup.bash
+</code></pre>
+<p>Then, you can launch a preconfigured simulation:</p>
+<pre><code class="language-console">ros2 launch tbot_sim challenge-1.launch.py
+</code></pre>
+<p>Look at the content of this launch file <a href="https://bitbucket.org/imt-mobisyst/pkg-tsim/src/master/tbot_sim/launch/challenge-1.launch.py">here</a>.
+We can see that Gazebo/ROS supports loading a world file describing the simulation environment and spawn elements such as robots.
+This simulation spawns a robot configured like a <code>tbot</code> i.e. it is equipped with a laser range finder and a camera (kinect).
+The interaction with the simulation will operate through ROS topics as it would be with a real robot with real equipments.</p>
+<h2 id="quiz-on-challenge-1">Quiz on challenge 1</h2>
+<p>While the challenge 1 simulation is running:</p>
+<blockquote>
+<p>Question: which topics are available i.e published by Gazebo?</p>
+</blockquote>
+<p>Hint: use <code>rqt_graph</code> to see the graph of all ROS nodes and topics (<a href="https://docs.ros.org/en/iron/Concepts/About-RQt.html">doc</a>).</p>
+<blockquote>
+<p>Question: In which topic are laser scans published?</p>
+</blockquote>
+<h2 id="visualizing-data">Visualizing data</h2>
+<p><code>rviz2</code> is a versatile and powerful tool to display data published in topics.
+Launch it:</p>
+<pre><code class="language-console">rviz2
+</code></pre>
+<blockquote>
+<p>Question: How to configure <code>rviz2</code> to visualize the laser scans?</p>
+</blockquote>
+<p>Be carreful, ensure that <code>Global Option</code> / <code>Fixed frame</code> is correctly set to <code>base_link</code>.</p>
+<blockquote>
+<p>Question: why is this important? (hint: check your <code>tf</code> using <code>ros2 run tf2_tools view_frames</code>)</p>
+</blockquote>
+<p>You can also display the <code>tf</code> in <code>rviz2</code> directly.</p>
+<blockquote>
+<p>Question: How to visualize camera images using <code>rqt</code>?</p>
+</blockquote>
+<p><img alt="rviz2" src="../../files/SLAM/rviz_laserscan.png" /></p>
+<h2 id="controlling-the-simulated-robot">Controlling the Simulated Robot</h2>
+<p>Launch a simple node to control the simulated robot using keyboard:</p>
+<pre><code class="language-console">ros2 run teleop_twist_keyboard teleop_twist_keyboard
+</code></pre>
+<h2 id="tuto_sim">tuto_sim</h2>
+<p>Create a launch file that starts the apropriate configration: the <code>challenge-1</code>, a configured <code>rviz2</code> displaying laser scans and the <code>teleop</code>.
+We will prefer YAML format for launch file. </p>
+<p>All the information you need are in the tutorials :
+- <a href="https://docs.ros.org/en/iron/Tutorials/Intermediate/Launch/Launch-Main.html">Launch file documentation</a>
+- <a href="https://docs.ros.org/en/iron/How-To-Guides/Launch-file-different-formats.html">Launch examples</a> </p>
+<p>Create <code>$ROS_WORKSPACE/pkg-tsim/tbot_sim/launch/tutosim_launch.yaml</code>
+Add this code into this file to:</p>
+<pre><code class="language-yaml">launch:
+
+- include:
+    file: &quot;$(find-pkg-share tbot_sim)/launch/challenge-1.launch.py&quot;
+
+- node:
+    pkg: &quot;rviz2&quot;
+    exec: &quot;rviz2&quot;
+    name: &quot;rviz2&quot;
+
+- executable:
+    cmd: gnome-terminal --tab -e 'ros2 run  teleop_twist_keyboard teleop_twist_keyboard'
+</code></pre>
+<p>Exercise: modify this launch file so that <code>rviz</code> loads a saved configuration file when it starts. This configuration file should add the laser data, ...</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

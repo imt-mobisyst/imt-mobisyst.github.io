@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>ROS Package - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../tuto-kick-off/simulation/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../tuto-kick-off/range-sensor/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#03-create-a-ros-compatible-package" class="nav-link">03 - Create a ROS compatible package</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#your-first-package-in-ros2" class="nav-link">Your first package in ROS2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#the-packagexml-file" class="nav-link">The package.xml file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#the-cmakelisttxt" class="nav-link">The CMakeList.txt</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#python-scripts-with-cmake" class="nav-link">Python scripts with Cmake</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#run-your-node" class="nav-link">Run your node:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#exercice" class="nav-link">Exercice:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="03-create-a-ros-compatible-package">03 - Create a ROS compatible package</h1>
+<p>This tutorial is based on the official documentation: <a href="https://docs.ros.org">docs.ros.org</a>,
+with some tuning considering our preferences...
+Typically we prefer cmake method, whatever the targeted language (<em>C++</em> or <em>python</em>).</p>
+<h2 id="your-first-package-in-ros2">Your first package in ROS2</h2>
+<p>You can build your first package using the ros tool, with the build-type <code>ament_cmake</code>, then compile and install the package.
+Typically a <code>tuto_kickoff</code> package:</p>
+<pre><code class="language-sh">ros2 pkg create --build-type ament_cmake tuto_kickoff
+colcon build --packages-select tuto_kickoff
+</code></pre>
+<p>Package creation generate files identifying <code>tuto_kickoff</code> directory as a ROS package source.
+The file <code>package.xml</code> setup the ROS configuration, the name of the packages and its dependencies in ROS ecosystem. 
+The file <code>CMakeLists.txt</code> is required to use <a href="https://en.wikipedia.org/wiki/CMake">CMake</a> tool, a very famous cross-platform tool for automatizing building processes.</p>
+<p>The <code>colcon build</code> command produces the <code>build</code> and the <code>install</code> directories with respectively, temporary files generated by the build process and the resulting built executable and resources (yes, none at this point...).
+To inform your terminal that some ROS resources are available here, you have to <a href="https://linuxcommand.org/lc3_man_pages/sourceh.html">source</a> the ROS setup file. </p>
+<pre><code class="language-sh">ls
+source ./install/setup.bash
+</code></pre>
+<h2 id="the-packagexml-file">The package.xml file</h2>
+<p>As we said, <code>package.xml</code> is the entrance point of the package for ROS tools.
+It is a text file in <a href="https://fr.wikipedia.org/wiki/Extensible_Markup_Language">eXtensible Markup Language</a> format.
+Typically, it regroups all the dependencies, for instance <code>rclcpp</code> and <code>rclpy</code> the ROS client libraries for Cpp and Python or <code>std_msgs</code>.
+<a href="https://index.ros.org/p/std_msgs">std_msgs</a> and <a href="https://index.ros.org/p/geometry_msgs">geometry_msgs</a> are a ROS package defining the format of the simple and common messages allowing the communication between ROS processes (standard and geometry messages for our use).</p>
+<p>In the <code>package.xml</code> file :</p>
+<pre><code class="language-xml">&lt;package format=&quot;3&quot;&gt;
+  ...
+  &lt;depend&gt;rclcpp&lt;/depend&gt;
+  &lt;depend&gt;rclpy&lt;/depend&gt;
+  &lt;depend&gt;std_msgs&lt;/depend&gt;
+  &lt;depend&gt;geometry_msgs&lt;/depend&gt;
+  ...
+&lt;/package&gt;
+</code></pre>
+<p>Those lines inform ROS to make the targeted resources available at build and execution time.
+For information about <code>package.xml</code> you can refer to the official specifications on <a href="https://www.ros.org/reps/rep-0149.html">www.ros.org</a>.</p>
+<h2 id="the-cmakelisttxt">The CMakeList.txt</h2>
+<p>The <code>CMakeList.txt</code> provide instructions on how to build libraries and programs.
+Generally, the file starts with a project name and the importation of dependencies.
+The dependencies must be installed, reachable on the machine and with the appropriate version number.
+Then its define how to build new resources (typically, libraries and programs/executable).
+And finally the element to install and where.</p>
+<p>For instance, all launch file included in the <code>launch</code>s directory can be installed with the cmake command: </p>
+<pre><code class="language-sh"># Install launch files.
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+</code></pre>
+<p>Most of the primitive (<code>find_package</code>, <code>add_executable</code>, <code>install</code>) and macros (<code>PROJECT_NAME</code>, <code>REQUIRED</code>, ... ) are CMake primitives and macros.
+The <code>ament</code> tools provides some of primitive dedicated to <a href="https://docs.ros.org/en/foxy/How-To-Guides/Ament-CMake-Documentation.html">ROS build automation</a>.</p>
+<h2 id="python-scripts-with-cmake">Python scripts with Cmake</h2>
+<p>Scripts are short executable code file, defining a ROS Node (in our context).</p>
+<p>The simplest way to include Python-based ROS node depending on a specific <a href="https://docs.python.org/3/glossary.html#term-package">Python Package</a> is to use <code>install</code> instruction in <code>CMakeLists.txt</code>.
+Considering that your work is in a <code>scripts</code> directory and knowing that the ROS destination to make the resources available for <code>ros2 run</code> is <code>lib</code> (...),
+the install instructions would look-like:</p>
+<pre><code class="language-sh"># Python scripts
+install( PROGRAMS scripts/myNode DESTINATION lib/${PROJECT_NAME})
+</code></pre>
+<p>Naturally, it supposes that you have  <code>myNode</code> script file aside. 
+A minimal <code>myNode</code> can look-like : </p>
+<pre><code class="language-python">#!/usr/bin/python3
+import rclpy                 # core ROS2 client python library
+from rclpy.node import Node  # To manipulate ROS Nodes
+
+def main():
+    rclpy.init()     # Initialize ROS2 client
+    myNode= Node('blanc_node') # Create a Node, with a name         
+
+    # Start the ros infinite loop with myNode.
+    rclpy.spin( myNode )
+
+    # At the end, destroy the node explicitly.
+    myNode.destroy_node()
+
+    # and shut the light down.
+    rclpy.shutdown()
+
+    print(&quot;tuto_move :: STOP.&quot;)
+
+# If the file is executed as a script (ie. not imported).
+if __name__ == '__main__':
+    # call main() function
+    main()
+</code></pre>
+<p><strong>ATTENTION</strong>, The <code>#!/usr/bin/python3</code> in the first line is mandatory. 
+It indicate the interpreter processing the script.
+In fact, you have a executable program named <code>python3</code> in the location <code>/usr/bin</code>.</p>
+<h2 id="run-your-node">Run your node:</h2>
+<p>Build your packages, from your workspace directory, and update your shell environment with <code>source</code>.</p>
+<pre><code class="language-sh">colcon build
+source install/setup.bash
+</code></pre>
+<p>Normally, at this point a new package <code>tuto_kickoff</code> with <code>myNode</code> is reachable by <code>ros2</code>. </p>
+<pre><code class="language-sh">ros2 run tuto_kickoff myNode
+</code></pre>
+<p>The executed <code>myNode</code> script is the one in <code>install/tuto_kickoff/lib</code>.
+Any modification in your script files would require a new <code>colcon build</code> for propagation in ros ecosystem.</p>
+<h2 id="exercice">Exercice:</h2>
+<ol>
+<li>Add the node developed into the tutorial "<em>move the robot</em>" into your package <code>tuto_kickoff</code> as a <code>move_tbot</code>s node. At the end, you will be capable of starting it with the command: <code>ros2 run tuto_kickoff move_tbot</code>.</li>
+<li>Add a launch file starting a gazebo simulation with the <code>move_tbot</code> node. At the end, you will be capable of launching gazebo, a robot, your control node with the command: <code>ros2 launch tuto_kickoff sim_move_launch.yaml</code>.</li>
+</ol>
+<!--
+## Terminate the exercise
+
+- Create a node `move_1m` at the appropriate location that will integrate the code for moving the tbot 1 meter forward.
+
+We want the `move_1m` to move the robot for one meter then stop automatically.
+To do that your node requires a new timer at the approximate time required to perform the movement with a new callback function to stop the robot.
+
+To notice that the robot will stop but not necessarily the node.
+To stop the control program, one of the solutions is to take control on the infinite loop.
+# This would be performed by replacing the call to `spin` by a call to `spin_until_future_complete` (cf. [init/shutdown doc](https://docs.ros2.org/latest/api/rclpy/api/init_shutdown.html)).
+A simple way to take control is to use a sequential call to `spin_once()` rather than a blocking call to `spin()`, typically into a `while rclpy.ok() :` loop.
+Then you can define your own stop condition, the fact that the node terminate its job or not.
+
+
+<pre><code class="language-python"># rclpy.spin(move)
+while rclpy.ok() and move.isMoving() :
+    rclpy.spin_once(move)
+</code></pre>
+
+
+Do not forget to add the `isMoving` method to `MoveNode`.
+
+## Going further
+
+The _node/topic_ pattern is dedicated to a continuous process. 
+ROS propose an action tool to define one shot behavior.
+Use this tool to define the `move_1m` [action](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html).
+Use the action parameters to set the distance (1 meter per default).
+
+We want 3 new actions: `turn_left`, `turn_right` and `rear`.
+--></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

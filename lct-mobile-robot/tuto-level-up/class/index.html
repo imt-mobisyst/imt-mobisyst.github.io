@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Node with Class - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../tuto-kick-off/camera-driver/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../slam/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#create-node-with-class" class="nav-link">Create Node with Class</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#motivation" class="nav-link">Motivation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ros-solution" class="nav-link">ROS solution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#alternative-solution" class="nav-link">Alternative Solution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#event-driven-programming" class="nav-link">Event-driven programming</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#infinit-safe-move" class="nav-link">Infinit Safe Move</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="create-node-with-class">Create Node with Class</h1>
+<p>The official ROS tutorial invites to use inheritance of ROS node.
+We propose here, to explore another way.</p>
+<h2 id="motivation">Motivation</h2>
+<p>ROS-node philosophy relies on events that trigger call-back function.
+Typically, the subscription to a topic trigger a function to process (a call-back) each time a new message is available.
+It is coded as :</p>
+<pre><code class="language-python"># Define a callback function
+def aCallback( aMsg ):
+    ...
+
+# Connect a callback to events.
+aRosNode= Node('node_name')
+aRosNode.create_subscription( MsgType, 'scan', aCallback, 10)
+</code></pre>
+<p>However, we generally need a context of execution for a given callback.
+We wan to access certain information in the callback definition (parameters, recorded previous data, et.).
+Or, in a more technical way, we need something like:</p>
+<pre><code class="language-python"># Define a callback function
+def aCallback( aContext, aMsg ):
+    ...
+</code></pre>
+<p>And <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object-Oriented Programming</a> allows such a thing.
+The trick consists of defining a class to model the context, and use a method of the class as call-back function.</p>
+<p>In python: </p>
+<pre><code class="language-python"># Define a callback function
+class Context :
+    def aCallback( self, aMsg ):
+        ...
+
+# Connect a callback to events.
+aRosNode= Node('node_name')
+myContext= Context()
+aRosNode.create_subscription( MsgType, 'scan', myContext.aCallback, 10)
+</code></pre>
+<h2 id="ros-solution">ROS solution</h2>
+<p>The <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html">ROS tutorial</a> propose a solution based on <a href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">inheritence</a>.
+The <code>Context</code> class inherits from ros <code>Node</code> class.</p>
+<p>Example with the subscriber:</p>
+<pre><code class="language-python">#!/usr/bin/python3
+import rclpy
+from rclpy.node import Node
+
+from std_msgs.msg import String
+
+class MinimalSubscriber(Node):
+
+    def __init__(self):
+        super().__init__('minimal_subscriber')
+        self.subscription= self.create_subscription(
+            String, 'topic',
+            self.listener_callback, 10)
+
+    def listener_callback(self, msg):
+        self.get_logger().info('I heard: &quot;%s&quot;' % msg.data)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    minimal_subscriber = MinimalSubscriber()
+    rclpy.spin(minimal_subscriber)
+    minimal_subscriber.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<p>As a result, Node method can be performed on <code>self</code> as for <code>create_subscription</code>,
+but the inheritance needs to be set correctly (call to <code>super().__init__</code>)
+and the node instance need to be created after the initialization to <code>rclpy</code>.</p>
+<h2 id="alternative-solution">Alternative Solution</h2>
+<p>An alternative solution aims to minimize the effort developers should do when they use our solution.</p>
+<p>Typically, the number of lines in the main function,
+with a main for instance as :</p>
+<pre><code class="language-python">def main():
+    minimal_subscriber= MSContext()
+    minimal_subscriber.process()
+</code></pre>
+<p>The management of ros client (<code>rclpy</code>) and ros node is hidden to the user.
+For this purpose,
+one of the solutions, is to define initialize ros client only in the process method and to use ROS <code>node</code> as an attribute of the class.</p>
+<p>The solution could be, for instance:</p>
+<pre><code class="language-python">class MSContext():
+
+    def listener_callback(self, msg):
+        self._node.get_logger().info('I heard: &quot;%s&quot;' % msg.data)
+
+    def process(self)
+        rclpy.init(args=args)
+        self._node = Node()
+        self._node.create_subscription(
+            String, 'topic',
+            self.listener_callback, 10)
+        # Infinite loop:
+        rclpy.spin(minimal_subscriber)
+        # Clean stop:
+        minimal_subscriber.destroy_node()
+        rclpy.shutdown()
+</code></pre>
+<h2 id="event-driven-programming">Event-driven programming</h2>
+<p>To notice that <a href="https://en.wikipedia.org/wiki/Event-driven_programming">Event-Driven Programming</a> is not something unique for ROS.
+Typically, most of the IHM API or web technology are based on EDP.</p>
+<p>Technically in ROS, it is managed by the ros client, with the <code>spin_once</code> or <code>spin</code> functions.
+These 2 functions connect events (the reception of a message for instance) with the appropriate callback.
+It is also those functions that effectively push messages into the topics after a <code>publishe</code> action.</p>
+<p><code>spin_once</code> activates once the ros client and should be call in an infinite loop.
+<code>spin</code> handle the infinite loop directly (and should be preferred).</p>
+<p>To notice that it is possible to generate events with timers:</p>
+<pre><code class="language-python">aNode.create_timer( timer_period, timer_callback )
+</code></pre>
+<p>For instance, with a simple publisher: </p>
+<pre><code class="language-python">#!/usr/bin/python3
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+
+class MPContext:
+
+    def __init__(self):
+        self.i = 0
+
+    def timer_callback(self):
+        msg = String()
+        msg.data = 'Hello World: %d' % self.i
+        self._node.publisher_.publish(msg)
+        self._node.get_logger().info('Publishing: &quot;%s&quot;' % msg.data)
+        self.i += 1
+
+    def process(self):
+        rclpy.init()
+        self._node= Node()
+        # Create a publisher
+        self._publisher= self._node.create_publisher(String, 'topic', 10)
+        # Create a timer at 2 hertz, with a callback
+        self._timer = self._node.create_timer(0.5, self.timer_callback)
+        # Go
+        rclpy.spin(self._node)
+        # Clean stop
+        self._node.minimal_publisher.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    rosContext= MPContext()
+    rosContext.process()
+</code></pre>
+<!-- ## Python package -->
+
+<h2 id="infinit-safe-move">Infinit Safe Move</h2>
+<p>Create a new node <code>reactive_move</code> in your package that will command the robot velocities in a way that the robot will avoid the obstacles.
+The node subscribes to scan data and publish velocities.</p>
+<ol>
+<li>Determine a rectangle in front of the robot and get the point cloud obstacles in this rectangle.</li>
+<li>If an obstacle is present in the right part of the rectangle, turn left.</li>
+<li>If an obstacle in present in the left part of the rectangle, turn right.</li>
+<li>Otherwise move in a straight line.</li>
+<li>Calibrate the rectangle configuration and the speeds to get a coherent and safe control.</li>
+<li>Add rules to better control the robot in a dead end scenario</li>
+</ol>
+<p>When it is working in the simulation, test your solution on a real robot.</p>
+<p>IMPORTANT - For a better security, implement the control function independently from the scan callback and activate your control at a desired frequency by using a timer.</p>
+<p>OPTIONAL - Stop the robot if no scan was arrived the last second and test it by stopping the urg_node.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

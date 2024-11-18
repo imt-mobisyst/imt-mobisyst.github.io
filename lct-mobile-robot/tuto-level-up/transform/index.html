@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Move To - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../slam/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../vision/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#move-to" class="nav-link">Move To</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#record-a-goal-position" class="nav-link">Record a goal position</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#permit-autonomous-navigation" class="nav-link">Permit Autonomous Navigation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#going-further-path-following" class="nav-link">Going Further - Path following</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="move-to">Move To</h1>
+<p>The idea here is to develop a move strategy to permits a robot to reach positions successively, in a cluttered environment.
+To do that, the node subscribes to a topic <code>goals</code> to get in a position to reach.</p>
+<!--
+This tutorial supposes that you perform the tutorial "[Move the Robot](1.2-move.md)".
+A correction is proposed on [tbot package](https://bitbucket.org/imt-mobisyst/mb6-tbot/src/master/tbot_pytools/tbot_pytools/reactive_move.py).
+-->
+
+<p>The main difficulty here, consists in following positioning kwoledge of the goals while the robot is moving.</p>
+<h2 id="record-a-goal-position">Record a goal position</h2>
+<p>It supposes that you play with at least 2 frames.
+A local frame is attached to the robot and is moving with it.
+A global frame permits to localize the goal at a fixed position in the environement and the robot (i.e. the local frame).
+It supposes that your global frame is fixed in the environment.</p>
+<p><img alt="" src="../frames.svg" /></p>
+<p>Classically, we use the map frame for global referring system, but without map it is possible to use the <code>odom</code> (from robot odometer).
+The robot is defined with different frame: <code>base_link</code> at the gravity center of the robot. <code>base_footprint</code> as a projection of <code>base_link</code> on the floor.</p>
+<h3 id="understand-frame-and-transformations">Understand frame and transformations</h3>
+<p>By starting any sensor as the laser, the publishing data is in its own frame.
+It would be impossible for <em>rviz2</em> to display the laser information into <code>map</code> frame (<em>fixed frame</em>).
+The <code>map</code> and <code>laser</code> frames are independent.</p>
+<p>Start the laser and rviz2:</p>
+<pre><code class="language-console"># First console
+ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0
+# Second console
+rviz2
+</code></pre>
+<p>In rviz, connect to scan topic, but nothing appears.
+Try by modifying the global frame with the frame of the laser.</p>
+<h3 id="transform-tools">Transform tools</h3>
+<p>The package <code>tf2_tools</code> provides with a process that generates a graph of the connection between the frames.</p>
+<pre><code class="language-console">#third console
+ros2 run tf2_tools view_frames.py
+evince frames.pdf
+</code></pre>
+<p>In <em>ROS</em> <code>tf</code> stand for transformation.
+It is a central tool permitting getting space-temporal information from a frame to another.
+It supposes that specific messages are published into dedicated topic <code>tf</code>.
+At this step, no transform are published...</p>
+<p>It is possible to generate a static transformation (it supposes that the laser is fixed in the environment at a specific position)</p>
+<pre><code class="language-console">ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 1 &quot;map&quot; &quot;laser&quot;
+</code></pre>
+<p>You can validate with <code>view_frame</code> that the 2 frames ares connected and that laser scan are displayed in <em>rviz</em>.</p>
+<p>The first 3 numbers fix the translation.
+It is the potion of the <code>laser</code> center into <code>map</code>. The next 4 numbers give the rotation.</p>
+<p>In fact, the publisher generates a <a href="https://docs.ros.org/en/jade/api/geometry_msgs/html/msg/TransformStamped.html">TransfromStamped mesage</a> and the rotation is based on quaternion definition (cf. <a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">wikipedia</a> for details...)
+Display the frames in <em>rviz2</em> (add &gt; axes &gt; set reference frame) and play with different configurations (kill and restart the <code>static_transform_publisher</code>).</p>
+<h3 id="tbot-configuration">tbot configuration</h3>
+<p>For a simple robot, it can be dozens of frames and it grows with robot parts (legs, arms).
+<em>ROS</em> provide a tool (state publisher) to publish transform regarding how the frames are interconnected.
+The tbot launch file of the <code>tbot_start</code> package already starts state publisher based on a description of the tbot (kobuki robot in IMT Nord Europe configuration).</p>
+<p>Spot every thing but <em>rviz</em> and
+start the tbot launch file: <code>tbot_start minimal.launch.py</code>.
+Generate the frame graph (<code>view_frame</code>).</p>
+<p>In basic configuration, the robot provides a first pose estimation in global <code>odom</code> frame (ie. transformation between <code>odom</code> and <code>base_link</code>).
+So set the fixed frame in rviz on <code>odom</code>, the laser scans appear.
+Connect to tf topic and all the frame axis appear too.</p>
+<ul>
+<li>Oficial documentation about tf2: <a href="https://docs.ros.org/en/iron/Tutorials/Intermediate/Tf2/Tf2-Main.html">docs.ros.org</a>.</li>
+</ul>
+<p>Bonus: it is possible to visualize the robot in <em>rviz2</em>: add &gt; robot description (select the appropriate topic).</p>
+<h3 id="publish-a-pose-in-a-specific-frame">Publish a pose in a specific frame.</h3>
+<p>Naturally, <em>ROS</em> also provide C++ and Python library to manipulate transformation and permits developers to get pose coordinate from a frame to another.</p>
+<p>The idea is to a declare a tf2 listener, an object that will subscribe to transform topics and maintain transformation data.
+Then it is possible to recompute pose coordinates in any connected frames.</p>
+<p>More on : <a href="http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20listener%20%28Python%29">wiki.ros.org</a>.</p>
+<p>The idea in our context is to develop a node <code>localGoal</code> that will remember a pose in a global frame and publish at a given frequence the pose in another local frame.</p>
+<p>For our new node, we have to declare the elements permitting the node to listen and keep the transformation available, a <code>listerner</code> and a <code>buffer</code>.</p>
+<pre><code class="language-python"># Transform tool:
+self.tf_buffer = tf2_ros.Buffer()
+self.tf_listener = tf2_ros.TransformListener(self.tf_buffer, self)
+...
+</code></pre>
+<p>Do not forget to import <code>tf2_ros</code> into your script and to add the reference into the package dependencies (<code>package.xml</code>).</p>
+<p>The node is also defined with it onw attrituts: for instance a target local frame, a goal pose (position orientation).</p>
+<pre><code class="language-python">...
+# Node Attribute:
+self.local_frame= 'base_link'
+self.global_goal= Pose()
+self.global_goal.position.x= (float)(1)
+self.global_goal.position.y= (float)(2)
+...
+</code></pre>
+<p>And finally we require a timer with a callback function to publish continuously the goal pose.</p>
+<pre><code class="language-python">...
+node.create_timer(0.1, self.publish_goal)
+...
+</code></pre>
+<p>We can now address the interesting question: <em>How to transform a position defined into a frame in another frame ?</em>
+It consists in building a Transform object from the reference and target frames.
+While a listener was declared on a transform buffer, it is possible to create this object from that tool (if exist).</p>
+<p>The Transform object is generated with the method <code>lookup_transform(target_frame, reference_frame, time)</code>.
+This method gets a <code>target_frame</code> (the frame id in which we want the pose) a <code>reference_frame</code> (the frame id in which the pose is currently defined) and a time.
+In fact, the transformations are dynamically.
+The position and orientation of elements (the robot(s), robot parts, ...)  change continuously and it is possible to get transformation in the present or in the past.
+To get the current transformation a <code>node.time.Time()</code> permits to get the current time.</p>
+<p>The lookup is not guaranteed to achieve.
+It can fail in case of a gap in the transforms or obsolete transforms.
+In case of fail, an exception is thrown accordingly the python exception manager (more on <a href="https://www.w3schools.com/python/python_try_except.asp">w3schools</a>).</p>
+<p>Finally, inside our <code>publish_goal</code> call back, getting a transform will look like:</p>
+<pre><code class="language-python">    def publish_goal(self):
+        currentTime= rclpy.time.Time()
+        # Get Transformation
+        try:
+            stampedTransform= self.tf_buffer.lookup_transform(
+                        self.local_frame,
+                        'odom',
+                        currentTime)
+        except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):TransformException as tex:
+            self._node.get_logger().info( f'Could not transform the goal into {self.local_frame}: {tex}')
+            return
+        ...
+</code></pre>
+<p>The transform is a stamped transform (ie. defined in a given time) defined by <code>geometry_msgs</code> package.
+The pose transformation is already defined in a ros method of <code>tf2_geometry_msgs</code> package and it require the installation of <code>python3-tf2-geometry-msgs</code>(things are never simple in ros...):</p>
+<pre><code class="language-console">sudo apt update
+sudo apt install python3-tf2-geometry-msgs
+</code></pre>
+<pre><code class="language-python">    def publish_goal(self):
+        ...
+        # Compute goal into local coordinates
+        localGoal = tf2_geometry_msgs.do_transform_pose( self.global_goal, stampedTransform )
+        ...
+</code></pre>
+<h2 id="permit-autonomous-navigation">Permit Autonomous Navigation</h2>
+<p>The goal poses itself is not interesting.
+The objective now is to include this code into the reactive move node in order to permits the robot to reach a decided destination, by avoiding obstacles.</p>
+<ol>
+<li>Get the goal pose from a topic pose (a pose can be published with rviz).</li>
+<li>Convert the received goal pose into a global frame (<code>odom</code>).</li>
+<li>Control the robot to reach the goal (the control is in the local frame)</li>
+<li>Stop the robot if it is close enough to the position.</li>
+</ol>
+<h2 id="going-further-path-following">Going Further - Path following</h2>
+<p>Rather than a unique pose, it could be interesting to define a succession of pose to follow (a path).
+That for the reactive move has to manage a list of pose and switch from a pose to the next one each time it is expected.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Camera Driver - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../range-sensor/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../tuto-level-up/class/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#camera-driver" class="nav-link">Camera Driver</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#drivers" class="nav-link">Drivers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#opencv2-the-queen-of-the-vision-librairie" class="nav-link">OpenCV2 - the queen of the vision librairie.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#publish-sensor-data" class="nav-link">Publish sensor-data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#going-futher" class="nav-link">Going futher:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="camera-driver">Camera Driver</h1>
+<p>This tutorial cover the basis of the integration of a new sensor in <em>ROS 2</em> environment.
+In our case we will integrate <a href="https://www.intelrealsense.com/introducing-intel-realsense-d400-product-family/">Realsense D400 RGBDi</a> camera.</p>
+<h2 id="drivers">Drivers</h2>
+<p>First, the integration of a sensor require to identify the driver (the piece of code permiting to communicate with a devices - hardware level) and the API (Application Programming interface).</p>
+<p>Concretly, we mostly seek for the appropriate <a href="https://en.wikipedia.org/wiki/Library_(computing)">librairies</a> correctly integrated to our system.</p>
+<p>Idéaly the community already support the desired librairies (like for <a href="https://www.libsdl.org/">libsdl2</a> for instance, simple C lib "to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware").
+By searching for <code>libsdl2</code> with Ubuntu-Aptitude we will find several packages ready to be installed:</p>
+<pre><code class="language-console">apt search libsdl2
+</code></pre>
+<ul>
+<li><code>libsdl2-x.x</code> runing librairies (installed if programs use <em>SDL2</em>)</li>
+<li><code>libsdl2-dev</code> development file (to install if you plan to develop a program based on <em>SDL2</em>)</li>
+<li>and some extra libs.</li>
+</ul>
+<p>Other wise, we have to build/compile the driver from source code.
+In case of realsense, <a href="https://github.com/IntelRealSense/librealsense">librealsense</a> recommand to use <code>vcpkg</code> to build and install it.</p>
+<p>Normally, after installation, you can run a small script to request the cam (more on <a href="https://dev.intelrealsense.com/docs/python2">dev.intelrealsense.com</a>): </p>
+<pre><code class="language-python">#!/usr/bin/env python3
+
+###############################################
+##              Simple Request               ##
+###############################################
+
+import pyrealsense2 as rs
+
+# Configure depth and color streams
+pipeline = rs.pipeline()
+config = rs.config()
+
+# Get device product line for setting a supporting resolution
+pipeline_wrapper = rs.pipeline_wrapper(pipeline)
+pipeline_profile = config.resolve(pipeline_wrapper)
+device = pipeline_profile.get_device()
+device_product_line = str(device.get_info(rs.camera_info.product_line))
+
+print( f&quot;Connect: {device_product_line}&quot; )
+for s in device.sensors:
+    print( &quot;Name:&quot; + s.get_info(rs.camera_info.name) )
+</code></pre>
+<p>Copy the code on a <code>test-camera.py</code> file and process it (<code>python3 test-camera.py</code>).
+Try this script with severals cameras, not all the Realsense provide for IMU (accelerations) information.</p>
+<h2 id="opencv2-the-queen-of-the-vision-librairie">OpenCV2 - the queen of the vision librairie.</h2>
+<p>Next we can try to visualise the image flux in a windows.
+For that we will use <a href="https://opencv.org/">OpenCV2</a> librairy (an open source computer vision library).</p>
+<p>The next script, adapted from the oficial documentation, connect the camera, and display both the image and distance image in an infinite loop (<code>while True</code>).</p>
+<ol>
+<li>Based on librealsense, the script activates the expected data flux, with the wanted configuration (848x480 imagein a given format at 60 Hertz):</li>
+</ol>
+<pre><code class="language-python">config.enable_stream(rs.stream.color, 848, 480, rs.format.bgr8, 60)
+config.enable_stream(rs.stream.depth, 848, 480, rs.format.z16, 60)
+</code></pre>
+<ol>
+<li>
+<p>Start the aquisition process (<code>pipeline.start(config)</code>)</p>
+</li>
+<li>
+<p>Still with librealsense, the script wait for incomming data and get them:</p>
+</li>
+</ol>
+<pre><code>frames = pipeline.wait_for_frames()
+
+depth_frame = frames.first(rs.stream.depth)
+color_frame = frames.first(rs.stream.color)
+</code></pre>
+<ol>
+<li>Then, the reminder of the script consists in converting and displaying the data based on <em>Numpy</em> and <em>OpenCV</em></li>
+</ol>
+<pre><code class="language-python">#!/usr/bin/env python3
+## Doc: https://dev.intelrealsense.com/docs/python2
+
+###############################################
+##      Open CV and Numpy integration        ##
+###############################################
+
+import pyrealsense2 as rs
+import signal, time, numpy as np
+import sys, cv2, rclpy
+
+# Configure depth and color streams
+pipeline = rs.pipeline()
+config = rs.config()
+
+# Get device product line for setting a supporting resolution
+pipeline_wrapper = rs.pipeline_wrapper(pipeline)
+pipeline_profile = config.resolve(pipeline_wrapper)
+device = pipeline_profile.get_device()
+device_product_line = str(device.get_info(rs.camera_info.product_line))
+
+print( f&quot;Connect: {device_product_line}&quot; )
+found_rgb = True
+for s in device.sensors:
+    print( &quot;Name:&quot; + s.get_info(rs.camera_info.name) )
+    if s.get_info(rs.camera_info.name) == 'RGB Camera':
+        found_rgb = True
+
+if not (found_rgb):
+    print(&quot;Depth camera equired !!!&quot;)
+    exit(0)
+
+config.enable_stream(rs.stream.color, 848, 480, rs.format.bgr8, 60)
+config.enable_stream(rs.stream.depth, 848, 480, rs.format.z16, 60)
+
+# Capture ctrl-c event
+isOk= True
+def signalInteruption(signum, frame):
+    global isOk
+    print( &quot;\nCtrl-c pressed&quot; )
+    isOk= False
+
+signal.signal(signal.SIGINT, signalInteruption)
+
+# Start streaming
+pipeline.start(config)
+
+count= 1
+refTime= time.process_time()
+freq= 60
+
+sys.stdout.write(&quot;-&quot;)
+
+while isOk:
+    # Wait for a coherent tuple of frames: depth, color and accel
+    frames = pipeline.wait_for_frames()
+
+    color_frame = frames.first(rs.stream.color)
+    depth_frame = frames.first(rs.stream.depth)
+
+    if not (depth_frame and color_frame):
+        continue
+
+    # Convert images to numpy arrays
+    depth_image = np.asanyarray(depth_frame.get_data())
+    color_image = np.asanyarray(color_frame.get_data())
+
+    # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
+    depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.03), cv2.COLORMAP_JET)
+
+    depth_colormap_dim = depth_colormap.shape
+    color_colormap_dim = color_image.shape
+
+    sys.stdout.write( f&quot;\r- {color_colormap_dim} - {depth_colormap_dim} - ({round(freq)} fps)&quot; )
+
+    # Show images
+    images = np.hstack((color_image, depth_colormap))
+
+    # Show images
+    cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
+    cv2.imshow('RealSense', images)
+    cv2.waitKey(1)
+
+    # Frequency:
+    if count == 10 :
+        newTime= time.process_time()
+        freq= 10/((newTime-refTime))
+        refTime= newTime
+        count= 0
+    count+= 1
+
+# Stop streaming
+print(&quot;\nEnding...&quot;)
+pipeline.stop()
+</code></pre>
+<p>To notice the use of <code>signal</code> python librairy that permit to catch and process interuption signal (<code>ctrl-c</code>).</p>
+<h2 id="publish-sensor-data">Publish sensor-data</h2>
+<p>Stating from the previous script, the goal is to encapsulated the connection to the camera into a <em>ROS2</em> <em>Node</em> in a <code>tuto_vision</code> package (only the camera image flux).</p>
+<p>Considering previous developed <em>ROS2</em> <em>Node</em> :</p>
+<ul>
+<li>We want to keep the control on the infinite loop.</li>
+<li>We will publish <code>sensor_msgs/image</code>. The <a href="https://github.com/ros2/common_interfaces/tree/galactic/sensor_msgs">ros2 documentation</a> is verry poor, but <a href="http://wiki.ros.org/sensor_msgs?distro=noetic"><em>ROS1</em> wiki</a> remains valuable.</li>
+</ul>
+<h3 id="node-structure">Node structure:</h3>
+<p>To control the infinite loop we will prefer <code>spin_once</code> to <code>spin</code>.
+To notice that <code>spin_once</code> process once the ROS2 instructions.
+It blocks until an event occurs.
+It is possible to overpass that by specifying a timeout (<code>spin_once(myNode, timeout_sec=0.01)</code>).</p>
+<p>At the end we want a ROS2 Node that connect the camera and publish continously the images (color and depth images).
+The python function of the Node will look like:</p>
+<pre><code class="language-python"># Node processes:
+def process_img(args=None):
+    rclpy.init(args=args)
+    rsNode= Realsense()
+    while isOk:
+        rsNode.read_imgs()
+        rsNode.publish_imgs()
+        rclpy.spin_once(rsNode, timeout_sec=0.001)
+    # Stop streaming
+    print(&quot;Ending...&quot;)
+    rsNode.pipeline.stop()
+    # Clean end
+    rsNode.destroy_node()
+    rclpy.shutdown()
+</code></pre>
+<p>You ca start from a blanc class <code>Realsence</code> and fill the differents methods step by steps (testing your code at each steps):</p>
+<pre><code class="language-python"># Realsense Node:
+class Realsense(Node):
+    def __init__(self, fps= 60):
+        super().__init__('realsense')
+
+    def read_imgs(self):
+        pass
+
+    def publish_imgs(self):
+        pass
+</code></pre>
+<h3 id="publish-images">Publish Images:</h3>
+<ul>
+<li><code>sensor_msgs</code> include <a href="http://docs.ros.org/en/api/std_msgs/html/msg/Header.html">header</a> to state for spacio-temporal information. Mainly the reference frame (ie. <code>cam</code> for instance) and time. For time stamp, <code>get_clock()</code> permits to get a clock of a Node instance (<code>node= Node()</code> or <code>self</code> in case of ineritance) then <code>now()</code> and <code>to_msg()</code> methods respectivelly provide curent <code>time()</code> and convert it into a msg compliant format.</li>
+</ul>
+<pre><code class="language-python">msg.header.stamp = node.get_clock().now().to_msg()
+</code></pre>
+<p>Then it is possible to feed <code>sensor_msgs/image</code> attributs (starting with <code>msg.encoding= "bgr8"</code> seems a good idea.)</p>
+<p>However, a librairy provides some tool to work both with ROS and OpenCV (<a href="http://wiki.ros.org/cv_bridge">cv_bridge</a>).
+The code for image to ROS message is:</p>
+<pre><code class="language-python">from cv_bridge import CvBridge
+
+self.bridge=CvBridge()
+
+msg_image = self.bridge.cv2_to_imgmsg(color_image,&quot;bgr8&quot;)
+msg_image.header.stamp = self.get_clock().now().to_msg()
+msg_image.header.frame_id = &quot;image&quot;
+self.image_publisher.publish(msg_image)
+</code></pre>
+<p>The code for depth image to ROS message is:</p>
+<pre><code class="language-python">from cv_bridge import CvBridge
+
+self.bridge=CvBridge()
+
+# Utilisation de colormap sur l'image depth de la Realsense (image convertie en 8-bit par pixel)
+depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.03), cv2.COLORMAP_JET)
+
+msg_depth = self.bridge.cv2_to_imgmsg(depth_colormap,&quot;bgr8&quot;)
+msg_depth.header.stamp = msg_image.header.stamp
+msg_depth.header.frame_id = &quot;depth&quot;
+self.depth_publisher.publish(msg_depth)
+</code></pre>
+<h3 id="some-test">Some test:</h3>
+<p>At this point it is not relevant any more to show the images inside a <code>CV2</code> window or to compute and print a frequency.</p>
+<p>The frequency can be conputed with ROS2 tool: <code>ros2 topic hz \img</code>.</p>
+<p>The images are displayable into rviz2 program.</p>
+<h2 id="going-futher">Going futher:</h2>
+<p>Play with the other streams provided with the <em>RealSens</em> sensor.</p>
+<p>Code to add both infrared channels</p>
+<pre><code class="language-python">self.config.enable_stream(rs.stream.infrared, 1, 848, 480, rs.format.y8, 60)
+self.config.enable_stream(rs.stream.infrared, 2, 848, 480, rs.format.y8, 60)
+
+self.infra_publisher_1 = self.create_publisher(Image, 'infrared_1',10) 
+self.infra_publisher_2 = self.create_publisher(Image, 'infrared_2',10)
+infra_image_1 = np.asanyarray(infra_frame_1.get_data())
+infra_image_2 = np.asanyarray(infra_frame_2.get_data())
+
+in the loop :
+
+    infra_frame_1 = frames.get_infrared_frame(1)
+    infra_frame_2 = frames.get_infrared_frame(2)
+    # Utilisation de colormap sur l'image infrared de la Realsense (image convertie en 8-bit par pixel)
+    infra_colormap_1 = cv2.applyColorMap(cv2.convertScaleAbs(infra_image_1, alpha=0.03), cv2.COLORMAP_JET)
+
+    # Utilisation de colormap sur l'image infrared de la Realsense (image convertie en 8-bit par pixel)
+    infra_colormap_2 = cv2.applyColorMap(cv2.convertScaleAbs(infra_image_2, alpha=0.03), cv2.COLORMAP_JET)  
+
+    msg_infra = self.bridge.cv2_to_imgmsg(infra_colormap_1,&quot;bgr8&quot;)
+    msg_infra.header.stamp = msg_image.header.stamp
+    msg_infra.header.frame_id = &quot;infrared_1&quot;
+    self.infra_publisher_1.publish(msg_infra)
+
+    msg_infra = self.bridge.cv2_to_imgmsg(infra_colormap_2,&quot;bgr8&quot;)
+    msg_infra.header.stamp = msg_image.header.stamp
+    msg_infra.header.frame_id = &quot;infrared_2&quot;
+    self.infra_publisher_2.publish(msg_infra)
+
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Move the Robot - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../ros-basics/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../simulation/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#02-move-a-robot" class="nav-link">02 - Move a robot</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#connect-the-tbot" class="nav-link">Connect the tbot:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#our-first-node" class="nav-link">Our first node</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#move-script" class="nav-link">Move Script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="02-move-a-robot">02 - Move a robot</h1>
+<p>This tutorial aims to take control of a <strong>tbot</strong>  robot.
+A tbot is a turtlebot2 robot (based on a kobuki platform)
+equipped with a laser range to navigate in a cluttered environment
+and a camera to recognize objects.</p>
+<h2 id="connect-the-tbot">Connect the tbot:</h2>
+<p>If it is not yet the case,
+the machine connecting the robot and its sensors have to be configured accordingly to the <a href="https://bitbucket.org/imt-mobisyst/pkg-tbot">IMT MobiSyst tbot</a></p>
+<p>You will have then a ROS-2 WorkSpace including <strong>tbot</strong> meta-package (<code>pkg-tbot</code>) itself including several ROS packages.</p>
+<ul>
+<li>Verrify it:</li>
+</ul>
+<pre><code class="language-console">cd ~/mb6_space
+ls 
+ls pkg-tbot
+</code></pre>
+<ul>
+<li>Build the packages:</li>
+</ul>
+<pre><code class="language-console">cd pkg-tbot   # enter le project directory
+git pull      # download the last version
+cd ..         # return on your ros workspace (mb6_space)
+colcon build  # build...
+</code></pre>
+<p>ATTENTION all your command as <code>colcon build</code> need to be executed from you ROS workspace.
+The root directory of your ROS project (i.e. <code>mb6-space</code> here).</p>
+<ul>
+<li>Update your shell environment variables:</li>
+</ul>
+<pre><code class="language-console">source bin/run-commands.bash
+</code></pre>
+<ul>
+<li>Connect the tbot base, the laser and launch the control nodes (a ros launch file permits to start a collection of nodes with a desired configuration):</li>
+</ul>
+<pre><code class="language-console">ros2 launch tbot_node minimal_launch.yaml
+</code></pre>
+<p>Into another, you can explore the existing node (<code>rqt_graph</code>) or topics (<code>ros2 topic list</code>)</p>
+<p>Finally, you can try to take control in a third terminal:</p>
+<pre><code class="language-console">ros2 run teleop_twist_keyboard teleop_twist_keyboard cmd_vel:=/multi/cmd_teleop
+</code></pre>
+<p>Close everything with <code>ctrl-c</code>.</p>
+<p>The teleop publishes a <a href="https://index.ros.org/r/common_interfaces/github-ros2-common_interfaces/">geometry_msgs</a> <code>twist</code> message.
+It is composed of two vectors <span class="arithmatex">\((x, y, z)\)</span>, one for linear speed <span class="arithmatex">\((m/s)\)</span>, and the second for angular speed <span class="arithmatex">\((rad/s)\)</span>.
+However a <a href="https://en.wikipedia.org/wiki/Nonholonomic_system">nonholonomic</a> ground robot as the <strong>tbot</strong> would move only on <code>x</code> and turn only on <code>z</code>.
+It is not as free as a drone, you can echo the messages into a 4th terminal.</p>
+<ul>
+<li>Try to control the robot with <code>ros2 topic pub</code> command publishing in the navigation topic (<code>/multi/cmd_nav</code>).</li>
+</ul>
+<p>Tbot integrate a <a href="https://en.wikipedia.org/wiki/Subsumption_architecture">subsumption</a> multiplexer.
+The node listens different topics with different priorities (by default: <code>/multi/cmd_nav</code> and <code>/multi/cmd_telop</code>) and filter the appropriate commands to send to the robot.
+The topics <code>cmd_nav</code> and <code>cmd_telop</code> stend for autonomous navigation and operator teleoperate.
+The human operator has a higher priority and make the multiplexer to trash the <code>cmd_nav</code> commands.</p>
+<h2 id="our-first-node">Our first node</h2>
+<p>The goal is to create a process connecting a topic and publishing velocities as a twist message:</p>
+<ul>
+<li>First we have to create a file for our script.</li>
+</ul>
+<pre><code>touch tuto_move.py
+code tuto_move.py
+</code></pre>
+<ul>
+<li>The script depends from several ROS2 ressources.</li>
+</ul>
+<pre><code class="language-python">import rclpy                  # core ROS2 client python librairie
+from rclpy.node import Node   # To manipulate ROS Nodes
+
+print(&quot;tuto_move :: START...&quot;)
+</code></pre>
+<ul>
+<li>You can try that everything is well imported:</li>
+</ul>
+<p>In a shell:</p>
+<pre><code class="language-sh">python3 tuto_move.py
+</code></pre>
+<ul>
+<li>Next move consists in making a node and an infinite loop </li>
+</ul>
+<p>In <code>tuto_move.py</code> add: </p>
+<pre><code class="language-python">def main():
+    rclpy.init()     # Initialize ROS2 client
+    myNode= Node('move_node') # Create a Node, with a name         
+
+    # Start the ros infinit loop with myNode.
+    while True :
+        rclpy.spin_once( myNode, timeout_sec=0.1 )
+        print(&quot;Running...&quot;)
+
+    # At the end, destroy the node explicitly.
+    myNode.destroy_node()
+
+    # and shut the light down.
+    rclpy.shutdown()
+
+    print(&quot;tuto_move :: STOP.&quot;)
+
+# activate main() function,
+# if the file is executed as a script (ie. not imported).
+if __name__ == '__main__':
+    # call main() function
+    main()
+</code></pre>
+<ul>
+<li>You can try that a node is created :</li>
+</ul>
+<pre><code class="language-sh"># In a 1st shell:
+python3 tuto_move.py
+
+# In a 2d shell:
+ros2 node list
+</code></pre>
+<h2 id="move-script">Move Script</h2>
+<p>We want our node to publish velocities continuously.
+To do that we have to import the type of message we have to send, to instantiate a publisher, and to publish messages.</p>
+<p>You have to add the next pieces of codes at the appropriate location in the <code>tuto_move.py</code> script:</p>
+<pre><code class="language-python"># Message to publish:
+from geometry_msgs.msg import Twist
+
+# Initialize a publisher:
+velocity_publisher = myNode.create_publisher(Twist, '/multi/cmd_nav', 10)
+
+# publish a msg
+velo = Twist()
+velocity_publisher.publish(velo)
+</code></pre>
+<ul>
+<li>To verify that everything is right:</li>
+</ul>
+<pre><code class="language-sh"># In a 1st shell:
+python3 tuto_move.py
+
+# In a 2d shell:
+ros2 node list
+ros2 topic list
+ros2 topic echo /multi/cmd_nav
+</code></pre>
+<p>Basicly it echoes 0 speed vectors. 
+To investigate what is a <code>Twist</code> you can ask to <code>ros2 interface</code> or search at the package location (<code>/opt/ros/iron/share</code>) (or search the documentations).</p>
+<pre><code class="language-sh">ros2 interface list | grep Twist
+ros2 interface show geometry_msgs/msg/Twist
+</code></pre>
+<pre><code class="language-sh">ls /opt/ros/iron/share
+cat /opt/ros/iron/share/geometry_msgs/msg/Twist.msg
+cat /opt/ros/iron/share/geometry_msgs/msg/Vector3.msg
+</code></pre>
+<p>In case of <a href="https://en.wikipedia.org/wiki/Nonholonomic_system">nonhonolome mobile</a> ground robot,
+the control uses two speed values, one lienar (x) and one angular (z).</p>
+<p>SO, for a circling behavior:</p>
+<pre><code class="language-python"># publish a msg
+velo = Twist()
+velo.linear.x= 0.2   # meter per second
+velo.angular.z= 0.14 # radian per second
+velocity_publisher.publish(velo)
+</code></pre>
+<p>At this point, your robot should move...
+Notice that you can also test your code on <code>turtlesim</code> by changing the name of the velocity topic.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

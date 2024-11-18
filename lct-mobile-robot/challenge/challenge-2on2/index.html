@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Challenge 2 - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../challenge-1on2/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../appendix/faq/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#efficient-exploration" class="nav-link">Efficient Exploration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#expected" class="nav-link">Expected</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#consigns" class="nav-link">consigns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#criteria" class="nav-link">Criteria</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#evaluation-protocol" class="nav-link">Evaluation protocol</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="efficient-exploration">Efficient Exploration</h1>
+<p>The goal of the challenge is to demonstrate the capability a robot has to navigate in a cluttered environment and locate specific objects.
+The localization requires to build a map of the environment.</p>
+<h2 id="expected">Expected</h2>
+<p>The robot is positioned somewhere in a closed area (i.e. an area bounded with obstacles).</p>
+<p>The robot moves continuously in this area by avoiding obstacles.</p>
+<p>The robot knowledge is extended with new incoming data.
+In other words, the robot build a map and localizes itself in it.</p>
+<p>The robot detects <em>NukaCola</em> bottle in the vision flux.
+Messages are sent in topics
+one to state the detection
+and another one to mark the position in the map (cf. <a href="http://wiki.ros.org/marker_msgs">marker_msgs</a>)</p>
+<p>Experiments can be performed with 2 computers, one on the robot (Control PC) and a second for visualization and human control (Operator PC).</p>
+<h2 id="consigns">consigns</h2>
+<p>Each group commit the minimal required files in a specific <code>grp_'machine'</code> ros2 package inside their git repository.</p>
+<p>Release: <strong>Monday of week-4, Monday 22 of January</strong></p>
+<h3 id="the-required-files">The required files:</h3>
+<ul>
+<li>At the root repository, a <code>README.md</code> file in markdown syntax introducing the project.</li>
+<li>A directory <code>grp_'machine'</code> matching the ROS2 package where the elements will be found (<code>machine</code> matches the name of the machine embedded in the robot).</li>
+<li>Inside the <code>grp_'machine'</code> package, a launch file <code>simulation_launch</code> starting the appropriate nodes for demonstrating in the simulation.</li>
+<li>Then, a launch file <code>tbot_launch</code> starting the appropriate nodes for demonstrating with a Turtlebot.</li>
+<li>Finally, a launch file <code>operator_launch</code> start a visualization + control solution.</li>
+</ul>
+<p>In simulations, we will work with the configuration set in <code>challenge-2.launch.py</code>.</p>
+<h2 id="criteria">Criteria</h2>
+<p>Minimal:</p>
+<ol>
+<li>The group follows the consigns (i.e. the repository is presented as expected)</li>
+<li>The robot behavior is safe (no collision with any obstacles)</li>
+<li>rviz2 is started and well configured in a second PC and display the built map.</li>
+<li>It is possible to visualize a marker for detected bottles at the position of the bottle in the environment. The bottles are identified with a number and the robot is capable of recognizing a bottle on a second passage (it should be easy to count the bottle in the map or by reading the topic).</li>
+<li>The bottle detection detects all the bottles, in any position but with robustness to false positives.</li>
+</ol>
+<p>Optional (the order does not matter):</p>
+<ul>
+<li>The robot movement is oriented toward the unknown areas to speed up the exploration.</li>
+<li>Processes are clearly established (start and stop the robot, save the map, get the lists of bottles, set the xp in pause, ...)</li>
+<li>Developed nodes are based on ROS2 Parameters (for speed, obstacle detections, ...) </li>
+<li>The Kobuki features are integrated to the scenario (robot button, contact to the ground, void detection, bips,...)</li>
+<li>The list is not exhaustive, be inventive !</li>
+</ul>
+<p>The <code>challenge2 tbot.launch.py</code> launch file may take an initial map.</p>
+<h2 id="evaluation-protocol">Evaluation protocol</h2>
+<p>Here the evaluation protocol to apply.
+It is highly recommended to process it yourself before the submission...</p>
+<ol>
+<li>Clone/update the group’s repository on both machines (Control and Operator)</li>
+<li>Take a look to what is inside the repository and read the <code>README.md</code> file (normally it states that the project depends on <code>mb6-tbot</code>, make sure that <code>mb6-tbot</code> project is already installed aside).</li>
+<li>Build it: <code>colcon build</code> and <code>source</code> from the workspace directory.</li>
+<li>Set the appropriate ROS configuration (domain ID, etc.).</li>
+<li>Launch the simulation demonstration: <code>ros2 launch challenge1 simulation.launch.py</code> and appreciate the solution.</li>
+<li>Stop everything.</li>
+<li>Configure the computers for working with the Tbot.</li>
+<li>Launch the Tbot demonstration, and appreciate the solution.</li>
+<li>Take a look to the code, by starting from the launch files.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Kick-off - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../tuto-level-up/vision/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../challenge-1on2/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#challenge-kick-off" class="nav-link">Challenge Kick-Off</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#create-a-group" class="nav-link">Create a group</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#generate-a-working-environment" class="nav-link">Generate a working environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#build-your-package" class="nav-link">Build your package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="challenge-kick-off">Challenge Kick-Off</h1>
+<p>The challenge aims at making learners develop a first robotic project.
+In the end, both the execution of the proposed solution and the source code with documentation will be evaluated.</p>
+<p>The main objectives of the project consist of:</p>
+<ul>
+<li>Control a robot in a cluttered environment</li>
+<li>Map a static environment</li>
+<li>Detect all the <strong>Nuka-Cola</strong> bottles</li>
+<li>Estimate the position of all the <strong>Nuka-Cola</strong> in the map</li>
+<li>Optimize the exploration strategy</li>
+</ul>
+<!-- <https://www.myminifactory.com/object/3d-print-fallout-nuka-cola-15616> -->
+
+<p><img alt="" src="https://cdn.myminifactory.com/assets/object-assets/579fca2a374fc/images/720X720-7a4418213f3ce580bb21f641c36650bd5eb8cdb3.jpg" /></p>
+<p>Challenges are proposed to increase sequentially the complexity of the expected solution,
+but first the students have to structure their developping environment... </p>
+<h2 id="create-a-group">Create a group</h2>
+<p>As a first move, you have to constitute a group of 2 developers.
+Record the created group on a shared document: <a href="https://partage.imt.fr/index.php/s/CJgSK6W8izdZKDi">2023-2024 groups</a>.</p>
+<ul>
+<li>Create on items in the enumerate list per groups</li>
+<li>Record the name of the machine you use and the names of each member of the group. </li>
+<li>The number of the line matches the number identifying a group starting from <span class="arithmatex">\(1.\)</span>. The group gets a unique number it can use as <code>ROS_DOMAIN_ID</code>.</li>
+</ul>
+<h2 id="generate-a-working-environment">Generate a working environment</h2>
+<p>We ask each group to use <code>git</code> and share their work with professors through <a href="https://github.com/">github</a> (because it is the reference) (or <a href="https://gitlab.com">gitlab</a> at the student request, because it is open).</p>
+<p>Git is a versioning program working in a distributed way.
+"Git is software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development." <a href="https://en.wikipedia.org/wiki/Git">Wikipedia-2021-12-6</a>.</p>
+<ul>
+<li>Official web site: <a href="https://git-scm.com/">git-scm.com</a></li>
+<li>git basics: <a href="https://git-scm.com/videos">in video</a></li>
+</ul>
+<p>Potentially the developers can share some of the versions there developed (or all) by installing an extra <code>git</code> on a shared server. <code>github</code> is certainly the most famous web git-solution (but you can install for instance a web application as <code>gitlab</code>  on your own server for instance).
+To notice that <code>gitlab</code> is both an open solution you can deploy on your own server and a web-service (<code>gitlab.com</code>) you can use.
+For this lecture, you will use <code>github</code> or <code>gitlab.com</code>, no other solution would be accepted.</p>
+<ul>
+<li>(Each of the developers) Create a github account.</li>
+<li>(One of the developers) Create a new repository on <code>github</code> and invite your teammate. Choose a name referring the group (for instance <code>uvlarm-machinename</code>), the idea is to propose a repository name clear but different from a group to another.</li>
+<li>(Each of the developers) Clone locally. In a termal: </li>
+</ul>
+<pre><code class="language-sh">cd mb6-space
+git clone https://my.github.url/uvlarm-machinename.git
+</code></pre>
+<ul>
+<li>(One of the developers) Invite the professor (or set your repository public) - github account: lozenguez LucFabresse bouraqadi SebAmb</li>
+<li>(One of the developers) Reccord the url in the shared document: (2023-2024 groups).</li>
+</ul>
+<p>You can then, work with visual studio code.
+By opening a the project <code>uv-larm-machinename</code>, <em>VSCode</em> will recognise the git repository (i.e. the presence of hiden <code>.git</code> directory).
+<em>VSCode</em> is also capable of managing a secure connection between your machine and github.</p>
+<pre><code class="language-sh">code uv-larm-machinename
+</code></pre>
+<p>Optionaly, you can configure <code>ssh</code> access: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh</p>
+<h3 id="initialize">Initialize:</h3>
+<p>Your repository has to match a meta <strong>ROS-package</strong> (i.e. a directory composed by other directories each of them matching a ros-package).
+The repository would be cloned aside of the larm packages (<code>pkg-tbot</code>).
+So clone your repository in the ros workspace <code>mb6-space</code> and then create as many packages you want inside.</p>
+<pre><code class="language-console">cd ~/mb6-space
+git clone github/uvlarm-machinename.git
+</code></pre>
+<p>(One of the developers) Initialize a <code>README.md</code> file in Mardown at least with a simple tittle and refering the developers (cf. <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown syntax</a>):</p>
+<pre><code class="language-sh">echo &quot;# grp-`machinename` repository for the UV-LARM&quot; &gt; README.md
+git add README.md
+</code></pre>
+<p>It is possible then to push on the server your first commit.
+One commit refer to one version of your project, you can (must) generate has versions has you want. 
+A commit do not have to serve a functional version of your works.
+It could be transitive commit. 
+And most importantly git is capable to re-generate any of your commits, so do not hesitate to commit continuously...</p>
+<pre><code class="language-console">git commit -am &quot;Initialize README file&quot;
+git pull
+git push
+</code></pre>
+<p>All the other developers can now <code>pull</code> the new version (typically, in the Develter computers).... </p>
+<h3 id="new-package">New package:</h3>
+<p>Then you can go inside your repository and create a new ros package:</p>
+<pre><code class="language-console">cd larm-machinename
+ros2 pkg create ... # cf. package tutorial
+</code></pre>
+<p>A new directory <code>my_amasing_pkg</code> appears:</p>
+<p>The <code>git status</code> command informs you that this package is not followed by <code>git</code>. Let correct that.</p>
+<pre><code class="language-console">git add my_amasing_pkg
+git commit -am &quot;Initializing my_amasing_pkg&quot;
+</code></pre>
+<p>Strange, nothing changes on my <code>github</code> repo.
+The git repo on <code>github</code> is a different entity than the one on your computer.
+You have to manually synchronize then when you want to share your work with the command <code>pull</code>  and <code>push</code>. Try-it.</p>
+<p>Now you can <code>commit</code>, <code>pull</code>, <code>push</code> as often as possible (and <code>add</code> if you have some new files...).</p>
+<h2 id="build-your-package">Build your package</h2>
+<p>On a fresh machine, you can clone then build your new ros-package:</p>
+<pre><code class="language-console">mkdir mysuper_ros_workspace
+cd mysuper_ros_workspace
+mkdir src
+git clone github/repo.git src/grp-color
+colcon build
+</code></pre>
+<p>To notice that <code>colconn build</code> have to be performed from your workspace directory (<code>mysuper_ros_workspace</code> in this example, <code>mb6-space</code> in this courses aside of <em>tbot</em> and <em>tsim</em> packages).</p>
+<!--
+To relax this constraint you can add a simple shell script in your working directory...
+
+
+<pre><code class="language-consol">cd uvlarm-machinename # go to uvlarm-machinename 
+touch build    # create a file named make.sh
+chmod +x build # make the file executable
+</code></pre>
+
+
+edit `build` and add the following code:
+
+
+<pre><code class="language-consol">#!/usr/bin/env bash
+cd ..
+colcon build
+
+</code></pre>
+
+
+Now a `./build` performed from the root directory of your repository would do the job (you can `add`, `commit`, `pull`, `push`, `build` from the same location).
+
+< ! - - 
+
+## Agile software development
+
+Agile software development aims at breaking with traditional project management by preferring:
+
+- **Individuals and Interactions** over processes and tools
+- **Working Software** over comprehensive documentation
+- **Customer Collaboration** over contract negotiation
+- **Responding to Change** over following a plan
+
+The main feature of Agile Software Development consists of iterative development by moving forward incrementally
+and by delivering operational versions frequently.
+
+More on [WikiPedia](https://en.wikipedia.org/wiki/Agile_software_development).
+--></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

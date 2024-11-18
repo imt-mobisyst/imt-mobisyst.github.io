@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Starting with ROS - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../.." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../move/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#linux-and-ros-basics" class="nav-link">Linux and ROS Basics</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#play-with-linux" class="nav-link">Play with Linux</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#play-with-ros" class="nav-link">Play with ROS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="linux-and-ros-basics">Linux and ROS Basics</h1>
+<p>The goal of this tutorial is to set up a workspace to control robots and to develop robotics programs.
+We choose to work with ROS (the most used open middleware for robotics) on a Linux-Ubuntu computer (which is the best supported configuration).</p>
+<p>This tutorial supposes that you have an Ubuntu-Like 22.04 computers with configured Python and C++ APIs.
+The tutorial relies on <a href="https://docs.ros.org/en/iron">ROS2 Iron</a>.</p>
+<h2 id="play-with-linux">Play with Linux</h2>
+<p>Ubuntu is a distribution Linux (Operating System + Window Managment + Tools) derived from Debian distribution.</p>
+<p>It is a classical graphical operating system.
+You can explore the system and launch different program to test-it.</p>
+<p>In the variety of program, we are mostly interested in the terminal emulator, permitting to manipulate our system directly from command (moving in the directory tree, read and organize files, execute script or programs, administer...).</p>
+<ul>
+<li><strong>gnome-terminal</strong>: on <a href="https://help.gnome.org/users/gnome-terminal/stable">help.gnome.org</a></li>
+</ul>
+<p>Explore the following command (i.e. what for, how to use it). A good way to do this is to first Google the command (<a href="https://duckduckgo.com/?q=command+man&amp;t=newext&amp;atb=v351-6&amp;ia=web">example</a>), then play with the command in your terminal.</p>
+<ul>
+<li><strong>man</strong>, <strong>ls</strong>, <strong>cp</strong>, <strong>mv</strong>, <strong>cat</strong>, <strong>rm</strong></li>
+<li><strong>source</strong>, <strong>apt</strong>, <strong>sudo</strong></li>
+</ul>
+<p>To notice that <code>tabulation</code> allows for autocompletion.</p>
+<p>More commands: <strong>egrep</strong>, <strong>find</strong>, <strong>ps</strong>, ... (<a href="https://en.wikibooks.org/wiki/Linux_Guide/Linux_commands">Wikipedia is your friend</a>).</p>
+<h2 id="play-with-ros">Play with ROS</h2>
+<p>The remainder of the tutorial relies directly on ROS documentation <a href="https://docs.ros.org/">docs.ros.org</a>
+ROS is mainly composed by <strong>Tools</strong> and <strong>Libraries</strong>.</p>
+<p>The <strong>Tools</strong> permit to configure and start a control architecture, to explore this architecture and to visualize data.
+The <strong>Libraries</strong> offer an API (Application Programming Interface) to developers who want to propose a new program compliant with ROS.</p>
+<h3 id="tools">Tools</h3>
+<p>Start with <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools.html">Beginner CLI-Tools tutorials</a> to get familiar with ROS tools.</p>
+<p>Some responses to the questions you could have :</p>
+<ul>
+<li>Yes we are in a classroom so we will work with : <code>ROS_LOCALHOST_ONLY=1</code>. You can check your bash configuration by editing the hidden file at the user home directory: <code>get ~/.bashrc &amp;</code></li>
+<li><code>bot</code> user is sudoer, and the password is <code>bot</code>.</li>
+</ul>
+<h3 id="libraries">Libraries</h3>
+<p>Then follow the <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-Client-Libraries.html">Beginner Client-Libraries tutorials</a> by focusing on <strong>Python</strong> language.</p>
+<p>In a first time, we encourage using <strong>Python</strong> language. The language is less efficient at execution time, but more easily to handle and to debug for fast developments.
+If you have a strong knowledge of <strong>C++</strong> you can use this language.
+Otherwise, you have to always select and process for <strong>Python</strong> commands.</p>
+<p>Also, you can work with classical text editor (gedit on Ubuntu), but we encourage you to use <code>code</code> (VisualStudio Code) as development environment.
+You can open code by specifiing a workspace from your terminal (and then open as many terminal you need in <code>code</code> directly):</p>
+<pre><code class="language-console">cd
+code ros2_ws
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

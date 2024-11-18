@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>F.A.Q - Lct Mob-Rob</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Lct Mob-Rob</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/package/" class="dropdown-item">ROS Package</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/transform/" class="dropdown-item">Move To</a>
+</li>
+                                    
+<li>
+    <a href="../../tuto-level-up/vision/" class="dropdown-item">Vision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
+</li>
+                                    
+<li>
+    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">F.A.Q</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../challenge/challenge-2on2/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#frequent-asked-question" class="nav-link">Frequent Asked Question...</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#multi-computer-configuration" class="nav-link">Multi-computer configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ros2-tbot-driver" class="nav-link">ROS2 tbot driver</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fix-malformed-packets" class="nav-link">Fix malformed packets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#how-to-install-ubuntu" class="nav-link">How to install Ubuntu ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#there-is-no-wifi-on-my-dell-xps13" class="nav-link">There is no Wifi on my dell-xps13 ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#remove-password-asking-for-docker-commands" class="nav-link">Remove password asking for docker commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#catkin_create_pkg-invalid-email" class="nav-link">Catkin_create_pkg - invalid email ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#opencv_createsamples" class="nav-link">opencv_createsamples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#how-to-get-an-aligned-depth-image-to-the-color-image" class="nav-link">How to get an aligned depth image to the color image ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ros1-vs-ros2-commands-cheatsheet" class="nav-link">ROS1 vs ROS2 commands cheatsheet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bashrc-ros-additions" class="nav-link">.bashrc ROS additions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#flash-kobuki" class="nav-link">Flash kobuki</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ros2-package-with-custom-python-library" class="nav-link">ROS2 Package with custom Python Library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="frequent-asked-question">Frequent Asked Question...</h1>
+<h2 id="multi-computer-configuration">Multi-computer configuration</h2>
+<p>Configure a <code>ROS_DOMAIN_ID</code> betwwen 1 and 100 in your bashrc file to limit the topics area,
+and set <code>ROS_LOCALHOST_ONLY</code> to zero to permits several computer to share ROS ressources.</p>
+<pre><code class="language-sh">gedit ~/.bashrc
+</code></pre>
+<p>add at the end of the file (with 42 for instance):</p>
+<pre><code class="language-console">export ROS_LOCALHOST_ONLY= 0
+export ROS_DOMAIN_ID= 42
+</code></pre>
+<h2 id="ros2-tbot-driver">ROS2 tbot driver</h2>
+<blockquote>
+<p>How to get rid of ROS1 ;-)</p>
+</blockquote>
+<p><strong>Install ROS2 tbot driver</strong>:</p>
+<pre><code>cd ~/ros2_ws/pkg-tbot
+git pull
+./script/install-kobuki_ros.sh
+
+cd ~/ros2_ws
+colcon build
+</code></pre>
+<p><strong>Launch ROS2 tbot driver</strong>:</p>
+<pre><code># base only
+ros2 launch tbot_start base.launch.py
+
+# base + laser
+ros2 launch tbot_start minimal.launch.py
+
+# base + with laser + camera
+ros2 launch tbot_start full.launch.py
+
+ros2 topic list
+</code></pre>
+<h2 id="fix-malformed-packets">Fix malformed packets</h2>
+<p>Info there: https://github.com/kobuki-base/kobuki_core/commit/2bc11a1bf0ff364b37eb812a404f124dae9c0699</p>
+<pre><code>sudo cp /home/bot/ros2_ws/pkg-kobuki/kobuki_core/60-kobuki.rules /lib/udev/rules.d/
+</code></pre>
+<p>Then unplug / replug the robot.
+To ensure it worked, the followwing command should display 1:</p>
+<pre><code>cat /sys/bus/usb-serial/devices/ttyUSB0/tty/ttyUSB0/device/latency_timer
+</code></pre>
+<h2 id="how-to-install-ubuntu">How to install Ubuntu ?</h2>
+<p>Ubuntu is a fork of the Debian project, a Linux-based desktop operating system.</p>
+<ul>
+<li>Official website : <a href="https://ubuntu.com/">https://ubuntu.com/</a></li>
+<li>French community : <a href="https://www.ubuntu-fr.org/">https://www.ubuntu-fr.org/</a></li>
+</ul>
+<p>Notice that, ubuntu can be installed in double boot mode in parallel to a Microsoft OS on your personal computer.
+It is not recommended to use Ubuntu+ROS in a virtual machine (the performances would be  poor).</p>
+<h3 id="to-do">To-do:</h3>
+<ul>
+<li>Install Ubuntu <strong>20.04 LTS</strong> (Long Term Supported version) from live USB-Key</li>
+<li>Ideally, use all the hard disk (you can split the disk in advance for <a href="https://help.ubuntu.com/community/WindowsDualBoot">double-boot install</a>)</li>
+<li>Configure "bot" username and "bot" password.</li>
+<li>Configure network</li>
+<li>Login and upgrade your installation</li>
+</ul>
+<pre><code class="language-bash">sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="there-is-no-wifi-on-my-dell-xps13">There is no Wifi on my dell-xps13 ?</h2>
+<ol>
+<li>Connect with cable</li>
+<li>Get the appropriate drivers: <a href="https://support.killernetworking.com/knowledge-base/killer-ax1650-in-debian-ubuntu-16-04/">killer driver</a></li>
+</ol>
+<pre><code class="language-bash">sudo add-apt-repository ppa:canonical-hwe-team/ backport-iwlwifi
+sudo apt-get update
+sudo apt-get install backport-iwlwifi-dkms
+</code></pre>
+<ol>
+<li>reboot</li>
+</ol>
+<h2 id="remove-password-asking-for-docker-commands">Remove password asking for docker commands</h2>
+<pre><code>sudo echo &quot;\n%sudo   ALL=(ALL) NOPASSWD: /usr/bin/docker\n&quot; &gt;&gt; /etc/sudoers
+</code></pre>
+<h2 id="catkin_create_pkg-invalid-email">Catkin_create_pkg - invalid email ?</h2>
+<p>you can use the <code>-m</code> option to force an author name.</p>
+<pre><code class="language-bash">catin_create_pkg -m AuthorName package_name [dependencies...]
+</code></pre>
+<h2 id="opencv_createsamples"><code>opencv_createsamples</code></h2>
+<p>The latest OpenCV does not include  <code>opencv_createsamples</code>.
+Let's compile an older version (~5 min on labs PC).</p>
+<pre><code class="language-bash">git clone https://github.com/opencv/opencv.git
+cd opencv
+git checkout 3.4.17
+mkdir build
+cd build
+cmake -D'CMAKE_BUILD_TYPE=RELEASE' ..
+make -j8
+
+ls -l bin/opencv_createsamples
+</code></pre>
+<h2 id="how-to-get-an-aligned-depth-image-to-the-color-image">How to get an aligned depth image to the color image ?</h2>
+<p>you can use the <code>align_depth:=true</code> ROS parameter. The aligned image is streamed in a specific topic. (tks Orange group)</p>
+<pre><code class="language-bash">roslaunch realsense2_camera rs_camera.launch align_depth:=true
+</code></pre>
+<h2 id="ros1-vs-ros2-commands-cheatsheet">ROS1 vs ROS2 commands cheatsheet</h2>
+<table>
+<thead>
+<tr>
+<th>ROS1</th>
+<th>ROS2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rostopic list</code></td>
+<td><code>ros2 topic list</code></td>
+</tr>
+<tr>
+<td><code>rqt_graph</code></td>
+<td><code>rqt_graph</code></td>
+</tr>
+<tr>
+<td><code>rviz</code></td>
+<td><code>rviz2</code></td>
+</tr>
+<tr>
+<td><code>rosrun tf view_frames</code></td>
+<td><code>ros2 run tf2_tools view_frames</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>colcon build --packages-select my_package</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>colcon build --symlink-install</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>colcon build --paths path/to/some/package other/path/to/other/packages/*</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>colcon build --event-handlers console_direct+ --cmake-args -DCMAKE_VERBOSE_MAKEFILE=ON  --packages-select my_package</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="bashrc-ros-additions"><code>.bashrc</code> ROS additions</h2>
+<pre><code class="language-console"># ROS
+export ROS_LOCALHOST_ONLY=1
+export PS1=&quot;\${ROS_VERSION:+(ros\$ROS_VERSION) }$PS1&quot;
+alias rosify1=&quot;source /opt/ros/noetic/setup.bash &amp;&amp; source $HOME/ros1_ws/devel/setup.bash&quot;
+alias rosify2=&quot;source /opt/ros/iron/setup.bash &amp;&amp; source $HOME/ros2_ws/install/setup.bash&quot;
+</code></pre>
+<h2 id="flash-kobuki">Flash kobuki</h2>
+<p>https://kobuki.readthedocs.io/en/devel/firmware.html#linux</p>
+<h2 id="ros2-package-with-custom-python-library">ROS2 Package with custom Python Library</h2>
+<ul>
+<li>suppose we are in packge <code>my-package</code></li>
+<li>Inside the package folder <code>my-package</code> create a folder for my library. For example <code>libs/my_lib</code></li>
+<li>Inside <code>myLib</code> folder add <code>__init__.py</code> file that imports resources from other python files.</li>
+<li>Add the <code>CMakeList.txt</code></li>
+</ul>
+<pre><code class="language-sh">install( DIRECTORY libs/my_lib DESTINATION lib/${PROJECT_NAME})
+</code></pre>
+<ul>
+<li>build the package <code>colcon build</code></li>
+</ul>
+<p>More on <a href="https://ros2-tutorial.readthedocs.io/en/latest/create_python_library.html">ros2 tutorial by readthedocs</a>:</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
