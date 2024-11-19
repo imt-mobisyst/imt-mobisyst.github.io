@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Methods - MultiBot</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">MultiBot</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../installation/" class="nav-link">Install</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Methods</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../real/" class="nav-link">In Real</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../installation/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../real/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#communication-methods" class="nav-link">Communication methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="communication-methods">Communication methods</h1>
+<p>Here is the list of the different communication methods that have been implemented in this repository :</p>
+<ul>
+<li><strong>Namespacing</strong></li>
+<li><strong>Different domain IDs</strong></li>
+<li><strong>DDS Discovery servers</strong></li>
+<li><strong>DDS Partitions</strong></li>
+<li><strong>Zenoh</strong></li>
+</ul>
+<h3 id="namespacing">Namespacing</h3>
+<blockquote>
+<p>See working demos <a href="../simulation/#1-robot-separation-using-namespaces">here</a></p>
+</blockquote>
+<p><strong>Namespaces</strong> are prefixes to node names, topics, actions and services. They allow to have multiple elements with the same name but different prefix. </p>
+<p>In a multi-robot scenario, namespacing is the easiest solution to separate each robot with a unique namespace, in order for robots
+to not have name conflicts when running the same nodes and using the same topics.</p>
+<blockquote>
+<p>An example of this is to prefix the <code>/cmd_vel</code> topic for robots (<code>/wall-e/cmd_vel</code> and <code>/r2d2/cmd_vel</code>), to prevent them from having the same velocity command.</p>
+</blockquote>
+<p>With our multi-robot architecture, we would have a configuration like the following :</p>
+<p><img alt="Namespacing architecture example" src="../img/architectures/namespacing_architecture.png" /></p>
+<h3 id="different-domain-ids">Different domain IDs</h3>
+<blockquote>
+<p>See working demos <a href="../simulation/#2-multi-domain_id-communication">here</a></p>
+</blockquote>
+<p>ROS2 uses <strong>DDS</strong> (<strong>D</strong>ata <strong>D</strong>istribution <strong>S</strong>ervice) as the default middleware for communication. DDS allows nodes to 
+discover other nodes that are on the same network. In order to create different logical networks, DDS provides a feature called 
+the <strong>domain ID</strong>. Each node is allowed to communicate to nodes that are on the same ID, but can't communicate with nodes on other domain IDs.</p>
+<p>In ROS2, the default domain ID is 0, but it can be configured using the <code>ROS_DOMAIN_ID</code> env variable (between 0 and 101 inclusive). The domain ID is then mapped to a UDP port, thus creating application isolation.</p>
+<p>In a multi-robot scenario, assigning a different <code>ROS_DOMAIN_ID</code> to each robot allows to completely isolate them from the others. 
+However, using the <a href="https://github.com/ros2/domain_bridge/blob/main/doc/design.md">domain_bridge</a> library, we can create a bridge
+between different domain IDs, and specify which topics should be broadcasted towards another domain ID (which would be shared between robots).</p>
+<p>This library allows us to run multiple nodes in the same OS process, in order to share data and "bridge" topics/services/actions from one DOMAIN_ID to another one.</p>
+<p><img alt="Example for the domain_brige library" src="../img/domain_bridge.png" /></p>
+<p>With our multi-robot architecture, we would have the following configuration :</p>
+<p><img alt="Multi domain ID architecture example" src="../img/architectures/domain_id_architecture.png" /></p>
+<h3 id="dds-discovery-servers">DDS Discovery servers</h3>
+<blockquote>
+<p>See working demos <a href="../simulation/#3-network-isolation-with-fastdds-discovery-server">here</a></p>
+</blockquote>
+<p>As stated before, DDS is the protocol used by ROS2 for communicating between nodes. One aspect of this protocol is to look for
+elements that a node can communicate with on the network. It's the "Discovery protocol". By default, the <strong>Simple Discovery 
+protocol</strong> is used, which consists in sending multicast messages to every other node in the network.</p>
+<p>Fast DDS, one of the DDS middlewares, provides a <a href="https://docs.ros.org/en/iron/Tutorials/Advanced/Discovery-Server/Discovery-Server.html">Discovery server</a> to replace the <strong>Simple Discovery protocol</strong>. It works similarly to a router and
+allows to isolate DDS subnets.
+Each node can choose which DDS Discovery servers (it can be more than 1) it connects to using the <code>ROS_DISCOVERY_SERVER</code> env 
+variable. Its main purpose is to reduce the network traffic induced by the discovery phase.</p>
+<p><img alt="DDS Network isolation example" src="../img/architectures/domain_id_architecture.png" /></p>
+<blockquote>
+<p>Listener 1 discovers topics from Talker 1 &amp; 2 but Listener 2 only discovers topics from Talker 1</p>
+</blockquote>
+<p>A discovery server is described by :
+- its <strong>IP address</strong>
+- its <strong>port</strong>
+- its <strong>ID</strong></p>
+<p>In our multi-robot scenario, we could use this Discovery server to isolate nodes running on the robot, by connecting them to a DDS
+Discovery server running locally. Nodes that also need to communicate to other robots would connect to both their local DDS server
+and either a global one or another robot's one.</p>
+<p>With our multi-robot architecture, we would have the following configuration :</p>
+<p><img alt="FastDDS Discovery Server architecture" src="../img/architectures/dds_architecture.png" /></p>
+<h3 id="dds-partitions">DDS partitions</h3>
+<blockquote>
+<p>See working demos <a href="../simulation/#4-robot-isolation-using-dds-partitions">here</a></p>
+</blockquote>
+<p>As stated before, DDS is the protocol used by ROS2 for communicating between nodes. DDS introduced the concept of
+<a href="https://docs.ros.org/en/iron/Tutorials/Advanced/FastDDS-Configuration.html#using-partitions-within-the-topic"><strong>partitions</strong></a> :
+each partition is defined by a name (<strong>string</strong>), and only elements that have a partition in common can communicate. </p>
+<p>Contrary to the DOMAIN_ID, nodes still receive the broadcast discovery messages (since they are on the same DOMAIN_ID they have
+the same UDP port) but drop them if they don't have a partition in common.</p>
+<p>Partitions can be applied to specific nodes, but also more precisely <strong>publishers/subscribers</strong> <em>(DataReaders/DataWriters in DDS 
+terms)</em>. To configure this, you can create an <strong>XML file</strong> and apply it by setting the <code>FASTRTPS_DEFAULT_PROFILES_FILE=/path/to/file.xml</code> env variable.</p>
+<p><img alt="DDS partitions" src="../img/dds_partitions.png" /></p>
+<p>In our multi-robot scenario, we could have <strong>one partition for each robot</strong> (<code>robot_X</code>). Topics that need to stay local would be 
+published to that partition and topics that need to be shared across robots would be published in the <code>shared</code> partition.</p>
+<p>With our multi-robot architecture, we would have the following configuration :</p>
+<p><img alt="FastDDS Discovery Server architecture" src="../img/architectures/dds_partitions_architecture.png" /></p>
+<h3 id="zenoh">Zenoh</h3>
+<blockquote>
+<p>See working demos <a href="../simulation/#5-robot-isolation-with-domain-id-and-zenoh">here</a></p>
+</blockquote>
+<p><a href="https://zenoh.io/">Eclipse's Zenoh</a> is a communication protocol based on the Publish/Subscribe mechanism. It has grown in popularity as a potential replacement for DDS in ROS2, thanks to its reduced number of discovery messages.</p>
+<p>Zenoh works by providing a Router, that centralizes the discovery information, and connects to other Routers across networks to share the information about publishers and subscribers it has access to. That way, Zenoh allows to reduce the discovery traffic, but standard direct TCP communication is used once communication is established.</p>
+<p>This router can be configured (using a JSON file) to only allow certain publisher/subscriber discovery informations to be shared to other routers, and even choose through which network interface they should be available. That way, Zenoh provides a really powerful level of configuration to achieve isolation.</p>
+<p>Zenoh provides 2 options to be integrated in ROS2 :
+- <code>rmw_zenoh</code>
+- <code>zenoh-bridge-ros2dds</code></p>
+<p>Both options provide very similar configuration options. As <code>rmw_zenoh</code> didn't provide binaries for the ARM architecture, running it on a Raspberry PI would have required to cross-compile it since it was taking too long on the Raspberry PI itself. For that reason, the <code>zenoh-bridge-ros2dds</code> will be studied in this paper, but the conclusions should be very similar for <code>rmw_zenoh</code>.</p>
+<p><code>zenoh-bridge-ros2dds</code> works by creating a node that listens to the DDS traffic on the local machine, translates the received discovery messages and then send them via the Zenoh Router. </p>
+<p>In a multi-robot scenario, one <code>zenoh-bridge-ros2dds</code> could be used for each physical computer. Publishers/Subscribers that should stay local would not be on the <code>allow</code> list in the configuration file, whereas those who need to be shared would be. The bridge could even be configured to restrict the network interfaces used to further configure the isolation.</p>
+<p>With a multi-robot architecture, you would have the following configuration :</p>
+<p><img alt="Zenoh bridge architecture" src="../img/architectures/zenoh_architecture.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

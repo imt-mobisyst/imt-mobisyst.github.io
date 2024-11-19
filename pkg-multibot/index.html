@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>MultiBot</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">MultiBot</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="installation/" class="nav-link">Install</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="methods/" class="nav-link">Methods</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="real/" class="nav-link">In Real</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="installation/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#pkg-multibot" class="nav-link">pkg-multibot</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1-scenario" class="nav-link">1. Scenario</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2-communication-methods" class="nav-link">2. Communication methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3-demos" class="nav-link">3. Demos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="pkg-multibot">pkg-multibot</h1>
+<p>This repository's goal is to study the <strong>coordination of a robot fleet</strong> using <strong>ROS2</strong> (Iron).
+We will study different communication methods and architectures to achieve a specific scenario, and compare them based on different criteria.</p>
+<p><a href="https://www.youtube.com/watch?v=BHjFgTxEIXc"><img alt="Video of the simulation and real robot experiments" src="https://img.youtube.com/vi/BHjFgTxEIXc/0.jpg" /></a></p>
+<h2 id="installation">Installation</h2>
+<p>To install all the dependencies, check <a href="docs/installation.md">here</a>.</p>
+<h2 id="1-scenario">1. Scenario</h2>
+<p>We want to be able to control an <strong>heterogeneous fleet of robots</strong> (for example robots from different vendors) in an 
+industrial environment.</p>
+<p>We will consider the following situation :<br />
+In a warehouse, there are <strong>2 arrivals of packages</strong>. At random time intervals, packages arrive at each arrival zone.
+Each package has a <strong>specific color</strong>, and for each color there is a corresponding <strong>deposit zone</strong> in the map.</p>
+<p><img alt="Scenario warehouse map" src="img/warehouse-scenario-map.png" /></p>
+<p>We will consider 2 possible <strong>tasks</strong> for the robots :
+- <strong>Store :</strong> Once a package arrives at a pickup spot, a robot will be selected to pick up the package, and carry it to the correct deposit zone, <strong>depending on its color</strong>.
+- <strong>Retrieve :</strong> An operator can send a request to retrieve a package from a specific color. A robot will be selected to go to the correct storing position, and bring back a package to the <strong>retrieval zone</strong></p>
+<p>There will be 3 robots working together, <strong>coordinating</strong>, in order to achieve these tasks in the shortest time possible.</p>
+<p>This coordination will be achieved thanks to an <strong>auction/bid system</strong>, that would assign the task to the best robot (based
+on its position and its waypoints queue). This auction system could either be centralized, with an entity listening all
+the bids and choosing the best one, or distributed, with each robot comparing its bid with the others.</p>
+<p>First we'll consider that once a task is assigned to a robot, it can't abandon it and give it to another robot. However,
+we could later add an <strong>intermediate zone</strong>, where robots would drop the package they are currently carrying to move to
+another task, and another robot would be assigned that package, if that solution is globally better for the fleet.</p>
+<p>As a bonus, it would be interesting to see how well the architecture is able to adapt to new robots dynamically added to the
+fleet or robot failures.
+Robot failures would be simulated by sending a message containing the robot ID on a global topic.</p>
+<p>First, we'll consider that all the robots evolve in a known map. At the end, it would also be interesting to study how the
+fleet could share information to create a common map with multi robot SLAM algorithms.</p>
+<h2 id="2-communication-methods">2. Communication methods</h2>
+<p>A list of communication methods are implemented in this repo, you can see them <a href="docs/methods.md">here</a></p>
+<h2 id="3-demos">3. Demos</h2>
+<h3 id="simulation">Simulation</h3>
+<p>Demo with Rviz (on the left) and the stage simulator on the right</p>
+<p><img alt="Scenario warehouse map" src="img/demo/simulation.png" /></p>
+<p>If you want to run the simulation demos, click <a href="simulation/">here</a></p>
+<h3 id="real-robots">Real robots</h3>
+<p>Demo on real real robot.</p>
+<p><img alt="Scenario warehouse map" src="img/demo/real-robots.jpg" /></p>
+<p>If you want to run the real robot demos, click <a href="docs/real.md">here</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.5.3
+Build Date UTC : 2024-11-19 15:34:30.749064+00:00
+-->

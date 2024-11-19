@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Simulation demos - MultiBot</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">MultiBot</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">MobiSyst <</a>
+                            </li>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../installation/" class="nav-link">Install</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../methods/" class="nav-link">Methods</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../real/" class="nav-link">In Real</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#simulation-demos" class="nav-link">Simulation demos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#1-robot-separation-using-namespaces" class="nav-link">1. Robot separation using namespaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2-multi-domain_id-communication" class="nav-link">2. Multi DOMAIN_ID communication</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3-network-isolation-with-fastdds-discovery-server" class="nav-link">3. Network isolation with FastDDS Discovery server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4-robot-isolation-using-dds-partitions" class="nav-link">4. Robot isolation using DDS partitions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#5-robot-isolation-with-domain-id-and-zenoh" class="nav-link">5. Robot isolation with domain ID and Zenoh</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="simulation-demos">Simulation demos</h1>
+<p>In this README you'll see all the commands needed to run all the demos.</p>
+<p>For each solution, multiple demos are implemented. There are 3 type of demos <em>(with different complexity levels)</em>:
+1. A very simple <strong>talker/listener</strong> example (except for the namespacing)
+2. Multiple turtlesims running in parallel : you can place a <code>goal_pose</code> in Rviz and one of the robots will be assigned to it
+3. One with the stage simulator, with 3 robots in a warehouse environment. It perfectly illustrates the scenario explained
+<a href="../README.md#1-scenario">here</a> :
+    - when you add a <code>clicked_point</code> in Rviz, packages start to spawn at specific places in the map, and the robots coordinate
+    to bring the packages to the correct deposit spot depending on their color.
+    - when you send a message on the <code>retrieve</code> topic, one of the robots retrieves a package from the correct deposit zone and
+    brings it to the retrieval zone</p>
+<h2 id="1-robot-separation-using-namespaces">1. Robot separation using namespaces</h2>
+<p>Namespacing allows to add a prefix before every node, topic, service... in a launchfile. That way, they allow to avoid conflicts between data from different robots.</p>
+<h3 id="a-turtlesim-demo">a. Turtlesim demo</h3>
+<p>To start the demo, you can use the following command, that will take care of starting everything (<code>turtle</code>, <code>operator</code> and <code>rviz</code>) :</p>
+<pre><code class="language-bash">ros2 launch multibot turtlesim_namespace_launch.py nb_robots:=&quot;3&quot;
+</code></pre>
+<h3 id="b-stage-demo">b. Stage demo</h3>
+<p>To start the demo, you can use the following commands, that will take care of starting everything (<code>rviz</code>, <code>stage</code>, <code>controller</code> and <code>operator</code>) :</p>
+<pre><code class="language-bash">ros2 launch multibot rviz_launch.py config:=config/stage.rviz
+ros2 launch multibot stage_namespace_launch.py
+</code></pre>
+<p>To start spawning packages, use the <code>Publish Point</code> button in rviz (it will toggle the package spawning).<br />
+To retrieve a package with a specific color, run <code>ros2 topic pub /retrieve std_msgs/msg/String "{data: 'green'}" --once</code>
+<em>(other colors: <code>yellow</code>, <code>blue</code>, <code>red</code>)</em>.</p>
+<h2 id="2-multi-domain_id-communication">2. Multi DOMAIN_ID communication</h2>
+<p>We will be using the <a href="https://github.com/ros2/domain_bridge/blob/main/doc/design.md">domain_bridge</a> library that allows us to run multiple nodes in the same OS process, in order to "bridge" topics/services/actions from one DOMAIN_ID to another one.</p>
+<div align="center"><img src="../docs/img/domain_bridge.png" width="850" title="Example for the domain_brige library"></div>
+
+<p>To install it : </p>
+<pre><code class="language-bash">apt install ros-iron-domain-bridge
+</code></pre>
+<blockquote>
+<p><strong>Note :</strong> The library doesn't seem to be maintained any more : <a href="https://github.com/ros2/domain_bridge/commit/64e34de40218909b91057c368c10d4ce584af612">last commit</a> on January 2nd 2023. Maybe have a look at <a href="https://github.com/eProsima/DDS-Router">DDS Router</a> or try to reproduce how it works inside our own communication nodes.</p>
+</blockquote>
+<h3 id="a-simple-test-with-a-talker-and-a-listener">a. Simple test with a talker and a listener</h3>
+<p>We only need to create a configuration file, telling the library which topics/services/actions need to be transmitted, from which <code>ROS_DOMAIN_ID</code> and to which <code>ROS_DOMAIN_ID</code> <em>(see <a href="./config/domain_bridge/talker_bridge_config.yaml">talker_bridge_config.yaml</a>)</em>
+To start the bridge, we use the following command :</p>
+<pre><code class="language-bash">ros2 run domain_bridge domain_bridge &lt;path_to&gt;/bridge_config.yaml
+</code></pre>
+<blockquote>
+<p>We can run this command from any terminal, regardless of the <code>ROS_DOMAIN_ID</code></p>
+</blockquote>
+<p>In another terminal, start the <code>talker</code> node :</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=2 ros2 run demo_nodes_cpp talker
+</code></pre>
+<p>In another terminal, start the <code>listener</code> node :</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=3 ros2 run demo_nodes_cpp listener
+</code></pre>
+<h3 id="b-test-with-multiple-turtlesim-on-the-same-computer">b. Test with multiple turtlesim on the same computer</h3>
+<p>Each "robot" will be linked to a unique domain ID <em>(<code>bot_domain_id</code>)</em>. In each domain ID, there will be a <code>turtlesim_node</code> and a <code>turtlesim_controller</code> (which will control the movement of the turtle towards the goal poses).</p>
+<p>To start the demo, you can use the following command, that will take care of starting everything (<code>turtle</code>, <code>operator</code> et <code>rviz</code>) :</p>
+<pre><code class="language-bash">ros2 launch multibot turtlesim_bridge_launch.py nb_robots:=&quot;3&quot;
+</code></pre>
+<hr />
+<p>However, if you want to manually start the nodes yourself, here are the commands :</p>
+<p>Starting the <code>turtle</code> in different terminals (nodes will be started with the correct <code>ROS_DOMAIN_ID</code> given as an argument):</p>
+<pre><code class="language-bash">ros2 launch multibot turtlesim_bridge_robot_launch.py bot_domain_id:=&quot;10&quot; operator_domain_id:=&quot;1&quot;
+ros2 launch multibot turtlesim_bridge_robot_launch.py bot_domain_id:=&quot;11&quot; operator_domain_id:=&quot;1&quot;
+</code></pre>
+<p>Bridge nodes will be started by the launchfiles to transmit the topics needed by nodes running in the <code>operator_domain_id</code>. Then, we'll start the operator node (which is responsible for managing priority between turtles) in this domain :</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=1 ros2 run multibot static_operator.py --ros-args -p nb_robots:=2
+</code></pre>
+<p>Running <code>rviz</code> in the operator's <code>ROS_DOMAIN_ID</code> :</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=1 ros2 launch multibot rviz_turtlesim_launch.py
+</code></pre>
+<hr />
+<p>In order to send goal points for the turtles to go to, you can press the <code>2D Goal Pose</code> in Rviz or run the following command :</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=1 ros2 topic pub /goal_pose geometry_msgs/msg/PoseStamped &quot;{pose: {position: {x: 9, y: 9.0, z: 0.0}}}&quot; --once
+</code></pre>
+<h3 id="c-test-with-the-stage-simulator">c. Test with the stage simulator</h3>
+<p>We'll use the following domain IDs :
+- 0,1,2... for the different robots
+- 99 for the operator/rviz
+- 100 for the simulation</p>
+<p>Start Rviz in the correct domain ID :</p>
+<pre><code class="language-bash">export ROS_DOMAIN_ID=99
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ros2 launch multibot rviz_launch.py config:=config/stage.rviz
+</code></pre>
+<blockquote>
+<p><strong>Note :</strong> We use CycloneDDS here because there is a <a href="https://github.com/ros2/domain_bridge/pull/79">bug</a> in the
+<code>domain_bridge</code> library that causes the <code>bidirectional</code> bridge configuration to create an infinite loop
+when using <code>rmw_fastrtps_cpp</code></p>
+</blockquote>
+<p>Launch the demo (with the simulator, the controllers, the nav2 stacks...):</p>
+<pre><code class="language-bash">export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ros2 launch multibot stage_bridge_launch.py
+</code></pre>
+<p>To start spawning packages, use the <code>Publish Point</code> button in rviz (it will toggle the package spawning).<br />
+To retrieve a package with a specific color, run <code>ros2 topic pub /retrieve std_msgs/msg/String "{data: 'green'}" --once</code>
+<em>(other colors: <code>yellow</code>, <code>blue</code>, <code>red</code>)</em>.</p>
+<h2 id="3-network-isolation-with-fastdds-discovery-server">3. Network isolation with FastDDS Discovery server</h2>
+<p>DDS is the default protocol used by ROS2 for communicating between nodes. One aspect of this protocol is to look for elements that a node can communicate with on the newtwork. It's the "Discovery protocol".</p>
+<p>In our use case, we'll use Fast DDS <a href="https://docs.ros.org/en/iron/Tutorials/Advanced/Discovery-Server/Discovery-Server.html">Discovery server</a>, which works similarly to a router and allows to isolate DDS subnets.</p>
+<h3 id="a-simple-test-with-a-talker-and-a-listener_1">a. Simple test with a talker and a listener</h3>
+<p>We are going to start multiple DDS Discovery servers :
+- one to isolate a "local" network, which port is <code>11811</code>. This one will emulate one that would be on a robot computer.
+- one on the common network between robots, which port is <code>11812</code>. This one will emulate one that would be on the operator computer.</p>
+<pre><code class="language-bash">fastdds discovery -i 0 -l 127.0.0.1 -p 11811 # Local
+fastdds discovery -i 1 -l 127.0.0.1 -p 11812 # Shared
+</code></pre>
+<hr />
+<p><strong>Test 1 :</strong> We check that a local <code>talker</code> node can be listened by a "local" node and a "common" node BUT not on a node on the operator</p>
+<pre><code class="language-bash"># Emulates a local node on the robot
+export ROS_DISCOVERY_SERVER=&quot;127.0.0.1:11811&quot;
+ros2 run demo_nodes_cpp talker
+</code></pre>
+<pre><code class="language-bash"># Emulates a local node on the robot
+export ROS_DISCOVERY_SERVER=&quot;127.0.0.1:11811&quot;
+ros2 run demo_nodes_cpp listener
+</code></pre>
+<pre><code class="language-bash"># Emulates a subnet node on the robot
+export ROS_DISCOVERY_SERVER=&quot;127.0.0.1:11811;127.0.0.1:11812&quot;
+ros2 run demo_nodes_cpp listener
+</code></pre>
+<pre><code class="language-bash"># # Emulates a node on the operator
+export ROS_DISCOVERY_SERVER=&quot;;127.0.0.1:11812&quot;
+ros2 run demo_nodes_cpp listener
+</code></pre>
+<p>The first 2 <code>listeners</code> should receive the published messages, but not the "operator" node.</p>
+<hr />
+<p><strong>Test 2 :</strong> We check that a <code>talker</code> in the common network can be listened by a local node and also another node in the common network</p>
+<pre><code class="language-bash"># Emulates a subnet node on the robot
+export ROS_DISCOVERY_SERVER=&quot;127.0.0.1:11811;127.0.0.1:11812&quot;
+ros2 run demo_nodes_cpp talker
+</code></pre>
+<pre><code class="language-bash"># Emulates a local node on the robot
+export ROS_DISCOVERY_SERVER=&quot;127.0.0.1:11811&quot;
+ros2 run demo_nodes_cpp listener
+</code></pre>
+<pre><code class="language-bash"># Emulates another subnet node on the robot
+export ROS_DISCOVERY_SERVER=&quot;127.0.0.1:11811;127.0.0.1:11812&quot;
+ros2 run demo_nodes_cpp listener
+</code></pre>
+<pre><code class="language-bash"># Emulates a node on the operator
+export ROS_DISCOVERY_SERVER=&quot;;127.0.0.1:11812&quot;
+ros2 run demo_nodes_cpp listener
+</code></pre>
+<p>All 3 listeners should receive the published messages.</p>
+<hr />
+<blockquote>
+<p><strong>Note :</strong> By default, the ROS2 CLI creates a node in order to listen for other nodes/topics in the network. For this to work with the DDS Discovery server architecture, we need to configure ROS2 as a <strong>"Super client"</strong>.<br />
+This can be done thanks to the <a href="./config/dds_server/super_client_config.xml">super_client_config.xml</a> configuration file and the following command :
+<code>bash
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/super_client_config.xml
+ros2 daemon stop &amp;&amp; ros2 daemon start # We restart the daemon to take the changes into account</code>
+However, be careful because you will now have access to ALL nodes in the graph, <strong>without any isolation of the network</strong>.<br />
+In order to choose the discovery servers you want to connect to, you can comment the <code>&lt;RemoteServer&gt;</code> that don't interest you.<br />
+If you only want access to the <strong>common network on the operator</strong>, run the following commands :
+<code>bash
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/super_client_operator_config.xml
+ros2 daemon stop &amp;&amp; ros2 daemon start # We restart the daemon to take the changes into account</code></p>
+</blockquote>
+<h3 id="b-test-with-multiple-turtlesim-on-the-same-computer_1">b. Test with multiple turtlesim on the same computer</h3>
+<p>Each robot will host its own "local" DDS Discovery server, allowing communication between its internal nodes. Nodes that need to communicate with the outside elements (other robots/operator) will also connect to the operator's DDS Discovery server.</p>
+<p>To start the demo, you can use the following command, that will take care of starting everything (<code>turtle</code>, <code>operator</code> et <code>rviz</code>) :</p>
+<pre><code class="language-bash">ros2 launch multibot turtlesim_dds_launch.py nb_robots:=&quot;3&quot;
+</code></pre>
+<hr />
+<p>However, if you want to manually start the nodes yourself, here are the commands :</p>
+<p>Starting the DDS Discovery servers :</p>
+<pre><code class="language-bash">fastdds discovery -i 0 -l 127.0.0.1 -p 11811 # Local DDS discovery server for robot 1
+fastdds discovery -i 1 -l 127.0.0.1 -p 11812 # Local DDS discovery server for robot 1
+fastdds discovery -i 2 -l 127.0.0.1 -p 11813 # Local DDS discovery server for robot 1
+fastdds discovery -i 3 -l 127.0.0.1 -p 11814 # Common DDS discovery server, on the operator
+</code></pre>
+<blockquote>
+<p><strong>Note :</strong> Here, in this demo, we use different ports to emulate different machines. In reality, each robot will only host one local DDS Discovery server, and the last one will be hosted on the operator.</p>
+</blockquote>
+<p>Starting the <code>turtle</code> (<code>turtlesim</code> et <code>turtle_controller</code>) in different terminals (nodes will be started connecting automatically to the correct DDS Discovery server(s)) :</p>
+<pre><code class="language-bash">ros2 launch multibot turtlesim_dds_robot_launch.py local_dds_server:=&quot;127.0.0.1:11811&quot; subnet_dds_server:=&quot;127.0.0.1:11814&quot; nb_robots:=&quot;3&quot; robot_id:=&quot;1&quot;
+ros2 launch multibot turtlesim_dds_robot_launch.py local_dds_server:=&quot;127.0.0.1:11812&quot; subnet_dds_server:=&quot;127.0.0.1:11814&quot; nb_robots:=&quot;3&quot; robot_id:=&quot;2&quot;
+ros2 launch multibot turtlesim_dds_robot_launch.py local_dds_server:=&quot;127.0.0.1:11813&quot; subnet_dds_server:=&quot;127.0.0.1:11814&quot; nb_robots:=&quot;3&quot; robot_id:=&quot;3&quot;
+</code></pre>
+<p>Starting the operator node :</p>
+<pre><code class="language-bash">export ROS_DISCOVERY_SERVER=&quot;;;;127.0.0.1:11814&quot;
+ros2 run multibot static_operator.py --ros-args -p nb_robots:=3
+</code></pre>
+<p>Starting rviz :</p>
+<pre><code class="language-bash">export ROS_DISCOVERY_SERVER=&quot;;;;127.0.0.1:11814&quot;
+ros2 launch multibot rviz_turtlesim_launch.py
+</code></pre>
+<hr />
+<p>In order to send goal points for the turtles to go to, you can press the <code>2D Goal Pose</code> in Rviz or run the following command :</p>
+<pre><code class="language-bash">ros2 topic pub /goal_pose geometry_msgs/msg/PoseStamped &quot;{pose: {position: {x: 9, y: 9.0, z: 0.0}}}&quot; --once
+</code></pre>
+<h3 id="c-test-with-multiple-turtlesim-on-different-computers-pibot">c. Test with multiple turtlesim on different computers <em>(pibot)</em></h3>
+<p>First we need to install the <code>turtlesim</code> library on each <em>pibot</em> :</p>
+<pre><code class="language-bash">sudo apt install ros-iron-turtlesim
+</code></pre>
+<p>They will all be setup on <code>ROS_DOMAIN_ID=99</code>. The operator PC will have a static IP address (here it's <em><code>10.89.5.90</code></em>).</p>
+<p>On the operator PC :</p>
+<pre><code class="language-bash">ros2 launch multibot pibot_dds_operator.py nb_robots:=&quot;2&quot; common_dds_ip:=&quot;10.89.5.90&quot; common_dds_port:=&quot;11811&quot;
+</code></pre>
+<p>On each <em>pibot</em> :</p>
+<pre><code class="language-bash">ros2 launch multibot pibot_turtlesim_dds_launch.py nb_robots:=2 operator_server:=&quot;10.89.5.90:11811&quot;
+</code></pre>
+<h3 id="d-test-with-the-stage-simulator">d. Test with the stage simulator</h3>
+<p>All DDS servers will be hosted on the current machine, with IP <code>127.0.0.1</code>.
+We'll use the following DDS server ports :
+- 11811 for the simulation
+- 11812 for the operator/rviz
+- 11813,111814,11815... for the different robots</p>
+<p>To launch rviz, run the following commands :</p>
+<pre><code class="language-bash">export FASTRTPS_DEFAULT_PROFILES_FILE=/path/to/super_client_subnet_config.xml
+ros2 daemon stop &amp;&amp; ros2 daemon start
+ros2 launch multibot rviz_launch.py config:=config/stage.rviz
+</code></pre>
+<p>In another terminal, launch the demo (with the simulator, the controllers, the nav2 stacks...):</p>
+<pre><code class="language-bash">ros2 launch multibot stage_dds_launch.py
+</code></pre>
+<p>To start spawning packages, use the <code>Publish Point</code> button in rviz (it will toggle the package spawning).<br />
+To retrieve a package with a specific color, run <code>ros2 topic pub /retrieve std_msgs/msg/String "{data: 'green'}" --once</code>
+<em>(other colors: <code>yellow</code>, <code>blue</code>, <code>red</code>)</em>.</p>
+<h2 id="4-robot-isolation-using-dds-partitions">4. Robot isolation using DDS partitions</h2>
+<p>DDS is the protocol used by ROS2 for communicating between nodes. DDS introduced a way to isolate DataWriters (Publishers)
+and DataReaders (Subscribers) called <a href="https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/partition.html#partitions">DDS partitions</a></p>
+<p>For a Publisher to communicate with a Subscriber, they have to belong at least to one common partition.</p>
+<h3 id="a-simple-test-with-a-talker-and-a-listener_2">a. Simple test with a talker and a listener</h3>
+<p>In a first terminal, run a first talker (in the <code>chatter1</code> topic):</p>
+<pre><code class="language-bash">export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/talker_config.xml
+ros2 run demo_nodes_cpp talker --ros-args -r chatter:=chatter1
+</code></pre>
+<p>In a second terminal, run a second talker (in the <code>chatter2</code> topic):</p>
+<pre><code class="language-bash">export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/talker_config.xml
+ros2 run demo_nodes_cpp talker --ros-args -r chatter:=chatter2
+</code></pre>
+<p>In a third terminal, run a first listener (to the <code>chatter1</code> topic):</p>
+<pre><code class="language-bash">export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/listener_config.xml
+ros2 run demo_nodes_cpp listener --ros-args -r chatter:=chatter1
+</code></pre>
+<p>In a last terminal, run a second listener (to the <code>chatter2</code> topic):</p>
+<pre><code class="language-bash">export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/listener_config.xml
+ros2 run demo_nodes_cpp listener --ros-args -r chatter:=chatter2
+</code></pre>
+<blockquote>
+<p>Only the first listener should receive data, since the second one doesn't have a partition in common with the publisher.</p>
+</blockquote>
+<hr />
+<p>All of the nodes and topics will be visible with <code>ros2 node list</code> and <code>ros2 topic list</code></p>
+<p>However, <code>ros2 topic echo &lt;topic_name&gt;</code> will only work on data published on the default partition (<code>""</code>). If you want to
+echo topics published on other partitions, just use the configuration file that connects to every partition (<code>"*"</code>) except 
+the default one (<code>""</code>) :</p>
+<pre><code class="language-bash">export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/cli_config.xml
+ros2 topic echo /chatter2
+</code></pre>
+<h3 id="b-test-with-multiple-turtlesim-on-the-same-computer_2">b. Test with multiple turtlesim on the same computer</h3>
+<p>Each "robot" will have its own DDS partition (<code>robotX</code>). Their nodes will be communicating through topics with that partition. Topics that need to be shared across robots will be in the <code>shared</code> partition</p>
+<p>To start the demo, you can use the following command, that will take care of starting everything (<code>turtle</code>, <code>operator</code> et <code>rviz</code>) :</p>
+<pre><code class="language-bash">ros2 launch multibot turtlesim_partition_launch.py nb_robots:=&quot;3&quot;
+</code></pre>
+<hr />
+<p>However, if you want to manually start the nodes yourself, here are the commands :</p>
+<p>Starting the <code>turtle</code> (<code>turtlesim</code> et <code>turtle_controller</code>) in different terminals (nodes will be started with the created config files to use their own partition <code>robotX</code> and the <code>shared</code> partition):</p>
+<pre><code class="language-bash">ros2 launch multibot turtlesim_partition_robot_launch.py nb_robots:=&quot;3&quot; robot_id:=&quot;1&quot;
+ros2 launch multibot turtlesim_partition_robot_launch.py nb_robots:=&quot;3&quot; robot_id:=&quot;2&quot;
+ros2 launch multibot turtlesim_partition_robot_launch.py nb_robots:=&quot;3&quot; robot_id:=&quot;3&quot;
+</code></pre>
+<p>Starting the operator node :</p>
+<pre><code class="language-bash">export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/operator_config.xml
+ros2 run multibot static_operator.py --ros-args -p nb_robots:=3
+</code></pre>
+<p>Starting rviz :</p>
+<pre><code class="language-bash">export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/operator_config.xml
+ros2 launch multibot rviz_turtlesim_launch.py
+</code></pre>
+<h3 id="c-test-with-the-stage-simulator_1">c. Test with the stage simulator</h3>
+<p>We'll use the following DDS partitions :
+- <code>robot_0</code>,<code>robot_1</code>,<code>robot_2</code>... for the different robots
+- <code>shared</code> for the subnet (operator/rviz)</p>
+<p>To launch rviz, run the following commands :</p>
+<pre><code class="language-bash">export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/operator_config.xml
+ros2 launch multibot rviz_launch.py config:=config/stage.rviz
+</code></pre>
+<p>In another terminal, launch the demo (with the simulator, the controllers, the nav2 stacks...):</p>
+<pre><code class="language-bash">ros2 launch multibot stage_partition_launch.py
+</code></pre>
+<p>To start spawning packages, use the <code>Publish Point</code> button in rviz (it will toggle the package spawning).<br />
+To retrieve a package with a specific color, run <code>ros2 topic pub /retrieve std_msgs/msg/String "{data: 'green'}" --once</code>
+<em>(other colors: <code>yellow</code>, <code>blue</code>, <code>red</code>)</em>.</p>
+<h2 id="5-robot-isolation-with-domain-id-and-zenoh">5. Robot isolation with domain ID and Zenoh</h2>
+<h3 id="a-simple-test-with-a-talker-and-a-listener_3">a. Simple test with a talker and a listener</h3>
+<p>First we will start the 2 Zenoh bridges, in 2 different terminals :</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=1 zenoh-bridge-ros2dds -c /path/to/bridge_config_talker.json5
+ROS_DOMAIN_ID=2 zenoh-bridge-ros2dds -c /path/to/bridge_config_listener.json5
+</code></pre>
+<p>Then we will launch the talker and listener nodes, and prevent the DDS communication between nodes by
+starting them in different domain IDs</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp talker
+ROS_DOMAIN_ID=2 ros2 run demo_nodes_cpp listener
+</code></pre>
+<h3 id="b-test-with-the-stage-simulator">b. Test with the stage simulator</h3>
+<p>Each "robot" will have its own Zenoh bridge as well as its own namespace (<code>robotX</code>). Topics that need to be shared across robots will be specified in the Zenoh bridge <code>allow</code> configuration.</p>
+<p>To launch rviz, run the following commands :</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=99 ros2 launch multibot rviz_launch.py config:=config/stage.rviz
+</code></pre>
+<p>In another terminal, launch the demo (with the simulator, the controllers, the nav2 stacks...):</p>
+<pre><code class="language-bash">ros2 launch multibot stage_zenoh_launch.py
+</code></pre>
+<p>To start spawning packages, use the <code>Publish Point</code> button in rviz (it will toggle the package spawning).<br />
+To retrieve a package with a specific color, run <code>ros2 topic pub /retrieve std_msgs/msg/String "{data: 'green'}" --once</code>
+<em>(other colors: <code>yellow</code>, <code>blue</code>, <code>red</code>)</em>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
