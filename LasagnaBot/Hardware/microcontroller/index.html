@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Microcontroller Board (MCU) - Introduction to Robotics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../global.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Microcontroller Board (MCU)";
+        var mkdocs_page_input_path = "Hardware/microcontroller.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Introduction to Robotics
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenges</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Basic Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/internalLED/">Internal LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/potentiometer/">Potentiometer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/externalLED/">External LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/functions/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/servo/">Servo</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/motors/">Motors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/wifi/">Wifi</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/basicMovements/">Basic Robot Moves</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/lineFollower/">Line Follower</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/maze/">Maze</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resources</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Hardware</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Microcontroller Board (MCU)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../baseShield/">Base Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sensors/">Sensors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../motorShield/">Motor Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../powerBoard/">Power Board</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lineFinder/">Line Finder</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../motors/">Motors & Wheels</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../robotAssembly/">Assembly</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Software/ArduinoIDE/">Arduino IDE</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Introduction to Robotics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Resources</li>
+          <li class="breadcrumb-item">Hardware</li>
+      <li class="breadcrumb-item active">Microcontroller Board (MCU)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="microcontroller-board-mcu">Microcontroller Board (MCU)</h1>
+<p>To control the robot, we use an <a href="https://www.adafruit.com/product/4775">Adafruit Metro ESP32-S2</a>. This is an UNO-shaped board, compatibile with Arduino shields. It embed an the ESP32-S2, a highly-integrated, low-power, 2.4 GHz Wi-Fi System-on-Chip (SoC) solution that now has built-in native USB as well as some other interesting new technologies like Time of Flight (ToF) distance measurements.</p>
+<p><img alt="Adafruit Metro ESP32-S2" src="../../img/microcontrollerAdafruitMetroEsp32S2.jpg" /></p>
+<h2 id="guide">Guide</h2>
+<p>We recommand the <a href="https://learn.adafruit.com/adafruit-metro-esp32-s2">Adafruit guide to the Metro ESP32-S2</a>. It covers a lot of ground:</p>
+<ul>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2">Overview</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/pinouts">Pinouts</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/circuitpython-pin-names">Pin names</a></li>
+<li><a href="https://github.com/adafruit/circuitpython/blob/main/ports/espressif/boards/adafruit_metro_esp32s2/pins.c">Pin numbers</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/rom-bootloader">ROM Bootloader</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/web-serial-esptool">Web Serial ESPTool</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/install-uf2-bootloader">Install UF2 Bootloader</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/welcome-to-circuitpython">Welcome To CircuitPython</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/circuitpython-essentials">Install CircuitPython</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/circuitpython-essentials">CircuitPython Essentials</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/arduino-ide-setup-2">Arduino IDE Setup</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/debugging-with-openocd">Debugging with OpenOCD</a></li>
+</ul>
+<h2 id="features-summary">Features Summary</h2>
+<ul>
+<li>ESP32-S2 240MHz Tensilica processor - the next generation of ESP32, now with native USB so it can act like a keyboard/mouse, MIDI device, disk drive, etc!</li>
+<li>WROVER module has FCC/CE certification and comes with 4 MByte of Flash and 2 MByte of PSRAM</li>
+<li>Power options: 6-12VDC barrel jack or USB type C or Lipoly battery</li>
+<li>Built-in battery charging when powered over DC or USB</li>
+<li>Precision battery monitoring via MAX17048 on I2C</li>
+<li>UNO-shape so shields can plug in</li>
+<li>Reset and DFU (BOOT0) buttons to get into the ROM bootloader (which is a USB serial port so you don't need a separate cable!)</li>
+<li>Serial debug pins (optional, for checking the hardware serial debug console)</li>
+<li>JTAG pads for advanced debugging access.</li>
+<li>On/Off switch</li>
+<li>STEMMA QT connector for I2C devices</li>
+<li>On/Charge/User LEDs + status NeoPixel</li>
+<li>Works with Arduino or CircuitPython</li>
+<li>53.2mm x 72mm / 2" x 2.8"</li>
+<li>Height (w/ barrel jack): 14.8mm / 0.6"</li>
+<li>Weight: 22.5g</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../Challenges/maze/" class="btn btn-neutral float-left" title="Maze"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../baseShield/" class="btn btn-neutral float-right" title="Base Shield">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../Challenges/maze/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../baseShield/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

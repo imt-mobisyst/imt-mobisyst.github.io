@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>MicroPython - Introduction to Robotics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../global.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MicroPython";
+        var mkdocs_page_input_path = "Software/MicroPython.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Introduction to Robotics
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenges</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Basic Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/internalLED/">Internal LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/potentiometer/">Potentiometer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/externalLED/">External LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/functions/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/servo/">Servo</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/motors/">Motors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/wifi/">Wifi</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/basicMovements/">Basic Robot Moves</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/lineFollower/">Line Follower</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/maze/">Maze</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resources</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Hardware</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/microcontroller/">Microcontroller Board (MCU)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/baseShield/">Base Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sensors/">Sensors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motorShield/">Motor Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/powerBoard/">Power Board</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/lineFinder/">Line Finder</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motors/">Motors & Wheels</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/robotAssembly/">Assembly</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../ArduinoIDE/">Arduino IDE</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Introduction to Robotics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">MicroPython</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="micropython">MicroPython</h1>
+<h2 id="what-is-mircopython">What is MircoPython?</h2>
+<p>MicroPython is a lean and efficient implementation of the Python 3 programming language that includes a small subset of the Python standard library and is optimised to run on microcontrollers and in constrained environments.</p>
+<p>The full documentation is <a href="https://micropython.org/">here</a>.</p>
+<h2 id="how-to-install-mircopython-on-a-microcontroller">How to install MircoPython on a Microcontroller?</h2>
+<p><a href="https://docs.micropython.org/en/latest/esp32/tutorial/intro.html">Official Doc</a></p>
+<p>In a nutshell, here the steps to follow:</p>
+<ol>
+<li>Install esptool</li>
+</ol>
+<pre><code>pip install esptool
+</code></pre>
+<ol>
+<li>Erase the board</li>
+</ol>
+<pre><code>esptool.py --chip esp32s2 --port /dev/ttyACM1 erase_flash
+esptool.py v4.7.0
+Serial port /dev/ttyACM1
+Connecting....
+Chip is ESP32-S2 (revision v0.0)
+Features: WiFi, No Embedded Flash, No Embedded PSRAM, ADC and temperature sensor calibration in BLK2 of efuse V1
+Crystal is 40MHz
+MAC: 7c:df:a1:17:8c:98
+Uploading stub...
+Running stub...
+Stub running...
+Erasing flash (this may take a while)...
+Chip erase completed successfully in 16.3s
+WARNING: ESP32-S2 (revision v0.0) chip was placed into download mode using GPIO0.
+esptool.py can not exit the download mode over USB. To run the app, reset the chip manually.
+To suppress this note, set --after option to 'no_reset'.
+</code></pre>
+<ol>
+<li>Flash it</li>
+</ol>
+<pre><code>esptool.py --chip esp32s2 --port /dev/ttyACM1 write_flash -z 0x1000 ESP32_GENERIC_S2-20240222-v1.22.2.bin
+esptool.py v4.7.0
+Serial port /dev/ttyACM1
+Connecting...
+Chip is ESP32-S2 (revision v0.0)
+Features: WiFi, No Embedded Flash, No Embedded PSRAM, ADC and temperature sensor calibration in BLK2 of efuse V1
+Crystal is 40MHz
+MAC: 7c:df:a1:17:8c:98
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x0015bfff...
+Compressed 1418416 bytes to 928487...
+Wrote 1418416 bytes (928487 compressed) at 0x00001000 in 11.2 seconds (effective 1013.6 kbit/s)...
+Hash of data verified.
+
+Leaving...
+WARNING: ESP32-S2 (revision v0.0) chip was placed into download mode using GPIO0.
+esptool.py can not exit the download mode over USB. To run the app, reset the chip manually.
+To suppress this note, set --after option to 'no_reset'.
+</code></pre>
+<h2 id="web-repl">Web REPL</h2>
+<ol>
+<li>Activate it from UART REPL first:</li>
+</ol>
+<pre><code>tio /dev/ttyACM1
+[15:22:29.145] tio v2.7
+[15:22:29.145] Press ctrl-t q to quit
+[15:22:29.146] Connected
+
+&gt;&gt;&gt; import webrepl_setup
+WebREPL daemon auto-start status: disabled
+
+Would you like to (E)nable or (D)isable it running on boot?
+(Empty line to quit)
+&gt; E
+To enable WebREPL, you must set password for it
+New password (4-9 chars): 1234
+Confirm password: 1234
+Changes will be activated after reboot
+Would you like to reboot now? (y/n) y
+
+[15:23:09.830] Disconnected
+[15:23:10.831] Connected
+</code></pre>
+<p>2.</p>
+<h2 id="edit-and-deploy-code">Edit and deploy code</h2>
+<h2 id="micropython-libraries">MicroPython Libraries</h2>
+<h1 id="other-resources">Other Resources</h1>
+<p>-</p>
+<h2 id="faq">FAQ</h2>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

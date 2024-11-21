@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Basic Robot Moves - Introduction to Robotics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../global.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Basic Robot Moves";
+        var mkdocs_page_input_path = "Challenges/basicMovements.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Introduction to Robotics
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenges</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Basic Challenges</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../internalLED/">Internal LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../potentiometer/">Potentiometer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../externalLED/">External LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../functions/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../servo/">Servo</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../motors/">Motors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../wifi/">Wifi</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Basic Robot Moves</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../lineFollower/">Line Follower</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../maze/">Maze</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resources</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Hardware</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/microcontroller/">Microcontroller Board (MCU)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/baseShield/">Base Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sensors/">Sensors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motorShield/">Motor Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/powerBoard/">Power Board</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/lineFinder/">Line Finder</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motors/">Motors & Wheels</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/robotAssembly/">Assembly</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Software/ArduinoIDE/">Arduino IDE</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Introduction to Robotics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Challenges</li>
+          <li class="breadcrumb-item">Basic Challenges</li>
+      <li class="breadcrumb-item active">Basic Robot Moves</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="challenge-basic-robot-movements">Challenge: Basic Robot Movements</h1>
+<p>In this challenge you will explore basic robot movements. Implement each movement as a function, then combine them in a program. But, before, you need to <a href="../../Hardware/robotAssembly/">assemble the robot</a>.</p>
+<p><img alt="The Lasagna Bot all grey version" src="../../img/lasagnaBotAllGrey.jpg" /></p>
+<h2 id="foundation-single-motor-driver">Foundation:  Single Motor Driver</h2>
+<p>Write the <code>setSpeed</code> function that you will be using in the remainder of the challenge. 
+The function takes 5 parameters :</p>
+<ul>
+<li><code>speed</code>: a value between -255 and +255</li>
+<li><code>duration</code>: Duration in milliseconds</li>
+<li><code>speedPin</code>: Motor speed pin number</li>
+<li><code>directionPin</code>: Motor direction pin number</li>
+<li><code>breakPin</code>: Motor break pin number</li>
+</ul>
+<p>When the <code>speed</code> parameter is positive, the motor rotates forward. And, when <code>speed</code> is negative, to motor rotates backward.</p>
+<h2 id="move-in-a-back-and-forth-for-a-given-duration">Move in a back and forth for a given duration</h2>
+<p>Write a program that makes the robot move back and forth.
+It should move forward in a straight line for 3 seconds.
+Then, the robot should move backward in straight line too for 3 seconds.</p>
+<h2 id="rotate-in-place">Rotate in Place</h2>
+<p>Write a program that makes the robot rotate in place.
+It should rotate clockwise for 3 seconds.
+Then, the robot should rotate counter-colockwise for 3 seconds.</p>
+<h2 id="move-in-a-circle">Move in a Circle</h2>
+<p>Write a function <code>circleMove</code> that makes the robot move in a circle.
+It takes 1 parameter <code>radius</code> which is the radius of a circle, an integer value.
+Write a program that make the robot move following different circle sizes.</p>
+<h2 id="move-in-a-spiral">Move in a Spiral</h2>
+<p>Write a function <code>spiralMove</code> that makes the robot move following a spiral shape.
+The function takes 2 parameters: </p>
+<ul>
+<li><code>maxRadius</code>: a positive integer that represent the maximum distance between the robot and the spiral center</li>
+<li><code>speed</code>: an integer that represent how fast the robot moves following the spiral. <ul>
+<li>When <code>speed</code> is positive, the robot starts from the center of the spiral and moves outwards.</li>
+<li>When <code>speed</code> is negative, the robots starts from the edge of the spiral and moves inwards.</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../wifi/" class="btn btn-neutral float-left" title="Wifi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lineFollower/" class="btn btn-neutral float-right" title="Line Follower">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../wifi/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../lineFollower/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Internal LED - Introduction to Robotics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../global.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Internal LED";
+        var mkdocs_page_input_path = "Challenges/internalLED.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Introduction to Robotics
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenges</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Basic Challenges</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Internal LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../potentiometer/">Potentiometer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../externalLED/">External LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../functions/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../servo/">Servo</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../motors/">Motors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../wifi/">Wifi</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../basicMovements/">Basic Robot Moves</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../lineFollower/">Line Follower</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../maze/">Maze</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resources</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Hardware</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/microcontroller/">Microcontroller Board (MCU)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/baseShield/">Base Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sensors/">Sensors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motorShield/">Motor Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/powerBoard/">Power Board</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/lineFinder/">Line Finder</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motors/">Motors & Wheels</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/robotAssembly/">Assembly</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Software/ArduinoIDE/">Arduino IDE</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Introduction to Robotics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Challenges</li>
+          <li class="breadcrumb-item">Basic Challenges</li>
+      <li class="breadcrumb-item active">Internal LED</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="blinking-led">Blinking LED</h1>
+<h2 id="hardware">Hardware</h2>
+<p>Connect the <a href="../../Hardware/microcontroller/">Microcontroller Board</a> to a PC using an USB cable.</p>
+<h2 id="software">Software</h2>
+<p>Use <a href="../../Software/ArduinoIDE/">Arduino IDE</a> to code a program and upload it on the board.</p>
+<h2 id="perpetual-blinking">Perpetual blinking</h2>
+<p>Write a program that makes the internal LED of the board to blink with intervals of 0.5s.
+Note that the internal LED pin number is 42.</p>
+<p><a href="https://docs.arduino.cc/built-in-examples/basics/Blink/">Hint</a></p>
+<h2 id="fade-in-out">Fade in / out</h2>
+<p>Modify the previous program to make the internal LED fade in and fade out.</p>
+<p><a href="https://docs.arduino.cc/built-in-examples/basics/Fade/">Hint</a></p>
+<h2 id="neopixel">Neopixel</h2>
+<p>Find the pin number of the neopixel LED on the Metro ESP32-S2 board.
+Write a program that turn this LED on and display all possible colors (rgb codes).</p>
+<p>You should use the Library Manager of the Arduino IDE to intall the Neopixel library.</p>
+<ul>
+<li><a href="https://learn.adafruit.com/getting-started-with-flora/blink-onboard-neopixel">Neopixel Tutorial</a></li>
+<li><a href="https://adafruit.github.io/Adafruit_NeoPixel/html/">Neopixel Reference Documentation</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../potentiometer/" class="btn btn-neutral float-right" title="Potentiometer">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../potentiometer/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>CircuitPython - Introduction to Robotics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../global.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CircuitPython";
+        var mkdocs_page_input_path = "Software/CircuitPython.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Introduction to Robotics
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenges</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Basic Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/internalLED/">Internal LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/potentiometer/">Potentiometer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/externalLED/">External LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/functions/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/servo/">Servo</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/motors/">Motors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/wifi/">Wifi</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/basicMovements/">Basic Robot Moves</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/lineFollower/">Line Follower</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/maze/">Maze</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resources</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Hardware</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/microcontroller/">Microcontroller Board (MCU)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/baseShield/">Base Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sensors/">Sensors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motorShield/">Motor Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/powerBoard/">Power Board</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/lineFinder/">Line Finder</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/motors/">Motors & Wheels</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Hardware/robotAssembly/">Assembly</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../ArduinoIDE/">Arduino IDE</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Introduction to Robotics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">CircuitPython</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="circuitpython">CircuitPython</h1>
+<h2 id="what-is-circuitpython">What is CircuitPython?</h2>
+<p>CircuitPython is a programming language designed to simplify experimenting and learning to program on low-cost microcontroller boards. It makes getting started easier than ever with no upfront desktop downloads needed. Once you get your board set up, open any text editor, and get started editing code. It's that simple.</p>
+<p>The full documentation is <a href="https://learn.adafruit.com/welcome-to-circuitpython">here</a>.</p>
+<h2 id="is-circuitpython-installed-on-a-microcontroller-board">Is CircuitPython installed on a Microcontroller Board?</h2>
+<ol>
+<li>Plug a <a href="../../Hardware/microcontroller/">Microcontroller Board</a> to a USB port of a PC</li>
+<li>If you get a USB drive named <code>CIRCUITPY</code>, CircuitPython is <strong>already</strong> installed on the board</li>
+<li>You can code the board by editing the file named <code>code.py</code></li>
+</ol>
+<h2 id="how-to-install-circuitpython-on-a-microcontroller">How to install CircuitPython on a Microcontroller?</h2>
+<p>In a nutshell, here the steps to follow:</p>
+<ol>
+<li>Open Google Chrome (not Firefox) on <a href="https://circuitpython.org/board/adafruit_metro_esp32s2/">https://circuitpython.org/board/adafruit_metro_esp32s2/</a></li>
+<li>Connect your microcontroller board to an USB port of your PC</li>
+<li>Turn on the On/Off switch if needed so the LEDs will turn on.</li>
+<li>Make the the board enter the Drive Firmware Update (DFU) mode to update the ROM bootloader as explained in the <a href="https://learn.adafruit.com/adafruit-metro-esp32-s2/rom-bootloader">Adafruit tutotrial</a>. This means:<ol>
+<li>Press and <strong>hold</strong> the DFU / Boot0 button down. Don't let go of it yet!</li>
+<li>Press and <strong>release</strong> the Reset button.</li>
+<li>Release the DFU / Boot0 button</li>
+</ol>
+</li>
+<li>Click on the button <code>Open Installer</code> and select <code>Full CircuitPython X.Y.Z Install</code>
+<img alt="Install CircuitPython through Google Chrome" src="../../img/installCircuitPython.png" /></li>
+<li>Follow the instructions until you have a USB drive named <code>CIRCUIT</code> that automatically mount when pluging the microcontroller board to the PC in USB</li>
+</ol>
+<h2 id="how-to-code-on-your-microcontroller">How to code on your Microcontroller?</h2>
+<p>Just edit the file <code>code.py</code> file on the <code>CIRCUITPY</code> drive.</p>
+<h2 id="code-editor">Code Editor</h2>
+<p>CircuitPython website recommands some <a href="https://learn.adafruit.com/welcome-to-circuitpython/recommended-editors">code editors</a>.
+For example:
+- <a href="https://codewith.mu/">Mu editor</a>
+- <code>gedit</code> on Ubuntu</p>
+<p>Another possibility consists in using <code>Google Chrome</code> and a <a href="https://code.circuitpython.org/">web-based editor</a>.</p>
+<h2 id="circuitpython-libraries">CircuitPython Libraries</h2>
+<p>More sophisticated programs use external libraries (<code>import</code> statements in the Python code). Those external libraries should be copied into the <code>lib</code> folder in the <code>CIRCUITPY</code> drive.</p>
+<p><a href="https://circuitpython.org/libraries">https://circuitpython.org/libraries</a></p>
+<h1 id="other-resources">Other Resources</h1>
+<ul>
+<li><a href="https://learn.adafruit.com/circuitpython-essentials">CircuitPython Tutorials</a></li>
+</ul>
+<!-- - [Code Examples from Adafruit](https://github.com/adafruit/Adafruit_Learning_System_Guides) -->
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PL9VJ9OpT-IPSsQUWqQcNrVJqy4LhBjPX2">https://www.youtube.com/playlist?list=PL9VJ9OpT-IPSsQUWqQcNrVJqy4LhBjPX2</a></li>
+<li><a href="https://docs.wokwi.com/guides/circuitpython">Simulating CircuitPython code on a Raspberry Pi Pico board in your browser using Wokwi</a></li>
+<li><a href="https://github.com/adafruit/awesome-circuitpython">https://github.com/adafruit/awesome-circuitpython</a></li>
+</ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="mu-editor-installed-using-apt-on-ubuntu-2204-crashes"><a href="https://codewith.mu/">Mu editor</a> installed using apt on Ubuntu 22.04 crashes</h3>
+<p>On Ubuntu 22.04 you can install mu editor using:</p>
+<pre><code>sudo apt install mu-editor
+</code></pre>
+<p>However, it throws an error at startup. An easy fix is described <a href="https://github.com/mu-editor/mu/issues/2228">here</a>:</p>
+<p>Edit the file:</p>
+<pre><code>sudo gedit /usr/share/mu-editor/mu/interface/main.py
+</code></pre>
+<p>and modify lines 774-775:</p>
+<pre><code class="language-diff">-        self.move((screen.width() - size.width()) / 2,
+-                  (screen.height() - size.height()) / 2)
++        self.move((screen.width() - size.width()) // 2,
++                  (screen.height() - size.height()) // 2)
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
