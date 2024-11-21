@@ -160,7 +160,7 @@ combinated they form a <strong>pibot</strong>.</p>
 <li>username: bot</li>
 <li>password: x2</li>
 <li>LAN:<ul>
-<li><em>IoT IMT Nord Europe</em> : <code>72Hin@R*</code></li>
+<li><em>IoT IMT Nord Europe</em> : <!-- <code>72Hin@R*</code> --></li>
 </ul>
 </li>
 </ol>
@@ -174,7 +174,7 @@ cd mb6-space
 ./bin/install-pi3
 </code></pre>
 <p>After installation, <code>pibotXX</code> will be accecible on the <em>IP</em> <code>10.89.5.XX</code> 
-(reserved <em>DHCP</em> range: $[10.89.5.10 \rightarrow 10.89.5.50]$).</p>
+(reserved <em>DHCP</em> range: <span class="arithmatex">\([10.89.5.10 \rightarrow 10.89.5.50]\)</span>).</p>
 <h2 id="manual-install">Manual Install:</h2>
 <p><strong>Not up-to-date</strong>, please refer directly to the <code>install</code> script...</p>
 <p>If necessary, update ntp serveurs conf and restart timesyncd service:</p>
@@ -306,6 +306,8 @@ sudo systemctl enable pibot.service
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
