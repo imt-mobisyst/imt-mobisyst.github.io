@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>F.A.Q - mb6 ros-workspace</title>
+        <title>Manual Install - mb6 ros-workspace</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -37,7 +37,7 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Install <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -54,7 +54,7 @@
 </li>
                                     
 <li>
-    <a href="../install/" class="dropdown-item">Manual Install</a>
+    <a href="./" class="dropdown-item active">Manual Install</a>
 </li>
                                 </ul>
                             </li>
@@ -84,8 +84,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">F.A.Q</a>
+                            <li class="navitem">
+                                <a href="../f.a.q/" class="nav-link">F.A.Q</a>
                             </li>
                         </ul>
 
@@ -96,12 +96,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../pkg-basic/" class="nav-link">
+                                <a rel="prev" href="../configure-station/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../robot-pibot/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -123,12 +123,14 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#frequent-asked-questions" class="nav-link">Frequent Asked Questions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#comment-configurer-aux-petits-oignon-sudo" class="nav-link">Comment configurer aux petits oignon sudo ?</a>
+            
+            <li class="nav-item" data-level="2"><a href="#hello-world-with-ros2" class="nav-link">Hello-World with ROS2</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#imt-mobisyst-packages" class="nav-link">IMT-Mobisyst packages</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -136,28 +138,77 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="frequent-asked-questions">Frequent Asked Questions</h1>
-<h2 id="comment-configurer-aux-petits-oignon-sudo">Comment configurer aux petits oignon sudo ?</h2>
-<p><code>sudo</code> est parramétrable et permet d'autoriser finnement les accés et les droits des utilisateur sur les action senssible sur la machine.
-Le plus simple est de creer des fichiers de config spécifique dans le répétoire approprié:</p>
-<pre><code class="language-sh">sudo mkdir /etc/sudoers.d            # si besoin
-sudo touch /etc/sudoers.d/myConfigs  
+<h3 id="manual-installation">Manual Installation</h3>
+<p>This install process follows the instruction on <a href="https://docs.ros.org/en/iron/Installation/Ubuntu-Install-Debians.html">docs.ros.org</a></p>
+<p>In short :</p>
+<pre><code class="language-sh">sudo apt install -y curl software-properties-common
+sudo add-apt-repository universe -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release &amp;&amp; echo $UBUNTU_CODENAME) main&quot; | sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
+
+sudo apt update
+sudo apt install -y ros-dev-tools # ament-cmake-python
 </code></pre>
-<p>Il est donc possible d'autoriser un utilisateur sur une commande spécifique par exemple (la commande <code>whereis xxx</code> permet de récupérer le chemin sur une commande <code>xxx</code>):</p>
-<pre><code class="language-sh">User     ALL=(ALL:ALL) /path/cmd
+<p>Then install (use one of the options): </p>
+<pre><code class="language-sh">sudo apt install -y ros-iron-ros-base # for minimal install
+sudo apt install -y ros-iron-desktop # for developers install (include visualtization etc.)
+sudo apt install -y ros-iron-desktop-full # for not missing anything
 </code></pre>
-<p>Et même l'autoriser à le faire sans mot de passe:</p>
-<pre><code class="language-sh">User     ALL=(ALL:ALL) NOPASSWD: /path/cmd
+<p>You can setup your terminal with ROS2 environment: </p>
+<pre><code class="language-sh">source /opt/ros/iron/setup.bash
 </code></pre>
-<p>Par exemple pour autoriser l'usage d'apt:</p>
-<pre><code class="language-sh">sudo nano /etc/sudoers.d/apt  
-#puis:
-bot      ALL=(ALL:ALL) NOPASSWD: /usr/bin/apt
-#et ctrl-s, ctrl-x pour sauver et quiter
+<h2 id="hello-world-with-ros2">Hello-World with ROS2</h2>
+<p>This workspace include a default simple ROS package <code>draft-mb6</code> into <code>pkg-draft</code> directory.
+You can build it with <code>colcon build</code>,
+then, inform your environment of the existance of new ROS resources <code>source ./install/setup.bash</code>.</p>
+<p>In fact, the <code>run-commands.bash</code> would also do the job (<code>source ./install/setup.bash</code>).
+You can make your own <code>run-commands.bash</code> and automitically source this on your terminal...</p>
+<pre><code class="language-sh">echo &quot;
+
+# mb6 ROS environment:
+source ~/mb6-space/bin/run-commands.bash&quot; &gt;&gt; ~/.bashrc
 </code></pre>
-<p>Où, si l'on veut être plus spécifique: </p>
-<pre><code class="language-sh">bot      ALL=(ALL:ALL) NOPASSWD: /usr/bin/apt upgrade
-</code></pre></div>
+<p>(optional) you can add a <code>domain-id</code> to allow several ROS2 virtual networks to work on a same phisical network (<a href="https://docs.ros.org/en/humble/Concepts/About-Domain-ID.html">doc</a>)</p>
+<pre><code>export ROS_DOMAIN_ID=42
+</code></pre>
+<p>Push the <code>source</code> and <code>export</code> commands on your bashrc file.</p>
+<p>Finally launch a talker and a listerner in two terminals <code>ros2 run draft_mb6 py_listerner</code> and <code>ros2 run draft_mb6 cpp_talker</code>.</p>
+<p>For going further follow the draft tutorirals:</p>
+<ul>
+<li><a href="./docs/tuto-ros2-intro.md">ROS2 introduction</a></li>
+<li><a href="./docs/tuto-draft-pkg.md">package create</a></li>
+<li><a href="./docs/tuto-draft-python.md">python node</a></li>
+<li><a href="./docs/tuto-draft-cpp.md">cpp node</a></li>
+</ul>
+<p><strong>Hokuyo Laser Range</strong> </p>
+<p>Just use the <code>urg_node</code> form the ROS <code>urg_node</code> package.
+It requires that the linux user is in dialout group.</p>
+<pre><code class="language-sh">sudo apt install -y ros-iron-urg-node
+sudo usermod -a -G dialout `whoami`
+</code></pre>
+<p><strong>RealSense</strong></p>
+<p>Use the <code>vcpkg</code> tool as <a href="https://github.com/IntelRealSense/librealsense">recommended</a>.</p>
+<pre><code class="language-sh">cd 
+git clone https://github.com/Microsoft/vcpkg.git .vcpkg
+~/.vcpkg/bootstrap-vcpkg.sh
+~/.vcpkg/vcpkg install realsense2
+pip install pyrealsense2
+</code></pre>
+<p>You can connect the camera and test with <code>./bin/test-realsense-cam.py</code> script.</p>
+<p><strong>Gazebo Simulation</strong></p>
+<p>ROS compliant version of gazebo can be installed from <code>ros-iron-gazebo-xxx</code> packeges.
+The <a href="./bin/install-gazebo">install-gazebo</a> script provide the list of usefull packages.</p>
+<p>More on Gazebo-Ros: <a href="https://docs.ros.org/en/iron/Tutorials/Advanced/Simulators/Gazebo/Simulation-Gazebo.html">docs.ros.org</a></p>
+<p>The IMT-MobiSyst simulated Robot is configured on a specific repo: <code>git clone https://github.com/imt-mobisyst/pkg-tsim</code></p>
+<pre><code class="language-sh">source ./bin/run-commands.bash
+./bin/install-gazebo
+git clone https://github.com/imt-mobisyst/pkg-tsim
+colcon build
+</code></pre>
+<p><strong>Cuda</strong></p>
+<h2 id="imt-mobisyst-packages">IMT-Mobisyst packages</h2>
+<p>Your <em>mb6-space</em> workspace is now ready to welcome robotic packages.
+Depending of your need, you can install and build the relevant mb6's packages...</p></div>
             </div>
         </div>
 

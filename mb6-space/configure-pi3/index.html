@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>On Pi3 - HackaGames</title>
+        <title>On Pi3 - mb6 ros-workspace</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -21,7 +21,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">HackaGames</a>
+                <a class="navbar-brand" href="..">mb6 ros-workspace</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -51,6 +51,10 @@
                                     
 <li>
     <a href="../configure-station/" class="dropdown-item">Station</a>
+</li>
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Manual Install</a>
 </li>
                                 </ul>
                             </li>
@@ -169,7 +173,7 @@ combinated they form a <strong>pibot</strong>.</p>
 <p>You can process a classical install from <a href="[../bin/install-pi3](https://github.com/imt-mobisyst/mb6-space/blob/master/bin/install-pi3)">install-pi3</a> script or go on <strong>Manual Install</strong> section.
 Attention, the script also install ROS in <em>ros-base</em> configuration and mb6 elements.</p>
 <pre><code class="language-sh">cd
-git clone https://bitbucket.org/imt-mobisyst/mb6-space
+git clone https://github.com/imt-mobisyst/mb6-space
 cd mb6-space
 ./bin/install-pi3
 </code></pre>
@@ -191,7 +195,7 @@ sudo apt update
 <p>Clone <code>mb6-space</code>:</p>
 <pre><code class="language-sh">cd
 git config --global http.sslverify false
-git clone https://bitbucket.org/imt-mobisyst/mb6-space.git
+git clone https://github.com/imt-mobisyst/mb6-space.git
 </code></pre>
 <p>Update and get some soft:</p>
 <p>First configure <code>apt</code> needrestart from "interactive" (that promt an interactive windows to specify which services to resart after an apt update) to "automatic".
