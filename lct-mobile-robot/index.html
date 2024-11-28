@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Lct Mob-Rob</title>
+        <title>Lct. Mobile-Robot</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
@@ -21,7 +21,7 @@
     <body class="homepage">
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Lct Mob-Rob</a>
+                <a class="navbar-brand" href=".">Lct. Mobile-Robot</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,15 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="tuto-kick-off/ros-basics/" class="dropdown-item">Starting with ROS</a>
+    <a href="tuto-kick-off/basics/" class="dropdown-item">OS and Shell</a>
+</li>
+                                    
+<li>
+    <a href="tuto-kick-off/first-contact/" class="dropdown-item">nodes and topics</a>
+</li>
+                                    
+<li>
+    <a href="tuto-kick-off/package/" class="dropdown-item">ROS Package</a>
 </li>
                                     
 <li>
@@ -52,18 +60,6 @@
 <li>
     <a href="tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
 </li>
-                                    
-<li>
-    <a href="tuto-level-up/package/" class="dropdown-item">ROS Package</a>
-</li>
-                                    
-<li>
-    <a href="tuto-kick-off/range-sensor/" class="dropdown-item">Range Sensor</a>
-</li>
-                                    
-<li>
-    <a href="tuto-kick-off/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -71,19 +67,36 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="tuto-level-up/range-sensor/" class="dropdown-item">Range Sensor</a>
+</li>
+                                    
+<li>
+    <a href="tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
+</li>
+                                    
+<li>
     <a href="tuto-level-up/class/" class="dropdown-item">Node with Class</a>
 </li>
                                     
 <li>
-    <a href="tuto-level-up/slam/" class="dropdown-item">S.L.A.M</a>
+    <a href="tuto-level-up/parameters/" class="dropdown-item">Parameters</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mastering <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="tuto-mastering/slam/" class="dropdown-item">S.L.A.M</a>
 </li>
                                     
 <li>
-    <a href="tuto-level-up/transform/" class="dropdown-item">Move To</a>
+    <a href="tuto-mastering/transform/" class="dropdown-item">Move To</a>
 </li>
                                     
 <li>
-    <a href="tuto-level-up/vision/" class="dropdown-item">Vision</a>
+    <a href="tuto-mastering/vision/" class="dropdown-item">Vision</a>
 </li>
                                 </ul>
                             </li>
@@ -121,7 +134,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="tuto-kick-off/ros-basics/" class="nav-link">
+                                <a rel="next" href="tuto-kick-off/basics/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -149,6 +162,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#tutorials" class="nav-link">Tutorials</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#challenge" class="nav-link">Challenge</a>
               <ul class="nav flex-column">
               </ul>
@@ -169,40 +186,20 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="lecture-software-and-architecture-for-mobile-robotics">Lecture - Software and Architecture for Mobile-Robotics</h1>
-<p>Here a lecture on software and architecture for mobile robots at the <a href="http://www.imt-nord-europe.fr">IMT-Nord</a> engineering school.</p>
+<p>Here a lecture on software and architecture for mobile robots at the <a href="http://www.imt-nord-europe.fr">IMT-Nord-Europe</a> engineering school.</p>
 <p>This lecture is an introduction on how to develop a modular control and supervision software for a mobile platform.
 The notions are illustrated with tutorials based on Linux/<a href="https://ros.org/">ROS</a> and <a href="http://kobuki.yujinrobot.com/">Kobuki/Turtlebot2</a> robot.</p>
-<p>Introduction - <a href="https://raw.githubusercontent.com/ceri-num/uv-larm/master/notions/sld-intro.pdf">pdf version</a></p>
+<!-- Introduction - [pdf version](https://raw.githubusercontent.com/ceri-num/uv-larm/master/notions/sld-intro.pdf) -->
+
 <h2 id="this-support">This support</h2>
-<p>This support is stored on <a href="https://github.com">github</a> shared thanks to <a href="https://www.gitbook.com">gitbook</a>.</p>
+<p>This support is stored on <a href="https://github.com">github</a> shared thanks to <a href="https://www.github.io">GitHub pages</a>.</p>
+<h2 id="tutorials">Tutorials</h2>
+<p>Tutorials are organized on several levels of complexity: </p>
 <ul>
-<li>On gitbook: <a href="https://ceri-num.gitbook.io/uv-larm/">https://ceri-num.gitbook.io/uv-larm/</a></li>
-<li>On GitHub: <a href="https://github.com/ceri-num/uv-larm">https://github.com/ceri-num/uv-larm</a></li>
+<li><strong>Kick-Off</strong> focus on basic concept 'terminal commands', interconnected software developments on simulations and with a real mobile platform.</li>
+<li><strong>Level-up</strong> deep into <code>ROS2</code> to develop a complete packaged solution.</li>
+<li><strong>Mastering</strong>: With a good understanding of <code>ROS2</code> middleware, the goal now is to achieve complex missions including mapping and localization.</li>
 </ul>
-<!--
-## UV-LARM 2022-2023:
-
-Week 2 to 6/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
----------------|---------|---------|-----------|----------|---------|
-Morning        | No      | No      | Yes       | No       | Yes     | 
-Afernoon       | No      | Yes     | Yes       | No       | Yes     | 
-
-Week 9 to 13/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
-----------------|---------|---------|-----------|----------|---------|
-Morning         | Yes     | Yes     | Yes       | No       | Yes     | 
-Afernoon        | Yes     | Yes     | No        | No       | Yes     | 
-
-Week 16 to 20/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
------------------|---------|---------|-----------|----------|---------|
-Morning          | Yes     | Yes     | Yes       | No       | Yes     | 
-Afernoon         | Yes     | Yes     | No        | No       | Yes     | 
-
-Week 23 to 27/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
------------------|---------|---------|-----------|----------|---------|
-Morning          | Yes     | Yes     | Yes       | Yes      | Yes     | 
-Afernoon         | Yes     | No      | No        | No       | Yes     | 
--->
-
 <h2 id="challenge">Challenge</h2>
 <p>The evaluation mainly consists in the realization of an application involving specific challenges:</p>
 <ul>
@@ -221,7 +218,7 @@ This course relies on the <a href="http://www.ros.org/">ROS</a> middleware for p
 
 Slide generation is based on [marp](https://marp.app/) and the associated puggin in [VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode).
 
-To attach the appropriate style, go in `VS Code` parameters (Bottom left corner)
+To attach the appropriate style, go in `VS Code` parameters (bottom left corner)
 
 - search for `marp:theme`
 - select the workspace tab
@@ -317,5 +314,5 @@ Then, search `marp:html` and enable all html elements.
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-11-18 20:48:03.727366+00:00
+Build Date UTC : 2024-11-28 16:31:28.071413+00:00
 -->

@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>ROS: Robot Operating System - Lct. Mobile-Robot</title>
+        <title>OS and Shell - Lct. Mobile-Robot</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -37,28 +37,28 @@
                             <li class="navitem">
                                 <a href="../.." class="nav-link">Home</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../tuto-kick-off/basics/" class="dropdown-item">OS and Shell</a>
+    <a href="./" class="dropdown-item active">OS and Shell</a>
 </li>
                                     
 <li>
-    <a href="../../tuto-kick-off/first-contact/" class="dropdown-item">nodes and topics</a>
+    <a href="../first-contact/" class="dropdown-item">nodes and topics</a>
 </li>
                                     
 <li>
-    <a href="../../tuto-kick-off/package/" class="dropdown-item">ROS Package</a>
+    <a href="../package/" class="dropdown-item">ROS Package</a>
 </li>
                                     
 <li>
-    <a href="../../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
+    <a href="../move/" class="dropdown-item">Move the Robot</a>
 </li>
                                     
 <li>
-    <a href="../../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
+    <a href="../simulation/" class="dropdown-item">Simulation</a>
 </li>
                                 </ul>
                             </li>
@@ -128,6 +128,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../.." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../first-contact/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -146,8 +156,16 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#ros-robot-operating-system" class="nav-link">ROS: Robot Operating System</a>
+            <li class="nav-item" data-level="1"><a href="#operating-system-linuxubuntu-for-ros2" class="nav-link">Operating System: Linux/Ubuntu for ROS2</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#play-with-linux" class="nav-link">Play with Linux</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#the-shell-or-terminal" class="nav-link">The shell or Terminal</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -155,13 +173,45 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="ros-robot-operating-system">ROS: Robot Operating System</h1>
+<h1 id="operating-system-linuxubuntu-for-ros2">Operating System: Linux/Ubuntu for ROS2</h1>
+<p><code>ROS</code> stand for <strong>R</strong>obot <strong>O</strong>perating <strong>S</strong>ystem however it extend a classical <strong>O</strong>perating <strong>S</strong>ystem, a Linux/Ubuntu OS.</p>
+<p>The goal of this tutorial is to come back on basic <strong>O</strong>perating <strong>S</strong>ystem notions and mainly the <em>Shell</em> ofering the simplest way to interact with your computer.</p>
 <ul>
-<li>Middleware</li>
-<li>Fonctionnalité</li>
-<li>Commandes Principales</li>
-<li>Outils (RViz...)</li>
-</ul></div>
+<li>For an introduction to OS read the <a href="https://en.wikipedia.org/wiki/Operating_system">wikipedia page</a></li>
+</ul>
+<h2 id="play-with-linux">Play with Linux</h2>
+<p>Ubuntu is a Linux distribution (Operating System + Window Managment + Tools) derived from Debian distribution, in the galaxies of Open source solutions.</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Open_source">Open Source</a> means that every user can deep into the source code of the programs (open source is not necesary free of charge).</li>
+<li><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> is mostly an OS kernel. It exposes computer capability (computing, memory acces and other devices) to developers. Typically <code>C/C++</code> language was developed for the linux kernel</li>
+<li><a href="https://en.wikipedia.org/wiki/Linux_distribution">Distribution</a> will configure together an OS kernel, software management (packages), an IHM (display server + descktop environement) and a bench of softwares. </li>
+</ul>
+<p>Typically, <strong>ROS</strong> is designed to work on <em>Ubuntu</em>: <em>Linux kernel</em>, <em>GNOME</em> desktop, aptitude (apt) package manager.</p>
+<p><em>Ubuntu</em> is a good example of <strong>Open Source</strong> project:</p>
+<ul>
+<li>It is based on another <strong>Open Source</strong> project: <em>Debian OS</em> to capitalize on the <em>Debian</em> community works, while ofering a more easy-to-use solution.</li>
+<li>It searches for a profitability with <a href="https://ubuntu.com/pro">Ubuntu Pro</a>.</li>
+<li>It is used in return on other Linux based OS: <em>Pop!_os</em> or <em>Zorin</em> for instance.</li>
+</ul>
+<p>Visite <a href="https://distrowatch.com/">distrowatch.com</a> to get an idea of the galaxy of interconected <em>Linux OSs</em>.</p>
+<h2 id="the-shell-or-terminal">The shell or Terminal</h2>
+<p>In the variety of program runing on linux, we are mostly interested in the terminal emulator, permitting to manipulate our system directly from command (moving in the directory tree, read and organize files, execute scripts or programs, manage computer resources as network, ect.).</p>
+<p>On Ubuntu, default terminal emulator is <em>gnome-terminal</em> (<a href="https://help.gnome.org/users/gnome-terminal/stable">help.gnome.org</a>) configured with <em>bash</em> (<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">on wikipedia</a>) command interpreter.</p>
+<p>Commands are interpretables instruction generally executing programmes.
+Its is exected that the following commands are kwon before to start working with <code>ROS</code>.</p>
+<p>To notice that <code>tabulation</code> allows for autocompletion.</p>
+<p>Explore the following command (i.e. what for, how to use it), then play with the command in your terminal.</p>
+<h3 id="file-systems">File systems</h3>
+<ul>
+<li><strong>ls</strong>, <strong>cd</strong> for list the content of directory and change the curent directory</li>
+<li><strong>touch</strong>, <strong>cp</strong>, <strong>mv</strong>, <strong>rm</strong> for touch (or create), copy-paste, move or remove a file.</li>
+<li><strong>cat</strong>, <strong>more</strong> both for read/display the content of a file (textual)</li>
+<li><strong>nano</strong> one of the on-terminal file editor</li>
+</ul>
+<h3 id="processes">Processes</h3>
+<h3 id="users-and-sessions">Users and sessions</h3>
+<h3 id="more-commands">More commands:</h3>
+<p>Other commands to kwon: <strong>man</strong>, <strong>apropos</strong>, <strong>grep</strong>, <strong>find</strong>. (<a href="https://en.wikibooks.org/wiki/Linux_Guide/Linux_commands">Wikipedia is your friend</a>).</p></div>
             </div>
         </div>
 
