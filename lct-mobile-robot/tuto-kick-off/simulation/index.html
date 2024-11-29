@@ -46,7 +46,7 @@
 </li>
                                     
 <li>
-    <a href="../first-contact/" class="dropdown-item">nodes and topics</a>
+    <a href="../first-contact/" class="dropdown-item">Nodes and Topics</a>
 </li>
                                     
 <li>
@@ -72,10 +72,6 @@
                                     
 <li>
     <a href="../../tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
 </li>
                                     
 <li>
@@ -119,6 +115,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../pdf/" class="nav-link"></a>
                             </li>
                         </ul>
 
@@ -174,10 +173,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#visualizing-data" class="nav-link">Visualizing data</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#controlling-the-simulated-robot" class="nav-link">Controlling the Simulated Robot</a>
               <ul class="nav flex-column">
               </ul>
@@ -221,13 +216,11 @@ ii  ros-iron-turtlebot3-gazebo                      2.2.5-4jammy.20231117.114359
 <pre><code class="language-console">sudo apt install &lt;pakage_name&gt;
 </code></pre>
 <h2 id="launch-your-first-gazebo-simulation">Launch your first Gazebo Simulation</h2>
-<p>If <code>$ROS_WORKSPACE/pkg-tsim</code> is <em>not</em> installed:</p>
-<pre><code class="language-console">export ROS_WORKSPACE=$HOME/ros_ws
-mkdir $ROS_WORKSPACE
-cd $ROS_WORKSPACE
-git clone https://bitbucket.org/imt-mobisyst/pkg-tsim
+<p>We propose some configuration into a <code>pkg-tsim</code> project, including a <code>tbot_sim</code> <em>ROS2</em> package.</p>
+<pre><code class="language-sh">cd ~/ros_space
+git clone https://github.com/imt-mobisyst/pkg-tsim
 colcon build
-source $ROS_WORKSPACE/install/setup.bash
+source ./install/setup.bash
 </code></pre>
 <p>Then, you can launch a preconfigured simulation:</p>
 <pre><code class="language-console">ros2 launch tbot_sim challenge-1.launch.py
@@ -235,25 +228,20 @@ source $ROS_WORKSPACE/install/setup.bash
 <p>Look at the content of this launch file <a href="https://bitbucket.org/imt-mobisyst/pkg-tsim/src/master/tbot_sim/launch/challenge-1.launch.py">here</a>.
 We can see that Gazebo/ROS supports loading a world file describing the simulation environment and spawn elements such as robots.
 This simulation spawns a robot configured like a <code>tbot</code> i.e. it is equipped with a laser range finder and a camera (kinect).
-The interaction with the simulation will operate through ROS topics as it would be with a real robot with real equipments.</p>
+The interaction with the simulation will operate through ROS topics as it would be with a real robot with real equipment.</p>
 <h2 id="quiz-on-challenge-1">Quiz on challenge 1</h2>
 <p>While the challenge 1 simulation is running:</p>
 <blockquote>
 <p>Question: which topics are available i.e published by Gazebo?</p>
 </blockquote>
-<p>Hint: use <code>rqt_graph</code> to see the graph of all ROS nodes and topics (<a href="https://docs.ros.org/en/iron/Concepts/About-RQt.html">doc</a>).</p>
-<blockquote>
-<p>Question: In which topic are laser scans published?</p>
-</blockquote>
-<h2 id="visualizing-data">Visualizing data</h2>
-<p><code>rviz2</code> is a versatile and powerful tool to display data published in topics.
+<p>Hint: an infinite loop safely` is a versatile and powerful tool to display data published in topics.
 Launch it:</p>
 <pre><code class="language-console">rviz2
 </code></pre>
 <blockquote>
 <p>Question: How to configure <code>rviz2</code> to visualize the laser scans?</p>
 </blockquote>
-<p>Be carreful, ensure that <code>Global Option</code> / <code>Fixed frame</code> is correctly set to <code>base_link</code>.</p>
+<p>Be careful, ensure that <code>Global Option</code> / <code>Fixed frame</code> is correctly set to <code>base_link</code>.</p>
 <blockquote>
 <p>Question: why is this important? (hint: check your <code>tf</code> using <code>ros2 run tf2_tools view_frames</code>)</p>
 </blockquote>
@@ -267,7 +255,7 @@ Launch it:</p>
 <pre><code class="language-console">ros2 run teleop_twist_keyboard teleop_twist_keyboard
 </code></pre>
 <h2 id="tuto_sim">tuto_sim</h2>
-<p>Create a launch file that starts the apropriate configration: the <code>challenge-1</code>, a configured <code>rviz2</code> displaying laser scans and the <code>teleop</code>.
+<p>Create a launch file that starts the appropriate configuration: the <code>challenge-1</code>, a configured <code>rviz2</code> displaying laser scans and the <code>teleop</code>.
 We will prefer YAML format for launch file. </p>
 <p>All the information you need are in the tutorials :
 - <a href="https://docs.ros.org/en/iron/Tutorials/Intermediate/Launch/Launch-Main.html">Launch file documentation</a>

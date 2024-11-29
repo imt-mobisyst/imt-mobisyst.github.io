@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>nodes and topics - Lct. Mobile-Robot</title>
+        <title>Nodes and Topics - Lct. Mobile-Robot</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -46,7 +46,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">nodes and topics</a>
+    <a href="./" class="dropdown-item active">Nodes and Topics</a>
 </li>
                                     
 <li>
@@ -72,10 +72,6 @@
                                     
 <li>
     <a href="../../tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
 </li>
                                     
 <li>
@@ -119,6 +115,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../pdf/" class="nav-link"></a>
                             </li>
                         </ul>
 
@@ -166,6 +165,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#logs" class="nav-link">Logs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -175,9 +178,12 @@
 
 <h1 id="ros-basics">ROS Basics</h1>
 <p>The goal of this tutorial is to set up a workspace for all the resources we need to install and develop in our journey to control robots.
-We choose to work with <em>ROS</em> (the most used open middleware for robotics) on a <em>Linux-Ubuntu</em> computer (which is the best supported OS by <em>ROS</em>).</p>
-<p>This tutorial supposes that you have an <em>Ubuntu-Like 22.04 computers</em> with configured Python and C++ APIs.
+We choose to work with <em>ROS</em> (the most used open middleware for robotics) on a <em>Linux-Ubuntu</em> computer (which is the best-supported OS by <em>ROS</em>).</p>
+<p>This tutorial supposes that you have a <em>Ubuntu-Like 22.04 computers</em> with configured Python and C++ APIs.
 The tutorial relies on <a href="https://docs.ros.org/en/iron">ROS2 Iron</a>.</p>
+<p>To notice that the <code>wiki.ros.org</code> website refers to <em>ROS1</em>.
+<em>ROS1</em> is very similar to <em>ROS2</em> but with important differences.
+So be careful about the internet research result.</p>
 <h2 id="nodes-and-topics">Nodes and Topics</h2>
 <p>Robots are complex cybernetic systems that require complex software to handle complex missions.
 That for, the main feature proposed by <em>ROS</em> is to develop programs in a modular way.
@@ -190,48 +196,59 @@ Pieces of programs are dedicated to atomic functionalities and the overall contr
 <li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a>: well, it is on the title.</li>
 <li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a>: ...</li>
 </ol>
-<p>At this point you should be comfortable with the core component of <em>ROS</em>, nodes and topics.</p>
+<p>At this point you should be comfortable with the core component of <em>ROS</em>, nodes and topics.
+You realized that you will interact a lot with your software architecture throuh your terminal. 
+So a good practice consists of turning your terminal prompt to clearly state your <em>ROS</em> configuration at any time...</p>
+<p>Add the following 2 lines into your <code>~/.bashrc</code> file. 
+The bash run command file (<code>~/.bashrc</code>) is a good tool to configure all your terminal with common environment variables and configurations.</p>
+<pre><code class="language-bash"># Tunned prompt:
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:($ROS_AUTOMATIC_DISCOVERY_RANGE::$ROS_DOMAIN_ID)\[\033[01;34m\]\w\[\033[00m\].\n\$ '
+</code></pre>
 <h2 id="python-api">Python API</h2>
 <p><em>ROS</em> include more elements, components like <em>services</em> and <em>actions</em>, features like <em>parameters</em> or tools to debug (<em>rqt_console</em>), visualize (<em>rviz2</em>), launch configurations of nodes (launch) or recording topics (<em>bag</em>).
 But let see the Python API (<a href="https://en.wikipedia.org/wiki/API">Application Programming Interface</a>) on nodes and topics first, before to visit other <em>ROS</em> elements.</p>
-<p>To notice that the purpose of this lecture and its tutorials is not to cover all <em>ROS</em> elements.</p>
+<p>To notice that the purpose of this lecture and its tutorials is not to cover all <em>ROS</em> elements.
+Furthermore, the tutorials are designed with <code>ament_cmake</code> build tool, mostly <code>python</code> node and <code>yaml</code> launch files.
+Other solutions are provided by <em>ROS2</em>.</p>
 <h3 id="setup-a-dev-environment">Setup a Dev. Environment</h3>
 <p>First you should work on a dedicated directory to regroup the <em>ROS</em> things you need and you develop, let say your <code>ros_space</code> or <code>ros_ws</code>.
 The <code>things</code> would generally be <code>packages</code> but we will see that later. 
 In this work space, we will work for now on a <code>playground</code> directory and mode specifically on <em>ROS</em> <code>talker</code> and <code>listener</code> python script.</p>
 <p>To set up our environment in a terminal: </p>
-<pre><code class="language-sh">cd                               # go to the home directory of the curent user.
-mkdir ros_space                  # create a directory 
-cd ros_space                     # enter it
-mkdir playground                 # create a directory
-touch playground/talker.py       # create a file (if it does not exist)
-touch playground/listener.py     # create a file (if it does not exist)
+<pre><code class="language-sh">cd                               # Go to the home directory of the current user.
+mkdir ros_space                  # Create a directory 
+cd ros_space                     # Enter it
+mkdir playground                 # Create a directory
+touch playground/talker.py       # Create a file (if it does not exist)
+touch playground/listener.py     # Create a file (if it does not exist)
 </code></pre>
 <p>We recommend working with a complete extensible IDE, typically <em><a href="https://code.visualstudio.com/">Visual Studio Code</a></em>.
 And open the entire <code>ros_space</code> as a project, plus a terminal inside the IDE.
 At this point, your IDE should have <span class="arithmatex">\(3\)</span> areas: the <em>explorer</em> on the left side, a <em>text editor</em> on top of a <em>terminal</em>.
 The explorer should contain the <code>playground</code> directory with your <span class="arithmatex">\(2\)</span> python scripts inside.</p>
 <h3 id="talker-a-simple-topic-publisher">Talker: a simple topic publisher</h3>
-<p>The goal of our first program is to send a mesage on a topics.
-For that we need the <em>ROS</em> client Python package (<code>rclpy</code>) for initializing <em>ROS</em> and creating nodes, and all the packages defining all the types of mesages the program should manipulate (only simple string mesage on our example).</p>
+<p>The goal of our first program is to send a message on a topic.
+For that we need the <em>ROS</em> client Python package (<code>rclpy</code>) for initializing <em>ROS</em> and creating nodes, and all the packages defining all the types of messages the program should manipulate (only simple string message on our example).</p>
 <p>At the end the first <code>hello world</code> program will look like:</p>
 <pre><code class="language-python">import rclpy
+from rclpy.node import Node
 from std_msgs.msg import String
 
 def oneTalk():
     # Initialize ROS client
     rclpy.init()
     # Create a node
-    aNode= rclpy.Node( &quot;simpleTalker&quot; )
+    aNode= Node( &quot;simpleTalker&quot; )
     # Attach a publisher to the node, with a specific type, the name of the topic, a history depth
     aPublisher= aNode.create_publisher( String, 'testTopic', 10 )
-    # Create a mesage to sent
+    # Create a message to send
     msg = String()
     msg.data = 'Hello World'
-    # Add the mesage to the list of mesage to publish
+    # Add the message to the list of messages to publish
     aPublisher.publish(msg)
-    # Activate the ROS client with the node (that will publish the mesage on testTopic topic)
-    rclpy.spin_one(aNode)
+    # Activate the ROS client with the node
+    # (that will publish the message on testTopic topic)
+    rclpy.spin_once(aNode, timeout_sec= 10.0)
     # Clean everything and switch the light off
     aNode.destroy_node()
     rclpy.shutdown()
@@ -243,38 +260,36 @@ if __name__ == &quot;__main__&quot;:
 <p>Run the solution on a first terminal.</p>
 <pre><code class="language-sh">python3 playground/talker.py
 </code></pre>
-<p>Listen the topic in another terminal (you have to run again the talker...)</p>
+<p>Listen to the topic in another terminal (you have to run again the talker to see a message...).</p>
 <pre><code class="language-sh">ros2 topic echo testTopic
 </code></pre>
-<p>We get the <code>String</code> mesage description (ie. composed by a unique data attribut)
-from <a href="https://index.ros.org/p/std_msgs/">index.ros.org</a>,
-aside of the other standard mesage type of <code>std_msgs</code>.</p>
-<p>The tree other main <em>ROS</em> packages defining mesage types are <a href="https://index.ros.org/p/geometry_msgs">geometry_msgs</a> for object defined on cartesian coordinate system
-, <a href="https://index.ros.org/p/marker_msgs">marker_msgs</a> focused on mesage types for visualisation
-and <a href="https://index.ros.org/p/sensor_msgs">sensor_msgs</a>, well for sensor based data.</p>
-<h3 id="continous-talker">Continous Talker</h3>
-<p>In a second version we aims to create a node publishing continously messages. 
-To that purpose we move on Event-Driven Programming.</p>
+<p>The talker node need to be active when <code>echo testTopic</code> is started otherwise <code>ros2 topic</code> end because no node is connected to <code>testTopic</code>.</p>
+<p>Also, the <code>String</code> message description (ie. composed by a unique data attribute)
+come from <a href="https://index.ros.org/p/std_msgs/">index.ros.org</a>,
+aside from the other standard message type of <code>std_msgs</code>.</p>
+<p>The main <em>ROS</em> packages defining message types are grouped on <a href="[common_interfaces](https://index.ros.org/r/common_interfaces/)">common_interfaces</a> with, for example
+<a href="https://index.ros.org/p/geometry_msgs">geometry_msgs</a> for objects defined on the Cartesian coordinate system, <a href="https://index.ros.org/p/visualization_msgs">visualization_msgs</a> focused on message types for visualization
+or <a href="https://index.ros.org/p/sensor_msgs">sensor_msgs</a>, well, for sensor-based data.</p>
+<h3 id="continuous-talker">Continuous Talker</h3>
+<p>In a second version, we aim to create a node publishing continuously messages. 
+For that purpose we move on Event-Driven Programming.</p>
 <p>Technically in ROS, it is managed by the ros client, with the <code>spin_once</code> or <code>spin</code> functions.
-These 2 functions connect events (the reception of a message for instance) with the appropriate callback.</p>
-<p><code>spin_once</code> activates once the ros client and should be call in an infinite loop.
+These <span class="arithmatex">\(2\)</span> functions connect events (the reception of a message for instance) with the appropriate callback.</p>
+<p><code>spin_once</code> activates once the ros client and wait for the next event. It should be called in an infinite loop.
 <code>spin</code> handle the infinite loop directly (and should be preferred).</p>
 <p>For the talker, you have to generate events with timers:</p>
 <pre><code class="language-python">aNode.create_timer( duration, aCallback )
 </code></pre>
 <p>The call back function <code>aCallBack</code> will be called after a <code>duration</code> is terminated.</p>
-<p>Futhermore, the call back function generally require a context of execution. 
+<p>Furthermore, the call-back functions generally require a context of execution. 
 Some already defined and accessible elements
 (for instance in our case, the publisher). 
-To that purpose, we implement our <code>aCallBack</code> as a method of a class.</p>
-<p>The new talker script will looklike:</p>
-<pre><code class="language-python">import rclpy
-from std_msgs.msg import String
-
-def infiniteTalk():
+For that purpose, we implement our <code>aCallBack</code> as a method of a class.</p>
+<p>The new talker script will lookalike:</p>
+<pre><code class="language-python">def infiniteTalk():
     # Initialize ROS node with ROS client
     rclpy.init()
-    aNode= rclpy.Node( &quot;infTalker&quot; )
+    aNode= Node( &quot;infTalker&quot; )
     talker= ROSTalker(aNode)
     # Start infinite loop
     rclpy.spin(aNode)
@@ -283,17 +298,16 @@ def infiniteTalk():
     rclpy.shutdown()
 
 class ROSTalker:
-    def __init__(self, ros_node):
-        self._publisher= ros_node.create_publisher( String, 'testTopic', 10 )
-        self._timer = ros_node.create_timer(0.5, self.timer_callback)
+    def __init__(self, rosNode):
+        self._publisher= rosNode.create_publisher( String, 'testTopic', 10 )
+        self._timer = rosNode.create_timer(0.5, self.timer_callback)
         self._i = 0
 
     def timer_callback(self):
         msg = String()
-        msg.data = 'Hello World: %d' % self.i
-        self._node.publisher_.publish(msg)
-        self._node.get_logger().info('Publishing: &quot;%s&quot;' % msg.data)
-        self.i += 1
+        msg.data = 'Hello World: %d' % self._i
+        self._publisher.publish(msg)
+        self._i += 1
 
 # Execute the function.
 if __name__ == &quot;__main__&quot;:
@@ -302,15 +316,17 @@ if __name__ == &quot;__main__&quot;:
 <p>Now <code>python3 playground/talker.py</code> wil start a <em>ROS</em> node publishing <span class="arithmatex">\(2\)</span> hello messages per second.
 A <code>Ctr-C</code> in the terminal should stop the process.</p>
 <h3 id="listener-a-simple-topic-subcriber">Listener: a simple topic subcriber</h3>
-<p>In a very similar way, listener node is implemeted with topics subscription mecanism associated to a call back.</p>
-<pre><code class="language-python">#!/usr/bin/python3
-import rclpy
+<p>In a very similar way,
+listener node is implemented with topics subscription mechanisms
+associated with a callback.</p>
+<pre><code class="language-python">import rclpy
+from rclpy.node import Node
 from std_msgs.msg import String
 
 def listen():
     # Initialize ROS node with ROS client
     rclpy.init()
-    aNode= rclpy.Node( &quot;infTalker&quot; )
+    aNode= Node( &quot;listener&quot; )
     listener= ROSListener(aNode)
     # Start infinite loop
     rclpy.spin(aNode)
@@ -320,18 +336,27 @@ def listen():
 
 class ROSListener():
 
-    def __init__(self, ros_node):
-        self._subscription= ros_node.create_subscription(
+    def __init__(self, rosNode):
+        self._logger= rosNode.get_logger()
+        self._subscription= rosNode.create_subscription(
             String, 'testTopic',
             self.listener_callback, 10
         )
 
     def listener_callback(self, msg):
-        print( 'I heard: ' + msg.data)
+        self._logger.info( 'I heard: ' + msg.data)
 
 if __name__ == '__main__':
     listen()
-</code></pre></div>
+</code></pre>
+<p>Run your listener as you run your talker.
+The <span class="arithmatex">\(2\)</span> nodes work together and define a very simple first software architecture.</p>
+<h2 id="logs">Logs</h2>
+<p>To notice that <em>ROS</em> provides its own, "<code>print</code>" function with a logger instance.
+The logger, attached to a node instance (<code>aRosNode.get_logger()</code>), records logs through different channels: <code>info</code>, <code>debug</code>, <code>warning</code> or <code>error</code>.
+More on <a href="https://docs.ros.org/en/iron/Tutorials/Demos/Logging-and-logger-configuration.html#basic-logging">docs.ros.org</a>.</p>
+<p>Logs can be followed with <code>rqt_console</code> tool.
+Follow the <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Using-Rqt-Console/Using-Rqt-Console.html">official tutorial</a> to learn how to use this tool.</p></div>
             </div>
         </div>
 

@@ -46,7 +46,7 @@
 </li>
                                     
 <li>
-    <a href="../first-contact/" class="dropdown-item">nodes and topics</a>
+    <a href="../first-contact/" class="dropdown-item">Nodes and Topics</a>
 </li>
                                     
 <li>
@@ -72,10 +72,6 @@
                                     
 <li>
     <a href="../../tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
 </li>
                                     
 <li>
@@ -120,6 +116,9 @@
                             <li class="navitem">
                                 <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../pdf/" class="nav-link"></a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -156,13 +155,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#02-move-a-robot" class="nav-link">02 - Move a robot</a>
+            <li class="nav-item" data-level="1"><a href="#move-a-robot" class="nav-link">Move a robot</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#connect-the-tbot" class="nav-link">Connect the tbot:</a>
+            <li class="nav-item" data-level="2"><a href="#connect-the-pibot" class="nav-link">Connect the pibot:</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#our-first-node" class="nav-link">Our first node</a>
+            <li class="nav-item" data-level="2"><a href="#a-dedicated-node-to-control" class="nav-link">A dedicated node to control</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#a-simple-move-order" class="nav-link">A Simple Move order</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -177,161 +180,151 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="02-move-a-robot">02 - Move a robot</h1>
-<p>This tutorial aims to take control of a <strong>tbot</strong>  robot.
-A tbot is a turtlebot2 robot (based on a kobuki platform)
+<h1 id="move-a-robot">Move a robot</h1>
+<p>This tutorial aims to take control of a <strong>pibot</strong>  robot.
+A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
 equipped with a laser range to navigate in a cluttered environment
-and a camera to recognize objects.</p>
-<h2 id="connect-the-tbot">Connect the tbot:</h2>
-<p>If it is not yet the case,
-the machine connecting the robot and its sensors have to be configured accordingly to the <a href="https://bitbucket.org/imt-mobisyst/pkg-tbot">IMT MobiSyst tbot</a></p>
-<p>You will have then a ROS-2 WorkSpace including <strong>tbot</strong> meta-package (<code>pkg-tbot</code>) itself including several ROS packages.</p>
+and a <em>Rapberry Pi3</em> to provide a <em>ROS2</em> interface to the robot.</p>
+<h2 id="connect-the-pibot">Connect the <strong>pibot</strong>:</h2>
+<p>The <em>Rapberry Pi3</em> on each <strong>pibot</strong> are pre-configured with <strong>Ubuntu Server 22.04</strong>, <strong>ROS2 Iron</strong>, and all the necessary drivers for the robot. </p>
 <ul>
-<li>Verrify it:</li>
+<li>By default, the <strong>pibot</strong> connects to the <strong>IoT WiFi network</strong>.  </li>
+<li>The robot's control nodes are automatically launched at <strong>pibot</strong> startup via the <code>mb6-tbot</code> service, which executes the <code>minimal_launch.yaml</code> launch file from a <code>tbot_node</code> package.</li>
 </ul>
+<p>(More details about the <em>IMT</em> driver packages for turtlebot2 <a href="https://github.com/imt-mobisyst/pkg-tbot">on github</a>)</p>
+<p>To avoid any conflict in mesages, each <strong>pibot</strong> has its own <code>ROS_DOMAIN_ID</code>. 
+<em>ROS</em> environment has to be configured proprely to interact with a robot.
+For instance for the pibot20:</p>
+<pre><code class="language-sh">export ROS_AUTOMATIC_DISCOVERY_RANGE=SUBNET
+export ROS_DOMAIN_ID=20
+ros2 node list
+ros2 topic list
+</code></pre>
+<p>Reminder: You can also explore the existing node with <code>rqt_graph</code>.</p>
+<!-- OLD Connect Version:
+If it is not yet the case,
+the machine connecting the robot and its sensors have to be configured accordingly to the [IMT MobiSyst tbot](https://bitbucket.org/imt-mobisyst/pkg-tbot)
+
+You will have then a ROS-2 WorkSpace including __tbot__ meta-package (`pkg-tbot`) itself including several ROS packages.
+
+- Verrify it:
+
+
 <pre><code class="language-console">cd ~/mb6_space
 ls 
 ls pkg-tbot
 </code></pre>
-<ul>
-<li>Build the packages:</li>
-</ul>
+
+
+- Build the packages:
+
+
 <pre><code class="language-console">cd pkg-tbot   # enter le project directory
 git pull      # download the last version
 cd ..         # return on your ros workspace (mb6_space)
 colcon build  # build...
 </code></pre>
-<p>ATTENTION all your command as <code>colcon build</code> need to be executed from you ROS workspace.
-The root directory of your ROS project (i.e. <code>mb6-space</code> here).</p>
-<ul>
-<li>Update your shell environment variables:</li>
-</ul>
+
+
+ATTENTION all your command as `colcon build` need to be executed from you ROS workspace.
+The root directory of your ROS project (i.e. `mb6-space` here).
+
+- Update your shell environment variables:
+
+
 <pre><code class="language-console">source bin/run-commands.bash
 </code></pre>
-<ul>
-<li>Connect the tbot base, the laser and launch the control nodes (a ros launch file permits to start a collection of nodes with a desired configuration):</li>
-</ul>
+
+
+- Connect the tbot base, the laser and launch control nodes (a ros launch file permits to start a collection of nodes with a desired configuration):
+
+
 <pre><code class="language-console">ros2 launch tbot_node minimal_launch.yaml
 </code></pre>
-<p>Into another, you can explore the existing node (<code>rqt_graph</code>) or topics (<code>ros2 topic list</code>)</p>
-<p>Finally, you can try to take control in a third terminal:</p>
+
+
+Test : 
+
+
+<pre><code class="language-sh">ros2 node list
+ros2 topic list
+</code></pre>
+
+
+Reminder: You can also explore the existing node with `rqt_graph`.
+
+-->
+
+<p>Finally, you can try to take control in an available terminal with keyboard control:</p>
 <pre><code class="language-console">ros2 run teleop_twist_keyboard teleop_twist_keyboard cmd_vel:=/multi/cmd_teleop
 </code></pre>
 <p>Close everything with <code>ctrl-c</code>.</p>
 <p>The teleop publishes a <a href="https://index.ros.org/r/common_interfaces/github-ros2-common_interfaces/">geometry_msgs</a> <code>twist</code> message.
 It is composed of two vectors <span class="arithmatex">\((x, y, z)\)</span>, one for linear speed <span class="arithmatex">\((m/s)\)</span>, and the second for angular speed <span class="arithmatex">\((rad/s)\)</span>.
-However a <a href="https://en.wikipedia.org/wiki/Nonholonomic_system">nonholonomic</a> ground robot as the <strong>tbot</strong> would move only on <code>x</code> and turn only on <code>z</code>.
-It is not as free as a drone, you can echo the messages into a 4th terminal.</p>
+However a <a href="https://en.wikipedia.org/wiki/Nonholonomic_system">nonholonomic</a> ground robot as the <strong>tbot</strong> would move only on <code>x</code> and turn only on <code>z</code> (It is not as free as a drone).</p>
 <ul>
 <li>Try to control the robot with <code>ros2 topic pub</code> command publishing in the navigation topic (<code>/multi/cmd_nav</code>).</li>
 </ul>
-<p>Tbot integrate a <a href="https://en.wikipedia.org/wiki/Subsumption_architecture">subsumption</a> multiplexer.
+<p>Tbot drivers integrate a <a href="https://en.wikipedia.org/wiki/Subsumption_architecture">subsumption</a> multiplexer.
 The node listens different topics with different priorities (by default: <code>/multi/cmd_nav</code> and <code>/multi/cmd_telop</code>) and filter the appropriate commands to send to the robot.
 The topics <code>cmd_nav</code> and <code>cmd_telop</code> stend for autonomous navigation and operator teleoperate.
-The human operator has a higher priority and make the multiplexer to trash the <code>cmd_nav</code> commands.</p>
-<h2 id="our-first-node">Our first node</h2>
+The human operator has a higher priority. 
+Publishing messages into <code>cmd_telop</code> makes the multiplexer to trash the <code>cmd_nav</code> commands.</p>
+<h2 id="a-dedicated-node-to-control">A dedicated node to control</h2>
 <p>The goal is to create a process connecting a topic and publishing velocities as a twist message:</p>
+<p>This tutorial supposes that you already perform the previous <em>package</em> tutorial and that you have a first package <code>tutorial_pkg</code> to work on it.</p>
 <ul>
 <li>First we have to create a file for our script.</li>
 </ul>
-<pre><code>touch tuto_move.py
-code tuto_move.py
+<pre><code class="language-sh">touch tutorial_pkg/scripts/test_move
 </code></pre>
 <ul>
-<li>The script depends from several ROS2 ressources.</li>
+<li>The script state that it requires <em>python3</em> interpreter and it depends on several ROS2 resources.</li>
 </ul>
-<pre><code class="language-python">import rclpy                  # core ROS2 client python librairie
-from rclpy.node import Node   # To manipulate ROS Nodes
-
-print(&quot;tuto_move :: START...&quot;)
-</code></pre>
-<ul>
-<li>You can try that everything is well imported:</li>
-</ul>
-<p>In a shell:</p>
-<pre><code class="language-sh">python3 tuto_move.py
-</code></pre>
-<ul>
-<li>Next move consists in making a node and an infinite loop </li>
-</ul>
-<p>In <code>tuto_move.py</code> add: </p>
-<pre><code class="language-python">def main():
-    rclpy.init()     # Initialize ROS2 client
-    myNode= Node('move_node') # Create a Node, with a name         
-
-    # Start the ros infinit loop with myNode.
-    while True :
-        rclpy.spin_once( myNode, timeout_sec=0.1 )
-        print(&quot;Running...&quot;)
-
-    # At the end, destroy the node explicitly.
-    myNode.destroy_node()
-
-    # and shut the light down.
-    rclpy.shutdown()
-
-    print(&quot;tuto_move :: STOP.&quot;)
-
-# activate main() function,
-# if the file is executed as a script (ie. not imported).
-if __name__ == '__main__':
-    # call main() function
-    main()
-</code></pre>
-<ul>
-<li>You can try that a node is created :</li>
-</ul>
-<pre><code class="language-sh"># In a 1st shell:
-python3 tuto_move.py
-
-# In a 2d shell:
-ros2 node list
-</code></pre>
-<h2 id="move-script">Move Script</h2>
-<p>We want our node to publish velocities continuously.
-To do that we have to import the type of message we have to send, to instantiate a publisher, and to publish messages.</p>
-<p>You have to add the next pieces of codes at the appropriate location in the <code>tuto_move.py</code> script:</p>
-<pre><code class="language-python"># Message to publish:
+<pre><code class="language-python">#!/usr/bin/python3
+import rclpy
+from rclpy.node import Node
 from geometry_msgs.msg import Twist
 
-# Initialize a publisher:
-velocity_publisher = myNode.create_publisher(Twist, '/multi/cmd_nav', 10)
-
-# publish a msg
-velo = Twist()
-velocity_publisher.publish(velo)
+print(&quot;test_move :: START...&quot;)
 </code></pre>
 <ul>
-<li>To verify that everything is right:</li>
+<li>You can try that everything is correct by turning the script file executable and execute it:</li>
 </ul>
-<pre><code class="language-sh"># In a 1st shell:
-python3 tuto_move.py
-
-# In a 2d shell:
-ros2 node list
-ros2 topic list
-ros2 topic echo /multi/cmd_nav
+<p>In a shell:</p>
+<pre><code class="language-sh">chmod +x tutorial_pkg/scripts/test_move
+./tutorial_pkg/scripts/test_move
 </code></pre>
-<p>Basicly it echoes 0 speed vectors. 
-To investigate what is a <code>Twist</code> you can ask to <code>ros2 interface</code> or search at the package location (<code>/opt/ros/iron/share</code>) (or search the documentations).</p>
-<pre><code class="language-sh">ros2 interface list | grep Twist
-ros2 interface show geometry_msgs/msg/Twist
+<ul>
+<li>Finally, we must declare our node as one of the package node into <code>CMakeList.txt</code> and build again your packages. You can also add <code>geometry_msgs</code> as dependency on the <code>package.xml</code> file.</li>
+</ul>
+<pre><code class="language-sh">colcon build
+source ./install/local_setup.bash
 </code></pre>
-<pre><code class="language-sh">ls /opt/ros/iron/share
-cat /opt/ros/iron/share/geometry_msgs/msg/Twist.msg
-cat /opt/ros/iron/share/geometry_msgs/msg/Vector3.msg
+<p>Then, our node should be accessible from <code>ros2</code> commands.</p>
+<pre><code class="language-sh">ros2 run tutorial_pkg test_move
 </code></pre>
-<p>In case of <a href="https://en.wikipedia.org/wiki/Nonholonomic_system">nonhonolome mobile</a> ground robot,
-the control uses two speed values, one lienar (x) and one angular (z).</p>
-<p>SO, for a circling behavior:</p>
-<pre><code class="language-python"># publish a msg
-velo = Twist()
-velo.linear.x= 0.2   # meter per second
-velo.angular.z= 0.14 # radian per second
-velocity_publisher.publish(velo)
+<h2 id="a-simple-move-order">A Simple Move order</h2>
+<p>The node we aim to generate is similar to <code>talker</code>,
+except that we publish a <code>twist</code> message on the appropriate topic. 
+The callback method of our class would be </p>
+<pre><code class="language-python">def timer_callback(self):
+    velocity = Twist()
+    # Feed Twist velocity values
+    ...
+    # Publish 
+    self._publisher.publish(velocity)
 </code></pre>
-<p>At this point, your robot should move...
-Notice that you can also test your code on <code>turtlesim</code> by changing the name of the velocity topic.</p></div>
+<p>A look at the <code>geometry_msgs</code> at <a href="https://index.ros.org/p/geometry_msgs">index.ros.org</a>
+Inform that <em>Twist</em> is composed by <span class="arithmatex">\(2\)</span> <em>Vector3</em> attributs also in <code>geometry_msgs</code>.
+Velocities are in <span class="arithmatex">\(m.s^{-1}\)</span> and <span class="arithmatex">\(\math{rad}.s^{-1}\)</span>.</p>
+<p>Now, a <code>ros2 run tutorial_pkg test_move</code> should continuously move the robot, with a constant speed.
+Notice that you can also test your code on <code>turtlesim</code> by changing the name of the topic.</p>
+<h2 id="move-script">Move Script</h2>
+<p>At the end we want our robot to follow a predefined choreography.
+Something like moving forward for <span class="arithmatex">\(X \mathit{cm}\)</span> backward, turn left then turn right, etc.
+The choreography should end on the exact position it begins
+to perform an infinite loop safely.</p></div>
             </div>
         </div>
 

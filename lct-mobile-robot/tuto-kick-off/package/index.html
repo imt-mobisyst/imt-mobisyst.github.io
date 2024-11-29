@@ -46,7 +46,7 @@
 </li>
                                     
 <li>
-    <a href="../first-contact/" class="dropdown-item">nodes and topics</a>
+    <a href="../first-contact/" class="dropdown-item">Nodes and Topics</a>
 </li>
                                     
 <li>
@@ -72,10 +72,6 @@
                                     
 <li>
     <a href="../../tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/class/" class="dropdown-item">Node with Class</a>
 </li>
                                     
 <li>
@@ -120,6 +116,9 @@
                             <li class="navitem">
                                 <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../pdf/" class="nav-link"></a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -155,12 +154,170 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#ros-packages" class="nav-link">ROS Packages</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#colcon-cmds" class="nav-link">colcon cmds</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#create-a-new-package" class="nav-link">Create a new package.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#configuration-files" class="nav-link">Configuration files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#python-based-nodes" class="nav-link">Python Based Nodes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#launch-file" class="nav-link">Launch file.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h1 id="ros-packages">ROS Packages</h1>
+<p>A <em>ROS</em> package regroups node definitions and other resources into a same location.
+It relies on <code>colcon</code> tool to build, install and manage the package dependancies. </p>
+<p>Documention on <a href="https://colcon.readthedocs.io/en/released/user/quick-start.html">colcon.readthedocs.io</a>.</p>
+<h2 id="colcon-cmds">colcon cmds</h2>
+<p><code>colcon</code> is a meta command with several sub-command like <code>ros2</code> or <code>git</code>.
+Its main sub-command is <code>build</code>. 
+The <code>colcon build</code> command searches for all compliant packages included in a directory tree, at any detph.
+It should be processes at the root directory, so in your <code>ros_space</code>.</p>
+<pre><code class="language-sh">cd ~/ros_space
+colcon build
+ls
+</code></pre>
+<p>The build process generates tree directories: <code>build</code> with temporaly generated files by the build process ; <code>install</code> with generated ressources of the packages ; <code>log</code> for logs.</p>
+<p>At this time, there is no packages on your workspace, the <code>build</code>, <code>install</code> and <code>log</code> directories are almost empty.
+The results of <code>colcon list</code> (listing packages in the directory tree) or <code>colcon graph</code> (list with dependancies) are also empty.</p>
+<pre><code class="language-sh">colcon list
+colcon graph
+</code></pre>
+<h2 id="create-a-new-package">Create a new package.</h2>
+<p>A <em>ROS</em> package interpreted by <code>colcon build</code> is simplely a directory with configurations files. There is <span class="arithmatex">\(2\)</span> files by using <code>cmake</code> build tool.</p>
+<ul>
+<li><code>package.xml</code>: describing the package and its dependancies</li>
+<li><code>CMakeLists.txt</code>: describing the build process (based on famous <code>cmake</code> tool)</li>
+</ul>
+<pre><code class="language-sh">mkdir a-package
+touch a-package/package.xml
+touch a-package/CMakeLists.txt
+</code></pre>
+<p>Naturally the <code>package.xml</code> and the <code>CMakeLists.txt</code> should include minimal informations in a correct way.</p>
+<pre><code class="language-sh">rm -fr a-package
+colcon build
+</code></pre>
+<p><em>ROS2</em>, with the <code>pkg</code> sub-command, provide a tool to generate the directory structure of a new package.
+Let create a <code>tutorial_pkg</code> package for instance.</p>
+<pre><code class="language-sh">ros2 pkg create --build-type ament_cmake tutorial_pkg
+colcon list
+colcon buil
+</code></pre>
+<h2 id="configuration-files">Configuration files</h2>
+<p>The <code>package.xml</code> provides metadata on the package (title, description, author licence). 
+It should be manually completed.</p>
+<p>Its also give the build tool to use (a variation of <code>cmake</code> named <code>ament-cmake</code> in our exemple) and permit to specify dependancies with the mark <code>&lt;depend&gt;</code>.
+Typically, our new <code>tutorial_pkg</code> should depend from <code>rclpy</code> and<code>std_msgs</code> package and lines <code>&lt;depend&gt;rclpy&lt;/depend&gt;</code> and <code>&lt;depend&gt;std_msgs&lt;/depend&gt;</code> need to be added after the license information.</p>
+<ul>
+<li>To learn more about <em>XML</em> format: <a href="https://www.w3schools.com/xml/default.asp">www.w3schools.com/xml</a></li>
+</ul>
+<p>Open the <code>CMakeLists.txt</code> file. 
+At this step, it is almost empty. It only include information about the project to build, the <strong>C/C++</strong> compiler to use, and some element relative to <em>ament</em> tool trigering action relative to <em>ROS</em> working environement.
+This file need to be update every time a new ressource (node or other) is added to the package project.</p>
+<h2 id="python-based-nodes">Python Based Nodes</h2>
+<p>For convenient reason, our python scripts, coding new ros nodes, will be saved on a <code>scripts</code> directory.
+Typically, we can install there your <code>talker</code> and <code>listerner</code> from previous tutorial.</p>
+<pre><code class="language-sh">mkdir tutorial_pkg/scripts
+cp playground/talker.py tutorial_pkg/scripts/talker
+cp playground/listener.py tutorial_pkg/scripts/listener
+</code></pre>
+<p>Also, we need to inform whitch interpreter can process our script (ie python3). 
+Add a <code>#!/usr/bin/python3</code> at the first line in <code>talker</code> and <code>listerner</code> scripts.
+The <code>#!</code> states that the code interpreter follow. 
+<code>/usr/bin/python3</code> is simplely the result of the command <code>whereis python3</code>.</p>
+<p>Next, we have to modify <code>CMakeLists.txt</code> to state that <code>talker</code> and <code>listerner</code> should be installed as program (ie. in the appropriate destination to make them reachable by <code>ros2</code> command).</p>
+<p>So add a <em>python scripts</em> section to your <code>CMakeLists.txt</code> file:</p>
+<pre><code class="language-cmake"># Python scripts
+install( PROGRAMS scripts/talker DESTINATION lib/${PROJECT_NAME} )
+install( PROGRAMS scripts/listener DESTINATION lib/${PROJECT_NAME} )
+</code></pre>
+<p>You can now build again your ros workspace.
+The <code>install</code> directory contain a <code>tutorial_pkg</code> with every think=gs inside.</p>
+<pre><code class="language-sh">colcon build
+ls install/
+ls install/tutorial_pkg/lib/tutorial_pkg/
+</code></pre>
+<p>To use your package with <code>ros2</code> commands, you have to update your bash environment.
+Then it would be possible to start your node with <code>ros2 run</code> command.</p>
+<pre><code class="language-sh">source ./install/local_setup.bash
+ros2 run tutorial_pkg talker #or listener
+</code></pre>
+<hr />
+<p>To notice that, if your python <code>node</code> script relies on a local python package (<code>myLocalPkg</code> for instance).
+This one should be install aside of your script with the following <code>cmake</code> instruction: </p>
+<pre><code class="language-cmake">install( DIRECTORY scripts/myLocalPkg DESTINATION lib/${PROJECT_NAME} )
+</code></pre>
+<h2 id="launch-file">Launch file.</h2>
+<p><em>ROS</em> propose a launch mechanism to start in one command a configuration of several nodes.
+Launch file can be defined with markup language (<em>XML</em> or <em>YAML</em>) or python3 for more complex launch scenarios.</p>
+<p><em>Yaml</em> purposes the simplest syntax to write launch files. The <a href="https://yaml.org">yaml.org</a> give an example of a yaml resources. 
+Similarly to <em>Python</em>, it relies on indentation to mark the ownership of elements.</p>
+<p>Another example:</p>
+<pre><code class="language-yaml">aMark:
+    aMarkedAttribute: &quot;a string value&quot;
+    aSecondAttribut: [&quot;a&quot;, &quot;list&quot;, &quot;of&quot;, &quot;string&quot;, &quot;element&quot;]
+    'a third attribute': 
+        - 1
+        - 2
+        - 12
+    again: 
+        anotherMark:
+            aMarkedAttribute: 36.8
+...
+</code></pre>
+<p><em>ROS</em> <em>yaml</em> relies on predefinite marks, key works: 'launch' as the first element and composed by a list of <code>node</code>s. Minimal configuration for a <code>node</code> include <code>pkg</code> and <code>exec</code> attributes to identify the node to start.</p>
+<p>A simple launch file for talker/listener will be: </p>
+<pre><code class="language-yaml">launch: 
+    - node:
+        pkg: &quot;tutorial_pkg&quot;
+        exec: &quot;talker&quot;
+    - node:
+        pkg: &quot;tutorial_pkg&quot;
+        exec: &quot;listener&quot;
+</code></pre>
+<p>The file has to be set on a <code>launch</code> directory into your package and with a name ending by <code>_launch.yaml</code>, <code>converse_launch.yaml</code> for instance.</p>
+<p>At this point the launch file can be run using <code>ros2 launch</code> commands.</p>
+<pre><code class="language-sh">ros2 launch ./tutorial_pkg/launch/converse_launch.yaml
+</code></pre>
+<p>By adding <em>launch</em> resources to your package with <code>CMakeList.txt</code> configuration file, you make launch files easier to find.</p>
+<p>In <code>CMakeList.txt</code> file: </p>
+<pre><code class="language-cmake"># Install resource files.
+install(DIRECTORY
+  launch 
+  DESTINATION share/${PROJECT_NAME}/
+)
+</code></pre>
+<p>Then in the terminal: </p>
+<pre><code class="language-sh">colcon build
+ros2 launch tutorial_pkg converse_launch.yaml
+</code></pre>
+<p>To notice that other resources can be added to your package. Typically <code>rviz</code> for visualization configuration, <code>world</code> for simulation configuration, etc.</p>
+<pre><code class="language-cmake"># Install resource files.
+install(DIRECTORY
+  launch rviz world 
+  DESTINATION share/${PROJECT_NAME}/
+)
+</code></pre></div>
             </div>
         </div>
 
