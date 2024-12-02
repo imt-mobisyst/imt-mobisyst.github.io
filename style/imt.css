@@ -1,11 +1,12 @@
 :root {
-  --color-white: white;/*rgb(250,250,250);*/
-  --color-main: rgb(0,184,222);
-  --color-dark: rgb(12,35,64);
-  --color-contrast: rgb(242,169,0);
+  --color-white: white;
+  --color-black: rgb(0,0,0);
+  --color-imt-blue: rgb(0,184,222);
+  --color-imt-yelow: rgb(242,169,0);
+  --color-dark: rgb(75, 77, 81);
   --color-grey: rgb(220,220,220);
   --color-verb: rgb(240,240,240);
-  --color-black: rgb(0,0,0);
+
 }
 
 body {
@@ -17,14 +18,8 @@ body {
 }
 
 article {
-  font-size: 12pt;
   border-left: solid 8pt var(--color-grey);
-  padding-bottom: 80pt;
-}
-
-h3 {
-  margin: 20pt 0pt 12pt 0pt;
-  font-size: 12pt;
+  padding-bottom: 80px;
 }
 
 p, li{
@@ -33,36 +28,31 @@ p, li{
 }
 
 a {
-  color: var(--color-dark);
+    color: var(--color-imt-blue);
+    text-decoration:none;
 }
 
 a:hover {
-  color: var(--color-main);
+    /* font-weight: bold; */
+    text-decoration:underline;
 }
 
-hr {
-  border-width: 0px 0px 1px 0px ;
-  border-style: dotted;
-  border-color: rgb(184,184,184);
-  padding-top: 14pt;
-}
-
-/* Header... */
 header{
-  min-height: 80pt;
-  padding: 10pt 10pt;
+  /* color: var(--color-imt-blue); */
+  min-height: 80px;
+  padding: 20px 20px;
   background-color: var(--color-grey);
 }
 
 header img {
-  height: 80pt;
+  height: 90px;
   float: left;
 }
 
 header h2 {
   font-size: 22pt;
   font-variant: small-caps;
-  margin: 10pt;
+  margin-left: 20px;
   float: left;
 }
 
@@ -85,61 +75,58 @@ section {
   margin: 0pt 10pt;
 }
 
-/* Boxes... */
-.box {
-  display: block;
-  float: left;
-  width: 260pt; /* three boxes (use 25% for four, and 50% for two, etc) */
-  height: 140pt; /* three boxes (use 25% for four, and 50% for two, etc) */
-  padding: 10pt; /* if you want space between the images */
-  border: solid 1px black;
-  background-color: var(--color-main);
-  text-decoration: none;
+
+/* Template from :  https://codepen.io/munjewar/pen/KryeYR */
+.wrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
-.box:nth-child(2n){
-  background-color: var(--color-contrast);
-}
-.box:nth-child(3n+3){
-  background-color: var(--color-verb);
-}
-.box:nth-child(5n+2){
-  background-color: var(--color-contrast);
-}
-.box:hover {
-  background-color: var(--color-grey);
-}
-.box h3{
-  color: black;
-}
-.box p{
-  color: black;
+.card{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    background: var(--color-grey);
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: var(--color-background);
+    margin: 5px;
+    margin-left: 15px;
+    border: 1px solid  var(--color-background);
 }
 
-section h2 {
-  color: var(--color-main);
-  margin: 12pt 0pt 8pt 0pt;
-  font-size: 14pt;
+.card-btn:hover{
+    color: var(--color-imt-blue);
+    border-color: var(--color-imt-blue) !important;
+    text-decoration: none;
+ }
+
+.card-title{
+    color: var(--color-main);
+    margin-top: 0;
+    font-size: 120%;
+    /* font-weight: 600; */
+    letter-spacing: 1.4px;
+    margin: 0 0 10 ;
+}
+.card-content{
+    margin: 0 0 10 ;
 }
 
-div.sourceCode{
-	margin-left: 22pt;
-	padding: 0pt;
-	padding-left: 6pt;
-	background-color: var(--color-verb);
+.card-btn{
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    color:var(--color-black);
+    background-color: var(--color-verb)  !important;
+    border: 0.5px solid var(--color-grey);
+    padding: 10px 15px;
+    border-radius: 8px;
+    letter-spacing: 1.2px;
+    width: 150px;
 }
 
-pre{
-	margin: 0pt;
-	padding: 0pt;
-}
-
-code{
-	margin: 0pt;
-	padding: 0pt;
-  font-size: 11pt;
-	background-color: var(--color-verb);
-}
-
-img {
-  max-width: 100%;
+.card-btn {
+    text-align: center;
 }
