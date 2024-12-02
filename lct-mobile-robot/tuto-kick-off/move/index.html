@@ -1,197 +1,11 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Move the Robot - Lct. Mobile-Robot</title>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <link href="../../style.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="../..">Lct. Mobile-Robot</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../../.." class="nav-link">MobiSyst <</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../basics/" class="dropdown-item">OS and Shell</a>
-</li>
-                                    
-<li>
-    <a href="../first-contact/" class="dropdown-item">Nodes and Topics</a>
-</li>
-                                    
-<li>
-    <a href="../package/" class="dropdown-item">ROS Package</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active">Move the Robot</a>
-</li>
-                                    
-<li>
-    <a href="../simulation/" class="dropdown-item">Simulation</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../tuto-level-up/range-sensor/" class="dropdown-item">Range Sensor</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/parameters/" class="dropdown-item">Parameters</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mastering <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../tuto-mastering/slam/" class="dropdown-item">S.L.A.M</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-mastering/transform/" class="dropdown-item">Move To</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-mastering/vision/" class="dropdown-item">Vision</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
-</li>
-                                    
-<li>
-    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
-</li>
-                                    
-<li>
-    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../pdf/" class="nav-link"></a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../package/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../simulation/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#move-a-robot" class="nav-link">Move a robot</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#connect-the-pibot" class="nav-link">Connect the pibot:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#a-dedicated-node-to-control" class="nav-link">A dedicated node to control</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#a-simple-move-order" class="nav-link">A Simple Move order</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#move-script" class="nav-link">Move Script</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<h1 id="move-a-robot">Move a robot</h1>
-<p>This tutorial aims to take control of a <strong>pibot</strong>  robot.
-A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
-=======
 <html class="writer-html5" lang="en" >
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Move the Robot - Lct Mob-Rob</title>
+    <title>Move the Robot - Lct. Mobile-Robot</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -217,7 +31,7 @@ A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> Lct Mob-Rob
+          <a href="../.." class="icon icon-home"> Lct. Mobile-Robot
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -236,28 +50,33 @@ A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
               </ul>
               <p class="caption"><span class="caption-text">Kick-Off</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../ros-basics/">Starting with ROS</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../basics/">OS and Shell</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../first-contact/">Nodes and Topics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../package/">ROS Package</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Move the Robot</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simulation/">Simulation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/package/">ROS Package</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../range-sensor/">Range Sensor</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../camera-driver/">Camera Driver</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/class/">Node with Class</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/range-sensor/">Range Sensor</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/slam/">S.L.A.M</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/camera-driver/">Camera Driver</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/transform/">Move To</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/vision/">Vision</a>
+              </ul>
+              <p class="caption"><span class="caption-text">Mastering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/slam/">S.L.A.M</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/transform/">Move To</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/vision/">Vision</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
@@ -273,6 +92,10 @@ A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
                 <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../pdf/"></a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -280,7 +103,7 @@ A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">Lct Mob-Rob</a>
+          <a href="../..">Lct. Mobile-Robot</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -297,10 +120,9 @@ A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="02-move-a-robot">02 - Move a robot</h1>
-<p>This tutorial aims to take control of a <strong>tbot</strong>  robot.
-A tbot is a turtlebot2 robot (based on a kobuki platform)
->>>>>>> 59b1017 (started pass on lct-mobile-site - intro)
+                <h1 id="move-a-robot">Move a robot</h1>
+<p>This tutorial aims to take control of a <strong>pibot</strong>  robot.
+A <strong>pibot</strong> is a turtlebot2 robot (based on a kobuki platform)
 equipped with a laser range to navigate in a cluttered environment
 and a <em>Rapberry Pi3</em> to provide a <em>ROS2</em> interface to the robot.</p>
 <h2 id="connect-the-pibot">Connect the <strong>pibot</strong>:</h2>
@@ -354,7 +176,7 @@ The root directory of your ROS project (i.e. `mb6-space` here).
 </code></pre>
 
 
-- Connect the tbot base, the laser and launch control nodes (a ros launch file permits to start a collection of nodes with a desired configuration):
+- Connect the tbot base, the laser and launch the control nodes (a ros launch file permits to start a collection of nodes with a desired configuration):
 
 
 <pre><code class="language-console">ros2 launch tbot_node minimal_launch.yaml
@@ -373,7 +195,7 @@ Reminder: You can also explore the existing node with `rqt_graph`.
 
 -->
 
-<p>Finally, you can try to take control in an available terminal with keyboard control:</p>
+<p>Finally, you can try to take control in a availlable terminal with keyboard control:</p>
 <pre><code class="language-console">ros2 run teleop_twist_keyboard teleop_twist_keyboard cmd_vel:=/multi/cmd_teleop
 </code></pre>
 <p>Close everything with <code>ctrl-c</code>.</p>
@@ -390,14 +212,14 @@ The human operator has a higher priority.
 Publishing messages into <code>cmd_telop</code> makes the multiplexer to trash the <code>cmd_nav</code> commands.</p>
 <h2 id="a-dedicated-node-to-control">A dedicated node to control</h2>
 <p>The goal is to create a process connecting a topic and publishing velocities as a twist message:</p>
-<p>This tutorial supposes that you already perform the previous <em>package</em> tutorial and that you have a first package <code>tutorial_pkg</code> to work on it.</p>
+<p>This tutorial supose that you already perform the previous <em>package</em> tutorial and that you have a first package <code>tutorial_pkg</code> to work on it.</p>
 <ul>
 <li>First we have to create a file for our script.</li>
 </ul>
 <pre><code class="language-sh">touch tutorial_pkg/scripts/test_move
 </code></pre>
 <ul>
-<li>The script state that it requires <em>python3</em> interpreter and it depends on several ROS2 resources.</li>
+<li>The script state that it requires <em>python3</em> interpreter and it depends from several ROS2 ressources.</li>
 </ul>
 <pre><code class="language-python">#!/usr/bin/python3
 import rclpy
@@ -414,7 +236,7 @@ print(&quot;test_move :: START...&quot;)
 ./tutorial_pkg/scripts/test_move
 </code></pre>
 <ul>
-<li>Finally, we must declare our node as one of the package node into <code>CMakeList.txt</code> and build again your packages. You can also add <code>geometry_msgs</code> as dependency on the <code>package.xml</code> file.</li>
+<li>Finnally we must declare our node as one of the package node into <code>CMakeList.txt</code> and build again your packages. You can also add <code>geometry_msgs</code> as depency in the <code>package.xml</code> file.</li>
 </ul>
 <pre><code class="language-sh">colcon build
 source ./install/local_setup.bash
@@ -423,8 +245,8 @@ source ./install/local_setup.bash
 <pre><code class="language-sh">ros2 run tutorial_pkg test_move
 </code></pre>
 <h2 id="a-simple-move-order">A Simple Move order</h2>
-<p>The node we aim to generate is similar to <code>talker</code>,
-except that we publish a <code>twist</code> message on the appropriate topic. 
+<p>The node we aims to generate is similar to <code>talker</code>,
+exept that we publish a <code>twist</code> message on the appropriate topic. 
 The callback method of our class would be </p>
 <pre><code class="language-python">def timer_callback(self):
     velocity = Twist()
@@ -433,26 +255,21 @@ The callback method of our class would be </p>
     # Publish 
     self._publisher.publish(velocity)
 </code></pre>
-<<<<<<< HEAD
 <p>A look at the <code>geometry_msgs</code> at <a href="https://index.ros.org/p/geometry_msgs">index.ros.org</a>
 Inform that <em>Twist</em> is composed by <span class="arithmatex">\(2\)</span> <em>Vector3</em> attributs also in <code>geometry_msgs</code>.
 Velocities are in <span class="arithmatex">\(m.s^{-1}\)</span> and <span class="arithmatex">\(\math{rad}.s^{-1}\)</span>.</p>
-<p>Now, a <code>ros2 run tutorial_pkg test_move</code> should continuously move the robot, with a constant speed.
+<p>Now, a <code>ros2 run tutorial_pkg test_move</code> should continously move the robot, with a constant speed.
 Notice that you can also test your code on <code>turtlesim</code> by changing the name of the topic.</p>
 <h2 id="move-script">Move Script</h2>
-<p>At the end we want our robot to follow a predefined choreography.
-Something like moving forward for <span class="arithmatex">\(X \mathit{cm}\)</span> backward, turn left then turn right, etc.
-The choreography should end on the exact position it begins
-to perform an infinite loop safely.</p></div>
-=======
-<p>At this point, your robot should move...
-Notice that you can also test your code on <code>turtlesim</code> by changing the name of the velocity topic.</p>
+<p>At the end we want that our robot follow a predefinit choreography.
+Somthing like move forward for <span class="arithmatex">\(X \mathit{cm}\)</span> backward, turn left then turn right etc.
+The choreography should end on the exact position it begin
+to perform safely an infinite loop.</p>
               
->>>>>>> 59b1017 (started pass on lct-mobile-site - intro)
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../ros-basics/" class="btn btn-neutral float-left" title="Starting with ROS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../package/" class="btn btn-neutral float-left" title="ROS Package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../simulation/" class="btn btn-neutral float-right" title="Simulation">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -476,7 +293,7 @@ Notice that you can also test your code on <code>turtlesim</code> by changing th
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../ros-basics/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../package/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../simulation/" style="color: #fcfcfc">Next &raquo;</a></span>

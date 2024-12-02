@@ -1,270 +1,25 @@
 <!DOCTYPE html>
-<<<<<<< HEAD:lct-mobile-robot/pdf/index.html
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Lct. Mobile-Robot</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <link href="../style.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">Lct. Mobile-Robot</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">MobiSyst <</a>
-                            </li>
-                            <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../tuto-kick-off/basics/" class="dropdown-item">OS and Shell</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-kick-off/first-contact/" class="dropdown-item">Nodes and Topics</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-kick-off/package/" class="dropdown-item">ROS Package</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../tuto-level-up/range-sensor/" class="dropdown-item">Range Sensor</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-level-up/parameters/" class="dropdown-item">Parameters</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mastering <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../tuto-mastering/slam/" class="dropdown-item">S.L.A.M</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-mastering/transform/" class="dropdown-item">Move To</a>
-</li>
-                                    
-<li>
-    <a href="../tuto-mastering/vision/" class="dropdown-item">Vision</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../challenge/kick-off/" class="dropdown-item">Kick-off</a>
-</li>
-                                    
-<li>
-    <a href="../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
-</li>
-                                    
-<li>
-    <a href="../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="navitem">
-                                <a href="../appendix/faq/" class="nav-link">F.A.Q</a>
-                            </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link"></a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../appendix/faq/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#pdf-resources" class="nav-link">PDF resources:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<h1 id="pdf-resources">PDF resources:</h1></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js"></script>
-        <script src="../javascripts/mathjax.js"></script>
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script src="../search/main.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-=======
 <html class="writer-html5" lang="en" >
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Infinite Loop - Lct Mob-Rob</title>
-    <link rel="stylesheet" href="../../css/theme.css" />
-    <link rel="stylesheet" href="../../css/theme_extra.css" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Lct. Mobile-Robot</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-        <link href="../../style.css" rel="stylesheet" />
+        <link href="../style.css" rel="stylesheet" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Infinite Loop";
-        var mkdocs_page_input_path = "notions/3-infinite-loop.md";
+        var mkdocs_page_name = "";
+        var mkdocs_page_input_path = "pdf/index.md";
         var mkdocs_page_url = null;
       </script>
     
     <!--[if lt IE 9]>
-      <script src="../../js/html5shiv.min.js"></script>
+      <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
       <script>hljs.highlightAll();</script> 
@@ -276,61 +31,69 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> Lct Mob-Rob
+          <a href=".." class="icon icon-home"> Lct. Mobile-Robot
         </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
->>>>>>> 59b1017 (started pass on lct-mobile-site - intro):lct-mobile-robot/notions/3-infinite-loop/index.html
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="" href="../../..">MobiSyst <</a>
+                <li class="toctree-l1"><a class="" href="../..">MobiSyst <</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../..">Intro</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Intro</a>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Kick-Off</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/ros-basics/">Starting with ROS</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-kick-off/basics/">OS and Shell</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/move/">Move the Robot</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-kick-off/first-contact/">Nodes and Topics</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/simulation/">Simulation</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-kick-off/package/">ROS Package</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/package/">ROS Package</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-kick-off/move/">Move the Robot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/range-sensor/">Range Sensor</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/camera-driver/">Camera Driver</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-kick-off/simulation/">Simulation</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/class/">Node with Class</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-level-up/range-sensor/">Range Sensor</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/slam/">S.L.A.M</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-level-up/camera-driver/">Camera Driver</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/transform/">Move To</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-level-up/parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/vision/">Vision</a>
+              </ul>
+              <p class="caption"><span class="caption-text">Mastering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-mastering/slam/">S.L.A.M</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-mastering/transform/">Move To</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuto-mastering/vision/">Vision</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/kick-off/">Kick-off</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../challenge/kick-off/">Kick-off</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-1on2/">Challenge 1</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../challenge/challenge-1on2/">Challenge 1</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-2on2/">Challenge 2</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../challenge/challenge-2on2/">Challenge 2</a>
                   </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
+                <li class="toctree-l1"><a class="reference internal" href="../appendix/faq/">F.A.Q</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./"></a>
                 </li>
               </ul>
       </div>
@@ -340,14 +103,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">Lct Mob-Rob</a>
+          <a href="..">Lct. Mobile-Robot</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Infinite Loop</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active"></li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -356,10 +119,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="infinite-loop">Infinite Loop</h1>
+                <h1 id="pdf-resources">PDF resources:</h1>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../appendix/faq/" class="btn btn-neutral float-left" title="F.A.Q"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
   <hr/>
 
@@ -381,16 +147,18 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../appendix/faq/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
     
   </span>
 </div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../javascripts/mathjax.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
       <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../search/main.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

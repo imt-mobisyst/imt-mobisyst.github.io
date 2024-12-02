@@ -1,196 +1,11 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
-        
-        
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Lct. Mobile-Robot</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <link href="style.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body class="homepage">
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href=".">Lct. Mobile-Robot</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../." class="nav-link">MobiSyst <</a>
-                            </li>
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="tuto-kick-off/basics/" class="dropdown-item">OS and Shell</a>
-</li>
-                                    
-<li>
-    <a href="tuto-kick-off/first-contact/" class="dropdown-item">Nodes and Topics</a>
-</li>
-                                    
-<li>
-    <a href="tuto-kick-off/package/" class="dropdown-item">ROS Package</a>
-</li>
-                                    
-<li>
-    <a href="tuto-kick-off/move/" class="dropdown-item">Move the Robot</a>
-</li>
-                                    
-<li>
-    <a href="tuto-kick-off/simulation/" class="dropdown-item">Simulation</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="tuto-level-up/range-sensor/" class="dropdown-item">Range Sensor</a>
-</li>
-                                    
-<li>
-    <a href="tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="tuto-level-up/parameters/" class="dropdown-item">Parameters</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mastering <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="tuto-mastering/slam/" class="dropdown-item">S.L.A.M</a>
-</li>
-                                    
-<li>
-    <a href="tuto-mastering/transform/" class="dropdown-item">Move To</a>
-</li>
-                                    
-<li>
-    <a href="tuto-mastering/vision/" class="dropdown-item">Vision</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="challenge/kick-off/" class="dropdown-item">Kick-off</a>
-</li>
-                                    
-<li>
-    <a href="challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
-</li>
-                                    
-<li>
-    <a href="challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="navitem">
-                                <a href="appendix/faq/" class="nav-link">F.A.Q</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="pdf/" class="nav-link"></a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="tuto-kick-off/basics/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#lecture-software-and-architecture-for-mobile-robotics" class="nav-link">Lecture - Software and Architecture for Mobile-Robotics</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#tutorials" class="nav-link">Tutorials</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#challenge" class="nav-link">Challenge</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#going-further" class="nav-link">Going further</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#contact" class="nav-link">Contact</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<h1 id="lecture-software-and-architecture-for-mobile-robotics">Lecture - Software and Architecture for Mobile-Robotics</h1>
-<p>Here is a lecture on software and architecture for mobile robots at the <a href="http://www.imt-nord-europe.fr">IMT-Nord-Europe</a> engineering school.</p>
-=======
 <html class="writer-html5" lang="en" >
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Lct Mob-Rob</title>
+    <title>Lct. Mobile-Robot</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -216,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> Lct Mob-Rob
+          <a href="." class="icon icon-home"> Lct. Mobile-Robot
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -235,28 +50,33 @@
               </ul>
               <p class="caption"><span class="caption-text">Kick-Off</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/ros-basics/">Starting with ROS</a>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/basics/">OS and Shell</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/first-contact/">Nodes and Topics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/package/">ROS Package</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/move/">Move the Robot</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/simulation/">Simulation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/package/">ROS Package</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/range-sensor/">Range Sensor</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-kick-off/camera-driver/">Camera Driver</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/class/">Node with Class</a>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/range-sensor/">Range Sensor</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/slam/">S.L.A.M</a>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/camera-driver/">Camera Driver</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/transform/">Move To</a>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="tuto-level-up/vision/">Vision</a>
+              </ul>
+              <p class="caption"><span class="caption-text">Mastering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-mastering/slam/">S.L.A.M</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-mastering/transform/">Move To</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tuto-mastering/vision/">Vision</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
@@ -272,6 +92,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="appendix/faq/">F.A.Q</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="pdf/"></a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -279,7 +103,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">Lct Mob-Rob</a>
+          <a href=".">Lct. Mobile-Robot</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -296,8 +120,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="lecture-software-and-architecture-for-mobile-robotics">Lecture - Software and Architecture for Mobile-Robotics</h1>
-<p>Here a lecture on software and architecture for mobile robots at the <a href="http://www.imt-nord-europe.fr">IMT-Nord</a> engineering school.</p>
->>>>>>> 59b1017 (started pass on lct-mobile-site - intro)
+<p>Here is a lecture on software and architecture for mobile robots at the <a href="http://www.imt-nord-europe.fr">IMT-Nord-Europe</a> engineering school.</p>
 <p>This lecture is an introduction on how to develop a modular control and supervision software for a mobile platform.
 The notions are illustrated with tutorials based on Linux/<a href="https://ros.org/">ROS</a> and <a href="http://kobuki.yujinrobot.com/">Kobuki/Turtlebot2</a> robot.
 This support is shared on <a href="https://github.com/imt-mobisyst/imt-mobisyst.github.io">github</a> and published thanks to <a href="https://www.github.io">GitHub pages</a>.</p>
@@ -307,39 +130,12 @@ To notice that other solutions are provided by <em>ROS2</em> with potentially mo
 <!-- Introduction - [pdf version](https://raw.githubusercontent.com/ceri-num/uv-larm/master/notions/sld-intro.pdf) -->
 
 <h2 id="tutorials">Tutorials</h2>
-<p>Tutorials are organized on several levels of complexity: </p>
+<p>Tutorials are organized on several levels of complexity:</p>
 <ul>
 <li><strong>Kick-Off</strong> focus on basic concept 'terminal commands', interconnected software developments on simulations and with a real mobile platform.</li>
 <li><strong>Level-up</strong> deep into __ROS2_ to develop a complete packaged solution of reactive control.</li>
 <li><strong>Mastering</strong>, with a good understanding of <em>ROS2</em> tools and API, the goal now is to achieve complex missions including mapping and localization.</li>
 </ul>
-<<<<<<< HEAD
-=======
-<!--
-## UV-LARM 2022-2023:
-
-Week 2 to 6/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
----------------|---------|---------|-----------|----------|---------|
-Morning        | No      | No      | Yes       | No       | Yes     |
-Afernoon       | No      | Yes     | Yes       | No       | Yes     |
-
-Week 9 to 13/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
-----------------|---------|---------|-----------|----------|---------|
-Morning         | Yes     | Yes     | Yes       | No       | Yes     |
-Afernoon        | Yes     | Yes     | No        | No       | Yes     |
-
-Week 16 to 20/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
------------------|---------|---------|-----------|----------|---------|
-Morning          | Yes     | Yes     | Yes       | No       | Yes     |
-Afernoon         | Yes     | Yes     | No        | No       | Yes     |
-
-Week 23 to 27/01 | Monday  | Tuesday | Wednesday | Thursday | Friday  |
------------------|---------|---------|-----------|----------|---------|
-Morning          | Yes     | Yes     | Yes       | Yes      | Yes     |
-Afernoon         | Yes     | No      | No        | No       | Yes     |
--->
-
->>>>>>> 59b1017 (started pass on lct-mobile-site - intro)
 <h2 id="challenge">Challenge</h2>
 <p>The evaluation mainly consists in the realization of an application involving specific challenges:</p>
 <ul>
@@ -351,13 +147,8 @@ Afernoon         | Yes     | No      | No        | No       | Yes     |
 
 <h2 id="going-further">Going further</h2>
 <p>Most of the content and supports for learning robotics architecture are already shared on the internet.
-<<<<<<< HEAD
-We try to orient the students through project realizations rather than to provide an exhaustive definition of concepts and implementations.
-This course relies on the <a href="http://www.ros.org/">ROS2</a> solution, the <em>ROS</em> community provides documentation with tutorials on <a href="https://docs.ros.org">docs.ros.org</a> and exhaustive references on <a href="https://index.ros.org">index.ros.org</a>.</p>
-=======
 We try to guide the students through project realizations rather than to provide an exhaustive definition of concepts and implementations.
 This course relies on the <a href="http://www.ros.org/">ROS</a> middleware for practical sessions, the ROS doc tutorials and ros-packages' descriptions: <a href="https://docs.ros.org">docs.ros.org</a>.</p>
->>>>>>> 59b1017 (started pass on lct-mobile-site - intro)
 <p>You also can find an excellent virtual working environment and resources on <a href="https://www.theconstructsim.com/">TheConstruct</a>.</p>
 <h2 id="contact">Contact</h2>
 <p>For comments, questions, corrections, feel free to contact:</p>
@@ -366,7 +157,7 @@ This course relies on the <a href="http://www.ros.org/">ROS</a> middleware for p
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="tuto-kick-off/ros-basics/" class="btn btn-neutral float-right" title="Starting with ROS">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="tuto-kick-off/basics/" class="btn btn-neutral float-right" title="OS and Shell">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -390,7 +181,7 @@ This course relies on the <a href="http://www.ros.org/">ROS</a> middleware for p
     
     
     
-      <span><a href="tuto-kick-off/ros-basics/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="tuto-kick-off/basics/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -412,9 +203,5 @@ This course relies on the <a href="http://www.ros.org/">ROS</a> middleware for p
 
 <!--
 MkDocs version : 1.5.3
-<<<<<<< HEAD
-Build Date UTC : 2024-11-29 15:42:16.049360+00:00
-=======
-Build Date UTC : 2024-12-02 15:34:14.283888+00:00
->>>>>>> 59b1017 (started pass on lct-mobile-site - intro)
+Build Date UTC : 2024-12-02 16:18:07.547429+00:00
 -->

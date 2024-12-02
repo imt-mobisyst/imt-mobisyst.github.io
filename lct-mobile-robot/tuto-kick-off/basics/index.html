@@ -1,371 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>OS and Shell - Lct. Mobile-Robot</title>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <link href="../../style.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="../..">Lct. Mobile-Robot</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../../.." class="nav-link">MobiSyst <</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kick-Off <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="./" class="dropdown-item active">OS and Shell</a>
-</li>
-                                    
-<li>
-    <a href="../first-contact/" class="dropdown-item">Nodes and Topics</a>
-</li>
-                                    
-<li>
-    <a href="../package/" class="dropdown-item">ROS Package</a>
-</li>
-                                    
-<li>
-    <a href="../move/" class="dropdown-item">Move the Robot</a>
-</li>
-                                    
-<li>
-    <a href="../simulation/" class="dropdown-item">Simulation</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Level-up <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../tuto-level-up/range-sensor/" class="dropdown-item">Range Sensor</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/camera-driver/" class="dropdown-item">Camera Driver</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-level-up/parameters/" class="dropdown-item">Parameters</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mastering <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../tuto-mastering/slam/" class="dropdown-item">S.L.A.M</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-mastering/transform/" class="dropdown-item">Move To</a>
-</li>
-                                    
-<li>
-    <a href="../../tuto-mastering/vision/" class="dropdown-item">Vision</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Challenge <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../challenge/kick-off/" class="dropdown-item">Kick-off</a>
-</li>
-                                    
-<li>
-    <a href="../../challenge/challenge-1on2/" class="dropdown-item">Challenge 1</a>
-</li>
-                                    
-<li>
-    <a href="../../challenge/challenge-2on2/" class="dropdown-item">Challenge 2</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../appendix/faq/" class="nav-link">F.A.Q</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../pdf/" class="nav-link"></a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../.." class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../first-contact/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>OS and Shell - Lct. Mobile-Robot</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#operating-system-linuxubuntu-for-ros2" class="nav-link">Operating System: Linux/Ubuntu for ROS2</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#play-with-linux" class="nav-link">Play with Linux</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#the-shell-or-terminal" class="nav-link">The shell or Terminal</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OS and Shell";
+        var mkdocs_page_input_path = "tuto-kick-off/basics.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
 
-<h1 id="operating-system-linuxubuntu-for-ros2">Operating System: Linux/Ubuntu for ROS2</h1>
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Lct. Mobile-Robot
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../../..">MobiSyst <</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Intro</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Kick-Off</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">OS and Shell</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../first-contact/">Nodes and Topics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../package/">ROS Package</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../move/">Move the Robot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simulation/">Simulation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Level-up</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/range-sensor/">Range Sensor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/camera-driver/">Camera Driver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/parameters/">Parameters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mastering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/slam/">S.L.A.M</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/transform/">Move To</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/vision/">Vision</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenge</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/kick-off/">Kick-off</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-1on2/">Challenge 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-2on2/">Challenge 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../pdf/"></a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Lct. Mobile-Robot</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Kick-Off</li>
+      <li class="breadcrumb-item active">OS and Shell</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="operating-system-linuxubuntu-for-ros2">Operating System: Linux/Ubuntu for ROS2</h1>
 <p><code>ROS</code> stand for <strong>R</strong>obot <strong>O</strong>perating <strong>S</strong>ystem however it extend a classical <strong>O</strong>perating <strong>S</strong>ystem, a Linux/Ubuntu OS.</p>
-<p>The goal of this tutorial is to come back on basic <strong>O</strong>perating <strong>S</strong>ystem notions and mainly the <em>Shell</em> offering the simplest way to interact with your computer.</p>
+<p>The goal of this tutorial is to come back on basic <strong>O</strong>perating <strong>S</strong>ystem notions and mainly the <em>Shell</em> ofering the simplest way to interact with your computer.</p>
 <ul>
 <li>For an introduction to OS read the <a href="https://en.wikipedia.org/wiki/Operating_system">wikipedia page</a></li>
 </ul>
 <h2 id="play-with-linux">Play with Linux</h2>
 <p>Ubuntu is a Linux distribution (Operating System + Window Managment + Tools) derived from Debian distribution, in the galaxies of Open source solutions.</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Open_source">Open Source</a> means that every user can deep into the source code of the programs (open source is not necessarily free of charge).</li>
-<li><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> is mostly an OS kernel. It exposes computer capability (computing, memory access and other devices) to developers. Typically <code>C/C++</code> language was developed for the Linux kernel.</li>
-<li><a href="https://en.wikipedia.org/wiki/Linux_distribution">Distribution</a> will configure together an OS kernel, software management (packages), an IHM (display server + desktop environment) and a bench of softwares. </li>
+<li><a href="https://en.wikipedia.org/wiki/Open_source">Open Source</a> means that every user can deep into the source code of the programs (open source is not necesary free of charge).</li>
+<li><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> is mostly an OS kernel. It exposes computer capability (computing, memory acces and other devices) to developers. Typically <code>C/C++</code> language was developed for the linux kernel</li>
+<li><a href="https://en.wikipedia.org/wiki/Linux_distribution">Distribution</a> will configure together an OS kernel, software management (packages), an IHM (display server + descktop environement) and a bench of softwares. </li>
 </ul>
 <p>Typically, <strong>ROS</strong> is designed to work on <em>Ubuntu</em>: <em>Linux kernel</em>, <em>GNOME</em> desktop, aptitude (apt) package manager.</p>
 <p><em>Ubuntu</em> is a good example of <strong>Open Source</strong> project:</p>
 <ul>
-<li>It is based on another <strong>Open Source</strong> project: <em>Debian OS</em> to capitalize on the <em>Debian</em> community works, while offering a more easy-to-use solution.</li>
-<li>It searches for profitability with <a href="https://ubuntu.com/pro">Ubuntu Pro</a>.</li>
-<li>It is used in return for other Linux-based OS: <em>Pop!_os</em> or <em>Zorin</em> for instance.</li>
+<li>It is based on another <strong>Open Source</strong> project: <em>Debian OS</em> to capitalize on the <em>Debian</em> community works, while ofering a more easy-to-use solution.</li>
+<li>It searches for a profitability with <a href="https://ubuntu.com/pro">Ubuntu Pro</a>.</li>
+<li>It is used in return on other Linux based OS: <em>Pop!_os</em> or <em>Zorin</em> for instance.</li>
 </ul>
-<p>Visit <a href="https://distrowatch.com/">distrowatch.com</a> to get an idea of the galaxy of interconnected <em>Linux OSs</em>.</p>
+<p>Visite <a href="https://distrowatch.com/">distrowatch.com</a> to get an idea of the galaxy of interconected <em>Linux OSs</em>.</p>
 <h2 id="the-shell-or-terminal">The shell or Terminal</h2>
-<p>In the variety of program running on Linux, we are mostly interested in the terminal emulator, permitting to manipulate our system directly from command (moving in the directory tree, read and organize files, execute scripts or programs, manage computer resources as a network, ect.).</p>
+<p>In the variety of program runing on linux, we are mostly interested in the terminal emulator, permitting to manipulate our system directly from command (moving in the directory tree, read and organize files, execute scripts or programs, manage computer resources as network, ect.).</p>
 <p>On Ubuntu, default terminal emulator is <em>gnome-terminal</em> (<a href="https://help.gnome.org/users/gnome-terminal/stable">help.gnome.org</a>) configured with <em>bash</em> (<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">on wikipedia</a>) command interpreter.</p>
-<p>Commands are interpretable instruction generally executing programs.
-It is expected that the following commands are known before to start working with <code>ROS</code>.</p>
+<p>Commands are interpretables instruction generally executing programmes.
+Its is exected that the following commands are kwon before to start working with <code>ROS</code>.</p>
 <p>To notice that <code>tabulation</code> allows for autocompletion.</p>
 <p>Explore the following command (i.e. what for, how to use it), then play with the command in your terminal.</p>
-<h3 id="the-file-system">The File System</h3>
+<h3 id="file-systems">File systems</h3>
 <ul>
-<li><code>ls</code>: list directory elements</li>
-<li><code>cd</code>: change directory</li>
-<li><code>cat</code>: read all a text file</li>
-<li><code>more</code>: read a text file step by step</li>
-<li><code>touch</code>: touch a resource (create if absent)</li>
-<li><code>nano</code>: edit a text file</li>
-<li><code>rm</code>: remove a file (permanently)</li>
-<li><code>mkdir</code>: create (make) a directory</li>
-<li><code>rmdir</code>: remove a directory</li>
-<li><code>mv</code>: move a resource</li>
-<li><code>cp</code>: copy-paste a file</li>
-<li><code>clear</code>: clear your shell</li>
+<li><strong>ls</strong>, <strong>cd</strong> for list the content of directory and change the curent directory</li>
+<li><strong>touch</strong>, <strong>cp</strong>, <strong>mv</strong>, <strong>rm</strong> for touch (or create), copy-paste, move or remove a file.</li>
+<li><strong>cat</strong>, <strong>more</strong> both for read/display the content of a file (textual)</li>
+<li><strong>nano</strong> one of the on-terminal file editor</li>
 </ul>
-<p>Manipulate pathes :</p>
-<ul>
-<li><code>/</code>: the root directory in Linux system - example: <code>du /bin/bash</code> (du - estimate file space usage)</li>
-<li><code>.</code>: the current directory - example: <code>mkdir ./workspace</code></li>
-<li><code>..</code>: the parent directory - example: <code>cd ../../media</code></li>
-<li><code>~</code>: the user directory - example: <code>cd ~/Documents</code></li>
-<li><strong>CApitAl Letters maTer</strong> - example: <code>cd ~/Documents</code> <span class="arithmatex">\(\neq\)</span> <code>cd ~/documents</code></li>
-</ul>
-<h3 id="mastering-commands">Mastering Commands</h3>
-<p>The classical syntax is: <code>command --option -o argument1</code> - example: <code>ls -a ~</code>.</p>
-<p>Commands exits for helping to master all the other commands:</p>
-<ul>
-<li><code>man</code>: command and library manual - example: <code>man cp</code></li>
-<li><code>apropos</code>: search in the manuals - example: <code>apropos search</code></li>
-<li><code>whereis</code>: find the location of a resource - example: <code>whereis python3</code></li>
-<li><code>alias</code>: create our own command - example: <code>alias listall="ls -a"</code></li>
-</ul>
-<h3 id="sessions-and-environment">Sessions and environment</h3>
-<p>A session is an active connection to a system or program.</p>
-<ul>
-<li><code>who</code>: List the open session in a computer</li>
-<li><code>ssh</code>: Open a session in a distant computer following the <code>ssh</code> (<a href="https://en.wikipedia.org/wiki/Secure_Shell">secure shell</a>) protocol.</li>
-</ul>
-<p>In return, an environment is a computer system or set of systems in which a computer program or software component is deployed and executed. (<a href="https://en.wikipedia.org/wiki/Deployment_environment">Wikipedia Sept. 2023</a>)</p>
-<ul>
-<li><code>env</code>: list the environment variable.</li>
-<li><code>$</code>: access a variable - example: <code>echo $PATH</code></li>
-<li><code>export</code>: create a new variable - example: <code>export PATH=$PATH:~/bin</code></li>
-<li><code>~/.bashrc</code> (file): user run-commands' configuration.</li>
-</ul>
-<h3 id="user-group-and-rules">User, Group and Rules</h3>
-<ul>
-<li>User are identified and attached to groups</li>
-<li>User and group have a name and a number</li>
-<li>Resources are owned by a user and a group</li>
-<li>Specific access can be tuned for each resource <ul>
-<li><code>r</code>: read <span class="arithmatex">\(\quad\)</span> <code>w</code>: write <span class="arithmatex">\(\quad\)</span> <code>x</code>: executed/open</li>
-<li>For the <em>user</em>, the <em>group</em> members and <em>all</em> the others</li>
-</ul>
-</li>
-</ul>
-<p>The <code>ls -l</code> command lists the content of a repertory with ownership and authorization - Example with <code>ls -l /etc</code>.</p>
-<p>With <code>cat /etc/passwd</code> it is possible to list all users (<code>/etc/group</code> for the groups).</p>
-<p>Somme commands: </p>
-<ul>
-<li><code>chmod</code>: change authorizations - Examples:
-<code>chmod +x aFile</code> - add <em>x</em> authorization on <em>aFile</em>
-<code>chmod 752 aFile</code> - set authorization on <em>aFile</em> on a binary style</li>
-<li><code>chown</code>: change the owner </li>
-</ul>
-<h3 id="manage-processes">Manage Processes</h3>
-<ul>
-<li><code>ps</code>: similar to ls but for processes- exemple:
-<code>gedit &amp;</code> - <code>&amp;</code> permits to get back to the prompt
-<code>ps</code> - List the local processes (ie. children of the bash shell)
-<code>ps -e</code> - list all processes</li>
-<li><code>top</code>: interactive process monitoring ( <em>Q</em> to quit )</li>
-<li><code>kill</code>: sent a signal to a process 
-<code>kill 19482</code> - send TERM signal to process <em>19482</em>
-<code>kill -s KILL 19482</code> - send KILL signal to process <em>19482</em></li>
-</ul>
-<p>For managing processes, OS attaches some elements to each one:<br />the <em>PID</em> (Process IDentifier), a parent, ...</p>
-<h3 id="some-bash-tools-and-shortcuts">Some Bash tools and shortcuts</h3>
-<p><strong>bash</strong> is one of the shell solutions on Unix systems.</p>
-<ul>
-<li><code>tabulation</code>: auto-complete the command line or list the possibilities</li>
-<li><code>!xx</code>: run again the last command starting with <code>xx</code></li>
-<li><code>ctrl-r</code>: search for a command in command history</li>
-<li><code>Q</code>: quit a runnig program</li>
-<li><code>ctr-c</code>: terminate a running program</li>
-<li><code>~/.bashrc</code> (file): again, user run-commands' configuration.</li>
-</ul>
-<p>And more on (<a href="https://en.wikibooks.org/wiki/Linux_Guide/Linux_commands">Wikipedia</a>).</p></div>
+<h3 id="processes">Processes</h3>
+<h3 id="users-and-sessions">Users and sessions</h3>
+<h3 id="more-commands">More commands:</h3>
+<p>Other commands to kwon: <strong>man</strong>, <strong>apropos</strong>, <strong>grep</strong>, <strong>find</strong>. (<a href="https://en.wikibooks.org/wiki/Linux_Guide/Linux_commands">Wikipedia is your friend</a>).</p>
+              
             </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
-        <script>
-            var base_url = "../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../javascripts/mathjax.js"></script>
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script src="../../search/main.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Intro"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../first-contact/" class="btn btn-neutral float-right" title="Nodes and Topics">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
         </div>
-    </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../first-contact/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
 
-    </body>
+</body>
 </html>

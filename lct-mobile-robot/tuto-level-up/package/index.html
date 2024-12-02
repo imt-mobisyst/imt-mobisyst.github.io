@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>ROS Package - Lct Mob-Rob</title>
+    <title>03 - Create a ROS compatible package - Lct. Mobile-Robot</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "ROS Package";
+        var mkdocs_page_name = "03 - Create a ROS compatible package";
         var mkdocs_page_input_path = "tuto-level-up/package.md";
         var mkdocs_page_url = null;
       </script>
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> Lct Mob-Rob
+          <a href="../.." class="icon icon-home"> Lct. Mobile-Robot
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -49,29 +49,34 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Kick-Off</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/ros-basics/">Starting with ROS</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/basics/">OS and Shell</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/first-contact/">Nodes and Topics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/package/">ROS Package</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/move/">Move the Robot</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/simulation/">Simulation</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">ROS Package</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/range-sensor/">Range Sensor</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/camera-driver/">Camera Driver</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../class/">Node with Class</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../range-sensor/">Range Sensor</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../slam/">S.L.A.M</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../camera-driver/">Camera Driver</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../transform/">Move To</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../vision/">Vision</a>
+              </ul>
+              <p class="caption"><span class="caption-text">Mastering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/slam/">S.L.A.M</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/transform/">Move To</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/vision/">Vision</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
@@ -87,6 +92,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../pdf/"></a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -94,15 +103,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">Lct Mob-Rob</a>
+          <a href="../..">Lct. Mobile-Robot</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Kick-Off</li>
-      <li class="breadcrumb-item active">ROS Package</li>
+      <li class="breadcrumb-item active">03 - Create a ROS compatible package</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -248,10 +256,6 @@ We want 3 new actions: `turn_left`, `turn_right` and `rear`.
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../tuto-kick-off/simulation/" class="btn btn-neutral float-left" title="Simulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../tuto-kick-off/range-sensor/" class="btn btn-neutral float-right" title="Range Sensor">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -273,10 +277,6 @@ We want 3 new actions: `turn_left`, `turn_right` and `rear`.
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../tuto-kick-off/simulation/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../../tuto-kick-off/range-sensor/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
