@@ -88,9 +88,12 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-2on2/">Challenge 2</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Appendix</span></p>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">F.A.Q</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../pdf/"></a>
@@ -110,6 +113,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Appendix</li>
       <li class="breadcrumb-item active">F.A.Q</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -160,25 +164,6 @@ ros2 topic list
 <p>Then unplug / replug the robot.
 To ensure it worked, the followwing command should display 1:</p>
 <pre><code>cat /sys/bus/usb-serial/devices/ttyUSB0/tty/ttyUSB0/device/latency_timer
-</code></pre>
-<h2 id="how-to-install-ubuntu">How to install Ubuntu ?</h2>
-<p>Ubuntu is a fork of the Debian project, a Linux-based desktop operating system.</p>
-<ul>
-<li>Official website : <a href="https://ubuntu.com/">https://ubuntu.com/</a></li>
-<li>French community : <a href="https://www.ubuntu-fr.org/">https://www.ubuntu-fr.org/</a></li>
-</ul>
-<p>Notice that, ubuntu can be installed in double boot mode in parallel to a Microsoft OS on your personal computer.
-It is not recommended to use Ubuntu+ROS in a virtual machine (the performances would be  poor).</p>
-<h3 id="to-do">To-do:</h3>
-<ul>
-<li>Install Ubuntu <strong>20.04 LTS</strong> (Long Term Supported version) from live USB-Key</li>
-<li>Ideally, use all the hard disk (you can split the disk in advance for <a href="https://help.ubuntu.com/community/WindowsDualBoot">double-boot install</a>)</li>
-<li>Configure "bot" username and "bot" password.</li>
-<li>Configure network</li>
-<li>Login and upgrade your installation</li>
-</ul>
-<pre><code class="language-bash">sudo apt update
-sudo apt upgrade
 </code></pre>
 <h2 id="there-is-no-wifi-on-my-dell-xps13">There is no Wifi on my dell-xps13 ?</h2>
 <ol>
@@ -285,7 +270,7 @@ alias rosify2=&quot;source /opt/ros/iron/setup.bash &amp;&amp; source $HOME/ros2
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../challenge/challenge-2on2/" class="btn btn-neutral float-left" title="Challenge 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installation/" class="btn btn-neutral float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../../pdf/" class="btn btn-neutral float-right" title="">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -309,7 +294,7 @@ alias rosify2=&quot;source /opt/ros/iron/setup.bash &amp;&amp; source $HOME/ros2
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../challenge/challenge-2on2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../../pdf/" style="color: #fcfcfc">Next &raquo;</a></span>

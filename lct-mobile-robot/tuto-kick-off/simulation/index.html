@@ -88,9 +88,12 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-2on2/">Challenge 2</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Appendix</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../pdf/"></a>
@@ -121,6 +124,13 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="simulation-in-ros">Simulation in ROS</h1>
+<p>Simulating robotics systems is crucial before doing real experiments.
+It exsits several simulators:
+- https://gazebosim.org/home
+- https://www.coppeliarobotics.com
+- https://carla.org
+- https://github.com/osrf/vrx</p>
+<p>In this turial, we will use Stage (2d) and Gazebo (3d).</p>
 <h2 id="gazebo-simulator">Gazebo Simulator</h2>
 <p><a href="http://gazebosim.org/">Gazebo</a> is a 3D simulator.
 It makes it possible to rapidly test algorithms, design robots, perform regression testing, and train AI systems using realistic scenarios.
@@ -188,10 +198,10 @@ Launch it:</p>
 </code></pre>
 <h2 id="tuto_sim">tuto_sim</h2>
 <p>Create a launch file that starts the appropriate configuration: the <code>challenge-1</code>, a configured <code>rviz2</code> displaying laser scans and the <code>teleop</code>.
-We will prefer YAML format for launch file. </p>
+We will prefer YAML format for launch file.</p>
 <p>All the information you need are in the tutorials :
 - <a href="https://docs.ros.org/en/iron/Tutorials/Intermediate/Launch/Launch-Main.html">Launch file documentation</a>
-- <a href="https://docs.ros.org/en/iron/How-To-Guides/Launch-file-different-formats.html">Launch examples</a> </p>
+- <a href="https://docs.ros.org/en/iron/How-To-Guides/Launch-file-different-formats.html">Launch examples</a></p>
 <p>Create <code>$ROS_WORKSPACE/pkg-tsim/tbot_sim/launch/tutosim_launch.yaml</code>
 Add this code into this file to:</p>
 <pre><code class="language-yaml">launch:
