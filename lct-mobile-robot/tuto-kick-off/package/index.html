@@ -203,8 +203,57 @@ ros2 run tutorial_pkg talker #or listener
 This one should be install aside of your script with the following <code>cmake</code> instruction: </p>
 <pre><code class="language-cmake">install( DIRECTORY scripts/myLocalPkg DESTINATION lib/${PROJECT_NAME} )
 </code></pre>
-<hr />
-<h2 id="launch-file">Launch file</h2>
+<h2 id="launch-file">Launch file.</h2>
+<p><em>ROS</em> propose a launch mechanism to start in one command a configuration of several nodes.
+Launch file can be defined with markup language (<em>XML</em> or <em>YAML</em>) or python3 for more complex launch scenarios.</p>
+<p><em>Yaml</em> purposes the simplest syntax to write launch files. The <a href="https://yaml.org">yaml.org</a> give an example of a yaml resources. 
+Similarly to <em>Python</em>, it relies on indentation to mark the ownership of elements.</p>
+<p>Another example:</p>
+<pre><code class="language-yaml">aMark:
+    aMarkedAttribute: &quot;a string value&quot;
+    aSecondAttribut: [&quot;a&quot;, &quot;list&quot;, &quot;of&quot;, &quot;string&quot;, &quot;element&quot;]
+    'a third attribute': 
+        - 1
+        - 2
+        - 12
+    again: 
+        anotherMark:
+            aMarkedAttribute: 36.8
+...
+</code></pre>
+<p><em>ROS</em> <em>yaml</em> relies on predefinite marks, key works: 'launch' as the first element and composed by a list of <code>node</code>s. Minimal configuration for a <code>node</code> include <code>pkg</code> and <code>exec</code> attributes to identify the node to start.</p>
+<p>A simple launch file for talker/listener will be: </p>
+<pre><code class="language-yaml">launch: 
+    - node:
+        pkg: &quot;tutorial_pkg&quot;
+        exec: &quot;talker&quot;
+    - node:
+        pkg: &quot;tutorial_pkg&quot;
+        exec: &quot;listener&quot;
+</code></pre>
+<p>The file has to be set on a <code>launch</code> directory into your package and with a name ending by <code>_launch.yaml</code>, <code>converse_launch.yaml</code> for instance.</p>
+<p>At this point the launch file can be run using <code>ros2 launch</code> commands.</p>
+<pre><code class="language-sh">ros2 launch ./tutorial_pkg/launch/converse_launch.yaml
+</code></pre>
+<p>By adding <em>launch</em> resources to your package with <code>CMakeList.txt</code> configuration file, you make launch files easier to find.</p>
+<p>In <code>CMakeList.txt</code> file: </p>
+<pre><code class="language-cmake"># Install resource files.
+install(DIRECTORY
+  launch 
+  DESTINATION share/${PROJECT_NAME}/
+)
+</code></pre>
+<p>Then in the terminal: </p>
+<pre><code class="language-sh">colcon build
+ros2 launch tutorial_pkg converse_launch.yaml
+</code></pre>
+<p>To notice that other resources can be added to your package. Typically <code>rviz</code> for visualization configuration, <code>world</code> for simulation configuration, etc.</p>
+<pre><code class="language-cmake"># Install resource files.
+install(DIRECTORY
+  launch rviz world 
+  DESTINATION share/${PROJECT_NAME}/
+)
+</code></pre>
               
             </div>
           </div><footer>

@@ -176,7 +176,7 @@ The root directory of your ROS project (i.e. `mb6-space` here).
 </code></pre>
 
 
-- Connect the tbot base, the laser and launch the control nodes (a ros launch file permits to start a collection of nodes with a desired configuration):
+- Connect the tbot base, the laser and launch control nodes (a ros launch file permits to start a collection of nodes with a desired configuration):
 
 
 <pre><code class="language-console">ros2 launch tbot_node minimal_launch.yaml
@@ -195,7 +195,7 @@ Reminder: You can also explore the existing node with `rqt_graph`.
 
 -->
 
-<p>Finally, you can try to take control in a availlable terminal with keyboard control:</p>
+<p>Finally, you can try to take control in an available terminal with keyboard control:</p>
 <pre><code class="language-console">ros2 run teleop_twist_keyboard teleop_twist_keyboard cmd_vel:=/multi/cmd_teleop
 </code></pre>
 <p>Close everything with <code>ctrl-c</code>.</p>
@@ -212,14 +212,14 @@ The human operator has a higher priority.
 Publishing messages into <code>cmd_telop</code> makes the multiplexer to trash the <code>cmd_nav</code> commands.</p>
 <h2 id="a-dedicated-node-to-control">A dedicated node to control</h2>
 <p>The goal is to create a process connecting a topic and publishing velocities as a twist message:</p>
-<p>This tutorial supose that you already perform the previous <em>package</em> tutorial and that you have a first package <code>tutorial_pkg</code> to work on it.</p>
+<p>This tutorial supposes that you already perform the previous <em>package</em> tutorial and that you have a first package <code>tutorial_pkg</code> to work on it.</p>
 <ul>
 <li>First we have to create a file for our script.</li>
 </ul>
 <pre><code class="language-sh">touch tutorial_pkg/scripts/test_move
 </code></pre>
 <ul>
-<li>The script state that it requires <em>python3</em> interpreter and it depends from several ROS2 ressources.</li>
+<li>The script state that it requires <em>python3</em> interpreter and it depends on several ROS2 resources.</li>
 </ul>
 <pre><code class="language-python">#!/usr/bin/python3
 import rclpy
@@ -236,7 +236,7 @@ print(&quot;test_move :: START...&quot;)
 ./tutorial_pkg/scripts/test_move
 </code></pre>
 <ul>
-<li>Finnally we must declare our node as one of the package node into <code>CMakeList.txt</code> and build again your packages. You can also add <code>geometry_msgs</code> as depency in the <code>package.xml</code> file.</li>
+<li>Finally, we must declare our node as one of the package node into <code>CMakeList.txt</code> and build again your packages. You can also add <code>geometry_msgs</code> as dependency on the <code>package.xml</code> file.</li>
 </ul>
 <pre><code class="language-sh">colcon build
 source ./install/local_setup.bash
@@ -245,8 +245,8 @@ source ./install/local_setup.bash
 <pre><code class="language-sh">ros2 run tutorial_pkg test_move
 </code></pre>
 <h2 id="a-simple-move-order">A Simple Move order</h2>
-<p>The node we aims to generate is similar to <code>talker</code>,
-exept that we publish a <code>twist</code> message on the appropriate topic. 
+<p>The node we aim to generate is similar to <code>talker</code>,
+except that we publish a <code>twist</code> message on the appropriate topic. 
 The callback method of our class would be </p>
 <pre><code class="language-python">def timer_callback(self):
     velocity = Twist()
@@ -258,13 +258,13 @@ The callback method of our class would be </p>
 <p>A look at the <code>geometry_msgs</code> at <a href="https://index.ros.org/p/geometry_msgs">index.ros.org</a>
 Inform that <em>Twist</em> is composed by <span class="arithmatex">\(2\)</span> <em>Vector3</em> attributs also in <code>geometry_msgs</code>.
 Velocities are in <span class="arithmatex">\(m.s^{-1}\)</span> and <span class="arithmatex">\(\math{rad}.s^{-1}\)</span>.</p>
-<p>Now, a <code>ros2 run tutorial_pkg test_move</code> should continously move the robot, with a constant speed.
+<p>Now, a <code>ros2 run tutorial_pkg test_move</code> should continuously move the robot, with a constant speed.
 Notice that you can also test your code on <code>turtlesim</code> by changing the name of the topic.</p>
 <h2 id="move-script">Move Script</h2>
-<p>At the end we want that our robot follow a predefinit choreography.
-Somthing like move forward for <span class="arithmatex">\(X \mathit{cm}\)</span> backward, turn left then turn right etc.
-The choreography should end on the exact position it begin
-to perform safely an infinite loop.</p>
+<p>At the end we want our robot to follow a predefined choreography.
+Something like moving forward for <span class="arithmatex">\(X \mathit{cm}\)</span> backward, turn left then turn right, etc.
+The choreography should end on the exact position it begins
+to perform an infinite loop safely.</p>
               
             </div>
           </div><footer>
