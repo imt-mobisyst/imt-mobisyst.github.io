@@ -263,14 +263,13 @@ journalctl _PID=2690
 </code></pre>
 <h3 id="robotic-workspace">robotic workspace:</h3>
 <p>You can return on <a href="../README.md">README.md</a> for more detail on ROS2 install.
-The script <code>bin/install-ros-setup</code> configure ubuntu for ROS installation.</p>
-<p>Then pibot relies on <code>ros-base</code> and <code>urg-node</code>.</p>
-<pre><code class="language-sh">bin/install-ros-setup
+The script <code>bin/install-ros</code> configure ubuntu for ROS installation and install <code>ros-base</code>.</p>
+<p>Then pibot relies on <code>urg-node</code>.</p>
+<pre><code class="language-sh">bin/install-ros
 
-export ROSDISTRO=iron
+export ROS_DISTRO=iron
 sudo apt install -y \
-  ros-$ROSDISTRO-ros-base \
-  ros-$ROSDISTRO-urg-node
+  ros-$ROS_DISTRO-urg-node
 
 sudo usermod -a -G dialout `whoami`
 </code></pre>

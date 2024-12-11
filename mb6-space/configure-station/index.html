@@ -133,6 +133,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#first-login_1" class="nav-link">First login:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -145,73 +149,20 @@
 <p>Install <strong>Ubuntu-22.04 LTS</strong> with <em>bot</em> user (password <em>bot</em>).</p>
 <p>(Installation minimale, avec mise à jours et logiciels tiers, sur le disque entier)</p>
 <ul>
-<li>Wifi:<ul>
-<li><em>IoT IMT Nord Europe</em> : <code>72Hin@R*</code> </li>
-</ul>
-</li>
+<li>Wifi: <em>IoT IMT Nord Europe</em> <!-- <code>72Hin@R*</code> --></li>
 </ul>
 <h2 id="first-login">First login:</h2>
-<p>If necessary, fix manually the date:</p>
-<pre><code class="language-sh">date
-sudo date -s &quot;2022-05-14 15:42:30&quot;
-sudo apt update
-sudo apt upgrade
-sudo apt install -y openssh-server curl
-</code></pre>
-<p>You can restart the machine and process to a classical install from <a href="../bin/install-station">install-station</a> script or go on <strong>Manual Install</strong> section. 
+<p>You can process to a classical install from <a href="../bin/install-station">install-station</a> script or go on <strong>Manual Install</strong> section. 
 Attention, the script also install ROS in <em>desktop</em> configuration.</p>
 <pre><code class="language-sh">cd
-curl https://github.com/imt-mobisyst/mb6-space/raw/master/bin/install-station &gt; install.bash
-bash install.bash
-rm install.bash
+git clone https://github.com/imt-mobisyst/mb6-space
+cd mb6-spqce
+.bin/install-station
 </code></pre>
 <h2 id="manual-install">Manual Install</h2>
-<p>Install some usefull softs:</p>
-<pre><code class="language-shell">sudo apt update
-sudo apt upgrade -y
-sudo apt install -y zsh git git-lfs davfs2 openssh-server \
-    gnome-tweaks freecad prusa-slicer diodon \
-    git git-lfs meld \
-    build-essential check cmake default-jre \
-    python3 python3-pip spyder \
-    texlive texlive-base biber texlive-latex-recommended \
-    texlive-publishers texlive-bibtex-extra texlive-science texlive-luatex \
-    latexila pandoc wkhtmltopdf \
-    gimp steam inkscape
-pip install zmq tqdm pytest beautifulsoup4 matplotlib
-</code></pre>
-<p>Clone mb6-space:</p>
-<pre><code class="language-shell">cd
-if [ ! -d &quot;mb6-space&quot; ]; then
-  git config --global http.sslverify false
-  git clone https://github.com/imt-mobisyst/mb6-space.git
-fi
-cd mb6-space
-</code></pre>
-<p>One last software:</p>
-<pre><code class="language-shell">sudo dpkg -i deps/code_1.79.2-1686734195_amd64.deb
-</code></pre>
-<p>You also have to configure the user environemnt (i.e. default bash configurations) :</p>
-<pre><code class="language-shell">echo &quot;
-
-# mb6 ROS environment:
-source ~/mb6-space/bin/run-commands.bash&quot; &gt;&gt; ~/.bashrc
-</code></pre>
-<p>For conveignance you can setup some particular git configuration:</p>
-<pre><code class="language-shell">git config --global user.name bot
-git config --global user.email mobisyst@imt-nord-europe.fr
-git config --global credential.helper cache
-git config --global http.sslVerify false
-git-lfs install
-</code></pre>
-<p>That-it, you can return on the <a href="../README.md">README.md</a> file and process to ROS, RealSense and Gazebo installations.</p>
-<p>(or: </p>
-<pre><code class="language-shell">./bin/install-ros-setup
-./bin/install-ros
-./bin/install-realsense
-./bin/install-gazebo
-</code></pre>
-<p>)</p></div>
+<p>Well, <a href="../bin/install-station">install-station</a> script into an editor, and process the command manually.
+Comment in the scripts helps to adapt the installation you want.</p>
+<h2 id="first-login_1">First login:</h2></div>
             </div>
         </div>
 
