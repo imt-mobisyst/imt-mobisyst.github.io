@@ -50,7 +50,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Kick-Off</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">OS and Shell</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">OS and Shell</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../first-contact/">Nodes and Topics</a>
                   </li>
@@ -124,121 +124,135 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="operating-system-linuxubuntu-for-ros2">Operating System: Linux/Ubuntu for ROS2</h1>
-<p><code>ROS</code> stand for <strong>R</strong>obot <strong>O</strong>perating <strong>S</strong>ystem however it extend a classical <strong>O</strong>perating <strong>S</strong>ystem, a Linux/Ubuntu OS.</p>
-<p>The goal of this tutorial is to come back on basic <strong>O</strong>perating <strong>S</strong>ystem notions and mainly the <em>Shell</em> offering the simplest way to interact with your computer.</p>
+<p><code>ROS</code> stands for <strong>R</strong>obot <strong>O</strong>perating <strong>S</strong>ystem. However, it extends a classical <strong>O</strong>perating <strong>S</strong>ystem, specifically a Linux/Ubuntu OS.</p>
+<p>The goal of this tutorial is to revisit basic <strong>O</strong>perating <strong>S</strong>ystem concepts, focusing mainly on the <em>Shell</em>, which offers the simplest way to interact with your computer.</p>
 <ul>
-<li>For an introduction to OS read the <a href="https://en.wikipedia.org/wiki/Operating_system">wikipedia page</a></li>
+<li>For an introduction to operating systems, read the <a href="https://en.wikipedia.org/wiki/Operating_system">Wikipedia page</a>.</li>
 </ul>
+<hr />
 <h2 id="play-with-linux">Play with Linux</h2>
-<p>Ubuntu is a Linux distribution (Operating System + Window Managment + Tools) derived from Debian distribution, in the galaxies of Open source solutions.</p>
+<p>Ubuntu is a Linux distribution (Operating System + Window Management + Tools) derived from the Debian distribution, within the galaxy of Open Source solutions.</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Open_source">Open Source</a> means that every user can deep into the source code of the programs (open source is not necessarily free of charge).</li>
-<li><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> is mostly an OS kernel. It exposes computer capability (computing, memory access and other devices) to developers. Typically <code>C/C++</code> language was developed for the Linux kernel.</li>
-<li><a href="https://en.wikipedia.org/wiki/Linux_distribution">Distribution</a> will configure together an OS kernel, software management (packages), an IHM (display server + desktop environment) and a bench of softwares. </li>
+<li><a href="https://en.wikipedia.org/wiki/Open_source">Open Source</a> means that every user can access the source code of the programs (open source is not necessarily free of charge).</li>
+<li><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> is mostly an OS kernel. It exposes computer capabilities (computing, memory access, and other devices) to developers. The <code>C/C++</code> programming languages were developed for the Linux kernel.</li>
+<li><a href="https://en.wikipedia.org/wiki/Linux_distribution">Distribution</a> refers to an OS kernel combined with software management (packages), a GUI (display server + desktop environment), and various software tools.</li>
 </ul>
-<p>Typically, <strong>ROS</strong> is designed to work on <em>Ubuntu</em>: <em>Linux kernel</em>, <em>GNOME</em> desktop, aptitude (apt) package manager.</p>
-<p><em>Ubuntu</em> is a good example of <strong>Open Source</strong> project:</p>
+<p>Typically, <strong>ROS</strong> is designed to work on <em>Ubuntu</em>, which includes the following: a <em>Linux kernel</em>, <em>GNOME</em> desktop environment, the aptitude (<code>apt</code>) package manager.</p>
+<p><em>Ubuntu</em> is a great example of an <strong>Open Source</strong> project:</p>
 <ul>
-<li>It is based on another <strong>Open Source</strong> project: <em>Debian OS</em> to capitalize on the <em>Debian</em> community works, while offering a more easy-to-use solution.</li>
-<li>It searches for profitability with <a href="https://ubuntu.com/pro">Ubuntu Pro</a>.</li>
-<li>It is used in return for other Linux-based OS: <em>Pop!_os</em> or <em>Zorin</em> for instance.</li>
+<li>It is based on another <strong>Open Source</strong> project: <em>Debian OS</em>, leveraging the <em>Debian</em> community’s work while offering a more user-friendly solution.</li>
+<li>It aims for profitability through <a href="https://ubuntu.com/pro">Ubuntu Pro</a>.</li>
+<li>It is used as a base for other Linux-based OSs, such as <em>Pop!_OS</em> and <em>Zorin</em>.</li>
 </ul>
-<p>Visit <a href="https://distrowatch.com/">distrowatch.com</a> to get an idea of the galaxy of interconnected <em>Linux OSs</em>.</p>
-<h2 id="the-shell-or-terminal">The shell or Terminal</h2>
-<p>In the variety of program running on Linux, we are mostly interested in the terminal emulator, permitting to manipulate our system directly from command (moving in the directory tree, read and organize files, execute scripts or programs, manage computer resources as a network, ect.).</p>
-<p>On Ubuntu, default terminal emulator is <em>gnome-terminal</em> (<a href="https://help.gnome.org/users/gnome-terminal/stable">help.gnome.org</a>) configured with <em>bash</em> (<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">on wikipedia</a>) command interpreter.</p>
-<p>Commands are interpretable instruction generally executing programs.
-It is expected that the following commands are known before to start working with <code>ROS</code>.</p>
-<p>To notice that <code>tabulation</code> allows for autocompletion.</p>
-<p>Explore the following command (i.e. what for, how to use it), then play with the command in your terminal.</p>
+<p>Visit <a href="https://distrowatch.com/">distrowatch.com</a> to explore the interconnected galaxy of <em>Linux OSs</em>.</p>
+<hr />
+<h2 id="the-shell-or-terminal">The Shell or Terminal</h2>
+<p>Among the variety of programs running on Linux, we are particularly interested in the terminal emulator, which allows direct manipulation of the system via commands (navigating the directory tree, reading and organizing files, executing scripts or programs, managing system resources such as the network, etc.).</p>
+<p>On Ubuntu, the default terminal emulator is <em>gnome-terminal</em> (<a href="https://help.gnome.org/users/gnome-terminal/stable">help.gnome.org</a>), configured with the <em>bash</em> (<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">on Wikipedia</a>) command interpreter.</p>
+<p>Commands are interpretable instructions that generally execute programs. The following commands are expected to be known before starting with <code>ROS</code>.</p>
+<p>Note: <code>Tab</code> enables autocompletion.</p>
+<p>Explore the following commands (i.e., their purpose and usage), then practice using them in your terminal.</p>
+<hr />
 <h3 id="the-file-system">The File System</h3>
 <ul>
-<li><code>ls</code>: list directory elements</li>
-<li><code>cd</code>: change directory</li>
-<li><code>cat</code>: read all a text file</li>
-<li><code>more</code>: read a text file step by step</li>
-<li><code>touch</code>: touch a resource (create if absent)</li>
-<li><code>nano</code>: edit a text file</li>
-<li><code>rm</code>: remove a file (permanently)</li>
-<li><code>mkdir</code>: create (make) a directory</li>
-<li><code>rmdir</code>: remove a directory</li>
-<li><code>mv</code>: move a resource</li>
-<li><code>cp</code>: copy-paste a file</li>
-<li><code>clear</code>: clear your shell</li>
+<li><code>ls</code>: List directory elements.</li>
+<li><code>cd</code>: Change directory.</li>
+<li><code>cat</code>: Display the content of a text file.</li>
+<li><code>more</code>: Read a text file page by page.</li>
+<li><code>touch</code>: Create a file (if absent).</li>
+<li><code>nano</code>: Edit a text file.</li>
+<li><code>rm</code>: Permanently remove a file.</li>
+<li><code>mkdir</code>: Create a new directory.</li>
+<li><code>rmdir</code>: Remove a directory.</li>
+<li><code>mv</code>: Move or rename a resource.</li>
+<li><code>cp</code>: Copy a file.</li>
+<li><code>clear</code>: Clear the shell screen.</li>
 </ul>
-<p>Manipulate pathes :</p>
+<p><strong>Path manipulation:</strong></p>
 <ul>
-<li><code>/</code>: the root directory in Linux system - example: <code>du /bin/bash</code> (du - estimate file space usage)</li>
-<li><code>.</code>: the current directory - example: <code>mkdir ./workspace</code></li>
-<li><code>..</code>: the parent directory - example: <code>cd ../../media</code></li>
-<li><code>~</code>: the user directory - example: <code>cd ~/Documents</code></li>
-<li><strong>CApitAl Letters maTer</strong> - example: <code>cd ~/Documents</code> <span class="arithmatex">\(\neq\)</span> <code>cd ~/documents</code></li>
+<li><code>/</code>: Root directory in a Linux system - Example: <code>du /bin/bash</code> (du estimates file space usage).</li>
+<li><code>.</code>: Current directory - Example: <code>mkdir ./workspace</code>.</li>
+<li><code>..</code>: Parent directory - Example: <code>cd ../../media</code>.</li>
+<li><code>~</code>: User home directory - Example: <code>cd ~/Documents</code>.</li>
+<li><strong>CApitAl Letters maTer</strong> - Example: <code>cd ~/Documents</code> ≠ <code>cd ~/documents</code>.</li>
 </ul>
+<hr />
 <h3 id="mastering-commands">Mastering Commands</h3>
-<p>The classical syntax is: <code>command --option -o argument1</code> - example: <code>ls -a ~</code>.</p>
-<p>Commands exits for helping to master all the other commands:</p>
+<p>The classical syntax is: <code>command --option -o argument1</code> - Example: <code>ls -a ~</code>.</p>
+<p>Commands exist to help master other commands:</p>
 <ul>
-<li><code>man</code>: command and library manual - example: <code>man cp</code></li>
-<li><code>apropos</code>: search in the manuals - example: <code>apropos search</code></li>
-<li><code>whereis</code>: find the location of a resource - example: <code>whereis python3</code></li>
-<li><code>alias</code>: create our own command - example: <code>alias listall="ls -a"</code></li>
+<li><code>man</code>: Command and library manual - Example: <code>man cp</code>.</li>
+<li><code>apropos</code>: Search manuals - Example: <code>apropos search</code>.</li>
+<li><code>whereis</code>: Locate a resource - Example: <code>whereis python3</code>.</li>
+<li><code>alias</code>: Create a custom command - Example: <code>alias listall="ls -a"</code>.</li>
 </ul>
-<h3 id="sessions-and-environment">Sessions and environment</h3>
+<hr />
+<h3 id="sessions-and-environment">Sessions and Environment</h3>
 <p>A session is an active connection to a system or program.</p>
 <ul>
-<li><code>who</code>: List the open session in a computer</li>
-<li><code>ssh</code>: Open a session in a distant computer following the <code>ssh</code> (<a href="https://en.wikipedia.org/wiki/Secure_Shell">secure shell</a>) protocol.</li>
+<li><code>who</code>: List active sessions on a computer.</li>
+<li><code>ssh</code>: Open a session on a remote computer using the <code>ssh</code> (<a href="https://en.wikipedia.org/wiki/Secure_Shell">Secure Shell</a>) protocol.</li>
 </ul>
-<p>In return, an environment is a computer system or set of systems in which a computer program or software component is deployed and executed. (<a href="https://en.wikipedia.org/wiki/Deployment_environment">Wikipedia Sept. 2023</a>)</p>
+<p>An environment is the system configuration in which a program runs. (<a href="https://en.wikipedia.org/wiki/Deployment_environment">Wikipedia Sept. 2023</a>).</p>
 <ul>
-<li><code>env</code>: list the environment variable.</li>
-<li><code>$</code>: access a variable - example: <code>echo $PATH</code></li>
-<li><code>export</code>: create a new variable - example: <code>export PATH=$PATH:~/bin</code></li>
-<li><code>~/.bashrc</code> (file): user run-commands' configuration.</li>
+<li><code>env</code>: List environment variables.</li>
+<li><code>$</code>: Access a variable - Example: <code>echo $PATH</code>.</li>
+<li><code>export</code>: Create a new variable - Example: <code>export PATH=$PATH:~/bin</code>.</li>
+<li><code>~/.bashrc</code>: User run-command configuration file.</li>
 </ul>
-<h3 id="user-group-and-rules">User, Group and Rules</h3>
+<hr />
+<h3 id="user-group-and-rules">User, Group, and Rules</h3>
 <ul>
-<li>User are identified and attached to groups</li>
-<li>User and group have a name and a number</li>
-<li>Resources are owned by a user and a group</li>
-<li>Specific access can be tuned for each resource <ul>
-<li><code>r</code>: read <span class="arithmatex">\(\quad\)</span> <code>w</code>: write <span class="arithmatex">\(\quad\)</span> <code>x</code>: executed/open</li>
-<li>For the <em>user</em>, the <em>group</em> members and <em>all</em> the others</li>
+<li>Users are identified and grouped.</li>
+<li>Users and groups have names and IDs.</li>
+<li>Resources are owned by users and groups.</li>
+<li>Access permissions can be configured for resources:<ul>
+<li><code>r</code>: Read, <code>w</code>: Write, <code>x</code>: Execute/Open.</li>
+<li>Permissions apply to the <em>user</em>, <em>group</em>, and <em>others</em>.</li>
 </ul>
 </li>
 </ul>
-<p>The <code>ls -l</code> command lists the content of a repertory with ownership and authorization - Example with <code>ls -l /etc</code>.</p>
-<p>With <code>cat /etc/passwd</code> it is possible to list all users (<code>/etc/group</code> for the groups).</p>
-<p>Somme commands: </p>
+<p>The <code>ls -l</code> command lists the contents of a directory with ownership and permissions - Example: <code>ls -l /etc</code>.</p>
+<p>To list all users: <code>cat /etc/passwd</code> (for groups, <code>cat /etc/group</code>).</p>
+<p><strong>Commands:</strong></p>
 <ul>
-<li><code>chmod</code>: change authorizations - Examples:
-<code>chmod +x aFile</code> - add <em>x</em> authorization on <em>aFile</em>
-<code>chmod 752 aFile</code> - set authorization on <em>aFile</em> on a binary style</li>
-<li><code>chown</code>: change the owner </li>
+<li><code>chmod</code>: Change file permissions.<ul>
+<li>Example: <code>chmod +x aFile</code> (add execute permission to <em>aFile</em>).</li>
+<li>Example: <code>chmod 752 aFile</code> (set permissions in binary style).</li>
 </ul>
-<h3 id="manage-processes">Manage Processes</h3>
+</li>
+<li><code>chown</code>: Change ownership.</li>
+</ul>
+<hr />
+<h3 id="managing-processes">Managing Processes</h3>
+<p>Processes are running instances of programs. Key commands:</p>
 <ul>
-<li><code>ps</code>: similar to ls but for processes- exemple:
-<code>gedit &amp;</code> - <code>&amp;</code> permits to get back to the prompt
-<code>ps</code> - List the local processes (ie. children of the bash shell)
-<code>ps -e</code> - list all processes</li>
-<li><code>top</code>: interactive process monitoring ( <em>Q</em> to quit )</li>
-<li><code>kill</code>: sent a signal to a process 
-<code>kill 19482</code> - send TERM signal to process <em>19482</em>
-<code>kill -s KILL 19482</code> - send KILL signal to process <em>19482</em></li>
+<li><code>ps</code>: Lists processes.<ul>
+<li>Example: <code>ps</code> (list local processes started by the current shell).</li>
+<li>Example: <code>ps -e</code> (list all processes).</li>
 </ul>
-<p>For managing processes, OS attaches some elements to each one:<br />the <em>PID</em> (Process IDentifier), a parent, ...</p>
-<h3 id="some-bash-tools-and-shortcuts">Some Bash tools and shortcuts</h3>
-<p><strong>bash</strong> is one of the shell solutions on Unix systems.</p>
+</li>
+<li><code>gedit</code>: launches a graphical text editor. You should use <code>gedit &amp;</code> to get back to the prompt and send the gedit process to the background.</li>
+<li><code>top</code>: Interactive process monitoring (<code>Q</code> to quit).</li>
+<li><code>kill</code>: Sends signals to processes.<ul>
+<li>Example: <code>kill 19482</code> (send TERM signal to process 19482).</li>
+<li>Example: <code>kill -s KILL 19482</code> (send KILL signal to process 19482).</li>
+</ul>
+</li>
+</ul>
+<p>Processes have attributes like a <em>PID</em> (Process Identifier) and a parent process.</p>
+<hr />
+<h3 id="some-bash-tools-and-shortcuts">Some Bash Tools and Shortcuts</h3>
+<p><strong>Bash</strong> is one of the shell solutions available on Unix systems.</p>
 <ul>
-<li><code>tabulation</code>: auto-complete the command line or list the possibilities</li>
-<li><code>!xx</code>: run again the last command starting with <code>xx</code></li>
-<li><code>ctrl-r</code>: search for a command in command history</li>
-<li><code>Q</code>: quit a runnig program</li>
-<li><code>ctr-c</code>: terminate a running program</li>
-<li><code>~/.bashrc</code> (file): again, user run-commands' configuration.</li>
+<li><code>Tab</code>: Auto-complete the command or list possible options.</li>
+<li><code>!xx</code>: Re-run the last command starting with <code>xx</code>.</li>
+<li><code>Ctrl-R</code>: Search for a command in history.</li>
+<li><code>Q</code>: Quit a running program.</li>
+<li><code>Ctrl-C</code>: Terminate a running program.</li>
+<li><code>~/.bashrc</code>: User-specific shell configuration file.</li>
 </ul>
-<p>And more on (<a href="https://en.wikibooks.org/wiki/Linux_Guide/Linux_commands">Wikipedia</a>).</p>
+<p>For more, see (<a href="https://en.wikibooks.org/wiki/Linux_Guide/Linux_commands">Wikipedia</a>).</p>
               
             </div>
           </div><footer>

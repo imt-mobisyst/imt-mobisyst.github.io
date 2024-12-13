@@ -146,7 +146,7 @@ def aCallback( aContext, aMsg ):
 </code></pre>
 <p>And <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object-Oriented Programming</a> allows such a thing.
 The trick consists of defining a class to model the context, and use a method of the class as call-back function.</p>
-<p>In python: </p>
+<p>In python:</p>
 <pre><code class="language-python"># Define a callback function
 class Context :
     def aCallback( self, aMsg ):
@@ -222,17 +222,17 @@ one of the solutions, is to define initialize ros client only in the process met
         rclpy.shutdown()
 </code></pre>
 <h2 id="event-driven-programming">Event-driven programming</h2>
-<p>To notice that <a href="https://en.wikipedia.org/wiki/Event-driven_programming">Event-Driven Programming</a> is not something unique for ROS.
+<p>Notice that <a href="https://en.wikipedia.org/wiki/Event-driven_programming">Event-Driven Programming</a> is not something unique for ROS.
 Typically, most of the IHM API or web technology are based on EDP.</p>
 <p>Technically in ROS, it is managed by the ros client, with the <code>spin_once</code> or <code>spin</code> functions.
 These 2 functions connect events (the reception of a message for instance) with the appropriate callback.
 It is also those functions that effectively push messages into the topics after a <code>publishe</code> action.</p>
 <p><code>spin_once</code> activates once the ros client and should be call in an infinite loop.
 <code>spin</code> handle the infinite loop directly (and should be preferred).</p>
-<p>To notice that it is possible to generate events with timers:</p>
+<p>Notice that it is possible to generate events with timers:</p>
 <pre><code class="language-python">aNode.create_timer( timer_period, timer_callback )
 </code></pre>
-<p>For instance, with a simple publisher: </p>
+<p>For instance, with a simple publisher:</p>
 <pre><code class="language-python">#!/usr/bin/python3
 import rclpy
 from rclpy.node import Node

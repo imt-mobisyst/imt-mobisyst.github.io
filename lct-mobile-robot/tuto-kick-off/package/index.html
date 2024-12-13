@@ -54,7 +54,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../first-contact/">Nodes and Topics</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">ROS Package</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">ROS Package</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../move/">Move the Robot</a>
                   </li>
@@ -136,10 +136,12 @@ It should be processes at the root directory, so in your <code>ros_space</code>.
 colcon build
 ls
 </code></pre>
-<p>The build process generates three directories:
-- <code>build</code> with temporaly generated files by the build process ;
-- <code>install</code> with generated ressources of the packages ;
-- <code>log</code> for logs.</p>
+<p>The build process generates three directories:</p>
+<ul>
+<li><code>build</code> with temporaly generated files by the build process ;</li>
+<li><code>install</code> with generated ressources of the packages ;</li>
+<li><code>log</code> for logs.</li>
+</ul>
 <p>At this time, there is no packages on your workspace, the <code>build</code>, <code>install</code> and <code>log</code> directories are almost empty.
 The results of <code>colcon list</code> (listing packages in the directory tree) or <code>colcon graph</code> (list with dependancies) are also empty.</p>
 <pre><code class="language-sh">colcon list
@@ -183,9 +185,9 @@ Typically, we can install there your <code>talker</code> and <code>listerner</co
 cp playground/talker.py tutorial_pkg/scripts/talker
 cp playground/listener.py tutorial_pkg/scripts/listener
 </code></pre>
-<p>Also, we need to inform whitch interpreter can process our script (ie python3).
+<p>Also, we need to inform which interpreter can process our script (ie python3).
 Add a <code>#!/usr/bin/python3</code> at the first line in <code>talker</code> and <code>listerner</code> scripts.
-The <code>#!</code> states that the code interpreter follow.
+<code>#!</code> is a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> meaning that the rest of the line is used to determine the program to interpret the content of the current file.
 <code>/usr/bin/python3</code> is simplely the result of the command <code>whereis python3</code>.</p>
 <p>Next, we have to modify <code>CMakeLists.txt</code> to state that <code>talker</code> and <code>listerner</code> should be installed as program (ie. in the appropriate destination to make them reachable by <code>ros2</code> command).</p>
 <p>So add a <em>python scripts</em> section to your <code>CMakeLists.txt</code> file:</p>
@@ -205,14 +207,14 @@ Then it would be possible to start your node with <code>ros2 run</code> command.
 ros2 run tutorial_pkg talker #or listener
 </code></pre>
 <hr />
-<p>To notice that, if your python <code>node</code> script relies on a local python package (<code>myLocalPkg</code> for instance).
+<p>Notice that, if your python <code>node</code> script relies on a local python package (<code>myLocalPkg</code> for instance).
 This one should be install aside of your script with the following <code>cmake</code> instruction:</p>
 <pre><code class="language-cmake">install( DIRECTORY scripts/myLocalPkg DESTINATION lib/${PROJECT_NAME} )
 </code></pre>
 <h2 id="launch-file">Launch file</h2>
-<p><em>ROS</em> propose a launch mechanism to start in one command a configuration of several nodes.
+<p><em>ROS</em> proposes a launch mechanism to start in one command a configuration of several nodes.
 Launch file can be defined with markup language (<em>XML</em> or <em>YAML</em>) or python3 for more complex launch scenarios.</p>
-<p><em>Yaml</em> purposes the simplest syntax to write launch files. The <a href="https://yaml.org">yaml.org</a> give an example of a yaml resources.
+<p><em>Yaml</em> provides the simplest syntax to write launch files. The <a href="https://yaml.org">yaml.org</a> gives an example of a yaml resources.
 Similarly to <em>Python</em>, it relies on indentation to mark the ownership of elements.</p>
 <p>Another example:</p>
 <pre><code class="language-yaml">aMark:
@@ -253,7 +255,7 @@ install(DIRECTORY
 <pre><code class="language-sh">colcon build
 ros2 launch tutorial_pkg converse_launch.yaml
 </code></pre>
-<p>To notice that other resources can be added to your package. Typically <code>rviz</code> for visualization configuration, <code>world</code> for simulation configuration, etc.</p>
+<p>Notice that other resources can be added to your package. Typically <code>rviz</code> for visualization configuration, <code>world</code> for simulation configuration, etc.</p>
 <pre><code class="language-cmake"># Install resource files.
 install(DIRECTORY
   launch rviz world

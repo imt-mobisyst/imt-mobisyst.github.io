@@ -58,7 +58,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../move/">Move the Robot</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Simulation</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Simulation</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
@@ -124,17 +124,19 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="simulation-in-ros">Simulation in ROS</h1>
-<p>Simulating robotics systems is crucial before doing real experiments.
-It exsits several simulators:
-- https://gazebosim.org/home
-- https://www.coppeliarobotics.com
-- https://carla.org
-- https://github.com/osrf/vrx</p>
-<p>In this turial, we will use Stage (2d) and Gazebo (3d).</p>
+<p>Simulating robotic systems is crucial before doing real experiments.
+It exsits several simulators:</p>
+<ul>
+<li><a href="https://gazebosim.org/home">https://gazebosim.org/home</a></li>
+<li><a href="https://www.coppeliarobotics.com">https://www.coppeliarobotics.com</a></li>
+<li><a href="https://carla.org">https://carla.org</a></li>
+<li><a href="https://github.com/osrf/vrx">https://github.com/osrf/vrx</a></li>
+</ul>
+<p>In this tutorial, we will use two of them: Stage (2d) and Gazebo (3d).</p>
 <h2 id="stage-simulator">Stage Simulator</h2>
-<p>To install stage, you need to clone 2 repositories into your ROS workspace.
-Here the commands:</p>
-<pre><code>sudo apt install -y git cmake g++ libjpeg8-dev libpng-dev libglu1-mesa-dev libltdl-dev libfltk1.1-dev
+<h2 id="installing-stage">Installing Stage</h2>
+<p>Here the commands:</p>
+<pre><code class="language-console">sudo apt install -y git cmake g++ libjpeg8-dev libpng-dev libglu1-mesa-dev libltdl-dev libfltk1.1-dev
 mkdir pkg-stage
 cd pkg-stage
 git clone --branch ros2 https://github.com/tuw-robotics/Stage.git
@@ -143,17 +145,17 @@ cd ..
 colcon build --cmake-args -DOpenGL_GL_PREFERENCE=LEGACY
 colcon build --packages-select stage_ros2
 </code></pre>
-<p>Once installed, you can test the stage demo:</p>
-<pre><code>ros2 launch stage_ros2 stage.launch.py world:=cave
+<h2 id="first-launch-exercices">First Launch &amp; Exercices</h2>
+<pre><code class="language-console">ros2 launch stage_ros2 stage.launch.py world:=cave
 </code></pre>
 <p>Note: by pressing 'r' you can see a 3d view of the scene in stage.</p>
-<p>Question:
-- What are the topics published by stage?
-- Launch rviz2 and display the robot position and its laser scan data</p>
+<p><strong>Question</strong>: What are the topics published by stage?</p>
+<p><strong>Exercise</strong>: Launch <code>rviz2</code> and display the robot position and its laser scan data</p>
 <p>Teleoperate the robot using the keyboard by running:</p>
-<pre><code>ros2 run teleop_twist_keyboard teleop_twist_keyboard
+<pre><code class="language-console">ros2 run teleop_twist_keyboard teleop_twist_keyboard
 </code></pre>
-<p>Ensure that the robot is correctly moving in stage and that the data are correctly displayed in rviz2.</p>
+<p>Ensure that the robot is correctly moving in stage and that the laser data are correctly displayed in rviz2.</p>
+<p><strong>Question</strong>: Why the robot is moving in the simulator?</p>
 <h2 id="gazebo-simulator">Gazebo Simulator</h2>
 <p><a href="http://gazebosim.org/">Gazebo</a> is a 3D simulator.
 It makes it possible to rapidly test algorithms, design robots, perform regression testing, and train AI systems using realistic scenarios.

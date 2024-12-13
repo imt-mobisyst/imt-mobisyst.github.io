@@ -52,7 +52,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../basics/">OS and Shell</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Nodes and Topics</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Nodes and Topics</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../package/">ROS Package</a>
                   </li>
@@ -124,13 +124,9 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="ros-basics">ROS Basics</h1>
-<p>The goal of this tutorial is to set up a workspace for all the resources we need to install and develop in our journey to control robots.
-We choose to work with <em>ROS</em> (the most used open middleware for robotics) on a <em>Linux-Ubuntu</em> computer (which is the best-supported OS by <em>ROS</em>).</p>
-<p>This tutorial supposes that you have a <em>Ubuntu-Like 22.04 computers</em> with configured Python and C++ APIs.
-The tutorial relies on <a href="https://docs.ros.org/en/iron">ROS2 Iron</a>.</p>
-<p>To notice that the <code>wiki.ros.org</code> website refers to <em>ROS1</em>.
-<em>ROS1</em> is very similar to <em>ROS2</em> but with important differences.
-So be careful about the internet research result.</p>
+<p>The goal of this tutorial is to set up a workspace for all the resources required to install and develop as part of our journey to control robots. We will work with <em>ROS</em> (the most widely used open middleware for robotics) on a <em>Linux-Ubuntu</em> computer, which is the best-supported operating system for <em>ROS</em>.</p>
+<p>This tutorial assumes you are using an <em>Ubuntu-like 22.04 computer</em> with configured Python and C++ APIs. It is based on <a href="https://docs.ros.org/en/iron">ROS2 Iron</a>.</p>
+<p>The <code>wiki.ros.org</code> website primarily refers to <em>ROS1</em>. While <em>ROS1</em> and <em>ROS2</em> share similarities, there are significant differences between them. Be cautious when interpreting search results on the internet, as they might refer to <em>ROS1</em> instead of <em>ROS2</em>.</p>
 <h2 id="nodes-and-topics">Nodes and Topics</h2>
 <p>Robots are complex cybernetic systems that require complex software to handle complex missions.
 That for, the main feature proposed by <em>ROS</em> is to develop programs in a modular way.
@@ -138,15 +134,15 @@ Pieces of programs are dedicated to atomic functionalities and the overall contr
 <p>A piece of program is called <em>node</em> and <em>nodes</em> exchange data by communicating through <em>topics</em>.</p>
 <p>This tutorial part relies directly on ROS documentation <a href="https://docs.ros.org/">docs.ros.org</a>.</p>
 <ol>
-<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html">Configuring environment</a>: You should well understand how to configure your Linux environment.</li>
-<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">First contact</a>: Then, you can play with the hello world example on <em>ROS2</em>. To notice that <code>sudo</code> commands suppose you have administrator privilege on the computer. </li>
-<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a>: well, it is on the title.</li>
-<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a>: ...</li>
+<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html">Configuring environment</a>: You should well understand how to configure your Linux environment</li>
+<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">First contact</a>: Then, you can play with the hello world example on <em>ROS2</em>. Notice that <code>sudo</code> commands suppose you have administrator privilege on the computer</li>
+<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li><a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 </ol>
 <p>At this point you should be comfortable with the core component of <em>ROS</em>, nodes and topics.
-You realized that you will interact a lot with your software architecture throuh your terminal. 
+You realized that you will interact a lot with your software architecture throuh your terminal.
 So a good practice consists of turning your terminal prompt to clearly state your <em>ROS</em> configuration at any time...</p>
-<p>Add the following 2 lines into your <code>~/.bashrc</code> file. 
+<p>Add the following 2 lines into your <code>~/.bashrc</code> file.
 The bash run command file (<code>~/.bashrc</code>) is a good tool to configure all your terminal with common environment variables and configurations.</p>
 <pre><code class="language-bash"># Tunned prompt:
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:($ROS_AUTOMATIC_DISCOVERY_RANGE::$ROS_DOMAIN_ID)\[\033[01;34m\]\w\[\033[00m\].\n\$ '
@@ -154,16 +150,16 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:($ROS_AU
 <h2 id="python-api">Python API</h2>
 <p><em>ROS</em> include more elements, components like <em>services</em> and <em>actions</em>, features like <em>parameters</em> or tools to debug (<em>rqt_console</em>), visualize (<em>rviz2</em>), launch configurations of nodes (launch) or recording topics (<em>bag</em>).
 But let see the Python API (<a href="https://en.wikipedia.org/wiki/API">Application Programming Interface</a>) on nodes and topics first, before to visit other <em>ROS</em> elements.</p>
-<p>To notice that the purpose of this lecture and its tutorials is not to cover all <em>ROS</em> elements.
+<p>Notice that the purpose of this lecture and its tutorials is not to cover all <em>ROS</em> elements.
 Furthermore, the tutorials are designed with <code>ament_cmake</code> build tool, mostly <code>python</code> node and <code>yaml</code> launch files.
 Other solutions are provided by <em>ROS2</em>.</p>
 <h3 id="setup-a-dev-environment">Setup a Dev. Environment</h3>
-<p>First you should work on a dedicated directory to regroup the <em>ROS</em> things you need and you develop, let say your <code>ros_space</code> or <code>ros_ws</code>.
-The <code>things</code> would generally be <code>packages</code> but we will see that later. 
-In this work space, we will work for now on a <code>playground</code> directory and mode specifically on <em>ROS</em> <code>talker</code> and <code>listener</code> python script.</p>
-<p>To set up our environment in a terminal: </p>
+<p>First, you should work on a dedicated directory to regroup the <em>ROS</em> things you need and you develop, let say your <code>ros_space</code> or <code>ros_ws</code>.
+The <code>things</code> would generally be <code>packages</code> but we will see that later.
+In this workspace, we will work for now on a <code>playground</code> directory and mode specifically on <em>ROS</em> <code>talker</code> and <code>listener</code> python script.</p>
+<p>To set up our environment in a terminal:</p>
 <pre><code class="language-sh">cd                               # Go to the home directory of the current user.
-mkdir ros_space                  # Create a directory 
+mkdir ros_space                  # Create a directory
 cd ros_space                     # Enter it
 mkdir playground                 # Create a directory
 touch playground/talker.py       # Create a file (if it does not exist)
@@ -175,7 +171,7 @@ At this point, your IDE should have <span class="arithmatex">\(3\)</span> areas:
 The explorer should contain the <code>playground</code> directory with your <span class="arithmatex">\(2\)</span> python scripts inside.</p>
 <h3 id="talker-a-simple-topic-publisher">Talker: a simple topic publisher</h3>
 <p>The goal of our first program is to send a message on a topic.
-For that we need the <em>ROS</em> client Python package (<code>rclpy</code>) for initializing <em>ROS</em> and creating nodes, and all the packages defining all the types of messages the program should manipulate (only simple string message on our example).</p>
+For that, we need the <em>ROS</em> client Python package (<code>rclpy</code>) for initializing <em>ROS</em> and creating nodes, and all the packages defining all the types of messages the program should manipulate (only simple string message on our example).</p>
 <p>At the end the first <code>hello world</code> program will look like:</p>
 <pre><code class="language-python">import rclpy
 from rclpy.node import Node
@@ -218,8 +214,8 @@ aside from the other standard message type of <code>std_msgs</code>.</p>
 <a href="https://index.ros.org/p/geometry_msgs">geometry_msgs</a> for objects defined on the Cartesian coordinate system, <a href="https://index.ros.org/p/visualization_msgs">visualization_msgs</a> focused on message types for visualization
 or <a href="https://index.ros.org/p/sensor_msgs">sensor_msgs</a>, well, for sensor-based data.</p>
 <h3 id="continuous-talker">Continuous Talker</h3>
-<p>In a second version, we aim to create a node publishing continuously messages. 
-For that purpose we move on Event-Driven Programming.</p>
+<p>In a second version, we aim to create a node publishing continuously messages.
+For that purpose, we use an <a href="https://en.wikipedia.org/wiki/Event-driven_programming">Event-Driven Programming</a> style.</p>
 <p>Technically in ROS, it is managed by the ros client, with the <code>spin_once</code> or <code>spin</code> functions.
 These <span class="arithmatex">\(2\)</span> functions connect events (the reception of a message for instance) with the appropriate callback.</p>
 <p><code>spin_once</code> activates once the ros client and wait for the next event. It should be called in an infinite loop.
@@ -228,9 +224,9 @@ These <span class="arithmatex">\(2\)</span> functions connect events (the recept
 <pre><code class="language-python">aNode.create_timer( duration, aCallback )
 </code></pre>
 <p>The call back function <code>aCallBack</code> will be called after a <code>duration</code> is terminated.</p>
-<p>Furthermore, the call-back functions generally require a context of execution. 
+<p>Furthermore, the call-back functions generally require a context of execution.
 Some already defined and accessible elements
-(for instance in our case, the publisher). 
+(for instance in our case, the publisher).
 For that purpose, we implement our <code>aCallBack</code> as a method of a class.</p>
 <p>The new talker script will lookalike:</p>
 <pre><code class="language-python">def infiniteTalk():
@@ -299,7 +295,7 @@ if __name__ == '__main__':
 <p>Run your listener as you run your talker.
 The <span class="arithmatex">\(2\)</span> nodes work together and define a very simple first software architecture.</p>
 <h2 id="logs">Logs</h2>
-<p>To notice that <em>ROS</em> provides its own, "<code>print</code>" function with a logger instance.
+<p>Notice that <em>ROS</em> provides its own, "<code>print</code>" function with a logger instance.
 The logger, attached to a node instance (<code>aRosNode.get_logger()</code>), records logs through different channels: <code>info</code>, <code>debug</code>, <code>warning</code> or <code>error</code>.
 More on <a href="https://docs.ros.org/en/iron/Tutorials/Demos/Logging-and-logger-configuration.html#basic-logging">docs.ros.org</a>.</p>
 <p>Logs can be followed with <code>rqt_console</code> tool.

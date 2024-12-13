@@ -65,7 +65,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../range-sensor/">Range Sensor</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Camera Driver</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Camera Driver</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
@@ -140,7 +140,7 @@ By searching for <code>libsdl2</code> with Ubuntu-Aptitude we will find several 
 </ul>
 <p>Other wise, we have to build/compile the driver from source code.
 In case of realsense, <a href="https://github.com/IntelRealSense/librealsense">librealsense</a> recommand to use <code>vcpkg</code> to build and install it.</p>
-<p>Normally, after installation, you can run a small script to request the cam (more on <a href="https://dev.intelrealsense.com/docs/python2">dev.intelrealsense.com</a>): </p>
+<p>Normally, after installation, you can run a small script to request the cam (more on <a href="https://dev.intelrealsense.com/docs/python2">dev.intelrealsense.com</a>):</p>
 <pre><code class="language-python">#!/usr/bin/env python3
 
 ###############################################
@@ -296,7 +296,7 @@ pipeline.stop()
 </ul>
 <h3 id="node-structure">Node structure:</h3>
 <p>To control the infinite loop we will prefer <code>spin_once</code> to <code>spin</code>.
-To notice that <code>spin_once</code> process once the ROS2 instructions.
+Notice that <code>spin_once</code> process once the ROS2 instructions.
 It blocks until an event occurs.
 It is possible to overpass that by specifying a timeout (<code>spin_once(myNode, timeout_sec=0.01)</code>).</p>
 <p>At the end we want a ROS2 Node that connect the camera and publish continously the images (color and depth images).
@@ -369,7 +369,7 @@ self.depth_publisher.publish(msg_depth)
 <pre><code class="language-python">self.config.enable_stream(rs.stream.infrared, 1, 848, 480, rs.format.y8, 60)
 self.config.enable_stream(rs.stream.infrared, 2, 848, 480, rs.format.y8, 60)
 
-self.infra_publisher_1 = self.create_publisher(Image, 'infrared_1',10) 
+self.infra_publisher_1 = self.create_publisher(Image, 'infrared_1',10)
 self.infra_publisher_2 = self.create_publisher(Image, 'infrared_2',10)
 infra_image_1 = np.asanyarray(infra_frame_1.get_data())
 infra_image_2 = np.asanyarray(infra_frame_2.get_data())
@@ -382,7 +382,7 @@ in the loop :
     infra_colormap_1 = cv2.applyColorMap(cv2.convertScaleAbs(infra_image_1, alpha=0.03), cv2.COLORMAP_JET)
 
     # Utilisation de colormap sur l'image infrared de la Realsense (image convertie en 8-bit par pixel)
-    infra_colormap_2 = cv2.applyColorMap(cv2.convertScaleAbs(infra_image_2, alpha=0.03), cv2.COLORMAP_JET)  
+    infra_colormap_2 = cv2.applyColorMap(cv2.convertScaleAbs(infra_image_2, alpha=0.03), cv2.COLORMAP_JET)
 
     msg_infra = self.bridge.cv2_to_imgmsg(infra_colormap_1,&quot;bgr8&quot;)
     msg_infra.header.stamp = msg_image.header.stamp

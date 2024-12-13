@@ -81,7 +81,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Kick-off</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Kick-off</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../challenge-1on2/">Challenge 1</a>
                   </li>
@@ -138,13 +138,13 @@ In the end, both the execution of the proposed solution and the source code with
 
 <p><img alt="" src="https://cdn.myminifactory.com/assets/object-assets/579fca2a374fc/images/720X720-7a4418213f3ce580bb21f641c36650bd5eb8cdb3.jpg" /></p>
 <p>Challenges are proposed to increase sequentially the complexity of the expected solution,
-but first the students have to structure their developping environment... </p>
+but first the students have to structure their developping environment...</p>
 <h2 id="create-a-group">Create a group</h2>
 <p>As a first move, you have to constitute a group of 2 developers.
 Record the created group on a shared document: <a href="https://partage.imt.fr/index.php/s/CJgSK6W8izdZKDi">2023-2024 groups</a>.</p>
 <ul>
 <li>Create on items in the enumerate list per groups</li>
-<li>Record the name of the machine you use and the names of each member of the group. </li>
+<li>Record the name of the machine you use and the names of each member of the group.</li>
 <li>The number of the line matches the number identifying a group starting from <span class="arithmatex">\(1.\)</span>. The group gets a unique number it can use as <code>ROS_DOMAIN_ID</code>.</li>
 </ul>
 <h2 id="generate-a-working-environment">Generate a working environment</h2>
@@ -156,12 +156,12 @@ Record the created group on a shared document: <a href="https://partage.imt.fr/i
 <li>git basics: <a href="https://git-scm.com/videos">in video</a></li>
 </ul>
 <p>Potentially the developers can share some of the versions there developed (or all) by installing an extra <code>git</code> on a shared server. <code>github</code> is certainly the most famous web git-solution (but you can install for instance a web application as <code>gitlab</code>  on your own server for instance).
-To notice that <code>gitlab</code> is both an open solution you can deploy on your own server and a web-service (<code>gitlab.com</code>) you can use.
+Notice that <code>gitlab</code> is both an open solution you can deploy on your own server and a web-service (<code>gitlab.com</code>) you can use.
 For this lecture, you will use <code>github</code> or <code>gitlab.com</code>, no other solution would be accepted.</p>
 <ul>
 <li>(Each of the developers) Create a github account.</li>
 <li>(One of the developers) Create a new repository on <code>github</code> and invite your teammate. Choose a name referring the group (for instance <code>uvlarm-machinename</code>), the idea is to propose a repository name clear but different from a group to another.</li>
-<li>(Each of the developers) Clone locally. In a termal: </li>
+<li>(Each of the developers) Clone locally. In a termal:</li>
 </ul>
 <pre><code class="language-sh">cd mb6-space
 git clone https://my.github.url/uvlarm-machinename.git
@@ -188,15 +188,15 @@ git clone github/uvlarm-machinename.git
 git add README.md
 </code></pre>
 <p>It is possible then to push on the server your first commit.
-One commit refer to one version of your project, you can (must) generate has versions has you want. 
+One commit refer to one version of your project, you can (must) generate has versions has you want.
 A commit do not have to serve a functional version of your works.
-It could be transitive commit. 
+It could be transitive commit.
 And most importantly git is capable to re-generate any of your commits, so do not hesitate to commit continuously...</p>
 <pre><code class="language-console">git commit -am &quot;Initialize README file&quot;
 git pull
 git push
 </code></pre>
-<p>All the other developers can now <code>pull</code> the new version (typically, in the Develter computers).... </p>
+<p>All the other developers can now <code>pull</code> the new version (typically, in the Develter computers)....</p>
 <h3 id="new-package">New package:</h3>
 <p>Then you can go inside your repository and create a new ros package:</p>
 <pre><code class="language-console">cd larm-machinename
@@ -219,12 +219,12 @@ mkdir src
 git clone github/repo.git src/grp-color
 colcon build
 </code></pre>
-<p>To notice that <code>colconn build</code> have to be performed from your workspace directory (<code>mysuper_ros_workspace</code> in this example, <code>mb6-space</code> in this courses aside of <em>tbot</em> and <em>tsim</em> packages).</p>
+<p>Notice that <code>colconn build</code> have to be performed from your workspace directory (<code>mysuper_ros_workspace</code> in this example, <code>mb6-space</code> in this courses aside of <em>tbot</em> and <em>tsim</em> packages).</p>
 <!--
 To relax this constraint you can add a simple shell script in your working directory...
 
 
-<pre><code class="language-consol">cd uvlarm-machinename # go to uvlarm-machinename 
+<pre><code class="language-consol">cd uvlarm-machinename # go to uvlarm-machinename
 touch build    # create a file named make.sh
 chmod +x build # make the file executable
 </code></pre>
@@ -242,7 +242,7 @@ colcon build
 
 Now a `./build` performed from the root directory of your repository would do the job (you can `add`, `commit`, `pull`, `push`, `build` from the same location).
 
-< ! - - 
+< ! - -
 
 ## Agile software development
 
