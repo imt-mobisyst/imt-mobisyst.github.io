@@ -92,7 +92,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">F.A.Q</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">F.A.Q</a>
                   </li>
               </ul>
               <ul>
@@ -132,6 +132,15 @@ and set <code>ROS_LOCALHOST_ONLY</code> to zero to permits several computer to s
 <p>add at the end of the file (with 42 for instance):</p>
 <pre><code class="language-console">export ROS_LOCALHOST_ONLY= 0
 export ROS_DOMAIN_ID= 42
+</code></pre>
+<h2 id="ros2-tbot-custom-topic-types">ROS2 tbot custom topic types</h2>
+<p>I cannot echo topics provided by the tbot such <code>/events/button</code> or <code>/events/bumper</code> because the type isn't recognized.</p>
+<p>To install those custom types:</p>
+<pre><code class="language-console">cd $ROS_WORKSPACE
+git clone https://github.com/imt-mobisyst/pkg-tbot.git
+rm -fr pkg-tbot/kobuki_core pkg-tbot/kobuki_node pkg-tbot/tbot_node pkg-tbot/kobuki_ros
+colcon build
+source $ROS_WORKSPACE/install/setup.bash
 </code></pre>
 <h2 id="ros2-tbot-driver">ROS2 tbot driver</h2>
 <blockquote>

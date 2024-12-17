@@ -54,7 +54,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../first-contact/">Nodes and Topics</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">ROS Package</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">ROS Package</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../move/">Move the Robot</a>
                   </li>
@@ -130,7 +130,7 @@ It relies on <code>colcon</code> tool to build, install and manage the package d
 <h2 id="the-colcon-command">The <code>colcon</code> command</h2>
 <p><code>colcon</code> is a meta command with several sub-command like <code>ros2</code> or <code>git</code>.
 Its main sub-command is <code>build</code>.
-The <code>colcon build</code> command searches for all compliant packages included in a directory tree, at any detph.
+The <code>colcon build</code> command searches for all compliant packages included in a directory tree, at any depth.
 It should be processes at the root directory, so in your <code>ros_space</code>.</p>
 <pre><code class="language-sh">cd ~/ros_space
 colcon build
@@ -165,7 +165,7 @@ colcon build
 Let create a <code>tutorial_pkg</code> package for instance.</p>
 <pre><code class="language-sh">ros2 pkg create --build-type ament_cmake tutorial_pkg
 colcon list
-colcon buil
+colcon build
 </code></pre>
 <h2 id="configuration-files">Configuration files</h2>
 <p>The <code>package.xml</code> provides metadata on the package (title, description, author licence).
