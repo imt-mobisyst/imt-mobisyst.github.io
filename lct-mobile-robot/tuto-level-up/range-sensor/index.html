@@ -218,8 +218,8 @@ rclpy.init()
 rosNode= Node('scan_interpreter')
 rosNode.create_subscription( LaserScan, 'scan', scan_callback, 10)
 
-while True :
-    rclpy.spin_once( rosNode )
+rclpy.spin( rosNode )
+
 scanInterpret.destroy_node()
 rclpy.shutdown()
 </code></pre>
@@ -254,9 +254,9 @@ aPoint.x= (float)(math.cos(angle) * aDistance)
 aPoint.y= (float)(math.sin( angle ) * aDistance)
 aPoint.z= (float)(0)
 </code></pre>
-<!--
-- [Doc to create PointCloud](https://docs.ros.org/en/iron/Releases/Release-Galactic-Geochelone.html#python-point-cloud2-utilities-available)
--->
+<ul>
+<li><em>PointCloud</em> mesage as part of the <a href="https://index.ros.org/p/sensor_msgs">sensor_msgs pkg</a> (yes we are using the deprecated one, and we should not)</li>
+</ul>
               
             </div>
           </div><footer>

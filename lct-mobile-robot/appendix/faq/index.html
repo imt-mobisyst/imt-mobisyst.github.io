@@ -141,24 +141,37 @@ export ROS_DOMAIN_ID= 42
 <p>I cannot echo topics provided by the tbot such <code>/events/button</code> or <code>/events/bumper</code> because the type isn't recognized.</p>
 <p>To install those custom types:</p>
 <pre><code class="language-console">cd $ROS_WORKSPACE
+git clone https://github.com/imt-mobisyst/pkg-interfaces.git
+colcon build --base-path pkg-interfaces
+source ./install/setup.bash
+</code></pre>
+<!--
+To install those custom types:
+
+
+<pre><code class="language-console">cd $ROS_WORKSPACE
 git clone https://github.com/imt-mobisyst/pkg-tbot.git
 rm -fr pkg-tbot/kobuki_core pkg-tbot/kobuki_node pkg-tbot/tbot_node pkg-tbot/kobuki_ros
 colcon build
-source $ROS_WORKSPACE/install/setup.bash
+source ./install/setup.bash
 </code></pre>
+
+-->
+
 <h2 id="ros2-tbot-driver">ROS2 tbot driver</h2>
 <blockquote>
-<p>How to get rid of ROS1 ;-)</p>
+<p>How to get ROS2 tbot driver on my computer (to use it without a Pi)</p>
 </blockquote>
-<p><strong>Install ROS2 tbot driver</strong>:</p>
-<pre><code>cd ~/ros2_ws/pkg-tbot
-git pull
+<p>Install:</p>
+<pre><code>cd $ROS_WORKSPACE
+git clone https://github.com/imt-mobisyst/pkg-interfaces.git
+git clone https://github.com/imt-mobisyst/pkg-tbot.git
+
 ./script/install-kobuki_ros.sh
 
-cd ~/ros2_ws
 colcon build
 </code></pre>
-<p><strong>Launch ROS2 tbot driver</strong>:</p>
+<p>Launch:</p>
 <pre><code># base only
 ros2 launch tbot_start base.launch.py
 
@@ -178,6 +191,7 @@ ros2 topic list
 To ensure it worked, the followwing command should display 1:</p>
 <pre><code>cat /sys/bus/usb-serial/devices/ttyUSB0/tty/ttyUSB0/device/latency_timer
 </code></pre>
+<p>--&gt;</p>
 <h2 id="there-is-no-wifi-on-my-dell-xps13">There is no Wifi on my dell-xps13 ?</h2>
 <ol>
 <li>Connect with cable</li>
