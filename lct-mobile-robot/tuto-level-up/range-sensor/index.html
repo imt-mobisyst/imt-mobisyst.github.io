@@ -63,11 +63,11 @@
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Range Sensor</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../camera-driver/">Camera Driver</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Range Sensor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../camera-driver/">Camera Driver</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Mastering</span></p>
@@ -130,52 +130,72 @@ By making the sensor rotating, it is possible to get measurements on a plan arou
 <p>Hokuhyo, equipping the <strong>Tbot</strong>, is typically a kind of rotating lidar sensor (<strong>l</strong>aser <strong>i</strong>maging or <strong>li</strong>ght <strong>d</strong>etection <strong>a</strong>nd <strong>r</strong>anging).
 The goal here is to integrate an almost 360 obstacle detection to generate safe robot movement.</p>
 <p>More complex lidar permits 3D measurements (i.e. in several plans at a time).</p>
-<h2 id="get-scan-data">Get Scan Data</h2>
-<p>Well, let’s visualize the laser scan in <em>rviz2</em>.
-For that, verify that the user has the right to read data on the device.
-By connecting the laser sensor, a access file appears in Linux <code>/dev</code> directory named <code>ttyACM0</code>.
-Verify the owner of the file:</p>
-<pre><code class="language-console">ls -l /dev | egrep ttyACM
-</code></pre>
-<p>Normally <code>/dev/ttyACM0</code> is owned by user <code>root</code> and group <code>dialout</code> with <code>crw-rw----</code> right, mining that owner and all members of the group can read (<code>r</code>) and write (<code>w</code>) and all the other users have no access to the resource.
-Verify that <code>bot</code> is a member of the group <code>dialout</code></p>
-<pre><code class="language-console">cat /etc/group | egrep dialout 
-</code></pre>
-<p>Cool.
-Let run a driver to convert device I/O to ros messages.
-ROS driver for hokuyo laser range is embedded in the urg_node package </p>
-<pre><code class="language-console">ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0
-</code></pre>
-<p>Specifying the <code>serial_port</code> file requires to activate arguments with <code>--ros-args</code> and pass a file path using <code>-p</code> parameter command line flag. 
-All of this is specific to <a href="https://docs.ros.org/en/iron/Concepts/Basic/About-Parameters.html">ROS parameters</a>.</p>
-<p>From that point data are streamed in <code>/scan</code> topic.
+<h2 id="read-scan-data">Read Scan Data</h2>
+<p>The <em>pibots</em> already run <code>urg_node_driver</code> ros node.
+This node publish laser scan into a <code>\scan</code> topic.
 It is possible to check it with <code>ros2 topic list</code> and <code>ros2 topic echo scan</code>.</p>
+<p>Gazebo simulator also simulate laser scan, but the scan topic and/or the laser-scan frame can have different names.</p>
+<pre><code>ros2 launch tbot_sim challenge-1.launch.py
+</code></pre>
 <p>Now you can visualize it on <em>rviz2</em> program.
-Start <em>rviz2</em> in a terminal, <em>add</em> a flux <em>laserScan</em> and configure it in <code>/scan</code> topic.
+Start <em>rviz2</em>, <em>add</em> a flux <em>laserScan</em> and configure it in <code>/scan</code> topic.
 Nothing appears and it is normal.
 <em>Rviz2</em> global option is configured on <em>map</em> frame, and nothing permits to set the position of the laser sensor in the map.
 The laser-scan frame is named <em>laser</em>.
 Change this information into global options and set the laser-scan size to <code>0,1</code> for a better display.</p>
-<p>Stop everything.</p>
-<p>Perform the same exercise to visualize simulated LaserScan from Gazebo simulator:</p>
+<!--## Get Scan Data
+
+Well, let’s visualize the laser scan in _rviz2_.
+For that, verify that the user has the right to read data on the device.
+By connecting the laser sensor, a access file appears in Linux `/dev` directory named `ttyACM0`.
+Verify the owner of the file:
+
+
+<pre><code class="language-console">ls -l /dev | egrep ttyACM
+</code></pre>
+
+
+Normally `/dev/ttyACM0` is owned by user `root` and group `dialout` with `crw-rw----` right, mining that owner and all members of the group can read (`r`) and write (`w`) and all the other users have no access to the resource.
+Verify that `bot` is a member of the group `dialout`
+
+
+<pre><code class="language-console">cat /etc/group | egrep dialout 
+</code></pre>
+
+
+Cool.
+Let run a driver to convert device I/O to ros messages.
+ROS driver for hokuyo laser range is embedded in the urg_node package 
+
+
+<pre><code class="language-console">ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0
+</code></pre>
+
+
+Specifying the `serial_port` file requires to activate arguments with `--ros-args` and pass a file path using `-p` parameter command line flag. 
+All of this is specific to [ROS parameters](https://docs.ros.org/en/iron/Concepts/Basic/About-Parameters.html).
+
+From that point data are streamed in `/scan` topic.
+
+Stop everything.
+
+Perform the same exercise to visualize simulated LaserScan from Gazebo simulator:
+
+
 <pre><code>ros2 launch tbot_sim challenge-1.launch.py
 </code></pre>
-<p>Warning: the scan topic and/or the laser-scan frame can have different names.</p>
-<h2 id="a-first-node-logging-the-scan">A first node logging the scan</h2>
-<p>First, we will initialize a node <code>scan_echo</code>.</p>
-<p>Edit a new file <code>scan_echo.py</code> with a very simple code :</p>
-<pre><code class="language-python">def main():
-    print('Move move move !')
 
-if __name__ == '_main__' :
-    main()
-</code></pre>
+
+Warning: the scan topic and/or the laser-scan frame can have different names.
+-->
+
+<h2 id="a-first-node-logging-the-scan">A first node logging the scan</h2>
+<p>First, we will initialize a node <code>scan_echo</code> to print the scan data into a terminal.</p>
+<p>Edit a new script file <code>scan_echo</code> en configure your package to recognize it as a ROS2 node.</p>
 <p>Test your <code>scan_echo</code> node:</p>
-<pre><code class="language-python">python3 scan_echo.py
+<pre><code class="language-python">ros2 run your_package scan_echo
 </code></pre>
-<p>In a first version, you should:</p>
 <ul>
-<li>Initialize the <em>rosclient</em> (rclpy)</li>
 <li>Connect <a href="https://docs.ros2.org/iron/api/sensor_msgs/msg/LaserScan.html">sensor_msgs LaserScan</a>.</li>
 <li>Log continuously the received data</li>
 </ul>
@@ -199,8 +219,10 @@ while True :
 scanInterpret.destroy_node()
 rclpy.shutdown()
 </code></pre>
-<p>Test your <code>scan_echo.py</code> node, with the hokuyo laser and on simulation.</p>
-<p>Modify the logger to print only the information into the <code>header</code> and the number of ranges.</p>
+<p>Test your <code>scan_echo</code> node, with the <em>pibot</em> and on simulations.</p>
+<p>You can notice that <code>ros_logger</code> print information into <code>info</code> channel (informative), but other channel exits for errors and warnings.</p>
+<p>At this point your echo node print the entire <code>scan</code> message, but we do not care about the distance measurements, we want only some meta-data.
+Modify the logger to print the information into the <code>header</code> and the number of ranges.</p>
 <h2 id="from-laserscan-to-pointcloud">From LaserScan to PointCloud</h2>
 <p><strong>LaserScan</strong> provides both the recorded bean distances (ranges) and the meta information permitting converting the distances on points in a regular Cartesian frame (i.e. the angle between beans).</p>
 <p>In a python, the conversion would look like this:</p>
@@ -236,7 +258,7 @@ aPoint.z= (float)(0)
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../../tuto-kick-off/simulation/" class="btn btn-neutral float-left" title="Simulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../camera-driver/" class="btn btn-neutral float-right" title="Camera Driver">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../parameters/" class="btn btn-neutral float-right" title="Parameters">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -262,7 +284,7 @@ aPoint.z= (float)(0)
       <span><a href="../../tuto-kick-off/simulation/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../camera-driver/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../parameters/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
