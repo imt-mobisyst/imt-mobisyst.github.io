@@ -48,7 +48,7 @@
                 <li class="toctree-l1"><a class="reference internal" href="../..">Intro</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Kick-Off</span></p>
+              <p class="caption"><span class="caption-text">Kick-off</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/basics/">OS and Shell</a>
                   </li>
@@ -74,6 +74,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Mastering</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/interfaces/">Interfaces</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/slam/">S.L.A.M</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/transform/">Move To</a>
@@ -126,8 +128,120 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="reactive-move">Reactive Move</h1>
-<p>The goal is to create a <code>go</code> node that permits the robot to move straight until obstacles are detected
+<p>The goal is to create a <code>straight</code> node that permits the robot to move straight until obstacles are detected
 then turn left or right to avoid the obstacle.</p>
+<h2 id="node-structure">Node Structure</h2>
+<p>The <code>straight</code> node is our first real complex node. 
+It will process scan messages to characterize the local environment and regularly send coherent move instructions.</p>
+<p>That for, we want to set up a node with <span class="arithmatex">\(2\)</span> callback function. 
+A sensing callback and a control callback.
+In facts, it is not recommended to send control messages only went sensing messages are received. 
+This way, the robot will be capable of dealing failures as interruption in the sensing messages.</p>
+<p>So, the <code>straight</code> script will be structured like this:</p>
+<pre><code class="language-python">#!/usr/bin/python3
+from sensor_msgs.msg import Twist, LaserScan
+
+# Ros Node process:
+def main():
+    # Initialize ROS and a ROS node
+    rclpy.init(args=args)
+    node= Node( 'basic_move' )
+
+    # Initialize our control:
+    control= StraightCtrl()
+    control.initializeRosNode( node )
+
+    # infinite Loop:
+    rclpy.spin( node )
+
+    # clean end
+    self._node.destroy_node()
+    rclpy.shutdown()
+
+# Ros Node Class:
+class StraightCtrl :
+    def initializeRosNode(self, rosNode ):
+        # Get logger from the node:
+        self._logger= rosNode.get_logger()
+
+        # Initialize publisher:
+        self._pubVelocity= rosNode.create_publisher(
+            Twist, '/multi/cmd_nav', 10
+        )
+
+        # Initialize scan callback:
+        self._subToScan= rosNode.create_subscription(
+            LaserScan, '/scan/',
+            self.scan_callback, 10
+        )
+
+        # Initialize control callback:
+        self._timForCtrl= rosNode.create_timer(
+            0.05, self.control_callback
+        )
+
+    def scan_callback(self, scanMsg ):
+        self._logger.info( '&gt; get scan' )
+
+    def control_callback(self, rosNode ):
+        self._logger.info( '&lt; define control' )
+
+# Go:
+if __name__ == '__main__' :
+    main()
+</code></pre>
+<p>Include your <code>straight</code> node into your package, and test it: </p>
+<pre><code class="language-sh">ros2 run your_package straight
+</code></pre>
+<h2 id="scan-callback">Scan Callback</h2>
+<p>Implement the <code>scan_callback</code> method in a way that it fills <span class="arithmatex">\(2\)</span> boolean class variables: <code>self.obstacle_left</code> and <code>self.obstacle_right</code>.</p>
+<p>The <code>self._obstacle_left</code> should be <code>True</code> if an obstacle is detected front-left of the robot and <code>Flase</code> else.
+The <code>self._obstacle_right</code> should be <code>True</code> if an obstacle is detected front-right of the robot and <code>Flase</code> else.</p>
+<p>We consider obstacles only if there are at <span class="arithmatex">\(1\)</span> meter or less to the robot.</p>
+<h2 id="control-callback">Control Callback</h2>
+<p>Implement the <code>control_callback</code> method in a way that it sent velocity message coherent with the presence of obstacles on the left and/or right side of the robot.</p>
+<p>The move straight until an obstacle is found in a range of 1 meter in front of it (<code>self.obstacle_left</code> or <code>self.obstacle_right</code> is <code>True</code>).</p>
+<p>The robot rotate with a positive or negative value depending on which of the obstacle variable is true.</p>
+<p>For security reason, the control should not send velocity messages while scan messages were not received and should stop if scan message stop.</p>
+<h2 id="smart-control">Smart Control</h2>
+<p>At this point, the control is defined on <span class="arithmatex">\(4\)</span> states, with on/off velocity control.</p>
+<p>The states are :</p>
+<table>
+<thead>
+<tr>
+<th>state</th>
+<th>action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no scan</td>
+<td><em>empty</em></td>
+</tr>
+<tr>
+<td>no obstacle</td>
+<td>go straight</td>
+</tr>
+<tr>
+<td>left obstacle</td>
+<td>turn right</td>
+</tr>
+<tr>
+<td>right obstacle</td>
+<td>turn left</td>
+</tr>
+<tr>
+<td>both obstacle</td>
+<td>turn left</td>
+</tr>
+</tbody>
+</table>
+<p>As a side effect, the robot behavior is not really efficient.
+First we can increase the state definition to handle more possibilities.</p>
+<p>For instance, if the robot faces a <em>both obstacle</em> situation while it is turning right (i.e. avoiding a <em>left obstacle</em> ) it would be more interesting to continue to turn on the same direction. 
+For that the robot state should remenber the last performed action.</p>
+<p>Another example would be to differentiate close and distant obstacles to apply different control velocities (move and turn in a same time while possible), and generate fluid trajectories.</p>
+<p>Finally, the desired speed can be reached with several steps, to force a soft acceleration.</p>
               
             </div>
           </div><footer>

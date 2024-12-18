@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Linux and ROS Basics - Lct. Mobile-Robot</title>
+    <title>Interfaces - Lct. Mobile-Robot</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Linux and ROS Basics";
-        var mkdocs_page_input_path = "tuto-kick-off/ros-basics.md";
+        var mkdocs_page_name = "Interfaces";
+        var mkdocs_page_input_path = "tuto-mastering/interfaces.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -48,17 +48,17 @@
                 <li class="toctree-l1"><a class="reference internal" href="../..">Intro</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Kick-Off</span></p>
+              <p class="caption"><span class="caption-text">Kick-off</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../basics/">OS and Shell</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/basics/">OS and Shell</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../first-contact/">Nodes and Topics</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/first-contact/">Nodes and Topics</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../package/">ROS Package</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/package/">ROS Package</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../move/">Move the Robot</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/move/">Move the Robot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../simulation/">Simulation</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/simulation/">Simulation</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
@@ -73,12 +73,14 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Mastering</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/slam/">S.L.A.M</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Interfaces</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/transform/">Move To</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../slam/">S.L.A.M</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/vision/">Vision</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../transform/">Move To</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../vision/">Vision</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
@@ -115,7 +117,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Linux and ROS Basics</li>
+          <li class="breadcrumb-item">Mastering</li>
+      <li class="breadcrumb-item active">Interfaces</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -124,50 +127,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="linux-and-ros-basics">Linux and ROS Basics</h1>
-<p>The goal of this tutorial is to set up a workspace to control robots and to develop robotics programs.
-We choose to work with ROS (the most used open middleware for robotics) on a Linux-Ubuntu computer (which is the best supported configuration).</p>
-<p>This tutorial supposes that you have an Ubuntu-Like 22.04 computers with configured Python and C++ APIs.
-The tutorial relies on <a href="https://docs.ros.org/en/iron">ROS2 Iron</a>.</p>
-<h2 id="play-with-linux">Play with Linux</h2>
-<p>Ubuntu is a distribution Linux (Operating System + Window Managment + Tools) derived from Debian distribution.</p>
-<p>It is a classical graphical operating system.
-You can explore the system and launch different program to test-it.</p>
-<p>In the variety of program, we are mostly interested in the terminal emulator, permitting to manipulate our system directly from command (moving in the directory tree, read and organize files, execute script or programs, administer...).</p>
-<ul>
-<li><strong>gnome-terminal</strong>: on <a href="https://help.gnome.org/users/gnome-terminal/stable">help.gnome.org</a></li>
-</ul>
-<p>Explore the following command (i.e. what for, how to use it). A good way to do this is to first Google the command (<a href="https://duckduckgo.com/?q=command+man&amp;t=newext&amp;atb=v351-6&amp;ia=web">example</a>), then play with the command in your terminal.</p>
-<ul>
-<li><strong>man</strong>, <strong>ls</strong>, <strong>cp</strong>, <strong>mv</strong>, <strong>cat</strong>, <strong>rm</strong></li>
-<li><strong>source</strong>, <strong>apt</strong>, <strong>sudo</strong></li>
-</ul>
-<p>Notice that <code>tabulation</code> allows for autocompletion.</p>
-<p>More commands: <strong>egrep</strong>, <strong>find</strong>, <strong>ps</strong>, ... (<a href="https://en.wikibooks.org/wiki/Linux_Guide/Linux_commands">Wikipedia is your friend</a>).</p>
-<h2 id="play-with-ros">Play with ROS</h2>
-<p>The remainder of the tutorial relies directly on ROS documentation <a href="https://docs.ros.org/">docs.ros.org</a>
-ROS is mainly composed by <strong>Tools</strong> and <strong>Libraries</strong>.</p>
-<p>The <strong>Tools</strong> permit to configure and start a control architecture, to explore this architecture and to visualize data.
-The <strong>Libraries</strong> offer an API (Application Programming Interface) to developers who want to propose a new program compliant with ROS.</p>
-<h3 id="tools">Tools</h3>
-<p>Start with <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools.html">Beginner CLI-Tools tutorials</a> to get familiar with ROS tools.</p>
-<p>Some responses to the questions you could have :</p>
-<ul>
-<li>Yes we are in a classroom so we will work with : <code>ROS_LOCALHOST_ONLY=1</code>. You can check your bash configuration by editing the hidden file at the user home directory: <code>gedit ~/.bashrc</code></li>
-<li><code>bot</code> user is sudoer, and the password is <code>bot</code>.</li>
-</ul>
-<h3 id="libraries">Libraries</h3>
-<p>Next, follow the <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-Client-Libraries.html">Beginner Client-Libraries tutorials</a> by focusing on <strong>Python</strong> language.</p>
-<p>Initially, we recommend using <strong>Python</strong>. While it is less efficient at runtime compared to C++, it is easier to use and debug, facilitating rapid development.
-If you are proficient in C++, you can use it instead. Otherwise, always prioritize Python commands.</p>
-<p>Although, you can use a basic text editor like <code>gedit</code> (available on Ubuntu), we encourage using <code>code</code> (Visual Studio Code) as your development environment.
-You can open Visual Studio Code by specifying a workspace in your terminal (and then manage multiple terminals directly within <code>code</code>):</p>
-<pre><code class="language-console">cd
-code ros2_ws
-</code></pre>
+                <h1 id="interfaces-in-ros2">Interfaces in ROS2</h1>
+<h2 id="mesage-definition">Mesage definition</h2>
+<h2 id="services">Services</h2>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../tuto-level-up/camera-driver/" class="btn btn-neutral float-left" title="Camera Driver"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../slam/" class="btn btn-neutral float-right" title="S.L.A.M">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -189,6 +158,10 @@ code ros2_ws
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../../tuto-level-up/camera-driver/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../slam/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
