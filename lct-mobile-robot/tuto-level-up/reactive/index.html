@@ -65,7 +65,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../range-sensor/">Range Sensor</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Reactive Move</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Reactive Move</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
@@ -140,13 +140,17 @@ This way, the robot will be capable of dealing failures as interruption in the s
 <p>So, the <code>straight</code> script will be structured like this:</p>
 <pre><code class="language-python">#!/usr/bin/python3
 import rclpy
-from sensor_msgs.msg import Twist, LaserScan
+from  rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import Twist
+import sys
+
 
 # Ros Node process:
 def main():
     # Initialize ROS and a ROS node
-    rclpy.init(args=args)
-    node= rclpy.Node( 'basic_move' )
+    rclpy.init(args=sys.argv)
+    node= Node( 'basic_move' )
 
     # Initialize our control:
     control= StraightCtrl()
@@ -172,7 +176,7 @@ class StraightCtrl :
 
         # Initialize scan callback:
         self._subToScan= rosNode.create_subscription(
-            LaserScan, '/scan/',
+            LaserScan, '/scan',
             self.scan_callback, 10
         )
 
@@ -184,7 +188,7 @@ class StraightCtrl :
     def scan_callback(self, scanMsg ):
         self._logger.info( '&gt; get scan' )
 
-    def control_callback(self, rosNode ):
+    def control_callback(self):
         self._logger.info( '&lt; define control' )
 
 # Go:
@@ -192,7 +196,7 @@ if __name__ == '__main__' :
     main()
 </code></pre>
 <p>Include your <code>straight</code> node into your package, and test it: </p>
-<pre><code class="language-sh">ros2 run your_package straight
+<pre><code class="language-sh">ros2 run tutorial_pkg straight
 </code></pre>
 <h2 id="scan-callback">Scan Callback</h2>
 <p>Implement the <code>scan_callback</code> method in a way that it fills <span class="arithmatex">\(2\)</span> boolean class variables: <code>self.obstacle_left</code> and <code>self.obstacle_right</code>.</p>
