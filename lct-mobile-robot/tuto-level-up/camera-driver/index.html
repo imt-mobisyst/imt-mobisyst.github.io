@@ -76,13 +76,13 @@
               </ul>
               <p class="caption"><span class="caption-text">Mastering</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/interfaces/">Interfaces</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/slam/">S.L.A.M</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/transform/">Move To</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/vision/">Processing Imgs</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/vision/">Vision</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/interfaces/">Interfaces</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-mastering/transform/">Move To</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
@@ -308,30 +308,48 @@ It is possible to overpass that by specifying a timeout (<code>spin_once(myNode,
 <p>At the end we want a ROS2 Node that connect the camera and publish continously the images (color and depth images).
 The python function of the Node will look like:</p>
 <pre><code class="language-python"># Node processes:
-def process_img(args=None):
+def mainFunction(args=None):
+    # Initialize ROS Node connected to the camera
     rclpy.init(args=args)
-    rsNode= Realsense()
+    rosNode= Node( &quot;RealSense_driver&quot; )
+    camera= Realsense()
+    camera.initializeROSNode( rosNode )
+
+    # Start infinite loop
     while isOk:
-        rsNode.read_imgs()
-        rsNode.publish_imgs()
-        rclpy.spin_once(rsNode, timeout_sec=0.001)
-    # Stop streaming
-    print(&quot;Ending...&quot;)
-    rsNode.pipeline.stop()
+        camera.read_imgs()
+        camera.publish_imgs()
+        rclpy.spin_once(rosNode, timeout_sec=0.001)
+
     # Clean end
-    rsNode.destroy_node()
+    camera.disconnect()
+    rosNode.destroy_node()
     rclpy.shutdown()
 </code></pre>
-<p>You ca start from a blanc class <code>Realsence</code> and fill the differents methods step by steps (testing your code at each steps):</p>
+<p>This solution relies on a <code>Realsense</code> class to create. 
+The class conponent will be filled mostlly by the element from the previous script.
+You can start from a blanc class <code>Realsence</code> and fill the differents methods step by steps (testing your code at each steps):</p>
 <pre><code class="language-python"># Realsense Node:
-class Realsense(Node):
+class Realsense():
     def __init__(self, fps= 60):
-        super().__init__('realsense')
+        # Initialize attributes
+        # Connect the camera
+        pass
+
+    def initializeROSNode( self, aROSNode ):
+        # Initialize publishers / subscribers and timers
+        pass
 
     def read_imgs(self):
+        # Read data from camera
         pass
 
     def publish_imgs(self):
+        # Send data into ROS Topics
+        pass
+
+    def disconnect(self):
+        # disconnect the camera, free the resource.
         pass
 </code></pre>
 <h3 id="publish-images">Publish Images:</h3>
