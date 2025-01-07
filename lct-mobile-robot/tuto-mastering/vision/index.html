@@ -131,19 +131,22 @@
               
                 <h1 id="introduction-to-image-processing">Introduction to image processing.</h1>
 <p>Vision provides a rich information about the immediate environment around the robot.
-However it requires to process the images to extract pertinent information...</p>
-<p>The goal here is to detect a specific object in the scene. The first proposed approach is to detect the object regarding its main color before to move toward approaches handle textures.</p>
+However it requires to process the images to extract pertinent information like the objects in the scene.</p>
+<p>The goal here is to detect the specific colored objects that are positioned in the scene along the path of your robot in order to count and place them in the map. A first approache coub be to use color analysis techniques to detect the objects. If objects are textured, more sophisticated techniques could be used. This tutorial gives you some tips to help you with this detection task.</p>
 <h2 id="setup-our-programming-environment">Setup our programming environment</h2>
 <p>This tutorial focus on <code>OpenCV</code> librairy, addressed in <code>Python</code> development language on a <em>Linux</em> machine.</p>
-<p>First we want to install Python3 and the libraries:  Numpy, Matplot, Sklearn, Scipy and OpenCV.</p>
+<p>First we want to be sure that Python3 and some libraries (Numpy, Matplot, Sklearn, Scipy, OpenCV etc.) are installed.</p>
 <p>The command <code>whereis</code> permit to localize a command (like <code>python3</code> interpreter). If python3 is correctly installed, its execution would not be empty:</p>
 <pre><code class="language-bash">whereis python3
 </code></pre>
 <p>Python uses its own package managers <code>pip</code> to install libraries. So just to be sure you can:</p>
 <pre><code class="language-bash">sudo apt install python3 pip
 </code></pre>
-<p>Then we can use pip to install modules:</p>
-<pre><code class="language-bash">pip3 install numpy tensorflow opencv-python opencv-contrib-python scikit-learn scipy matplotlib psutil scikit-image
+<p>Then we can use pip to install required modules:</p>
+<pre><code class="language-bash">pip3 install numpy opencv-python opencv-contrib-python scikit-learn scipy matplotlib psutil scikit-image 
+</code></pre>
+<p>I you plan to use neural networks techniques (a GPU is almost always required to provide real-time detection):</p>
+<pre><code class="language-bash">pip3 install tensorflow
 </code></pre>
 <p>Now normally you can load the different modules, for instance:</p>
 <pre><code class="language-python">import cv2
