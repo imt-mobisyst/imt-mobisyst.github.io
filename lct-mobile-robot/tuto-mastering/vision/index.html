@@ -157,20 +157,115 @@ from scipy.cluster.vq import *
 from sklearn.preprocessing import StandardScaler
 from sklearn import preprocessing
 </code></pre>
-<h2 id="image-from-simulation">Image from simulation</h2>
+<h2 id="image-acquisition">Image acquisition</h2>
+<h3 id="image-from-simulation">Image from simulation</h3>
+<p>It is possible to access the camera's video streams via the Realsense sensor (if it is available) or simulation.</p>
 <p><strong>Gazebo</strong> is capable of simulating robot vision (classical and 3D sensor).</p>
 <p>Launch a simulation :</p>
 <p>'''bash
 roslaunch larm chalenge-2.launch
 '''</p>
-<p>And observe the topic and mainly the one published the images (<code>camera/rgb/image_raw</code>) with <code>rostopic list</code>,  <code>rostopic info</code> and  <code>rostopic hz</code>.</p>
-<p>Image are published as 'sensor_msgs/Image' in <code>camera/rgb/image_raw</code></p>
+<p>Observe the topic and mainly the one published the images (<code>camera/rgb/image_raw</code>) with <code>rostopic list</code>,  <code>rostopic info</code> and  <code>rostopic hz</code>.</p>
+<p>Image are published as 'sensor_msgs/Image' message type in <code>camera/rgb/image_raw</code></p>
 <ul>
 <li><a href="https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/Image.html">ROS doc</a></li>
 </ul>
-<p>So the pixel value is stored in <code>img.data</code> array but several tool to convert ROS image to OpenCV images already exist (for instance <a href="http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython">cv_bridge</a>)</p>
-<h2 id="segmentation-dimages-couleur-par-seuillage-des-composantes-et-gestion-de-la-souris">Segmentation d'images couleur par seuillage des composantes et Gestion de la souris</h2>
-<p>Voici quelques lignes de codes pour extraire une région d'intérêt à la souris. Grâce à ces quelques lignes il vous sera possible de calculer la valeur moyenne et la variance de chaque composante de l'image, utile pour procéder ensuite à une étape de segmentation. Dans cet exemple, nous procédons tout d'abord à l'acquisition d'une image de la webcam du portable. Puis, nous définissons un crop de l'image acquise grâce à la souris. Il vous est alors facile de calculer les métriques statistiques que vous souhaitez sur ce crop. La moyenne et la variance définissent un modèle gaussien sur chaque composante du crop. Dans la suite, vous pourrez soit utiliser le flux d'images provenant de votre webcam ou celui provenant de la caméra Realsense (cf. tuto précédent)</p>
+<p>If you echo the messages of the image topic (<code>rostopic echo camera/rgb/image_raw</code>), you can observe the following structure of the message</p>
+<pre><code>std_msgs/Header header
+uint32 height
+uint32 width
+string encoding
+uint8 is_bigendian
+uint32 step
+uint8[] data
+</code></pre>
+<p>The pixel values are stored in a uint8 array. Several tools are availbale to convert a ROS image to OpenCV image (for instance <a href="http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython">cv_bridge</a>)</p>
+<h3 id="image-from-realsense-camera-sensor">Image from Realsense camera sensor</h3>
+<p>The following code is able to connect the Realsense camera and to acquire the depth and the color stream. A configuration step is done. Both depth and color images are aligned to make that all pixels of a depth image correpond to all pixels of the corresponding color image.</p>
+<pre><code class="language-python">
+import pyrealsense2 as rs
+import numpy as np
+import math
+import cv2,time,sys
+
+pipeline = rs.pipeline()
+config = rs.config()
+colorizer = rs.colorizer()
+
+# Configuration of depth and color image size (840x480), the format of the pixel values and the frame rates (30 fps)
+config.enable_stream(rs.stream.depth, 840, 480, rs.format.z16, 30)
+config.enable_stream(rs.stream.color, 840, 480, rs.format.bgr8, 30)
+
+pipeline.start(config)
+
+align_to = rs.stream.depth
+align = rs.align(align_to)
+
+rayon=10
+
+count=1
+refTime= time.process_time()
+freq= 60
+
+try:
+    while True:
+        # This call waits until a new coherent set of frames is available on a device
+        frames = pipeline.wait_for_frames()
+
+        # Aligning color frame to depth frame
+        aligned_frames =  align.process(frames)
+        depth_frame = aligned_frames.get_depth_frame()
+        aligned_color_frame = aligned_frames.get_color_frame()
+
+        if not depth_frame or not aligned_color_frame: continue
+
+        # Two ways to colorized the depth map
+        # first : using colorizer of pyrealsense                
+        colorized_depth = colorizer.colorize(depth_frame)
+        depth_colormap = np.asanyarray(colorized_depth.get_data())
+
+         # Get the intrinsic parameters
+        color_intrin = aligned_color_frame.profile.as_video_stream_profile().intrinsics
+
+        color_image = np.asanyarray(aligned_color_frame.get_data())
+
+        depth_colormap_dim = depth_colormap.shape
+        color_colormap_dim = color_image.shape
+
+        # Show images
+        images = np.hstack((color_image, depth_colormap)) # supose that depth_colormap_dim == color_colormap_dim (840x480 for example) otherwize: resized_color_image = cv2.resize(color_image, dsize=(depth_colormap_dim[1], depth_colormap_dim[0]), interpolation=cv2.INTER_AREA)
+
+        # Show images
+        cv2.namedWindow('RealSense', cv2.WINDOW_NORMAL)
+
+        # Resize the Window
+        cv2.resizeWindow('RealSense', 960, 720)
+        cv2.imshow('RealSense', images)
+        cv2.waitKey(1)
+
+        # Frequency:
+        if count == 10 :
+            newTime= time.process_time()
+            freq= 10/((newTime-refTime))
+            refTime= newTime
+            count= 0
+        count+= 1
+
+except Exception as e:
+    print(e)
+    pass
+
+finally:
+    pipeline.stop()
+
+
+</code></pre>
+<p>You have already done the code to send both depth and color image on a ROS topic (<code>camera_driver</code> section). During the challenges you will be able to compute both streams via the ROS image topics or directly after image acquisition (<code>pipeline.wait_for_frames()</code> in the previous code). yYu will have to pay close attention to the time required to ensure the execution of the processing chains of the two video streams in order to guarantee rapid detection. </p>
+<h2 id="basic-codes-using-opencv-framework">Basic codes using OpenCV framework</h2>
+<p>This section introduces some of the functions and techniques illustrated by some codes that you can use to complete the proposed challenges. </p>
+<p>First, you will test each proposal on images downloaded from the Internet or from the <code>Vision</code> section of the tutorial. You will then have to integrate or adapt them to process images from the Realsense camera on board the robot. Some codes example propose to acquire and compute the webcam video stream.</p>
+<h3 id="segmentation-dimages-couleur-par-seuillage-des-composantes-et-gestion-de-la-souris">Segmentation d'images couleur par seuillage des composantes et Gestion de la souris</h3>
+<p>Here are a few lines of code to extract a region of interest using the mouse. With these few lines, you can calculate the mean and variance of each component of the image, which is useful for the segmentation stage. In this example, we first acquire an image from the laptop's webcam. We then use the mouse to define a section of the captured image. You can then easily calculate the desired statistical metrics for this section. The mean and variance define a Gaussian model for each component of the clipping. </p>
 <pre><code class="language-python">import cv2
 import numpy as np
 
@@ -197,8 +292,8 @@ cv2.imshow(&quot;Image&quot;, imCrop)
 cv2.waitKey(0)
 
 </code></pre>
-<p>Dans cet exemple, il s'agit de produire un masque des pixels dont les composantes HSV sont comprises entre les variables lo et hi. Dans cet exemple, en agissant sur le click gauche ou droit de la souris vous diminuez ou augmentez la teinte h des deux variables lo et hi. Par ailleurs, dans notre exemple,  vous constaterez que lo et hi se différentient non seulement par leur teinte mais également par leur saturation. Vous pourrez tester ce script sur une image de votre visage. 
-Ces quelques lignes de codes illustrent également comment gérer des actions sur la souris. Elles gères les événements souris tels que le mouvement de la souris (cv2.EVENT_MOUSEMOVE), le double click milieu (EVENT_MBUTTONDBLCLK), le click droit (EVENT_RBUTTONDOWN) et le click gauche (EVENT_LBUTTONDOWN). </p>
+<p>In this example we will create a mask of pixels whose HSV components are between the variables <code>lo</code> and <code>hi</code>. In this example, by clicking with the left or right mouse button, you decrease or increase the hue <code>h</code> of the two variables <code>lo</code> and <code>hi</code>. You will also see that in our example this two thresholds differ not only in their hue but also in their saturation. You can test this script on an image of your face.
+These few lines of code also illustrate how to manage actions on the mouse. They manage mouse events such as mouse move (cv2.EVENT_MOUSEMOVE), double middle click (EVENT_MBUTTONDBLCLK), right click (EVENT_RBUTTONDOWN) and left click (EVENT_LBUTTONDOWN).</p>
 <pre><code class="language-python">import cv2
 import numpy as np
 
@@ -264,8 +359,8 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 </code></pre>
-<p>Généralement il est très intéressante de changer d'espace colorimétrique afin de mieux cibler l'espace dans lequel l'objet d'intérêt est discriminable : <code>image=cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)</code>
-Après avoir produite le mask avec <code>mask=cv2.inRange(image, lo, hi)</code> il est parfois pertinant de débruiter l'image résultats en la flouttant ou par quelques opérations motrphologiques. Cela permet de fermer et remplir les formes :</p>
+<p>In general, it is very interesting to change the colour space to better target the space in which the object of interest is distinguishable: <code>image=cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)</code>
+After creating the mask with <code>mask=cv2.inRange(image, lo, hi)</code> it is sometimes relevant to denoise the resulting image by blurring or by some morphological operations. This allows the shapes to be closed and filled:</p>
 <pre><code class="language-python"># Flouttage de l'image
 image=cv2.blur(image, (7, 7))
 # Erosion d'un mask
@@ -273,9 +368,9 @@ mask=cv2.erode(mask, None, iterations=4)
 # dilatation d'un mask
 mask=cv2.dilate(mask, None, iterations=4)
 </code></pre>
-<p>Dans le code de segmentation d'une image couleur fourni précédemment, vous jouerez avec la taille du kernel (3x3 dans notre exemple), vous ajouterez une étape de flouttage de chaque canal en jouant sur la taille du voisinage (7 x 7 dans notre exemple). Pour finir vous jouerez avec les étapes d'érosion et de dilatation en modifiant le nombre de fois où chaque opérateur morphologique est appliqué (4 fois dans notre exemple). </p>
-<p>Le code de segmentation d'une image couleur fourni précédemment permet de définir un mask binaire des pixels dont les composantes HSV sont l'intervalle [lo,hi]. Il est alors possible de détecter les éléments connexes dans le mask afin d'en extraire certaines informations telles qu'ici le minEnclosingCircle. D'autres features peuvent être utiles. Vous les trouverez ici : https://docs.opencv.org/3.4/dd/d49/tutorial_py_contour_features.html
-Sous l'hypothèse qu'un objet d'interêt est représenté par un ensemble de pixels connexes dont la couleur est contenu dans l'intervalle [lo,hi], il est alors possible de définir des contraintes sur un ensemble de features qui permettent de classer les objets ainsi détectés. Vous ajouterez les lignes suivantes dans le code de segmentation précédent.</p>
+<p>In the segmentation code of a colour image provided earlier, you will play with the kernel size (3x3 in our example), you will add a blurring step for each channel by playing with the neighbourhood size (7x7 in our example). Finally, play with the erosion and dilation steps by varying the number of times each morphological operator is applied (4 times in our example).</p>
+<p>The segmentation code of a colour image provided previously allows you to define a binary mask of pixels whose HSV components are in the interval <code>[lo,hi]</code>. It is then possible to detect the connected elements in the mask to extract certain information, in this case the minEnclosingCircle. Other functions may be useful. You can find them here: <a href="https://docs.opencv.org/3.4/dd/d49/tutorial_py_contour_features.html">https://docs.opencv.org/3.4/dd/d49/tutorial_py_contour_features.html</a>.
+Assuming that an object of interest is represented by a set of connected pixels whose colour is in the interval <code>[lo,hi]</code>, it is then possible to define constraints on a set of features that allow the classification of the objects thus detected. You will add the following lines to the previous segmentation code.</p>
 <pre><code class="language-python">elements=cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
 if len(elements) &gt; 0:
     c=max(elements, key=cv2.contourArea)
@@ -285,19 +380,12 @@ if len(elements) &gt; 0:
         cv2.circle(frame, (int(x), int(y)), 5, color_info, 10)
         cv2.line(frame, (int(x), int(y)), (int(x)+150, int(y)), color_info, 2)
         cv2.putText(frame, &quot;Objet !!!&quot;, (int(x)+10, int(y) -10), cv2.FONT_HERSHEY_DUPLEX, 1, color_info, 1, cv2.LINE_AA)
- ```
-
- Reste ensuite à visualiser les images.
-
-
-## Extraction de régions dans une image binarisée
-
-Voici quelques lignes en python pour extraire des région de pixels connexes dans une image binarisée ``` label()```.
-De ces régions sont extraites quelques propriétés ``` regionprops()```
-Ce code agit stratégiquement de la même manière que le script de segmentation précédent mais en utilisant la librairie skimage.
-
-```python
-import cv2
+</code></pre>
+<h3 id="extraction-de-regions-dans-une-image-binarisee">Extraction de régions dans une image binarisée</h3>
+<p>Here are some lines in Python to extract regions of connected pixels in a binarised image <code>label()</code>.
+From these regions some properties are extracted <code>regionprops()</code>.
+This code works strategically in the same way as the previous segmentation script, but using the skimage library.</p>
+<pre><code class="language-python">import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from skimage.measure import label, regionprops
@@ -347,7 +435,7 @@ plt.show()
 
 cv2.waitKey(0)
 </code></pre>
-<h2 id="detection-dobjets-par-template-matching">Détection d'objets par template matching</h2>
+<h3 id="detection-dobjets-par-template-matching">Détection d'objets par template matching</h3>
 <p>Il est possible de détecter un ou plusieurs objets dans une image en appliquant une procédure
 de matching d'un template de chaque objet à détecter. Un template est une image du ou des objets en
 question. La fonction à utiliser est <code>cv.matchTemplate(img_gray,template,parametre)</code>. Plusieurs
@@ -355,6 +443,8 @@ parametre de matching sont possibles correspondant chacun à une métrique de co
 Voici les lignes de codes que vous testerez. Vous testerez les parametres suivants afin de définir celui
 qui fournit les meilleurs résultats. Par ailleurs, vous adapterez le code afin de prendre un charge le flux
 des images de la Realsense et une image template de l'objet que vous voulez détecté.</p>
+<p>It is possible to detect one or more objects in an image by applying a matching procedure to a template of each object to be detected. A template is one or several images of the object to be detected. The function to use is <code>cv.matchTemplate(img_gray,template,parameter)</code>. Several matching parameters are possible, each corresponding to a correlation metric (cf. <a href="https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html">https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html</a>).</p>
+<p>Here are the lines of code you will test. You will test the following parameters to determine the one that gives the best results. You will also adapt the code to take a load of the Realsense image stream and a template image of the object you want to detect.</p>
 <pre><code class="language-python">
 import cv2 as cv
 import numpy as np
@@ -382,9 +472,9 @@ for pt in zip(*loc[::-1]):
     cv.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
 
 </code></pre>
-<h2 id="segmentation-des-images-par-la-methodes-des-k-moyennes-kmeans">Segmentation des images par la méthodes des k-moyennes (kmeans)</h2>
-<p>Kmeans est un algorithme de clustering, dont l'objectif est de partitionner n points de données en k grappes. Chacun des n points de données sera assigné à un cluster avec la moyenne la plus proche. La moyenne de chaque groupe s'appelle «centroïde» ou «centre». Globalement, l'application de k-means donne k grappes distinctes des n points de données d'origine. Les points de données à l'intérieur d'un cluster particulier sont considérés comme «plus similaires» les uns aux autres que les points de données appartenant à d'autres groupes. Cet algorithme peut être appliquer sur des points d’origine géométrique, colorimétriques et autres.</p>
-<p>Nous allons appliquer cette méthode afin d'assurer une segmentation couleur d'une image i.e. cela revient à trouver les couleur domainantes dans l'image.</p>
+<h3 id="segmentation-des-images-par-la-methodes-des-k-moyennes-kmeans">Segmentation des images par la méthodes des k-moyennes (kmeans)</h3>
+<p>Kmeans is a clustering algorithm whose objective is to divide a set of data points into several clusters. Each of point is assigned to a cluster with the nearest mean. The mean of each group is called the "centroid" or "centre". In total, k-means gives k distinct clusters of the original n data points. Data points within a particular cluster are considered to be "more similar" to each other than data points belonging to other groups. This algorithm can be applied to geometric, colourimetric and other original points.</p>
+<p>We will use this method to provide a colour segmentation of an image, i.e. it amounts to finding the domain colours in the image.</p>
 <pre><code class="language-python">from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import cv2
@@ -397,13 +487,13 @@ plt.figure()
 plt.axis(&quot;off&quot;)
 plt.imshow(image)
 </code></pre>
-<p>Afin de traiter l’image en tant que point de données, il faut la convertir d’une forme matricielle à une forme vectorielle (liste de couleur rgb) avant d'appliquer la fonction de clustering :</p>
+<p>In order to compute the image as a data point, it must be converted from a raster form to a vector form (rgb color list) before applying the clustering function:</p>
 <pre><code class="language-python">n_clusters=5
 image = image.reshape((image.shape[0] * image.shape[1], 3))
 clt = KMeans(n_clusters = n_clusters )
 clt.fit(image)
 </code></pre>
-<p>Pour afficher les couleurs les plus dominantes dans l'image, il faut définir deux fonctions : centroid_histogram() pour récupérer le nombre de clusters différents et créer un histogramme basé sur le nombre de pixels affectés à chaque cluster ; et plot_colors() pour initialiser le graphique à barres représentant la fréquence relative de chacune des couleurs</p>
+<p>To display the most dominant colours in the image, two functions must be defined: centroid_histogram() to retrieve the number of different clusters and create a histogram based on the number of pixels assigned to each cluster; and plot_colors() to initialise the bar graph representing the relative frequency of each colour.</p>
 <pre><code class="language-python">def centroid_histogram(clt):
     numLabels = np.arange(0, len(np.unique(clt.labels_)) + 1)&gt;&gt;&gt;
     (hist, _) = np.histogram(clt.labels_, bins=numLabels)
@@ -429,7 +519,7 @@ def plot_colors(hist, centroids):
 
     return bar
 </code></pre>
-<p>Il suffit maintenant de construire un histogramme de clusters puis créer une figure représentant le nombre de pixels étiquetés pour chaque couleur.</p>
+<p>Now you just need to build a cluster histogram and then create a figure displaying the number of pixels labeled for each color.</p>
 <pre><code class="language-python">hist = centroid_histogram(clt)
 bar = plot_colors(hist, clt.cluster_centers_)
 plt.figure()
@@ -437,11 +527,10 @@ plt.axis(&quot;off&quot;)
 plt.imshow(bar)
 plt.show()
 </code></pre>
-<h2 id="classification-dimages-par-la-mathode-des-k-plus-proches-voisins-k-nn-ou-knn">Classification d'images par la mathode des K plus proches voisins (k-NN ou KNN)</h2>
-<p>Cet exercice permettra d'apprendre un modèle à partir des images de la bases CIFAR-10 téléchargeable ici:
-http://www.cs.toronto.edu/~kriz/cifar.html
-Décompresser les fichier dans un dossier que vous utiliserez dans le script suivant.
-Ici, le dossier est ./data</p>
+<h3 id="classification-dimages-par-la-mathode-des-k-plus-proches-voisins-k-nn-ou-knn">Classification d'images par la mathode des K plus proches voisins (k-NN ou KNN)</h3>
+<p>This exercise will allow you to learn a model from images in the CIFAR-10 database, downloadable here: <a href="https://www.cs. toronto.edu/~kriz/cifar.html">https://www.cs.toronto.edu/~kriz/cifar.html</a>.</p>
+<p>Unzip the files into a folder that you will use in the following script.
+As you can see, the CIFAR images are contained in the <code>./data</code> folder.</p>
 <pre><code class="language-python">import numpy as np
 import cv2
 
@@ -461,46 +550,39 @@ img_data = X[b'data']
 img_label_orig = img_label = X[b'labels']
 img_label = np.array(img_label).reshape(-1, 1)
 </code></pre>
-<p>afin de vérifier que tout s'est bien passé utilisé :</p>
+<p>You can use teh following to check the résults :</p>
 <pre><code class="language-python">print(img_data)
 print('shape', img_data.shape)
-</code></pre>
-<p>Vous devriez trouver un tableau numpy de 10000x3072 d'uint8s (le 3072 vient du 3 x 1024). Chaque ligne du tableau stocke une image couleur 32x32 en RGB. L'image est stockée dans l'ordre des lignes principales, de sorte que les 32 premières entrées du tableau correspondent aux valeurs des canaux rouges de la première ligne de l'image.
-Pour vérifier les labels :</p>
-<pre><code class="language-python">print(img_label)
+print(img_label)
 print('shape', img_label.shape)
 </code></pre>
-<p>Nous avons les étiquettes comme dane matrice 10000 x 1</p>
-<p>Pour charger les données de test, utiliser la même procédure que précédement car la forme des données de test est identique à la forme des données d’apprentissage:</p>
+<p>You should find a 10000x3072 numpy array of uint8s (the 3072 comes from the 3 x 1024). Each row of the array stores a 32x32 RGB colour image. The images are stored in row-major order, so the first 32 entries in the array correspond to the red channel values of the first row of the image.
+The labels are stored in a 10000 x 1 array. To check the labels:</p>
+<p>To load the test data, use the same procedure as before because the shape of the test data is the same as the shape of the training data:</p>
 <pre><code class="language-python">test_X = unpickle(rel_path + 'test_batch');
 test_data = test_X[b'data']
 test_label = test_X[b'labels']
 test_label = np.array(test_label).reshape(-1, 1)
 </code></pre>
-<blockquote>
-<blockquote>
-<blockquote></blockquote>
-</blockquote>
-</blockquote>
-<pre><code class="language-python">print(sample_img_data)
-print('shape', sample_img_data.shape)
-print('shape', sample_img_data[1,:].shape)
+<pre><code class="language-python">print(test_data)
+print('shape', test_data.shape)
+print(test_label)
+print('shape', test_label.shape)
 </code></pre>
-<p>Attention, les composantes RGB des images sont arrangées sous la forme d'une vecteur à 1 dimension.
-Pour afficher chaque image, il faut donc remettre sous la forme d'une image 2D RGB.
-Pour cela, nous opérons de la manière suivante en considérant que les images sont de résolution 32x32</p>
+<p>Please note that the RGB components of the images are arranged in the form of a 1-dimensional vector.
+To display each image, it is therefore necessary to put it back in the form of a 2D RGB image.
+To do this, we operate as follows, considering that the images are of 32x32 resolution:</p>
 <pre><code class="language-python">one_img=sample_img_data[0,:]
 r = one_img[:1024].reshape(32, 32)
 g = one_img[1024:2048].reshape(32, 32)
 b = one_img[2048:].reshape(32, 32)
 rgb = np.dstack([r, g, b])
-image = cv2.imread('./vector-handwritten-numbers-on-white-background-brusk-stroke.jpg')
-
 cv2.imshow('Image CIFAR',rgb)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 </code></pre>
-<p>Désormais, nous allons appliquer l'algorithmes des k-NN sur toutes les images de la base de training img_data et leurs labels img_label_orig</p>
+<p>Now, you will apply the k-NN algorithm on all the images of the training base img_data and their labels img_label_orig.
+You will use the fubnction <code>KNeighborsClassifier</code> of the <code>sklearn</code> python modules.</p>
 <pre><code class="language-python">from sklearn.neighbors import KNeighborsClassifier
 
 #def pred_label_fn(i, original):
@@ -533,47 +615,17 @@ for i in range(0, len(YPred)):
         cv2.imshow('K plus proche image',np.dstack([r, g, b]))
         cv2.waitKey(0)
 </code></pre>
-<h2 id="detection-dobjets-par-ondelettes-de-haar">Détection d'objets par ondelettes de Haar</h2>
-<p>La détection d'objets à l'aide de classificateurs en cascade basés sur la décomposition en ondelettes de Haar est une méthode efficace de détection d'objets proposée par Paul Viola et Michael Jones dans leur article, "Rapid Object Detection using a Boosted Cascade of Simple Features" en 2001. Il s'agit d'une approche basée sur l'apprentissage automatique où un la fonction en cascade est formée à partir d'un grand nombre d'images positives et négatives.
-Cette méthode a été initialement mise en au point pour détecter des visages et a été étendu à d'autres objets tels quels les voitures.
-En python, vous pouvez faire appel à cette méthode via <code>object_cascade=cv2.CascadeClassifier()</code>. Cette classe est instanciée en lui passant un paramètre qui représente le "modèle" adapté à l'objet à détecter.
-Vous pouvez télécharger les modèles relatifs à des humains ici : https://github.com/opencv/opencv/tree/master/data/haarcascades
-Pour tester le détecteur sur des véhicules, le modèle proposé par Andrews Sobral est téléchrgeable ici : https://github.com/andrewssobral/vehicle_detection_haarcascades/blob/master/cars.xml</p>
-<p>Pour appliquer le détecteur à une image il suffit d'appeler la méthode <code>object=object_cascade.detectMultiScale(gray, scaleFactor=1.10, minNeighbors=3)</code> en passant en paramètre le nom de la variable image (gray) qu'il faut préalablement transformée en niveau de gris. Il fauat également renseigner le facteur d'échelle (scaleFactor) utilisé pour réduire l'image à chaque étage et le nombre de voisins (minNeighbors) que chaque objet détecté doit avoir pour le valider comme "effectivement" l'objet recherché.</p>
-<p>Cette méthode fournit une liste de boites englobantes (x, y, w et h) que vous afficherez sur chaque image couleur traitée afin de visualiser les résultats de la détection.</p>
-<pre><code class="language-python">for x, y, w, h in object:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
-</code></pre>
-<p>Ecrire un script permettant de mettre en musique cette classe et cette méthode sur la vidéo cars.mp4 fournies.
-Vous validerez votre script en utilisant les modèles relatifs au corps humains et en utilisant le flux d'une caméra.</p>
-<h3 id="model-training">Model training</h3>
-<p>Cette méthode pourrait être très intéressante pour détecter des objets lors du "challenge". Pour cela, je vous invite à lire et utiliser ce qui est proposé sur les 2 liens suivants. Ces liens décrivent comment il est possible d'apprendre un modèle spécifique à un objet donné.</p>
-<p>http://coding-robin.de/2013/07/22/train-your-own-opencv-haar-classifier.html</p>
-<p>https://github.com/mrnugget/opencv-haar-classifier-training</p>
-<h3 id="model-training-for-an-other-feature">Model training for an other feature</h3>
-<p>Vous trouverez dans le lien suivant, l'apprentissage d'un modèle sur la base d'un autre type de caractéreristique : les Local Binary Pattern (LBP).</p>
-<p>https://medium.com/@rithikachowta/object-detection-lbp-cascade-classifier-generation-a1d1a1c2d0b</p>
-<h1 id="gestion-de-la-depth-map-et-estimation-de-la-distance">Gestion de la depth map et estimation de la distance</h1>
-<p>Ce code permet de calculer la distance des parties de la scène qui se projette en chaque pixel de la caméra. Il utilise les deux nouvelles parties de code suivantes. La première permet de recaler les deux flux (depth map et rgb image) afin de garantir une correspondance pixel à pixel.
-Ces deux parties de codes sont à replacées dans le code complet présenté ensuite.</p>
-<pre><code class="language-python">
- #Aligning color frame to depth frame
-aligned_frames =  align.process(frames)
-depth_frame = aligned_frames.get_depth_frame()
-aligned_color_frame = aligned_frames.get_color_frame()
-
-</code></pre>
-<p>LA seconde permet de calculer la distance en un pixel (x,y) donné.</p>
-<pre><code class="language-python">#Use pixel value of  depth-aligned color image to get 3D axes
+<h3 id="gestion-de-la-depth-map-et-estimation-de-la-distance">Gestion de la depth map et estimation de la distance</h3>
+<p>This code measures the distance of the parts of the scene that are projected at each pixel of the camera by combining the depth image and the color image. It uses the following new part of code which was then integrated into the code you have already tested before.</p>
+<pre><code class="language-python"># Use pixel value of  depth-aligned color image to get 3D axes
 x, y = int(color_colormap_dim[1]/2), int(color_colormap_dim[0]/2)
 depth = depth_frame.get_distance(x, y)
 dx ,dy, dz = rs.rs2_deproject_pixel_to_point(color_intrin, [x,y], depth)
 distance = math.sqrt(((dx)**2) + ((dy)**2) + ((dz)**2))
 
 </code></pre>
-<p>Le code complet integrant la partie acquisition et visualisation est la suivante.
-Un cercle est positionné dans les deux flux autour du pixel en lequel la distance 
-est calculée.</p>
+<p>The complete code integrating the acquisition and visualization part is as follows.
+The position is marked by a circle in both streams with the measured distance:</p>
 <pre><code class="language-python">
 import pyrealsense2 as rs
 import numpy as np
