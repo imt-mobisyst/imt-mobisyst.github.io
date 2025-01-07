@@ -142,10 +142,10 @@ One solution consists in doing <em>Simultaneous Localization and Mapping</em> (a
 - Scan matching -->
 
 <p><a href="https://navigation.ros.org/setup_guides/transformation/setup_transforms.html">Transformations doc</a></p>
-<h1 id="map-building-using-slam_toolbox">Map building using <code>slam_toolbox</code></h1>
+<h2 id="map-building-using-slam_toolbox">Map building using <code>slam_toolbox</code></h2>
 <p>There are a lot of different SLAM algorithms and some implementations are open source and available on <a href="https://openslam-org.github.io/">OpenSLAM</a>.</p>
 <p>We will use here the <a href="https://github.com/SteveMacenski/slam_toolbox"><code>slam_toolbox</code></a> ROS implementation (documentation is <a href="https://navigation.ros.org/tutorials/docs/navigation2_with_slam.html">here</a>).</p>
-<h2 id="launch-slam_toolbox">Launch <code>slam_toolbox</code></h2>
+<h3 id="launch-slam_toolbox">Launch <code>slam_toolbox</code></h3>
 <pre><code class="language-console">ros2 launch tbot_sim challenge-1.launch
 </code></pre>
 <pre><code class="language-console">ros2 launch slam_toolbox online_sync_launch.py use_sim_time:=False
@@ -155,7 +155,7 @@ One solution consists in doing <em>Simultaneous Localization and Mapping</em> (a
 <blockquote>
 <p>Question: using all the tools you already know (<code>rviz2</code>, <code>rqt_graph</code>, tf, ...), what are the input and output data of <code>slam_toolbox</code>?</p>
 </blockquote>
-<h2 id="manual-mapping">Manual Mapping</h2>
+<h3 id="manual-mapping">Manual Mapping</h3>
 <p>Launch a teleop:</p>
 <pre><code class="language-console"># keyboard
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
@@ -167,23 +167,38 @@ ros2 launch teleop_twist_joy teleop-launch.py joy_config:=xbox
 <!-- ![GMapping demo rqt_graph](../files/SLAM/gmapping_stage_rqt_graph.png) -->
 
 <p><img alt="tf tree" src="../../files/SLAM/frames_slam.png" /></p>
-<h1 id="autonomous-navigation-sending-goal-points">Autonomous Navigation sending goal points</h1>
-<blockquote>
-<p>Facultative part</p>
-</blockquote>
+<p>It is possible to save the map by using slam_toolbox service call:</p>
+<pre><code class="language-console">ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap &quot;name: {data: '/home/user.name/path/to/map'}&quot;
+</code></pre>
+<!--
+# Autonomous Navigation sending goal points
+
+> Facultative part
+
+
 <pre><code>ros2 launch nav2_bringup navigation_launch.py
 </code></pre>
-<p>Be carreful, navigation should publish in the right topic so that the robot receive command velocities.
-Then, send goal points into <code>/goal_pose</code> (use rviz2)</p>
-<h1 id="save-the-map">Save the Map</h1>
+
+
+Be carreful, navigation should publish in the right topic so that the robot receive command velocities.
+Then, send goal points into `/goal_pose` (use rviz2)
+
+# Save the Map
+
+
 <pre><code class="language-console">ros2 run nav2_map_server map_saver_cli -f /home/bot/map
 </code></pre>
-<blockquote>
-<p>Sometimes this command produces a timeout. This is because it listens to the <code>map</code> topic no map is received during a certain amount of time and we cannot extend this delay...</p>
-</blockquote>
-<p>Another solution to save the map is to use the following service call:</p>
+
+
+> Sometimes this command produces a timeout. This is because it listens to the `map` topic no map is received during a certain amount of time and we cannot extend this delay...
+
+Another solution to save the map is to use the following service call:
+
+
 <pre><code class="language-console">ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap &quot;name: {data: '/home/bot/map2'}&quot;
 </code></pre>
+
+
 <!-- # All in one
 
 Stop everything.
@@ -197,73 +212,66 @@ Then, map can be saved using:
 
 
 <pre><code>
-``` --&gt;
-
-# Load a map and Localize in it
-
-To load a map and localize in it, you should:
-
-1. execute:
-
 </code></pre>
 
-ros2 launch nav2_bringup localization_launch.py map:=/home/bot/map.yaml autostart:=True
 
-<pre><code>
-2. publish an approximate initial pose into the topic `/initialpose` (using rviz2 for example)
+-->
 
-3. move the robot around (teleop or so) to improve the acuracy of the localization
-
-# Load a map and Localize in it __in simulation__
-
-Same steps as above but the time is simulated:
-
+<h2 id="load-a-map-and-localize-in-it">Load a map and Localize in it</h2>
+<p>To load a map and localize in it, you should:</p>
+<ol>
+<li>execute:</li>
+</ol>
+<pre><code>ros2 launch nav2_bringup localization_launch.py map:=/home/bot/map.yaml autostart:=True
 </code></pre>
-
-ros2 launch nav2_bringup localization_launch.py map:=/home/bot/map.yaml autostart:=True use_sim_time:=True
+<ol>
+<li>
+<p>publish an approximate initial pose into the topic <code>/initialpose</code> (using rviz2 for example)</p>
+</li>
+<li>
+<p>move the robot around (teleop or so) to improve the acuracy of the localization</p>
+</li>
+</ol>
+<p><strong>In simulation</strong>, we do the same steps, but the time is simulated:</p>
+<pre><code>ros2 launch nav2_bringup localization_launch.py map:=/home/bot/map.yaml autostart:=True use_sim_time:=True
 
 rviz2 --ros-args --remap use_sim_time:=True
-```
-
-# Bag files (`ros2 bag`)
-
-Working in simulation is nice but we can do better and work directly on real data using the `ros2 bag` command tool.
-The idea is to record some topics (all data that goes through) into a [bag file](http://wiki.ros.org/Bags) and play them later on.
+</code></pre>
+<h2 id="bag-files-ros2-bag">Bag files (<code>ros2 bag</code>)</h2>
+<p>Working in simulation is nice but we can do better and work directly on real data using the <code>ros2 bag</code> command tool.
+The idea is to record some topics (all data that goes through) into a <a href="http://wiki.ros.org/Bags">bag file</a> and play them later on.
 Bag files are really useful to test algorithms on real data sets that have been recorded in a specific location and with  specific sensors.
-Moreover, there are a lot of public datasets available:
-
-- [http://radish.sourceforge.net/]
-- [https://vision.in.tum.de/data/datasets/rgbd-dataset/download]
-- [http://www.ipb.uni-bonn.de/datasets/]
-- [http://car.imt-lille-douai.fr/polyslam/]
-
-
-Use the [tutorial on rosbag](https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html) to learn how to use it.
-
-> Work: Launch the challenge 2 simulation, record `/tf` and `/scan` into a rosbag and teleop the robot all around the map. You now have a dataset ready to do offline SLAM.
-
-# Offline Mapping
-
-> Work: Play the rosbag created before and launch `slam_toolbox` in offline mode to create the map and then save it. You can now load this map to localize the robot into it.
-
-# Map a real arena
-
-Re-do exactly the same things to map an existing arena:
-
-1. Put the robot inside the arena
-2. Record a bag file with all needed data to achieve SLAM
-3. Manually teleoperate the robot everywhere in the arena
-4. Save the bag file
-5. Play the bag file and launch the SLAM to create a map and save it (offline mapping)
-6. Put the robot inside the arena and load the map to localize the robot inside the arena
-
->Hint: `slam_toolbox` comes with a RViz plugin (Panels->Add New Panel->slam_toolbox->SlamToolboxPlugin) that might help
-
-# Tuning map quality
-
-SLAM algorithms usually have a lot of parameters that can be tuned to improve performance or map quality.
-`slam_toolbox` is no exception. Some hints [here](https://www.robotandchisel.com/2020/08/19/slam-in-ros2/).
-
+Moreover, there are a lot of public datasets available:</p>
+<ul>
+<li>[http://radish.sourceforge.net/]</li>
+<li>[https://vision.in.tum.de/data/datasets/rgbd-dataset/download]</li>
+<li>[http://www.ipb.uni-bonn.de/datasets/]</li>
+<li>[http://car.imt-lille-douai.fr/polyslam/]</li>
+</ul>
+<p>Use the <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">tutorial on rosbag</a> to learn how to use it.</p>
+<blockquote>
+<p>Work: Launch the challenge 2 simulation, record <code>/tf</code> and <code>/scan</code> into a rosbag and teleop the robot all around the map. You now have a dataset ready to do offline SLAM.</p>
+</blockquote>
+<h2 id="offline-mapping">Offline Mapping</h2>
+<blockquote>
+<p>Work: Play the rosbag created before and launch <code>slam_toolbox</code> in offline mode to create the map and then save it. You can now load this map to localize the robot into it.</p>
+</blockquote>
+<h2 id="map-a-real-arena">Map a real arena</h2>
+<p>Re-do exactly the same things to map an existing arena:</p>
+<ol>
+<li>Put the robot inside the arena</li>
+<li>Record a bag file with all needed data to achieve SLAM</li>
+<li>Manually teleoperate the robot everywhere in the arena</li>
+<li>Save the bag file</li>
+<li>Play the bag file and launch the SLAM to create a map and save it (offline mapping)</li>
+<li>Put the robot inside the arena and load the map to localize the robot inside the arena</li>
+</ol>
+<blockquote>
+<p>Hint: <code>slam_toolbox</code> comes with a RViz plugin (Panels-&gt;Add New Panel-&gt;slam_toolbox-&gt;SlamToolboxPlugin) that might help</p>
+</blockquote>
+<h2 id="tuning-map-quality">Tuning map quality</h2>
+<p>SLAM algorithms usually have a lot of parameters that can be tuned to improve performance or map quality.
+<code>slam_toolbox</code> is no exception. Some hints <a href="https://www.robotandchisel.com/2020/08/19/slam-in-ros2/">here</a>.</p>
 <!-- Comparing resulting maps and localization:
 - cite Sang's paper
 - Python package for the evaluation of odometry and SLAM
