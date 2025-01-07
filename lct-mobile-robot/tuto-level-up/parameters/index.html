@@ -130,12 +130,12 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="handle-ros-parameters">Handle ROS parameters</h1>
-<p>Node piece of programme accepts argument to be parrametrized, speed, name of the topic, frequencies or what ever.
+<p>Node piece of programs accepts the argument to be parametrized, speed, name of the topic, frequencies or whatever.
 This tutorial visits how ROS2 handle parameters...
-But first let see how to read <code>Python3</code> script argements. </p>
+But first, let see how to read <code>Python3</code> script arguments. </p>
 <h2 id="python3-arguments">Python3 arguments</h2>
-<p>Its is very commun add arguments in the command line while starting a programme or a script.
-Most of the linux commands accepts arguments. </p>
+<p>It is very common to add arguments in the command line while starting a program or a script.
+Most of the Linux commands accept arguments. </p>
 <p>In python, the arguments can be read with the <code>sys</code> python package, on a <code>argv</code> list (argument values).</p>
 <p>lets initialize a <code>test-script.py</code></p>
 <pre><code class="language-python">import sys
@@ -147,12 +147,12 @@ print( sys.argv )
 </code></pre>
 <p>You notice that the executed script itself is the first argument (at indice <span class="arithmatex">\(0\)</span>).</p>
 <h2 id="use-ros2-parameters">Use ROS2 Parameters</h2>
-<p><em>ROS2</em> provides parameter managment on top of command arguments.
-Typically, it is possiple to list the parameters with <code>ros2 param list</code> command.
+<p><em>ROS2</em> provides parameter management on top of command arguments.
+Typically, it is possible to list the parameters with <code>ros2 param list</code> command.
 Start a turtlesim in a terminal an search for trutlesim parameters in another.</p>
-<p>To activate parameters (and topic remaping) <code>ros2 run</code> command needs <code>--ros-args</code> attributs, <br />
-then the syntaxe is <code>-p parameter:=value</code>.</p>
-<p>For instance to set a beautifull orange at turtlesim background: </p>
+<p>To activate parameters (and topic remapping) <code>ros2 run</code> command needs <code>--ros-args</code> attributes, <br />
+then the syntax is <code>-p parameter_name:=value</code>.</p>
+<p>For instance, to set a beautiful orange on the turtlesim background: </p>
 <pre><code class="language-sh">ros2 run turtlesim turtlesim_node --ros-args \
     -p background_r:=100 \
     -p background_g:=60 \
@@ -169,7 +169,8 @@ then the syntaxe is <code>-p parameter:=value</code>.</p>
     - { name: &quot;background_g&quot;, value: 60 }
     - { name: &quot;background_b&quot;, value: 0 }
 </code></pre>
-<!-- Furthermore it is also possible to define argument to the _YAML_ launch file.
+<!--
+Furthermore it is also possible to define arguments in the _YAML_ launch file.
 
 
 <pre><code class="language-yaml">launch:
@@ -191,35 +192,62 @@ then the syntaxe is <code>-p parameter:=value</code>.</p>
 
 -->
 
-<h2 id="simple-python3-integration">Simple Python3 Integration</h2>
-<p>Thes ROS2 client API (Python3 or C++) provides tools to déclare and read <em>ROS2</em> parameters value.
-However, one of the simple way to use parameters
-is to allow the <em>ROS</em> node to administrate them automatically.
-It requires to set the node attributs <code>allow_undeclared_parameters</code> and <code>automatically_declare_parameters_from_overrides</code> at <em>True</em>.</p>
-<pre><code class="language-python">    myNode= Node(
-        'my_node_name',
-        allow_undeclared_parameters=True,
-        automatically_declare_parameters_from_overrides=True
-    )
+<h2 id="python3-integration">Python3 Integration</h2>
+<p>The ROS2 client API (Python3 as C++) provides tools to declare and read <em>ROS2</em> parameters value.</p>
+<ul>
+<li><code>declare_parameter</code> method attached to a <code>Node</code> instance, declare a ROS variable.
+On a simple usage, it takes 2 parameters:<ul>
+<li>The variable name to use.</li>
+<li>A default value <strong>(ATTENTION, ROS parameter has type, so <span class="arithmatex">\(10\)</span> is different of <span class="arithmatex">\(10.0\)</span>)</strong></li>
+</ul>
+</li>
+<li><code>get_parameter( 'variable_name' )</code> returning a parameter instance, with <code>aParameter.value</code> the value.</li>
+</ul>
+<p>(To notice that a <code>aParameter.get_parameter_value()</code> exists and returns an object containing the parameter value on diferent possible types: 
+<code>[bool_value, integer_value, double_value, string_value, byte_array_value, bool_array_value, integer_array_value, double_array_value, string_array_value]</code>)</p>
+<p>For instance, a node initialization with an integer parameters lookalike:</p>
+<pre><code class="language-python"># Initialize ROS node with ROS client
+rclpy.init()
+rosNode= Node( &quot;myOneParameterNode&quot; )
+
+# Node Parameters : 
+rosNode.declare_parameter( 'my_parameter', 10 )
+aProgramVariable= rosNode.get_parameter( 'my_parameter' ).value
+
+print( f&quot;&gt; Parameter value: {aProgramVariable}&quot; )
+
+# Start infinite loop
+rclpy.spin(rosNode)
+
+# Clean everything and switch the light off
+rosNode.destroy_node()
+rclpy.shutdown()
 </code></pre>
-<p>This way, the node will create (if necessary) and handle <em>ROS</em> parameters each time developers try to get value from them.
-The methode <code>Node::get_parameter_or</code> permits to read a parameters of a given type or return a default value if the parameter is not provided.
-<code>get_parameter_or</code> takes <span class="arithmatex">\(2\)</span> attributes: <code>parameter_name</code> used in the <code>ros2 run</code> command or in the launch files, <code>defaultParameter</code> a <em>Parameter</em> instance defined with a <code>name</code>, a <code>type</code> and a <code>default value</code>.
-To notice tha the <code>parameter_name</code> and the <code>Parameter instance.name</code> can be the same or diferent.
-The Parameter type can be : <code>NOT_SET, BOOL, INTEGER, DOUBLE, STRING, BYTE_ARRAY, BOOL_ARRAY, INTEGER_ARRAY, DOUBLE_ARRAY or STRING_ARRAY</code> (cf. <a href="https://github.com/ros2/rclpy/blob/rolling/rclpy/rclpy/parameter.py">Parameter Class</a>)</p>
-<p>for instance: </p>
-<pre><code class="language-python">def initializeAttributsFromROSParameters( self, aROSNode ):
-    self._aTopicName = aROSNode.get_parameter_or( 'topic_to_use',
-        rclpy.Parameter('aTopic', rclpy.Parameter.Type.STRING, 'topic')
-    )
-    self._aId = self.get_parameter_or( 'id',
-        Parameter('id', Parameter.Type.INTEGER, 8)
-    )
-    self._aVector  = self.get_parameter_or( 'vector',
-        Parameter('floatList', Parameter.Type.DOUBLE_ARRAY, [1.1, 2.2])
-    )
+<p>Add this node to your <em>tutorial_pkg</em> and test it.</p>
+<pre><code class="language-sh"># Shell-1
+ros2 run tutorial_pkg oneParamNode
+
+# Shell-2
+ros2 param list
+
+# Shell-1
+ros2 run tutorial_pkg oneParamNode --ros-args -p my_parameter:=42
+
+# Shell-1
+ros2 run tutorial_pkg oneParamNode --ros-args -p my_parameter:=&quot;42&quot;
+
+# Shell-1
+ros2 run tutorial_pkg oneParamNode --ros-args -p my_parameter:=&quot;quarante-deux&quot;
 </code></pre>
-<p>Implements ROS parameters to set-up different messages to your talker node (cf. <em>Node and Topic</em> tutorial).</p>
+<p>Implements ROS parameters to set-up the message to be sent by your talker node (cf. <em>Node and Topic</em> tutorial).
+Ideally, the node parameter is read each times, before to publish the message to guaranty to sent the last message in case of parameter modification.</p>
+<pre><code class="language-sh"># With Node: 'myTalker' and parameter 'message'
+ros2 param set myTalker message &quot;New important information to broadcast...&quot;
+</code></pre>
+<!--
+Optionally, it is possible to process _on-the-go_ parameter modification by defining callback function triggered on a parameter event. For more detail, see the official documentation:
+- https://docs.ros.org/en/iron/Concepts/Basic/About-Parameters.html
+-->
               
             </div>
           </div><footer>

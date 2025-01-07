@@ -133,48 +133,52 @@
 <p>The goal of the challenge is to demonstrate the capability of a robot to move in a cluttered environment with a possibility to see what the robot see.</p>
 <h2 id="expected">Expected</h2>
 <p>The robot is positioned somewhere in a closed area (i.e. an area bounded with obstacles).</p>
-<p>The robot moves continuously in this area while avoiding the obstacles (i.e. area limits and some obstacles randomly set in the area).</p>
+<p>The robot moves continuously in this area while avoiding obstacles (i.e. area limits and some obstacles randomly set in the area).</p>
 <p>The sensor data (scan, vision) and potentially other information (considered obstacles, frames,...) is visible on rviz.</p>
 <p>The robot trajectory would permit the robot to explore the overall area.
 In other words, the robot will go everywhere (i.e. the probability that the robot will reach a specific reachable position in the area is equal to 1 at infinite time).</p>
 <p>One first approach can be to develop a <em>ricochet robot</em> that changes its direction randomly each time an obstacle prevent the robot to move forward.</p>
 <h2 id="consigns">consigns</h2>
 <p>Each group commit the minimal required files in a specific <code>grp_'machine'</code> ros2 package inside their git repository.</p>
-<p>Release: <strong>Monday afternoon of week-3 (Monday 15-01-2024)</strong></p>
+<p>Release: <strong>Thusday afternoon of week-3 (Monday 14-01-2025)</strong></p>
 <h3 id="the-required-files">The required files:</h3>
 <ul>
 <li>At the root repository, a <code>README.md</code> file in markdown syntax introducing the project.</li>
-<li>A directory <code>grp_'machine'</code> matching the ROS2 package where the elements will be found (<code>machine</code> matches the name of the machine embedded on the robot).</li>
-<li>Inside the <code>grp_'machine'</code> package, a launch file <code>simulation_launch.yaml</code> starting the appropriate nodes for demonstrating in the simulation.</li>
+<li>A directory <code>grp_pibotXX</code> matching the ROS2 package where the elements will be found (<code>XX</code> matches the number of the <em>pibot</em>).</li>
+<li>Inside the <code>grp_pibotXX</code> package, a launch file <code>simulation_launch.yaml</code> starting the appropriate nodes for demonstrating in the simulation.</li>
 <li>Then, a launch file <code>tbot_launch.yaml</code> starting the appropriate nodes for demonstrating with a tbot.</li>
-<li>Finally, a launch file <code>visualize.launch.py</code> starting the appropriate nodes including rviz2 to visualize (the idea is that we could use to computer on a same domain id. one to control the robot, one for visualization).</li>
 </ul>
-<p>In simulations, we will work with the configuration set in <code>challenge-1.launch.py</code>.</p>
+<!-- * Finally, a launch file `visualize.launch.py` starting the appropriate nodes including rviz2 to visualize (the idea is that we could use to computers on a same domain id. one to control the robot, one for visualization).
+-->
+
+<!-- In simulations, we will work with the configuration set in `challenge-1.launch.py`.-->
+
 <h2 id="criteria">Criteria</h2>
-<p>Minimal:</p>
 <ol>
 <li>The group follows the consigns (i.e. the repository is presented as expected)</li>
 <li>The robot behavior is safe (no collision with any obstacles)</li>
 <li>rviz2 is started and well configured.</li>
 <li>The robot moves everywhere in it environment.</li>
-<li>A <code>String</code> message is sent in a <code>detection</code> topic each time a bottle is front of the robot.</li>
+<li>A <code>String</code> message is sent in a <code>detection</code> topic each time a bottle is found in front of the robot.</li>
 </ol>
-<p>Optional:</p>
-<ol>
-<li>An operator can take the control of the robot at any time.</li>
-<li>The robot movement is fluid (no stop), fast and the robot moves smoothly even in small areas</li>
-</ol>
+<!--
+Optional:
+
+1. An operator can take control of the robot at any time.
+2. The robot movement is fluid (no stop), fast and the robot moves smoothly even in small areas
+-->
+
 <h2 id="evaluation-protocol-for-evaluators">Evaluation protocol (for evaluators...)</h2>
 <p>Here the evaluation protocol applied.
 It is highly recommended to process it yourself before the submission...</p>
 <ol>
-<li>clone the group’s repository</li>
-<li>Take a look to what is inside the repository and read the <code>README.md</code> file (normally it states that the project depends on <code>mb6-tbot</code>, make sure that <code>mb6-tbot</code> project is already installed aside).</li>
-<li>make it: <code>colcon build</code> and <code>source</code> from the workspace directory.</li>
-<li>Launch the simulation demonstration: <code>ros2 launch challenge1 simulation.launch.py</code> and appreciate the solution.</li>
+<li>Clone the group’s repository</li>
+<li>Take a look to what is inside the repository and read the <code>README.md</code> file.</li>
+<li>Build it (<code>colcon build</code> and <code>source</code> from the workspace directory) accordingly to <code>README.md</code> instructions.</li>
+<li>Launch the simulation demonstration: <code>ros2 launch grp_pibotXX simulation_v1_launch.yaml</code> and appreciate the solution (at this point vision detection should not be activated)</li>
 <li>Stop everything.</li>
-<li>Connect the computer to the robot, the hokuyo and the camera.</li>
-<li>Launch the Turtlebot demonstration, and appreciate the solution.</li>
+<li>Start the <code>pibotXX</code> robot, and connect the camera.</li>
+<li>Launch the Turtlebot demonstration (<code>ros2 launch grp_pibotXX demo_v1_launch.yaml</code>), and appreciate the solution.</li>
 <li>Take a look to the code, by starting from the launch files.</li>
 </ol>
               
