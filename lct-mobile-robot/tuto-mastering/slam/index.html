@@ -146,11 +146,11 @@ One solution consists in doing <em>Simultaneous Localization and Mapping</em> (a
 <p>There are a lot of different SLAM algorithms and some implementations are open source and available on <a href="https://openslam-org.github.io/">OpenSLAM</a>.</p>
 <p>We will use here the <a href="https://github.com/SteveMacenski/slam_toolbox"><code>slam_toolbox</code></a> ROS implementation (documentation is <a href="https://navigation.ros.org/tutorials/docs/navigation2_with_slam.html">here</a>).</p>
 <h3 id="launch-slam_toolbox">Launch <code>slam_toolbox</code></h3>
-<pre><code class="language-console">ros2 launch tbot_sim challenge-1.launch
+<pre><code class="language-console">ros2 launch tbot_sim challenge-1.launch.py
 </code></pre>
-<pre><code class="language-console">ros2 launch slam_toolbox online_sync_launch.py use_sim_time:=False
+<pre><code class="language-console">ros2 launch slam_toolbox online_sync_launch.py --ros-args -p use_sim_time:=True
 </code></pre>
-<pre><code class="language-console">rviz2
+<pre><code class="language-console">rviz2 --ros-args -p use_sim_time:=True
 </code></pre>
 <blockquote>
 <p>Question: using all the tools you already know (<code>rviz2</code>, <code>rqt_graph</code>, tf, ...), what are the input and output data of <code>slam_toolbox</code>?</p>

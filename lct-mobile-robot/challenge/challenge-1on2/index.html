@@ -139,14 +139,14 @@
 In other words, the robot will go everywhere (i.e. the probability that the robot will reach a specific reachable position in the area is equal to 1 at infinite time).</p>
 <p>One first approach can be to develop a <em>ricochet robot</em> that changes its direction randomly each time an obstacle prevent the robot to move forward.</p>
 <h2 id="consigns">consigns</h2>
-<p>Each group commit the minimal required files in a specific <code>grp_'machine'</code> ros2 package inside their git repository.</p>
+<p>Each group commit the minimal required files in a specific <code>grp_pibotXX</code> ros2 package inside their git repository.</p>
 <p>Release: <strong>Thusday afternoon of week-3 (Monday 14-01-2025)</strong></p>
 <h3 id="the-required-files">The required files:</h3>
 <ul>
 <li>At the root repository, a <code>README.md</code> file in markdown syntax introducing the project.</li>
 <li>A directory <code>grp_pibotXX</code> matching the ROS2 package where the elements will be found (<code>XX</code> matches the number of the <em>pibot</em>).</li>
-<li>Inside the <code>grp_pibotXX</code> package, a launch file <code>simulation_launch.yaml</code> starting the appropriate nodes for demonstrating in the simulation.</li>
-<li>Then, a launch file <code>tbot_launch.yaml</code> starting the appropriate nodes for demonstrating with a tbot.</li>
+<li>Inside the <code>grp_pibotXX</code> package, a launch file <code>simulation_v1_launch.yaml</code> starting the appropriate nodes for demonstrating in the simulation.</li>
+<li>Then, a launch file <code>tbot_v1_launch.yaml</code> starting the appropriate nodes for demonstrating with a tbot.</li>
 </ul>
 <!-- * Finally, a launch file `visualize.launch.py` starting the appropriate nodes including rviz2 to visualize (the idea is that we could use to computers on a same domain id. one to control the robot, one for visualization).
 -->
@@ -178,7 +178,7 @@ It is highly recommended to process it yourself before the submission...</p>
 <li>Launch the simulation demonstration: <code>ros2 launch grp_pibotXX simulation_v1_launch.yaml</code> and appreciate the solution (at this point vision detection should not be activated)</li>
 <li>Stop everything.</li>
 <li>Start the <code>pibotXX</code> robot, and connect the camera.</li>
-<li>Launch the Turtlebot demonstration (<code>ros2 launch grp_pibotXX demo_v1_launch.yaml</code>), and appreciate the solution.</li>
+<li>Launch the Turtlebot demonstration (<code>ros2 launch grp_pibotXX tbot_v1_launch.yaml</code>), and appreciate the solution.</li>
 <li>Take a look to the code, by starting from the launch files.</li>
 </ol>
               
