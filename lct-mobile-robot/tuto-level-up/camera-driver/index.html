@@ -308,15 +308,15 @@ It is possible to overpass that by specifying a timeout (<code>spin_once(myNode,
 <p>At the end we want a ROS2 Node that connect the camera and publish continously the images (color and depth images).
 The python function of the Node will look like:</p>
 <pre><code class="language-python"># Node processes:
-def mainFunction(args=None):
+def mainFunction():
     # Initialize ROS Node connected to the camera
-    rclpy.init(args=args)
+    rclpy.init( signal_handler_options= SignalHandlerOptions.NO )
     rosNode= Node( &quot;RealSense_driver&quot; )
     camera= Realsense()
     camera.initializeROSNode( rosNode )
 
     # Start infinite loop
-    while isOk:
+    while isOk and rclpy.ok() :
         camera.read_imgs()
         camera.publish_imgs()
         rclpy.spin_once(rosNode, timeout_sec=0.001)
@@ -326,9 +326,9 @@ def mainFunction(args=None):
     rosNode.destroy_node()
     rclpy.shutdown()
 </code></pre>
-<p>This solution relies on a <code>Realsense</code> class to create. 
-The class conponent will be filled mostlly by the element from the previous script.
-You can start from a blanc class <code>Realsence</code> and fill the differents methods step by steps (testing your code at each steps):</p>
+<p>To notice that, we aims to control the program loop and its possible interruption. 
+So, at ROS initialization, we desactivate the signal handler mecanism by using <code>SignalHandlerOptions</code> (<code>from rclpy.signals import SignalHandlerOptions</code>).</p>
+<p>This solution relies on a <code>Realsense</code> class to create.</p>
 <pre><code class="language-python"># Realsense Node:
 class Realsense():
     def __init__(self, fps= 60):
@@ -352,6 +352,13 @@ class Realsense():
         # disconnect the camera, free the resource.
         pass
 </code></pre>
+<p>Finally, do not forget to execute the main function...</p>
+<pre><code class="language-python"># Execute the main function.
+if __name__ == &quot;__main__&quot;:
+    mainFunction()
+</code></pre>
+<p><code>Realsense</code> class conponents will be filled mostlly by the element from the previous script.
+Starting from the blanc class <code>Realsence</code>, you can fill the differents methods step by steps (testing your code at each step).</p>
 <h3 id="publish-images">Publish Images:</h3>
 <ul>
 <li><code>sensor_msgs</code> include <a href="http://docs.ros.org/en/api/std_msgs/html/msg/Header.html">header</a> to state for spacio-temporal information. Mainly the reference frame (ie. <code>cam</code> for instance) and time. For time stamp, <code>get_clock()</code> permits to get a clock of a Node instance (<code>node= Node()</code> or <code>self</code> in case of ineritance) then <code>now()</code> and <code>to_msg()</code> methods respectivelly provide curent <code>time()</code> and convert it into a msg compliant format.</li>
