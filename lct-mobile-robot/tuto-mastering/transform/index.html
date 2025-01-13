@@ -80,8 +80,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vision/">Image processing</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../interfaces/">Interfaces</a>
-                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Move To</a>
                   </li>
               </ul>
@@ -179,10 +177,8 @@ Display the frames in <em>rviz2</em> (add &gt; axes &gt; set reference frame) an
 <h3 id="tbot-configuration">tbot configuration</h3>
 <p>For a simple robot, it can be dozens of frames and it grows with robot parts (legs, arms).
 <em>ROS</em> provide a tool (state publisher) to publish transform regarding how the frames are interconnected.
-The tbot launch file of the <code>tbot_start</code> package already starts state publisher based on a description of the tbot (kobuki robot in IMT Nord Europe configuration).</p>
-<p>Spot every thing but <em>rviz</em> and
-start the tbot launch file: <code>tbot_start minimal.launch.py</code>.
-Generate the frame graph (<code>view_frame</code>).</p>
+The tbot launch file of the <code>tbot_start</code> package already started state publisher based on a description of the tbot (kobuki robot in IMT Nord Europe configuration, already on <em>pibot</em>).
+Connect the robot (via the <code>ROS_DOMAIN_ID</code>) and Generate the frame graph (<code>view_frame</code>).</p>
 <p>In basic configuration, the robot provides a first pose estimation in global <code>odom</code> frame (ie. transformation between <code>odom</code> and <code>base_link</code>).
 So set the fixed frame in rviz on <code>odom</code>, the laser scans appear.
 Connect to tf topic and all the frame axis appear too.</p>
@@ -269,7 +265,7 @@ That for the reactive move has to manage a list of pose and switch from a pose t
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../interfaces/" class="btn btn-neutral float-left" title="Interfaces"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../vision/" class="btn btn-neutral float-left" title="Image processing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../../challenge/kick-off/" class="btn btn-neutral float-right" title="Kick-off">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -293,7 +289,7 @@ That for the reactive move has to manage a list of pose and switch from a pose t
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../interfaces/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../vision/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../../challenge/kick-off/" style="color: #fcfcfc">Next &raquo;</a></span>
