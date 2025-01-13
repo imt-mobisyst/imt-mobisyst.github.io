@@ -76,7 +76,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Mastering</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">S.L.A.M</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">S.L.A.M</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vision/">Image processing</a>
                   </li>
@@ -139,14 +139,15 @@ One solution consists in doing <em>Simultaneous Localization and Mapping</em> (a
 - Pose Graph Optimization
 - Scan matching -->
 
-<p><a href="https://navigation.ros.org/setup_guides/transformation/setup_transforms.html">Transformations doc</a></p>
+<h2 id="nav2">Nav2</h2>
+<p><a href="https://nav2.org">Nav2</a> is the open source de facto standard for autonomous navigation in ROS2 that includes: perception, planning, control, localisation, ...</p>
 <h2 id="map-building-using-slam_toolbox">Map building using <code>slam_toolbox</code></h2>
 <p>There are a lot of different SLAM algorithms and some implementations are open source and available on <a href="https://openslam-org.github.io/">OpenSLAM</a>.</p>
-<p>We will use here the <a href="https://github.com/SteveMacenski/slam_toolbox"><code>slam_toolbox</code></a> ROS implementation (documentation is <a href="https://navigation.ros.org/tutorials/docs/navigation2_with_slam.html">here</a>).</p>
+<p>We will use here the <a href="https://github.com/SteveMacenski/slam_toolbox"><code>slam_toolbox</code></a> ROS2 implementation in Nav2(documentation is <a href="https://docs.nav2.org/tutorials/docs/navigation2_with_slam.html">here</a>).</p>
 <h3 id="launch-slam_toolbox">Launch <code>slam_toolbox</code></h3>
 <pre><code class="language-console">ros2 launch tbot_sim challenge-1.launch.py
 </code></pre>
-<pre><code class="language-console">ros2 launch slam_toolbox online_sync_launch.py --ros-args -p use_sim_time:=True
+<pre><code class="language-console">ros2 launch slam_toolbox online_sync_launch.py use_sim_time:=True
 </code></pre>
 <pre><code class="language-console">rviz2 --ros-args -p use_sim_time:=True
 </code></pre>
@@ -166,7 +167,7 @@ ros2 launch teleop_twist_joy teleop-launch.py joy_config:=xbox
 
 <p><img alt="tf tree" src="../../files/SLAM/frames_slam.png" /></p>
 <p>It is possible to save the map by using slam_toolbox service call:</p>
-<pre><code class="language-console">ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap &quot;name: {data: '/home/user.name/path/to/map'}&quot;
+<pre><code class="language-console">ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap &quot;name: {data: '/home/bot/path/to/map'}&quot;
 </code></pre>
 <!--
 # Autonomous Navigation sending goal points
