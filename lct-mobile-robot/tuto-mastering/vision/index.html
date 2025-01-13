@@ -141,10 +141,7 @@ However it requires to process the images to extract pertinent information like 
 <pre><code class="language-bash">sudo apt install python3 pip
 </code></pre>
 <p>Then we can use pip to install required modules:</p>
-<pre><code class="language-bash">pip3 install numpy opencv-python opencv-contrib-python scikit-learn scipy matplotlib psutil scikit-image 
-</code></pre>
-<p>I you plan to use neural networks techniques (a GPU is almost always required to provide real-time detection):</p>
-<pre><code class="language-bash">pip3 install tensorflow
+<pre><code class="language-bash">pip3 install numpy==1.26.4 opencv-python opencv-contrib-python scikit-learn scipy matplotlib psutil scikit-image 
 </code></pre>
 <p>Now normally you can load the different modules, for instance:</p>
 <pre><code class="language-python">import cv2
