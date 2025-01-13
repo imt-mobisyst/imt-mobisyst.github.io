@@ -148,13 +148,18 @@ The robot is defined with different frame: <code>base_link</code> at the gravity
 <p>By starting any sensor as the laser, the publishing data is in its own frame.
 It would be impossible for <em>rviz2</em> to display the laser information into <code>map</code> frame (<em>fixed frame</em>).
 The <code>map</code> and <code>laser</code> frames are independent.</p>
-<p>Start the laser and rviz2:</p>
+<!--Start the laser and rviz2:
+
+
 <pre><code class="language-console"># First console
 ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0
 # Second console
 rviz2
 </code></pre>
-<p>In rviz, connect to scan topic, but nothing appears.
+
+-->
+
+<p>In rviz, connect to scan topic, normaly nothing appears.
 Try by modifying the global frame with the frame of the laser.</p>
 <h3 id="transform-tools">Transform tools</h3>
 <p>The package <code>tf2_tools</code> provides with a process that generates a graph of the connection between the frames.</p>
