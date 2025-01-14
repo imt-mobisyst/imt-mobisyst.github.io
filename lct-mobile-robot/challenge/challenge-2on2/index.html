@@ -89,7 +89,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../challenge-1on2/">Challenge 1</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Challenge 2</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Challenge 2</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendix</span></p>
@@ -135,55 +135,64 @@ The localization requires to build a map of the environment.</p>
 <p>The robot moves continuously in this area by avoiding obstacles.</p>
 <p>The robot knowledge is extended with new incoming data.
 In other words, the robot build a map and localizes itself in it.</p>
-<p>The robot detects <em>NukaCola</em> bottle in the vision flux.
+<p>The robot detects <em>green ghost</em> in the sensor flux.
 Messages are sent in topics
-one to state the detection
-and another one to mark the position in the map (cf. <a href="http://wiki.ros.org/marker_msgs">marker_msgs</a>)</p>
-<p>Experiments can be performed with 2 computers, one on the robot (Control PC) and a second for visualization and human control (Operator PC).</p>
+one to state the detection and another one to mark the position in the map (cf. <a href="http://wiki.ros.org/marker_msgs">marker_msgs</a>)</p>
+<p>Experiments can be performed with <span class="arithmatex">\(2\)</span> computers, one on the robot (Control PC) and a second for visualization and human control (Operator PC).</p>
 <h2 id="consigns">consigns</h2>
-<p>Each group commit the minimal required files in a specific <code>grp_'machine'</code> ros2 package inside their git repository.</p>
-<p>Release: <strong>Monday of week-4, Monday 22 of January</strong></p>
+<p>Each group commit the minimal required files in a specific <code>grp_pibotXX</code> ros2 package inside their git repository.</p>
+<p>Release: <strong>Wednesday of week-4, Wednesday 24 of January</strong></p>
 <h3 id="the-required-files">The required files:</h3>
 <ul>
 <li>At the root repository, a <code>README.md</code> file in markdown syntax introducing the project.</li>
-<li>A directory <code>grp_'machine'</code> matching the ROS2 package where the elements will be found (<code>machine</code> matches the name of the machine embedded in the robot).</li>
-<li>Inside the <code>grp_'machine'</code> package, a launch file <code>simulation_launch</code> starting the appropriate nodes for demonstrating in the simulation.</li>
-<li>Then, a launch file <code>tbot_launch</code> starting the appropriate nodes for demonstrating with a Turtlebot.</li>
-<li>Finally, a launch file <code>operator_launch</code> start a visualization + control solution.</li>
+<li>A directory <code>grp_pibotXX</code> matching the ROS2 package where the elements will be found (<code>XX</code> matches the number of your <em>pibot</em> robot).</li>
+<li>Inside the <code>grp_pibotXX</code> package, a launch file <code>simulation_v2_launch</code> starting the appropriate nodes for demonstrating SLAM in the simulation.</li>
+<li>Then, a launch file <code>vision_launch</code> starting the appropriate nodes for demonstrating vision capability (the pibot doesn't move).</li>
+<li>Then, a launch file <code>tbot_v2_launch</code> starting the appropriate nodes for demonstrating with a Turtlebot (SLAM + localisation of the <em>green ghost</em>).</li>
+<li>Finally, a launch file <code>operator_launch</code> start a visualization (enriched map, without connection to image topic) + distant control solution.</li>
 </ul>
-<p>In simulations, we will work with the configuration set in <code>challenge-2.launch.py</code>.</p>
+<p>The simulation is configured with your preference with Gazebo or Stage.</p>
 <h2 id="criteria">Criteria</h2>
-<p>Minimal:</p>
+<p><strong>Minimal</strong>:</p>
 <ol>
 <li>The group follows the consigns (i.e. the repository is presented as expected)</li>
 <li>The robot behavior is safe (no collision with any obstacles)</li>
+<li>Vision part detect correctly <em>green ghost</em> in the sensor flux.</li>
 <li>rviz2 is started and well configured in a second PC and display the built map.</li>
-<li>It is possible to visualize a marker for detected bottles at the position of the bottle in the environment. The bottles are identified with a number and the robot is capable of recognizing a bottle on a second passage (it should be easy to count the bottle in the map or by reading the topic).</li>
-<li>The bottle detection detects all the bottles, in any position but with robustness to false positives.</li>
+<li>It is possible to visualize a marker for detected bottles at the position of the bottle in the map.</li>
 </ol>
-<p>Optional (the order does not matter):</p>
+<p><strong>Optional</strong> (the order does not matter):</p>
 <ul>
 <li>The robot movement is oriented toward the unknown areas to speed up the exploration.</li>
+<li>The <em>green ghost</em> are identified with a number and the robot is capable of recognizing a ghost on a second passage (it should be easy to count the ghost in the map).</li>
+<li>The bottle detection detects all the bottles, in any position but with robustness to false positives.</li>
 <li>Processes are clearly established (start and stop the robot, save the map, get the lists of bottles, set the xp in pause, ...)</li>
 <li>Developed nodes are based on ROS2 Parameters (for speed, obstacle detections, ...) </li>
 <li>The Kobuki features are integrated to the scenario (robot button, contact to the ground, void detection, bips,...)</li>
+<li>The <em>green ghost</em> are identified with a number and the robot is capable of recognizing a bottle on a second passage (it should be easy to count the bottle in the map or by reading the topic).</li>
+<li>The robot behavior permits to caracterize clearly a <em>green ghost</em>.</li>
 <li>The list is not exhaustive, be inventive !</li>
 </ul>
 <p>The <code>challenge2 tbot.launch.py</code> launch file may take an initial map.</p>
-<h2 id="evaluation-protocol">Evaluation protocol</h2>
-<p>Here the evaluation protocol to apply.
-It is highly recommended to process it yourself before the submission...</p>
-<ol>
-<li>Clone/update the group’s repository on both machines (Control and Operator)</li>
-<li>Take a look to what is inside the repository and read the <code>README.md</code> file (normally it states that the project depends on <code>mb6-tbot</code>, make sure that <code>mb6-tbot</code> project is already installed aside).</li>
-<li>Build it: <code>colcon build</code> and <code>source</code> from the workspace directory.</li>
-<li>Set the appropriate ROS configuration (domain ID, etc.).</li>
-<li>Launch the simulation demonstration: <code>ros2 launch challenge1 simulation.launch.py</code> and appreciate the solution.</li>
-<li>Stop everything.</li>
-<li>Configure the computers for working with the Tbot.</li>
-<li>Launch the Tbot demonstration, and appreciate the solution.</li>
-<li>Take a look to the code, by starting from the launch files.</li>
-</ol>
+<!--
+## Evaluation protocol
+
+Here the evaluation protocol to apply.
+It is highly recommended to process it yourself before the submission...
+
+1. Clone/update the group’s repository on both machines (Control and Operator)
+2. Take a look to what is inside the repository and read the `README.md` file (normally it states that the project depends on `mb6-tbot`, make sure that `mb6-tbot` project is already installed aside).
+3. Build it: `colcon build` and `source` from the workspace directory.
+3. Set the appropriate ROS configuration (domain ID, etc.).
+4. Launch the simulation demonstration: `ros2 launch challenge1 simulation.launch.py` and appreciate the solution.
+5. Stop everything.
+6. Configure the computers for working with the Tbot.
+7. Launch the Tbot demonstration, and appreciate the solution.
+8. Take a look to the code, by starting from the launch files.
+-->
+
+<h2 id="video">Video</h2>
+<p>5 minutes video technique.</p>
               
             </div>
           </div><footer>
