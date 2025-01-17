@@ -191,20 +191,23 @@ Connect to tf topic and all the frame axis appear too.</p>
 <li>Oficial documentation about tf2: <a href="https://docs.ros.org/en/iron/Tutorials/Intermediate/Tf2/Tf2-Main.html">docs.ros.org</a>.</li>
 </ul>
 <p>Bonus: it is possible to visualize the robot in <em>rviz2</em>: add &gt; robot description (select the appropriate topic).</p>
-<h3 id="publish-a-pose-in-a-specific-frame">Publish a pose in a specific frame.</h3>
+<h3 id="transform-a-pose-in-a-specific-frame">Transform a pose in a specific frame.</h3>
 <p>Naturally, <em>ROS</em> also provide C++ and Python library to manipulate transformation and permits developers to get pose coordinate from a frame to another.</p>
 <p>The idea is to a declare a tf2 listener, an object that will subscribe to transform topics and maintain transformation data.
 Then it is possible to recompute pose coordinates in any connected frames.</p>
 <p>More on : <a href="http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20listener%20%28Python%29">wiki.ros.org</a>.</p>
 <p>The idea in our context is to develop a node <code>localGoal</code> that will remember a pose in a global frame and publish at a given frequence the pose in another local frame.</p>
 <p>For our new node, we have to declare the elements permitting the node to listen and keep the transformation available, a <code>listerner</code> and a <code>buffer</code>.</p>
-<pre><code class="language-python"># Transform tool:
-self.tf_buffer = tf2_ros.Buffer()
-self.tf_listener = tf2_ros.TransformListener(self.tf_buffer, self)
+<pre><code class="language-python"># Transform tool (suppose that ros2 is initialized):
+tf_buffer = tf2_ros.Buffer()
+tf_listener = tf2_ros.TransformListener( tf_buffer )
 ...
 </code></pre>
 <p>Do not forget to import <code>tf2_ros</code> into your script and to add the reference into the package dependencies (<code>package.xml</code>).</p>
-<p>The node is also defined with it onw attrituts: for instance a target local frame, a goal pose (position orientation).</p>
+<!--
+The node is also defined with it onw attrituts: for instance a target local frame, a goal pose (position orientation).
+
+
 <pre><code class="language-python">...
 # Node Attribute:
 self.local_frame= 'base_link'
@@ -213,11 +216,18 @@ self.global_goal.position.x= (float)(1)
 self.global_goal.position.y= (float)(2)
 ...
 </code></pre>
-<p>And finally we require a timer with a callback function to publish continuously the goal pose.</p>
+
+
+And finally we require a timer with a callback function to publish continuously the goal pose.
+
+
 <pre><code class="language-python">...
-node.create_timer(0.1, self.publish_goal)
+node.create_timer( 0.1, self.publish_goal )
 ...
 </code></pre>
+
+-->
+
 <p>We can now address the interesting question: <em>How to transform a position defined into a frame in another frame ?</em>
 It consists in building a Transform object from the reference and target frames.
 While a listener was declared on a transform buffer, it is possible to create this object from that tool (if exist).</p>
@@ -232,14 +242,14 @@ In case of fail, an exception is thrown accordingly the python exception manager
 <p>Finally, inside our <code>publish_goal</code> call back, getting a transform will look like:</p>
 <pre><code class="language-python">    def publish_goal(self):
         currentTime= rclpy.time.Time()
-        # Get Transformation
+        # Get Transformation (import poses referenced in odom into base_link)
         try:
             stampedTransform= self.tf_buffer.lookup_transform(
-                        self.local_frame,
+                        'base_link',
                         'odom',
                         currentTime)
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):TransformException as tex:
-            self._node.get_logger().info( f'Could not transform the goal into {self.local_frame}: {tex}')
+            self._node.get_logger().info( f&quot;Could not transform poses from 'odom' into 'base_link': {tex}&quot;)
             return
         ...
 </code></pre>
@@ -251,7 +261,10 @@ sudo apt install python3-tf2-geometry-msgs
 <pre><code class="language-python">    def publish_goal(self):
         ...
         # Compute goal into local coordinates
-        localGoal = tf2_geometry_msgs.do_transform_pose( self.global_goal, stampedTransform )
+        myGoalPoseInBaseLink = tf2_geometry_msgs.do_transform_pose(
+            myGoalPoseInOdom,
+            stampedTransform
+        )
         ...
 </code></pre>
 <h2 id="permit-autonomous-navigation">Permit Autonomous Navigation</h2>
