@@ -200,7 +200,7 @@ Then it is possible to recompute pose coordinates in any connected frames.</p>
 <p>For our new node, we have to declare the elements permitting the node to listen and keep the transformation available, a <code>listerner</code> and a <code>buffer</code>.</p>
 <pre><code class="language-python"># Transform tool (suppose that ros2 is initialized):
 tf_buffer = tf2_ros.Buffer()
-tf_listener = tf2_ros.TransformListener( tf_buffer )
+tf_listener = tf2_ros.TransformListener( tf_buffer, aROSNode )
 ...
 </code></pre>
 <p>Do not forget to import <code>tf2_ros</code> into your script and to add the reference into the package dependencies (<code>package.xml</code>).</p>
