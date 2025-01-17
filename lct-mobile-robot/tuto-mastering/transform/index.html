@@ -240,32 +240,31 @@ To get the current transformation a <code>node.time.Time()</code> permits to get
 It can fail in case of a gap in the transforms or obsolete transforms.
 In case of fail, an exception is thrown accordingly the python exception manager (more on <a href="https://www.w3schools.com/python/python_try_except.asp">w3schools</a>).</p>
 <p>Finally, inside our <code>publish_goal</code> call back, getting a transform will look like:</p>
-<pre><code class="language-python">    def publish_goal(self):
-        currentTime= rclpy.time.Time()
-        # Get Transformation (import poses referenced in odom into base_link)
-        try:
-            stampedTransform= self.tf_buffer.lookup_transform(
-                        'base_link',
-                        'odom',
-                        currentTime)
-        except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):TransformException as tex:
-            self._node.get_logger().info( f&quot;Could not transform poses from 'odom' into 'base_link': {tex}&quot;)
-            return
-        ...
+<pre><code class="language-python">currentTime= rclpy.time.Time()
+...
+# Get Transformation (import poses referenced in odom into base_link)
+try:
+    stampedTransform= self.tf_buffer.lookup_transform(
+                'base_link',
+                'odom',
+                currentTime)
+except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):TransformException as tex:
+    self._node.get_logger().info( f&quot;Could not transform poses from 'odom' into 'base_link': {tex}&quot;)
+    return
+...
 </code></pre>
 <p>The transform is a stamped transform (ie. defined in a given time) defined by <code>geometry_msgs</code> package.
 The pose transformation is already defined in a ros method of <code>tf2_geometry_msgs</code> package and it require the installation of <code>python3-tf2-geometry-msgs</code>(things are never simple in ros...):</p>
 <pre><code class="language-console">sudo apt update
 sudo apt install python3-tf2-geometry-msgs
 </code></pre>
-<pre><code class="language-python">    def publish_goal(self):
-        ...
-        # Compute goal into local coordinates
-        myGoalPoseInBaseLink = tf2_geometry_msgs.do_transform_pose(
-            myGoalPoseInOdom,
-            stampedTransform
-        )
-        ...
+<pre><code class="language-python">...
+# Compute goal into local coordinates
+myGoalPoseInBaseLink = tf2_geometry_msgs.do_transform_pose(
+    myGoalPoseInOdom,
+    stampedTransform
+)
+...
 </code></pre>
 <h2 id="permit-autonomous-navigation">Permit Autonomous Navigation</h2>
 <p>The goal poses itself is not interesting.

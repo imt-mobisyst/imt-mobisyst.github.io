@@ -128,16 +128,27 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="frequent-asked-question">Frequent Asked Question...</h1>
-<h2 id="multi-computer-configuration">Multi-computer configuration</h2>
-<p>Configure a <code>ROS_DOMAIN_ID</code> betwwen 1 and 100 in your bashrc file to limit the topics area,
-and set <code>ROS_LOCALHOST_ONLY</code> to zero to permits several computer to share ROS ressources.</p>
+<!--
+## Multi-computer configuration
+
+Configure a `ROS_DOMAIN_ID` betwwen 1 and 100 in your bashrc file to limit the topics area,
+and set `ROS_LOCALHOST_ONLY` to zero to permits several computer to share ROS ressources.
+
+
 <pre><code class="language-sh">gedit ~/.bashrc
 </code></pre>
-<p>add at the end of the file (with 42 for instance):</p>
+
+
+add at the end of the file (with 42 for instance):
+
+
 <pre><code class="language-console">export ROS_LOCALHOST_ONLY= 0
 export ROS_DOMAIN_ID= 42
 </code></pre>
-<h2 id="ros2-tbot-custom-topic-types">ROS2 tbot custom topic types</h2>
+
+-->
+
+<h2 id="tbot-custom-topic-types-beep-buttom-etc">Tbot custom topic types (beep, buttom, etc.)</h2>
 <p>I cannot echo topics provided by the tbot such <code>/events/button</code> or <code>/events/bumper</code> because the type isn't recognized.</p>
 <p>To install those custom types:</p>
 <pre><code class="language-console">cd $ROS_WORKSPACE
@@ -158,6 +169,51 @@ source ./install/setup.bash
 
 -->
 
+<h2 id="example-of-marker-publishing">Example of Marker publishing</h2>
+<pre><code class="language-python">from visualization_msgs.msg import Marker
+from std_msgs.msg import ColorRGBA
+
+[...]
+
+def publish_markers(self):
+    # List of marker positions, for example
+    marker_positions = [
+        (1.0, 2.0, 0.5),
+        (2.0, 1.0, 0.5),
+        (0.0, -2.0, 1.0),
+        (-1.5, -1.5, 0.5)
+    ]
+
+    # Loop over the positions to create markers
+    for idx, (x, y, z) in enumerate(marker_positions):
+        marker = Marker()
+        marker.header.frame_id = &quot;map&quot;  # Frame of reference (use 'map' or other valid frame)
+        marker.header.stamp = myROSNode.get_clock().now().to_msg()
+        marker.ns = &quot;array_of_markers&quot;
+        marker.id = idx  # Unique ID for each marker in the array
+        marker.type = Marker.SPHERE
+        marker.action = Marker.ADD
+
+        # Set the position of each marker
+        marker.pose.position.x = x
+        marker.pose.position.y = y
+        marker.pose.position.z = z
+        marker.pose.orientation.w = 1.0
+
+        # Set the scale of the marker (size)
+        marker.scale.x = 0.5
+        marker.scale.y = 0.5
+        marker.scale.z = 0.5
+
+        # Set the color of the marker (green)
+        marker.color = ColorRGBA(r=0.0, g=1.0, b=0.0, a=1.0)
+
+        # Publish the marker
+        self.my_marker_publisher.publish(marker)
+
+        # Log to confirm marker publishing
+        myROSNode.get_logger().info(f&quot;Publishing marker {idx} at position: ({x}, {y}, {z})&quot;)
+</code></pre>
 <h2 id="ros2-tbot-driver">ROS2 tbot driver</h2>
 <blockquote>
 <p>How to get ROS2 tbot driver on my computer (to use it without a Pi)</p>
