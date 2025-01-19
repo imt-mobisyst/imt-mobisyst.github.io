@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Tbot - Lct. Mobile-Robot</title>
+    <title>Demo-Day - Lct. Mobile-Robot</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Tbot";
-        var mkdocs_page_input_path = "appendix/tbot.md";
+        var mkdocs_page_name = "Demo-Day";
+        var mkdocs_page_input_path = "challenge/d-day.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -84,21 +84,21 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Challenge</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/kick-off/">Kick-off</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../kick-off/">Kick-off</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-1on2/">Challenge 1</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../challenge-1on2/">Challenge 1</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-2on2/">Challenge 2</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../challenge-2on2/">Challenge 2</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/d-day/">Demo-Day</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Demo-Day</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendix</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/installation/">Installation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../faq/">F.A.Q</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
                   </li>
               </ul>
               <ul>
@@ -119,7 +119,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Tbot</li>
+          <li class="breadcrumb-item">Challenge</li>
+      <li class="breadcrumb-item active">Demo-Day</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -128,19 +129,77 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="tbot">Tbot</h1>
-<p>In this lecture, we use a tbot.
-It is a turtlebot2 base equipped with:</p>
-<ul>
-<li>a kobuki base</li>
-<li>an hokuyo 2d lidar</li>
-<li>(potentially, a realsense RGBD camera D435I)</li>
+                <h1 id="d-day-friday">D-Day Friday</h1>
+<p>Evaluation is based on 3 components: presentation/demonstration, the repository and a 3-5 minute video.</p>
+<h2 id="presentation-20-minutes">Presentation (20 minutes)</h2>
+<p>The presentation is based on a demonstration only with the turtlebot robot
+(simulation is evaluated with the repositories).</p>
+<ol>
+<li><strong>5 minutes:</strong> capability for the robot to detect ghosts and filter false positives (turtlebot static).</li>
+<li><strong>10 minutes:</strong> <ul>
+<li>Capability for the robot to navigate and build the map of the environment.</li>
+<li>Capability to localize the ghost in the map.</li>
 </ul>
-<h2 id="robot-configuration">Robot configuration :</h2>
-<p>ROS2 driver is availlable on <a href="https://bitbucket.org/imt-mobisyst/pkg-tbot">Tbot git repository</a></p>
+</li>
+<li><strong>5 minutes:</strong> Extra-realization and remaining questions.</li>
+</ol>
+<h2 id="planning">Planning:</h2>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th></th>
+<th></th>
+<th>Group</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Y2-Y2</td>
+<td>9h00</td>
+<td></td>
+<td>O2-P9</td>
+<td>10h40</td>
+</tr>
+<tr>
+<td>S2-C7</td>
+<td>9h20</td>
+<td></td>
+<td>O2-P5</td>
+<td>11h00</td>
+</tr>
+<tr>
+<td>A3-M1</td>
+<td>9h40</td>
+<td></td>
+<td>L2-E6</td>
+<td>11h20</td>
+</tr>
+<tr>
+<td>A4-A8</td>
+<td>10h00</td>
+<td></td>
+<td>L2-E4</td>
+<td>11h40</td>
+</tr>
+<tr>
+<td>A3-M1</td>
+<td>10h20</td>
+<td></td>
+<td></td>
+<td>12h00</td>
+</tr>
+</tbody>
+</table>
+<p>The  afternoon is dedicated to cleaning the git repository and preparing the video.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../challenge-2on2/" class="btn btn-neutral float-left" title="Challenge 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../appendix/installation/" class="btn btn-neutral float-right" title="Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -162,6 +221,10 @@ It is a turtlebot2 base equipped with:</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../challenge-2on2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../appendix/installation/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
