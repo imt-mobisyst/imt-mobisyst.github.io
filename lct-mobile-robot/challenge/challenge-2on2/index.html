@@ -161,17 +161,17 @@ one to state the detection and another one to mark the position in the map (cf. 
 <li>The robot behavior is safe (no collision with any obstacles)</li>
 <li>Vision part detect correctly <em>green ghost</em> in the sensor flux.</li>
 <li>rviz2 is started and well configured in a second PC and display the built map.</li>
-<li>It is possible to visualize a marker for detected bottles at the position of the bottle in the map.</li>
+<li>It is possible to visualize a marker for detected ghosts, at the positions of the ghosts in the map.</li>
 </ol>
 <p><strong>Optional</strong> (the order does not matter):</p>
 <ul>
 <li>The robot movement is oriented toward the unknown areas to speed up the exploration.</li>
 <li>The <em>green ghost</em> are identified with a number and the robot is capable of recognizing a ghost on a second passage (it should be easy to count the ghost in the map).</li>
-<li>The bottle detection detects all the bottles, in any position but with robustness to false positives.</li>
-<li>Processes are clearly established (start and stop the robot, save the map, get the lists of bottles, set the xp in pause, ...)</li>
+<li>The detection node detects all the ghosts, in any position but with robustness to false positives.</li>
+<li>Processes are clearly established (start and stop the robot, save the map, get the lists of ghosts, set the xp in pause, ...)</li>
 <li>Developed nodes are based on ROS2 Parameters (for speed, obstacle detections, ...) </li>
 <li>The Kobuki features are integrated to the scenario (robot button, contact to the ground, void detection, bips,...)</li>
-<li>The <em>green ghost</em> are identified with a number and the robot is capable of recognizing a bottle on a second passage (it should be easy to count the bottle in the map or by reading the topic).</li>
+<li>The <em>green ghost</em> are identified with a number and the robot is capable of recognizing a ghost on a second passage (it should be easy to count the ghost in the map or by reading the topic).</li>
 <li>The robot behavior permits to caracterize clearly a <em>green ghost</em>.</li>
 <li>The list is not exhaustive, be inventive !</li>
 </ul>
@@ -194,7 +194,12 @@ It is highly recommended to process it yourself before the submission...
 -->
 
 <h2 id="video">Video</h2>
-<p>5 minutes video technique.</p>
+<p>A 5 minutes technical video is expected per group.
+The video can be shared somewhere on the internet (YouTube for example), and a link to it must be added in the group <code>README.md</code> file.
+The video is not a file in the git repository.
+Git is not designed to version large binary files.</p>
+<p>We encourage the group to share the video publicly, but this is only optional.</p>
+<p>The video integrates a challenge presentation (with IMT Logo, CERI SN ;), the developers, the teachers, the philosophy of the solution and results.</p>
               
             </div>
           </div><footer>
