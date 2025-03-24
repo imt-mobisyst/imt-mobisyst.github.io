@@ -46,15 +46,23 @@
               </ul>
               <p class="caption"><span class="caption-text">Challenges</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Basic Challenges</a>
+                  <li class="toctree-l1"><a class="reference internal" >Getting Started</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/firstSteps/">First Steps</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/variables/">Variables</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/functions/">Functions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Basic Challenges</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/internalLED/">Internal LED</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/potentiometer/">Potentiometer</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/externalLED/">External LED</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/functions/">Functions</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/sonar/">Sonar</a>
                 </li>
@@ -68,7 +76,7 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+                  <li class="toctree-l1"><a class="reference internal" >Final Challenges</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/lineFollower/">Line Follower</a>
                 </li>
@@ -79,7 +87,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Resources</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Hardware</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Hardware</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../microcontroller/">Microcontroller Board (MCU)</a>
                 </li>
@@ -95,19 +103,19 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../lineFinder/">Line Finder</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Motors & Wheels</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Motors & Wheels</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../robotAssembly/">Assembly</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+                  <li class="toctree-l1"><a class="reference internal" >Software</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Software/ArduinoIDE/">Arduino IDE</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+                  <li class="toctree-l1"><a class="reference internal" >Bibliography</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
                 </li>
@@ -140,62 +148,62 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="motors-wheels-and-encoders">Motors, Wheels and Encoders</h1>
-<p>Robot propulsion is based on basic RS04 kit from Dagu.
-The kit includes 2 wheels with soft rubber tiers and 2 magnetic encoders.
-Tires are driven by geared DC motors.
+<p>Robot propulsion is based on two DFRobot geared motors with encoder. Each motor has a 120:1 gearbox and an integrated quadrature encoder that provides a resolution of 8 pulse per shaft rotation round giving a maximum output of 960 within one wheel round. </p>
+<p>The motors drive 2 wheels with soft rubber tiers.
 To stabilize the robot, we use a ball caster that support rotations in 360 degrees.</p>
-<p><img alt="Dagu RS04 Motors, Wheels and Encoders kit" src="../../img/daguRS034WheelsMotorsAndEncodersKit.jpg" /></p>
-<h2 id="description">Description</h2>
-<p>The magnetic encoders consist of two Hall sensors together with the magnetic shields to be mounted on motor shafts. Sensors change the status (from high to low or from low to high) several times per revolution of the motor shaft (see specs).</p>
-<p><strong>Note:</strong> To read sensor values, you should apply a resistor pulling-up to VCC, for example, 10 kΩ.</p>
-<h2 id="specifications">Specifications</h2>
-<h3 id="geared-dc-motors">Geared DC Motors</h3>
+<p><strong>Outline</strong></p>
 <ul>
-<li>Voltage: 3V to 6V DC</li>
-<li>No load Current: 200mA</li>
-<li>Stall current:<ul>
-<li>3A at 6V</li>
-<li>1.5A at 3V</li>
+<li><a href="#fit0450-dfrobot-micro-dc-geared-motor-with-encoder">Motor</a></li>
+<li><a href="#wheels">Wheels</a></li>
+<li><a href="#ball-caster">Ball Caster</a></li>
 </ul>
-</li>
-<li>Gearbox ratio: 118.5:1</li>
-<li>Wheel Speed: 135Rpm at 6V unloaded</li>
-<li>Dimensions: 55 x 48 x 24 mm</li>
-</ul>
-<h3 id="encoders">Encoders</h3>
+<h2 id="fit0450-dfrobot-micro-dc-geared-motor-with-encoder">FIT0450 DFRobot Micro DC geared motor with encoder</h2>
+<p><img alt="DFRobot Micro DC geared motor with encoder" src="../../img/motorDFRobotWithEncoder.webp" /></p>
 <ul>
-<li>Resolution:<ul>
-<li>8 state changes per revolution when mounted on the output shaft</li>
-<li>948 state changes per revolution when mounted on the motor shaft</li>
+<li>Gear ratio: 120:1</li>
+<li>No-load speed @ 6V: 160 rpm</li>
+<li>No-load speed @ 3V: 60 rpm</li>
+<li>No-load current @ 6V: 0.17A</li>
+<li>No-load current @ 3V: 0.14A</li>
+<li>Max Stall current: 2.8A</li>
+<li>Max Stall torque: 0.8kgf.cm</li>
+<li>Rated torque: 0.2kgf.cm</li>
+<li>Encoder operating voltage: 4.5~7.5V</li>
+<li>Motor operating voltage: 3~7.5V (Rated voltage 6V)</li>
+<li>Operating ambient temperature: -10 ~ +60 degrees C</li>
+<li><a href="../FIT0450MicroDcMotorWith%20Encoder-Dimensions.pdf">Motor Dimension Drawing (PDF)</a> </li>
 </ul>
-</li>
-<li>Hall-Effect sensor with open drain:<ul>
-<li>Short circuit protection</li>
-<li>Reverse polarity protection</li>
-<li>Maximum Output Current: 25mA</li>
-<li>Voltage: 3V to 24V</li>
-<li>Consumed Current: 4mA</li>
-</ul>
-</li>
-<li>Neodymium Disc Magnet:<ul>
-<li>Poles: 8</li>
-<li>Diameter: 20 mm</li>
-</ul>
-</li>
-</ul>
-<h3 id="encoder-cables">Encoder Cables</h3>
-<p>Each Hall-effect sensor is soldered to a 3-pin cable with a female goldpin connector (2.54 mm pitch). The connector has the following pins:</p>
+<p><img alt="DFRobot Micro DC Pins" src="../../img/motorDfRobotPinNumbers.png" /></p>
+<p><img alt="DFRobot Micro DC Pinout" src="../../img/motorDfRobotPinoutTable.png" /></p>
+<h3 id="encoder">Encoder</h3>
+<p>The encoder relies on two Hall sensors. Sensors generate puluses several times per revolution of the motor shaft. </p>
 <ul>
-<li>Red- supply voltage (VCC) in the range from 3 to 24 V</li>
-<li>Black- ground of the system (GND)</li>
-<li>White- impulse output of a Hall sensor</li>
+<li>8 pulses per motor shaft revolution</li>
+<li>960 pluses maximum per wheel revolution</li>
 </ul>
-<h3 id="wheels">Wheels</h3>
+<h3 id="external-links">External Links</h3>
+<ul>
+<li><a href="https://wiki.dfrobot.com/Micro_DC_Motor_with_Encoder-SJ01_SKU__FIT0450">Motor DFRobot Wiki</a></li>
+<li><a href="https://wiki.dfrobot.com/Micro_DC_Motor_with_Encoder-SJ01_SKU__FIT0450#target_3">Motor DFRobot Tutorial</a></li>
+<li><a href="https://github.com/Arduinolibrary/DFRobot_Micro_DC_Geared_Motor_with_Encoder/raw/master/FIT0450%20Solidworks%20File.zip">Motor SolidWorks File</a></li>
+<li><a href="https://www.gotronic.fr/art-kit-moteur-encodeur-fit0450-27583.htm">GoTronic product information</a></li>
+</ul>
+<h2 id="wheels">Wheels</h2>
+<p><img alt="Wheels" src="../../img/wheels.webp" /></p>
 <ul>
 <li>Diameter: 65 mm</li>
 <li>Thickness: 26 mm</li>
+<li><a href="https://www.gotronic.fr/art-paire-de-roues-jaunes-tam6626j-19346.htm">GoTronic Product Info</a></li>
 </ul>
-<h3 id="ball-caster">Ball Caster</h3>
+<h2 id="ball-caster">Ball Caster</h2>
+<ul>
+<li>Dimensions: Ø 23 x 21 mm</li>
+<li>Ball diameter: 3/4 inches = 19.05 mm</li>
+<li>Weight: 30 g</li>
+<li><a href="https://www.gotronic.fr/art-roue-libre-3-4-955-21789.htm">GoTronic Product Info</a></li>
+</ul>
+<p><img alt="Ball Caster 3/4 inches" src="../../img/ballCaster.webp" />
+<img alt="Ball Caster Dimensions" src="../../img/ballCasterDimensions.webp" /></p>
               
             </div>
           </div><footer>

@@ -46,15 +46,23 @@
               </ul>
               <p class="caption"><span class="caption-text">Challenges</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Basic Challenges</a>
+                  <li class="toctree-l1"><a class="reference internal" >Getting Started</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/firstSteps/">First Steps</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/variables/">Variables</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/functions/">Functions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Basic Challenges</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/internalLED/">Internal LED</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/potentiometer/">Potentiometer</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/externalLED/">External LED</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/functions/">Functions</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/sonar/">Sonar</a>
                 </li>
@@ -68,7 +76,7 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+                  <li class="toctree-l1"><a class="reference internal" >Final Challenges</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/lineFollower/">Line Follower</a>
                 </li>
@@ -79,11 +87,11 @@
               </ul>
               <p class="caption"><span class="caption-text">Resources</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Hardware</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Hardware</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../microcontroller/">Microcontroller Board (MCU)</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Base Shield</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Base Shield</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../sensors/">Sensors</a>
                 </li>
@@ -101,13 +109,13 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+                  <li class="toctree-l1"><a class="reference internal" >Software</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Software/ArduinoIDE/">Arduino IDE</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+                  <li class="toctree-l1"><a class="reference internal" >Bibliography</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
                 </li>
@@ -143,99 +151,105 @@
 <p>The <a href="https://wiki.seeedstudio.com/Base_Shield_V2/">seeedstudio base shield</a> can be plugged on top of the <a href="../microcontroller/">microcontroller board</a> to easy the connection of sensors and actuators.</p>
 <p><img alt="Seeedstudio base shield for Arduino Uno R3 (Grove Board)" src="../../img/groveBoard.jpg" /></p>
 <p>Be carreful about the pinout.
-The grove board uses the Arduino pin names while the ESP32-S2 uses different numbers.
-In your code, you <strong>must</strong> use the ESP-32 numbers.</p>
+The grove board uses the Arduino pin numbers while the ESP32-S2 uses different numbers.
+In your code, you <strong>must</strong> use the ESP-32 numbers.
+See the table below mapping pin numbers of the two boards.</p>
+<p>The following picture shows the mapping on a drawing of the Grove board.
+Grove pin numbers are in the bigger text.
+Metro  ones are in the small font size.
+Red denotes pins that are used by the <a href="../motorShield/">Arduino motor shield</a>.</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: center;">Grove Board</th>
 <th style="text-align: center;">Metro ESP32-S2 Board</th>
-<th></th>
+<th style="text-align: center;"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">Pin names</td>
-<td style="text-align: center;">Pin numbers</td>
-<td></td>
+<td style="text-align: center;">A0 to A5</td>
+<td style="text-align: center;">Identical</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D2</td>
 <td style="text-align: center;">7</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D3</td>
 <td style="text-align: center;">8</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D4</td>
 <td style="text-align: center;">9</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D5</td>
 <td style="text-align: center;">10</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D6</td>
 <td style="text-align: center;">11</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D7</td>
 <td style="text-align: center;">12</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D8</td>
 <td style="text-align: center;">13</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D9</td>
 <td style="text-align: center;">14</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D10</td>
 <td style="text-align: center;">15</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D11</td>
 <td style="text-align: center;">16</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">D12</td>
 <td style="text-align: center;">21</td>
-<td></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">I2C SDA</td>
 <td style="text-align: center;">33</td>
-<td>I2C SDA</td>
+<td style="text-align: center;">Multiple Grove Connectors</td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">I2C SCL</td>
 <td style="text-align: center;">34</td>
-<td>I2C SCL</td>
+<td style="text-align: center;">Multiple Grove Connectors</td>
 </tr>
 <tr>
 <td style="text-align: center;">D13</td>
 <td style="text-align: center;">42</td>
-<td>Internal LED</td>
+<td style="text-align: center;">Internal LED</td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">-</td>
 <td style="text-align: center;">45</td>
-<td>Neopixel</td>
+<td style="text-align: center;">Neopixel</td>
 </tr>
 </tbody>
 </table>
+<p><img alt="Grove Base Shield Mapping to Metro" src="../../img/groveBaseShieldMappingToMetro.jpg" /></p>
 <p><a href="https://www.mouser.fr/datasheet/2/744/Introduction_to_Grove-2487244.pdf">Specs</a></p>
               
             </div>

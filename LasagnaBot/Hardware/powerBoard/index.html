@@ -46,15 +46,23 @@
               </ul>
               <p class="caption"><span class="caption-text">Challenges</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Basic Challenges</a>
+                  <li class="toctree-l1"><a class="reference internal" >Getting Started</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/firstSteps/">First Steps</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/variables/">Variables</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/functions/">Functions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Basic Challenges</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/internalLED/">Internal LED</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/potentiometer/">Potentiometer</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/externalLED/">External LED</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/functions/">Functions</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/sonar/">Sonar</a>
                 </li>
@@ -68,7 +76,7 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Final Challenges</a>
+                  <li class="toctree-l1"><a class="reference internal" >Final Challenges</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Challenges/lineFollower/">Line Follower</a>
                 </li>
@@ -79,7 +87,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Resources</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Hardware</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Hardware</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../microcontroller/">Microcontroller Board (MCU)</a>
                 </li>
@@ -89,7 +97,7 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../motorShield/">Motor Shield</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Power Board</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Power Board</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../sonar/">Sonar</a>
                 </li>
@@ -101,13 +109,13 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Software</a>
+                  <li class="toctree-l1"><a class="reference internal" >Software</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../Software/ArduinoIDE/">Arduino IDE</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Bibliography</a>
+                  <li class="toctree-l1"><a class="reference internal" >Bibliography</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
                 </li>
@@ -140,16 +148,17 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="power-board">Power Board</h1>
-<p>We use a <a href="https://www.dfrobot.com/product-2564.html">4-Way 18650 Battery Holder</a>.</p>
-<h2 id="pictures">Pictures</h2>
-<p><img alt="Power Module Top" src="../../img/powerUsbModule4batteries18650-top.jpg" />
-<img alt="Power Module Bottom" src="../../img/powerUsbModule4batteries18650-bottom.jpg" /></p>
-<h2 id="operation">Operation</h2>
+<p>We use a <a href="https://www.dfrobot.com/product-2578.html">2-Way 18650 Battery Holder</a>. 
+It has a USB output (5V). 
+It also provides five 5V output ports, five 3.3V output ports to solder.</p>
+<h1 id="operation">Operation</h1>
+<p><img alt="Power Module Top" src="../../img/powerUsbModule2batteries18650-infoTop.webp" />
+<img alt="Power Module Bottom" src="../../img/powerUsbModule2batteries18650-infoBottom.webp" /></p>
 <h3 id="onoff-via-push-button">ON/OFF via Push Button</h3>
 <p>The push button controls the module switch.</p>
 <ul>
-<li>Make a light press to turn the module on.</li>
-<li>A 3 seconds long press will turn it off.</li>
+<li>Make a single press to turn the module on.</li>
+<li>A double-press will turn it off.</li>
 </ul>
 <h3 id="leds-current-and-charge-indicators">LEDs Current and Charge Indicators</h3>
 <ul>
@@ -161,7 +170,6 @@
 <li>In Normal mode, the board will auto shutdown when the current is too low.</li>
 <li>In HOLD mode, it keeps outputting and does not shut down until the over-discharge protection is triggered.</li>
 </ul>
-<h2 id="specifications">Specifications</h2>
 <h3 id="input-ports-for-charging">Input Ports for Charging</h3>
 <ul>
 <li>1 micro USB port</li>
@@ -173,19 +181,17 @@
 <li>5 output ports 3.3V/1A, to solder</li>
 <li>1 USB output port</li>
 </ul>
-<h3 id="other">Other</h3>
-<ul>
-<li>4 slots for 16850 batteries</li>
-<li>4 LEDs</li>
-<li>1 ON/OFF push button</li>
-<li>1 mode DIP switch: Normal/Hold</li>
-</ul>
+<h2 id="specifications">Specifications</h2>
+<h3 id="dimensions">Dimensions</h3>
+<p>Battery slots are compatible with 18650 Li-Ion batteries from 65 mm up to 67 mm.</p>
+<p><img alt="Power Module Dimensions" src="../../img/powerUsbModule2batteries18650-dimensions.webp" />
+<img alt="Power Module Dimensions" src="../../img/powerUsbModule2batteries18650-dimensionsDetails.webp" /></p>
 <h3 id="safety-and-limits">Safety and Limits</h3>
 <ul>
 <li>Overcharge protection</li>
 <li>Discharge protection</li>
-<li>maximum <strong>peak</strong> current: 3A for <strong>short period</strong> of time. depends on the quality of the 18650 batteries.</li>
-<li>Pay attention to battery polarity when installing. The + and - are clearly marked on the board, and the wrong direction will burn the module.</li>
+<li>The 5V output supports maximum <strong>peak</strong> current: 3A for <strong>short period</strong> of time. depends on the quality of the 18650 batteries.</li>
+<li>Pay attention to battery polarity when installing. The + and - are clearly marked on the board, and the wrong direction might burn the module.</li>
 </ul>
               
             </div>
