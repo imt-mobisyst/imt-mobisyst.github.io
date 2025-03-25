@@ -86,9 +86,9 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Resources</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" >Hardware</a>
-    <ul>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >Hardware</a>
+    <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../microcontroller/">Microcontroller Board (MCU)</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../baseShield/">Base Shield</a>
@@ -100,6 +100,8 @@
                 <li class="toctree-l2"><a class="reference internal" href="../powerBoard/">Power Board</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Servo</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../lineFinder/">Line Finder</a>
                 </li>
@@ -136,6 +138,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Resources</li>
+          <li class="breadcrumb-item">Hardware</li>
       <li class="breadcrumb-item active">Servo</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -154,11 +158,18 @@ The shaft position can be controlled by providing an angle.</p>
 <li>shaft position controlled by pulse width</li>
 </ul>
 <p>Controlling a Servo on an ESP32 board requires using the <code>ESP32Servo</code> library.
-Indeed, the standard <code>Servo</code> Arduino library does not wotk on ESP32.</p>
-<p><a href="https://dronebotworkshop.com/esp32-servo/">Tutorial</a></p>
+Indeed, the standard <code>Servo</code> Arduino library does not work on ESP32.</p>
+<!-- - [Grove Servo Documentation](https://wiki.seeedstudio.com/Grove-Servo/) -->
+<ul>
+<li><a href="https://dronebotworkshop.com/esp32-servo/">Drone Workshop Tutorial</a></li>
+</ul>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../sonar/" class="btn btn-neutral float-left" title="Sonar"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lineFinder/" class="btn btn-neutral float-right" title="Line Finder">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -180,6 +191,10 @@ Indeed, the standard <code>Servo</code> Arduino library does not wotk on ESP32.<
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../sonar/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../lineFinder/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
