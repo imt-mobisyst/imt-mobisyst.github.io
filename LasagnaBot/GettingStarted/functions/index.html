@@ -161,14 +161,25 @@
 <ul>
 <li>Start by displaying a "Ready" message on the serial port.</li>
 <li>Wait until the button is pressed</li>
-<li>When the button is pressed, start the count-down procedure as in the previous program, until reaching 0</li>
-<li>After reaching 0, display a "Ready" message again and wait</li>
+<li>When the button is pressed, start the count-down described as following:<ul>
+<li>The count down start at 10</li>
+<li>The value is decremented and displayed every second</li>
+<li>When the value reaches 0, the program displays a "Ready"</li>
+<li>Nothing is displayed after the greeting message</li>
+</ul>
+</li>
 <li>If the button is pressed again after the ready message, the count down restarts</li>
 <li>The button is inactive during count-down. If is pressed during the count down, nothing happens.</li>
 </ul>
 <h2 id="count-down-resettable-via-serial-communication">Count Down Resettable via Serial Communication</h2>
 <p>Modify the previous proram to use Serial communication instead of the button press to rest the count down.
-When the message "go" is sent via the Serial monitor, the count down starts.</p>
+When the string <code>"go"</code> is sent via the Serial monitor, the count down starts.</p>
+<p>Hints:</p>
+<ul>
+<li>Read from Serial port using <a href="https://docs.arduino.cc/language-reference/en/functions/communication/serial/readStringUntil/"><code>readStringUntil(char)</code> function</a></li>
+<li>The input we provide on the serial port ends with a new line if we press enter. This is the character <code>'\n'</code>.</li>
+<li>Alternatively, you can use <a href="https://docs.arduino.cc/built-in-examples/strings/StringLengthTrim/">trim()</a> that removes spaces and new line characters.</li>
+</ul>
 <h2 id="blink-function">Blink function</h2>
 <p>Write a function named <code>blink</code> that takes 2 parameters :</p>
 <ul>
@@ -187,6 +198,7 @@ When the message "go" is sent via the Serial monitor, the count down starts.</p>
 <li>The onboard LED.</li>
 <li>The external LED. </li>
 </ul>
+<p>Hint: </p>
 <h1 id="alternating-blink-and-fade">Alternating Blink and Fade</h1>
 <p>Write a program that reuses the previous functions <code>blink</code> and <code>fade</code>.</p>
 <ul>
