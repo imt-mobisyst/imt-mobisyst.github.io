@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Motors & Wheels - Introduction to Robotics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../global.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Motors \u0026 Wheels";
+        var mkdocs_page_input_path = "Hardware/motors.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Introduction to Robotics
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenges</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Getting Started</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/firstSteps/">First Steps</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/variables/">Variables</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../GettingStarted/functions/">Functions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Basic Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/internalLED/">Internal LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/potentiometer/">Potentiometer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/externalLED/">External LED</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/servo/">Servo</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/motors/">Motors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/wifi/">Wifi</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/basicMovements/">Basic Robot Moves</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Final Challenges</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/lineFollower/">Line Follower</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Challenges/maze/">Maze</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resources</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >Hardware</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../microcontroller/">Microcontroller Board (MCU)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../baseShield/">Base Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sensors/">Sensors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../motorShield/">Motor Shield</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../powerBoard/">Power Board</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sonar/">Sonar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../servo/">Servo</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lineFinder/">Line Finder</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Motors & Wheels</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../robotAssembly/">Assembly</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Software</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Software/ArduinoIDE/">Arduino IDE</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Bibliography</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../bib/">External resources</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Introduction to Robotics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Resources</li>
+          <li class="breadcrumb-item">Hardware</li>
+      <li class="breadcrumb-item active">Motors & Wheels</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="motors-wheels-and-encoders">Motors, Wheels and Encoders</h1>
+<p>Robot propulsion is based on two DFRobot geared motors with encoder. Each motor has a 120:1 gearbox and an integrated quadrature encoder that provides a resolution of 8 pulse per shaft rotation round giving a maximum output of 960 within one wheel round. </p>
+<p>The motors drive 2 wheels with soft rubber tiers.
+To stabilize the robot, we use a ball caster that support rotations in 360 degrees.</p>
+<p><strong>Outline</strong></p>
+<ul>
+<li><a href="#fit0450-dfrobot-micro-dc-geared-motor-with-encoder">Motor</a></li>
+<li><a href="#wheels">Wheels</a></li>
+<li><a href="#ball-caster">Ball Caster</a></li>
+</ul>
+<h2 id="fit0450-dfrobot-micro-dc-geared-motor-with-encoder">FIT0450 DFRobot Micro DC geared motor with encoder</h2>
+<p><img alt="DFRobot Micro DC geared motor with encoder" src="../../img/motorDFRobotWithEncoder.webp" /></p>
+<ul>
+<li>Gear ratio: 120:1</li>
+<li>No-load speed @ 6V: 160 rpm</li>
+<li>No-load speed @ 3V: 60 rpm</li>
+<li>No-load current @ 6V: 0.17A</li>
+<li>No-load current @ 3V: 0.14A</li>
+<li>Max Stall current: 2.8A</li>
+<li>Max Stall torque: 0.8kgf.cm</li>
+<li>Rated torque: 0.2kgf.cm</li>
+<li>Encoder operating voltage: 4.5~7.5V</li>
+<li>Motor operating voltage: 3~7.5V (Rated voltage 6V)</li>
+<li>Operating ambient temperature: -10 ~ +60 degrees C</li>
+<li><a href="../FIT0450MicroDcMotorWith%20Encoder-Dimensions.pdf">Motor Dimension Drawing (PDF)</a> </li>
+</ul>
+<p><img alt="DFRobot Micro DC Pins" src="../../img/motorDfRobotPinNumbers.png" /></p>
+<p><img alt="DFRobot Micro DC Pinout" src="../../img/motorDfRobotPinoutTable.png" /></p>
+<h3 id="encoder">Encoder</h3>
+<p>The encoder relies on two Hall sensors. Sensors generate puluses several times per revolution of the motor shaft. </p>
+<ul>
+<li>8 pulses per motor shaft revolution</li>
+<li>960 pluses maximum per wheel revolution</li>
+</ul>
+<h3 id="external-links">External Links</h3>
+<ul>
+<li><a href="https://wiki.dfrobot.com/Micro_DC_Motor_with_Encoder-SJ01_SKU__FIT0450">Motor DFRobot Wiki</a></li>
+<li><a href="https://wiki.dfrobot.com/Micro_DC_Motor_with_Encoder-SJ01_SKU__FIT0450#target_3">Motor DFRobot Tutorial</a></li>
+<li><a href="https://github.com/Arduinolibrary/DFRobot_Micro_DC_Geared_Motor_with_Encoder/raw/master/FIT0450%20Solidworks%20File.zip">Motor SolidWorks File</a></li>
+<li><a href="https://www.gotronic.fr/art-kit-moteur-encodeur-fit0450-27583.htm">GoTronic product information</a></li>
+</ul>
+<h2 id="wheels">Wheels</h2>
+<p><img alt="Wheels" src="../../img/wheels.webp" /></p>
+<ul>
+<li>Diameter: 65 mm</li>
+<li>Thickness: 26 mm</li>
+<li><a href="https://www.gotronic.fr/art-paire-de-roues-jaunes-tam6626j-19346.htm">GoTronic Product Info</a></li>
+</ul>
+<h2 id="ball-caster">Ball Caster</h2>
+<ul>
+<li>Dimensions: Ø 23 x 21 mm</li>
+<li>Ball diameter: 3/4 inches = 19.05 mm</li>
+<li>Weight: 30 g</li>
+<li><a href="https://www.gotronic.fr/art-roue-libre-3-4-955-21789.htm">GoTronic Product Info</a></li>
+</ul>
+<p><img alt="Ball Caster 3/4 inches" src="../../img/ballCaster.webp" />
+<img alt="Ball Caster Dimensions" src="../../img/ballCasterDimensions.webp" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../lineFinder/" class="btn btn-neutral float-left" title="Line Finder"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../robotAssembly/" class="btn btn-neutral float-right" title="Assembly">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../lineFinder/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../robotAssembly/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
