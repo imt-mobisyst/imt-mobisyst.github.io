@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>OS et language - PythonLibs-Science</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OS et language";
+        var mkdocs_page_input_path = "basis-01-system.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PythonLibs-Science
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../..">< imt-mobisyst <</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Intro au cours</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Les bases</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">OS et language</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#at-the-beginning-was-the-shell">At the beginning was the Shell :</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#some-vocabulary">Some Vocabulary:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#first-bash-commands">First BASH Commands.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-file-system">The File System</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mastering-commands">Mastering Commands</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#some-triks">Some triks :</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#users-session">Users session</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#session">session</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-group-and-rules">User, Group and Rules</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-processes">The Processes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#codes-programs-and-scripts">Codes, Programs and Scripts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#python-programming-languages">Python Programming Languages</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sequential-instructions">Sequential Instructions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loop-control">loop control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#going-further">Going further...</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-01-exo/">First exos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-02-poo/">OOP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-03-dev/">Develloper</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PythonLibs-Science</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Les bases</li>
+      <li class="breadcrumb-item active">OS et language</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="the-basics-the-computer-and-the-program">The basics: The computer and the program</h1>
+<h2 id="at-the-beginning-was-the-shell">At the beginning was the Shell :</h2>
+<p><strong>A computer program that exposes an operating system's services to a human user or other programs.</strong> (<a href="https://en.wikipedia.org/wiki/Shell_(computing)">Wikipedia - Sep. 2023</a>) (also named <em>a terminal</em>)</p>
+<p><img alt="" src="../basis-figs/bash_screenshot.png" /></p>
+<h3 id="some-vocabulary">Some Vocabulary:</h3>
+<ul>
+<li><strong>Prompt</strong>: A command prompt (or just prompt) state in the command-line interface indicating readiness to accept commands. </li>
+<li><strong>Command</strong>: an instruction received via an external interface that directs the behavior of a computer program. In other terms, a call to a program with potentially specific attributes.</li>
+</ul>
+<h2 id="first-bash-commands">First <em>BASH</em> Commands.</h2>
+<p><a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> is the most popular Unix/Linux shell, available by default on most Linux distribution. 
+It is also natively supported on Apple, and versions of Bash can be installed with tools like <a href="https://en.wikipedia.org/wiki/MinGW">MinGW</a> on Windows </p>
+<p>However, most of the commands presented here exist in other Shell or have some equivalents.</p>
+<h3 id="the-file-system">The File System</h3>
+<p>First of all, some commands allow a user to navigate in file systems et interact with it.</p>
+<ul>
+<li><strong>ls</strong> - list directory elements</li>
+<li><strong>cd</strong> - change directory</li>
+<li><strong>cat</strong> - read all a text file</li>
+<li><strong>more</strong> - read a text file step by step</li>
+<li><strong>touch</strong> - touch a resource (create it)</li>
+<li><strong>nano</strong> - edit a text file</li>
+<li><strong>rm</strong> - remove a file (permanently)</li>
+<li><strong>mkdir</strong> - create (make) a directory</li>
+<li><strong>rmdir</strong> - remove a directory</li>
+<li><strong>mv</strong> - move a resource</li>
+<li><strong>cp</strong> - copy-paste a file</li>
+<li><strong>clear</strong> - clear your promt</li>
+</ul>
+<p>Most of this commands manipulate paths - a description of where to find a resource on the computer -.</p>
+<ul>
+<li><strong>/</strong> - the root directory in Linux system - example: <code>du /bin/bash</code> (du - estimate file space usage)</li>
+<li><strong>.</strong> - the current directory - example: <code>mkdir ./workspace</code></li>
+<li><strong>..</strong> - the parent directory - example: <code>cd ../../media</code></li>
+<li><strong>~</strong> - the user directory (home) - example: <code>cd ~/Documents</code></li>
+<li><strong>CApitAl Letters maTer</strong> - example: <code>cd ~/Documents</code> <span class="arithmatex">\(\neq\)</span> <code>cd ~/documents</code></li>
+</ul>
+<h3 id="mastering-commands">Mastering Commands</h3>
+<p>Most of the commands accept arguments and options. With a simplistic vision, the argument gives a target to the command execution, while options permit the user to change the context execution of the command. </p>
+<p>Classical syntax: <code>command --option -o argument</code> - example: <code>ls -a ~</code></p>
+<p>Some commands permit manipulating the command collection.</p>
+<ul>
+<li><strong>man</strong> - command and library manuel - example: <code>man cp</code></li>
+<li><strong>apropos</strong> - search in the manuels - example: <code>apropos search</code></li>
+<li><strong>whereis</strong> - find the location of a resource - example: <code>whereis python3</code></li>
+<li><strong>alias</strong> - create our own command - example: <code>alias listall="ls -a"</code></li>
+</ul>
+<h3 id="some-triks">Some triks :</h3>
+<ul>
+<li><em>tabulation</em>: auto-complete the command line or list the possibilities</li>
+<li><em>!xx</em>: run again the last command starting with <code>xx</code></li>
+<li><em>ctrl-r</em>: search for a command in command history</li>
+<li><em>Q</em>: quit a runnig program (in most programs)</li>
+<li><em>ctr-c</em>: terminate a running program</li>
+<li><em>~/.bashrc</em>: file: user configuration routine</li>
+</ul>
+<h2 id="users-session">Users session</h2>
+<p>On Linux, users are clearly identified everywhere.
+All resources have owners, and users can be limited in their capacities on the system.
+Users can be artificially set, they are not necessarily real human beings.</p>
+<h3 id="session">session</h3>
+<p>A session is an active connection to a system or program.</p>
+<ul>
+<li><strong>who</strong> - list the open session in a computer</li>
+<li><strong>su</strong> : start a new session as a specific user - example: <code>su bob</code></li>
+<li><strong>ssh</strong> - open a session in a distant computer following the ssh protocol</li>
+</ul>
+<p>A user session is associate to an environement.
+computer system or set of systems in which a computer program or software component is deployed and executed (<a href="https://en.wikipedia.org/wiki/Deployment_environment">Wikipedia Sept. 2023</a>).</p>
+<ul>
+<li><strong>env</strong> - list the environment variable.</li>
+<li><strong>$</strong> - access a variable - example: <code>echo $PATH</code></li>
+<li><strong>$PATH</strong> - list of all directories where <em>bash</em> search the commands.</li>
+<li><strong>$SHELL</strong> - the current shell interpreter.</li>
+<li><strong>$USER</strong> - the user name.</li>
+<li><strong>export</strong> - create a new variable - example: <code>export MYBIN=~/bin</code></li>
+<li><strong>~/.bashrc</strong> (file): user configuration commands.</li>
+</ul>
+<h3 id="user-group-and-rules">User, Group and Rules</h3>
+<p><em>Users</em> are structured with <em>groups</em>.
+Users as groups have a name and a number
+A <em>user</em> is defined with a primary <em>group</em>, its main group, but a <em>group</em> can include several users.
+The files <code>/etc/passwd</code> and <code>/etc/group</code> record that information, among others.
+List them with <code>cat</code> for example (<code>cat /etc/passwd</code> and <code>cat /etc/group</code>).</p>
+<p>Specific access is associated to each resource on the computer with <em>r</em>: read <span class="arithmatex">\(\quad\)</span> <em>w</em>: write <span class="arithmatex">\(\quad\)</span> <em>x</em>: executed/open.
+The triple authorization can be different for the <em>user</em> owner, the <em>group</em> owner, or  <em>all</em> the others.
+List command with the <code>-l</code> option gives ownership and authorization information, among others.</p>
+<p>For example, with <code>ls -l /etc</code></p>
+<p><img alt="" src="../basis-figs/ls-l.svg" /></p>
+<p>Manipulate the owner and authorizations:</p>
+<ul>
+<li><strong>chmod</strong> : change authorizations - Examples:
+<code>chmod +x aFile</code> - add <em>x</em> authorization on <em>aFile</em>
+<code>chmod 752 aFile</code> - set authorization on <em>aFile</em> on a binary style</li>
+<li><strong>chown</strong> : change the owner </li>
+<li><strong>sudo</strong> : excute a command as a <em>root</em> user (administrator) if granted - example <code>sudo gedit /etc/passwd</code>.</li>
+</ul>
+<h2 id="the-processes">The Processes</h2>
+<p>Finally, the Operating System (OS) is mainly a process manager...
+An OS offers an environment to create and execute programs.
+Typically, the language <em>C</em> is first developed in parallel to <em>Unix</em> to provide a powerful language to the OS, and to use it for the <em>OS</em> core processes.</p>
+<p>Today, systems have evolved significantly and allow complex architecture with several processes running in parallel and potentially in virtual machines.
+Similarly than <em>ls</em>, <strong>ps</strong> list the local processes (ie. the children processes of the bash shell. 
+For instance: </p>
+<pre><code class="language-shell">gedit aFile.txt &amp;
+ps
+</code></pre>
+<p>Here, <strong>&amp;</strong> permits to get the prompt back after starting <em>gedit</em>.
+As for other commands, <strong>ps</strong> accepts options, for instance,  adding <code>-e</code> lists all the processes on the machine. </p>
+<p>For managing processes, OS attaches some elements to each one: the <em>PID</em> (Process IDentifier), a parent process, an owner, a name, ...</p>
+<p>Other command :</p>
+<ul>
+<li><strong>top</strong> - interactive process monitoring ( <em>Q</em> to quit ) (quite similar to <em>ps</em>, but interactive and constantly updated)</li>
+<li><strong>kill</strong> - sent a signal to a process - Examples: <code>kill 19482</code> - send TERM signal to process <em>19482</em> ; <code>kill -s KILL 19482</code> - send KILL signal to process <em>19482</em></li>
+</ul>
+<h3 id="codes-programs-and-scripts">Codes, Programs and Scripts</h3>
+<ul>
+<li><strong>Codes</strong>: Sequence of written instruction text format according to a given programming language.</li>
+<li><strong>Programs</strong>: Executable binary on a OS<ul>
+<li>Specific to the OS (and potentially to the hardware)</li>
+<li>Generally compiled codes (example with <em>C</em> language compiled with <em>gcc</em>).</li>
+</ul>
+</li>
+<li><strong>Scripts</strong>: Interpretable pieces of code by a program. Typically, <em>Python</em> is a scripting language.
+file: hello.py</li>
+</ul>
+<h2 id="python-programming-languages">Python Programming Languages</h2>
+<p>Python is a high level programming language. 
+Its allows for abstracted data structures, includes core tools like <em>dynamic type</em>, <em>garbage collector</em>, <em>Object-Oriented Programming</em> (OOP) and a lot more with a large collection of libraries.</p>
+<p>The language is interpreted, and <em>python3</em> designs the programming language but also the interpreter process (<a href="https://fr.wikipedia.org/wiki/CPython">cpython</a>), allowing to read and execute <em>Python</em> instructions.</p>
+<ul>
+<li>Code source on <a href="https://github.com/python/cpython">github.com</a> - 63.5% Python / 34.6% C </li>
+</ul>
+<p>Minimale python script: </p>
+<pre><code class="language-python">print('hello world')
+</code></pre>
+<p>Then in a shell: <code>python3 hello.py</code></p>
+<p>Python in short:</p>
+<ul>
+<li><strong>Rich language capabilities</strong> (it is possible to do complex things)</li>
+<li><strong>Concise language</strong> (complex things require few codes)</li>
+<li><strong>Very rich community libraries</strong> 
+(most of the complex things are already implemented)</li>
+<li><strong>Interpretable</strong> (the code is mostly OS independent)</li>
+<li><strong>Use a virtual machine</strong> (including Garbage Collector)</li>
+<li><strong>Not natively efficient</strong> (but compatible with C and C++ libs)</li>
+</ul>
+<h3 id="sequential-instructions">Sequential Instructions</h3>
+<p><em>Python</em> is structured with sequential instructions:</p>
+<pre><code class="language-python"># Some comments...
+
+a= 1              # - Asignment of a new integer variable
+b= a + 48.4       # - Asignment of a new floating point variable
+                  #   as the result of the instruction: a + 48.4
+aString= &quot;Hello&quot;  # - Assignment of a new string variable (list of characters)
+
+print( aString )  # - Call to the function print with aString as one parameter
+
+result= aString.search('e') # - Call to the method search on the aString instance 
+                            #   with a parameter 'e'
+</code></pre>
+<p>It allows for function definition. </p>
+<pre><code class="language-python">def myWonderfullFunction( aFirstIntergerPaprameter, aSecondIntergerParameters ):
+    intergerSum= aFirstIntergerPaprameter + aSecondIntergerParameters
+    return intergerSum
+
+a= 2
+b= myWonderfullFunction( a, 40 )
+
+print( &quot;Result: &quot; + str(b) )
+</code></pre>
+<p><em>To notice:</em> </p>
+<ul>
+<li>Block separation is delimited with space or tabulation indentation.</li>
+<li>Functions need to be defined prior to be used.</li>
+</ul>
+<h3 id="loop-control">loop control</h3>
+<p>Loops allow for repeating an instruction sequence until a specific state is reached (<em>while</em>) or by visiting a collection of objects (<em>for</em>).
+The <em>while</em> instruction (<em>WHILE condition DO something</em>) is the simplest available loop control:</p>
+<pre><code class="language-python">b= 0
+while b &lt;= 40 :
+    b+= 2
+
+print( &quot;Result: &quot; + str(b) )
+</code></pre>
+<p>The <em>for</em> instruction allows for visiting each element of an iterable collection, for instance a list.</p>
+<pre><code class="language-python">aList= [2, 10, 18, 4, 8]
+b= 0
+for value in aList :
+    b+= value
+
+print( &quot;Result: &quot; + str(b) )
+</code></pre>
+<h3 id="going-further">Going further...</h3>
+<p>It is not the purpose here, to provide an entire course on <em>Python</em>. 
+There are huge resources on the internet, both more complete and well organized, starting with the official <em>Python</em> documentation <a href="https://docs.python.org/3/">https://docs.python.org/3/</a>.
+We highly recommend searching the web to increase your knowledge.</p>
+<p>In this jungle, the <a href="https://www.w3schools.com/python/">w3schools</a>  certainly offers the best learning experience. 
+You can start, for instance, with <a href="https://www.w3schools.com/python/python_lists.asp">Python lists</a> and <a href="https://www.w3schools.com/python/python_dictionaries.asp">Python dictionaries</a>, the two most used data structures in Python.</p>
+<p>Finally, complementary <em>modules</em> / <em>packages</em> can be associated to the code with the <code>import</code> instruction. 
+Typically <code>sys</code> package provides some interfaces with the system.</p>
+<pre><code class="language-python">import sys
+
+print( &quot;System platform: &quot;+ str(sys.platform) )
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Intro au cours"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../basis-01-exo/" class="btn btn-neutral float-right" title="First exos">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../basis-01-exo/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

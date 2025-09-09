@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>OOP - PythonLibs-Science</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OOP";
+        var mkdocs_page_input_path = "basis-02-poo.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PythonLibs-Science
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../..">< imt-mobisyst <</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Intro au cours</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Les bases</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-01-system/">OS et language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-01-exo/">First exos</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">OOP</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python">Object-Oriented Programing in Python</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-class-and-instances">OOP in Python : Class and Instances</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-class-and-instances_1">OOP in Python : Class and Instances</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-methods">OOP in Python : Methods</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-methods_1">OOP in Python: Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-versus-function">Method versus Function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-methods_2">OOP in Python: Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-of-a-method-with-3-arguments">Example of a method with \(3\) arguments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-default-argument-values">OOP in Python: default argument values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python_1">Object-Oriented Programing in Python</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python_2">Object-Oriented Programing in Python</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python_3">Object-Oriented Programing in Python</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-a-class-to-manipulate-point-cloud">Create a class to manipulate Point Cloud</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-a-class-to-manipulate-point-cloud_1">Create a class to manipulate Point Cloud</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloud-construction-and-accessors">Cloud :: Construction and Accessors.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloud-more-usefull-elements">Cloud :: More usefull elements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-a-class-to-manipulate-point-cloud_2">Create a class to manipulate Point Cloud</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-03-dev/">Develloper</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PythonLibs-Science</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Les bases</li>
+      <li class="breadcrumb-item active">OOP</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="object-oriented-programming">Object-Oriented Programming</h1>
+<h2 id="object-oriented-programing-in-python">Object-Oriented Programing in Python</h2>
+<p><strong>class:</strong> first, a collection of class attribute and functions.</p>
+<pre><code class="language-python"># Definition:
+class MyObjectType :
+    world= &quot;world&quot;
+
+    def function1() :
+        return &quot;hello&quot;
+
+    def function2() :
+        return MyObjectType.world
+
+# Use:
+hello= MyObjectType.function1()
+print( hello + ' ' + MyObjectType.function2() )
+</code></pre>
+<p>Still with indentation... </p>
+<hr />
+<h2 id="oop-in-python-class-and-instances">OOP in Python : Class and Instances</h2>
+<p>The possibility to instantiate objects.</p>
+<pre><code class="language-python"># Definition:
+class MyObjectType :
+    class_word= &quot;hello&quot;     # A class attribute
+
+# Use:
+anInstance= MyObjectType()          # Instanciate a MyObjectType object
+
+anInstance.instance_word= &quot;world&quot;   # an instance attribute
+
+assert( type(anInstance) is MyObjectType )
+print( anInstance.class_word + ' ' + anInstance.instance_word )
+</code></pre>
+<p>At this point: <code>anInstance.class_word is MyObjectType.class_word</code></p>
+<hr />
+<h2 id="oop-in-python-class-and-instances_1">OOP in Python : Class and Instances</h2>
+<div class="line">
+<div class="one2">
+
+<br />
+<br />
+
+### What is the output <br /> of this code ?
+
+<br />
+<br />
+
+A good way to manipulate a 
+class attribute: `type(anInstance).classAttribut`
+
+
+</div>
+<div class="one2">
+
+
+<pre><code class="language-python"># Definition:
+class MyObjectType :
+    classAttribut= &quot;Void&quot;
+
+# Use:
+anInstance= MyObjectType()
+
+MyObjectType.classAttribut= &quot;Hello&quot;
+print( anInstance.classAttribut )
+
+anInstance.classAttribut= &quot;World&quot;
+print( MyObjectType.classAttribut )
+
+MyObjectType.classAttribut= &quot;Hmmm&quot;
+print( anInstance.classAttribut )
+</code></pre>
+
+
+</div>
+</div>
+
+<hr />
+<h2 id="oop-in-python-methods">OOP in Python : Methods</h2>
+<p>Method: an <em>instance functions</em> (the current instance is <code>self</code> by convention)</p>
+<pre><code class="language-python"># Definition:
+class MyObjectType :
+    def method(self) :
+        return 42
+
+# Use:
+anInstance= MyObjectType() # Instanciate a MyObjectType
+
+v1= MyObjectType.method(anInstance)
+v2= anInstance.method()
+
+if v1 == v2 :
+    print( &quot;Hello World&quot; )
+print( f&quot;{MyObjectType.method}\nvs {anInstance.method}&quot;)
+</code></pre>
+<hr />
+<h2 id="oop-in-python-methods_1">OOP in Python: Methods</h2>
+<h3 id="method-versus-function">Method versus Function</h3>
+<pre><code class="language-python"># Definition:
+class MyObjectType :
+    def method(self) :
+        return 42
+
+print( f&quot;{MyObjectType.method}\nvs\n{anInstance.method}&quot;)
+</code></pre>
+<p>Output:</p>
+<pre><code>&lt;function MyObjectType.method at 0x7f36636e7a30&gt; 
+vs
+&lt;bound method MyObjectType.method
+ of &lt;__main__.MyObjectType  object at 0x7f366368c310&gt;&gt;
+</code></pre>
+<hr />
+<h2 id="oop-in-python-methods_2">OOP in Python: Methods</h2>
+<p><br />
+<br />
+<br /></p>
+<h3 id="example-of-a-method-with-3-arguments">Example of a method with <span class="arithmatex">\(3\)</span> arguments</h3>
+<pre><code class="language-python">    def aMethod(self, argument1, argument2, argument3) :
+        pass
+</code></pre>
+<p><br />
+<br /></p>
+<hr />
+<h2 id="oop-in-python-default-argument-values">OOP in Python: default argument values</h2>
+<p><strong>Built-in Methods</strong>: Method already defined in python Objects</p>
+<ul>
+<li><code>__init__(self)</code> : Instance constructor</li>
+<li><code>__del__(self)</code>  : Instance destructor</li>
+<li><code>__str__(self)</code>  : String generation</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">def aFunction() :
+    anInstance= MyClass()      # call anInstance.__init__()
+    print( anInstance )        # call anInstance.__str__()
+    return True                # garbage call to anInsatnce.__del__()
+</code></pre>
+<hr />
+<h2 id="object-oriented-programing-in-python_1">Object-Oriented Programing in Python</h2>
+<p><br /></p>
+<p><strong>Constructor</strong>: <code>__init__</code> : initialize a new instance with potentially <span class="arithmatex">\(n\)</span> arguments</p>
+<pre><code class="language-python">class MyClass() :
+    def __init__ ( self, arg1, arg2 ) :
+        self._attribut1= param1
+        self._attribut2= function( param1, param2 )
+
+anInstance= MyClass( &quot;Paul&quot;, &quot;Mouaddib&quot; )
+</code></pre>
+<p><br /></p>
+<p>In Python <code>__init__</code> method is unique (as all other methods)
+(i.e. no overloading)</p>
+<hr />
+<h2 id="object-oriented-programing-in-python_2">Object-Oriented Programing in Python</h2>
+<p>Function with a variable number of arguments  - <strong>Example:</strong></p>
+<pre><code>function(1, 2)
+function(1, 2, 3, 4)
+</code></pre>
+<p><strong>Definition:</strong> parameters with default values</p>
+<pre><code class="language-python">def aFuncrion ( val1=1, val2=0, val3=0, val4=1 ) :
+    return (val1+ val1+ val1) * val4
+</code></pre>
+<p><strong>Alternative Run:</strong></p>
+<pre><code>function( val4=8 )
+</code></pre>
+<hr />
+<h2 id="object-oriented-programing-in-python_3">Object-Oriented Programing in Python</h2>
+<p><strong>Good Practices:</strong></p>
+<ul>
+<li>Use <code>self</code>.</li>
+<li>Prefer instance method (at least <code>self</code> argument).</li>
+<li>Name your attributes starting with <code>_</code>.</li>
+<li>Never access class attributes from instances directly.
+(Better <code>Class._att</code> or <code>type(instance)._att</code> than <code>instance._att</code>).</li>
+<li><code>__init__</code> method (if defined) is your first method.</li>
+<li>Initialize your instance attributes into <code>__init__</code> method.</li>
+<li>...</li>
+</ul>
+<hr />
+<!-- --------------------------------------------------------------- -->
+
+<p><img alt="bg" src="../style/bg-toc3.svg" /></p>
+<p><br /></p>
+<ul>
+<li>OOP in Python</li>
+<li><strong>Let's Play</strong></li>
+</ul>
+<hr />
+<!-- --------------------------------------------------------------- -->
+
+<h2 id="create-a-class-to-manipulate-point-cloud">Create a class to manipulate Point Cloud</h2>
+<p><br />
+<br /></p>
+<ul>
+<li><strong>Initialize your working space</strong></li>
+<li>Define <strong>instance attributes</strong></li>
+<li>Propose some <strong>initialization</strong></li>
+<li>Provide <strong>accessors</strong></li>
+<li>Customize <strong>built-in methods</strong></li>
+<li>Develope some <strong>usefull methods</strong></li>
+<li>...</li>
+</ul>
+<hr />
+<!-- --------------------------------------------------------------- -->
+
+<h2 id="create-a-class-to-manipulate-point-cloud_1">Create a class to manipulate Point Cloud</h2>
+<ul>
+<li><strong>Initialize your working space</strong> - two files in a same directory: <ul>
+<li><code>myCloud.py</code> with <em>class definition</em>.</li>
+<li><code>test_myCloud.py</code> a <em>test script</em> with instanciation and call to methods.</li>
+</ul>
+</li>
+</ul>
+<p></br ></p>
+<div class="line">
+<div class="one2">
+
+`myCloud.py`:
+
+
+<pre><code class="language-python">class Cloud :
+    pass
+</code></pre>
+
+
+</div>
+<div class="one2">
+
+`test_myCloud.py`:
+
+
+<pre><code class="language-python">import myCloud as mc
+
+aCloud= mc.Cloud()
+assert( type(aCloud) == mc.Cloud )
+</code></pre>
+
+
+</div>
+</div>
+
+<p>Then execute: <code>python3 test_myCloud.py</code></p>
+<hr />
+<!-- --------------------------------------------------------------- -->
+
+<h2 id="cloud-construction-and-accessors">Cloud :: Construction and Accessors.</h2>
+<ul>
+<li>As a first functionality the possibility of <em>adding</em> and <em>access</em> points.</li>
+</ul>
+<p>The <code>test_cloud.py</code> will be:</p>
+<pre><code class="language-python">import myCloud as mc
+
+aCloud= mc.Cloud()
+assert( aCloud.size() == 0 )
+assert( aCloud.points() == [] )
+
+aCloud.append( 3, 8 )
+assert( aCloud.size() == 1 )
+assert( aCloud.points() == [(3,8)] )
+assert( aCloud.point(0) == (3,8) )
+
+...
+</code></pre>
+<hr />
+<!-- --------------------------------------------------------------- -->
+
+<h2 id="cloud-more-usefull-elements">Cloud :: More usefull elements</h2>
+<ul>
+<li><strong>Random generator</strong> - generate randomly a point cloud of <span class="arithmatex">\(n\)</span> points.</li>
+<li><strong>Print function</strong> - overdefine <code>__str__</code> in an informative, not too long way.<ul>
+<li>Exemple: <code>print( aCloud )  &gt; [(12.8, 8.5), (7.8, 0.5), ...](100)</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<!-- --------------------------------------------------------------- -->
+
+<h2 id="create-a-class-to-manipulate-point-cloud_2">Create a class to manipulate Point Cloud</h2>
+<p><br />
+<br /></p>
+<ul>
+<li><strong>More Accessors:</strong><ul>
+<li><em>listX():</em> return a list of the <em>x</em> values of all points (<strong>&amp;</strong> <em>listY():</em> reciprocally)</li>
+</ul>
+</li>
+<li><strong>Computation:</strong> - <em>average():</em>, <em>standardDeviation()</em>, <em>minXPoint():</em>, ...</li>
+<li>... </li>
+</ul>
+<p><br /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../basis-01-exo/" class="btn btn-neutral float-left" title="First exos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../basis-03-dev/" class="btn btn-neutral float-right" title="Develloper">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../basis-01-exo/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../basis-03-dev/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
