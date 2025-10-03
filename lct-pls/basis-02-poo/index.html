@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>OOP - PythonLibs-Science</title>
+    <title>Object-Oriented Prog. - PythonLibs-Science</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "OOP";
+        var mkdocs_page_name = "Object-Oriented Prog.";
         var mkdocs_page_input_path = "basis-02-poo.md";
         var mkdocs_page_url = null;
       </script>
@@ -54,45 +54,35 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../basis-01-exo/">First exos</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">OOP</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Object-Oriented Prog.</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python">Object-Oriented Programing in Python</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-class-and-instances">OOP in Python : Class and Instances</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-class-and-instances_1">OOP in Python : Class and Instances</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-methods">OOP in Python : Methods</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-methods_1">OOP in Python: Methods</a>
+    <li class="toctree-l2"><a class="reference internal" href="#1-object-oriented-programming-oop-in-python">1. Object-Oriented Programming (OOP) in Python</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#method-versus-function">Method versus Function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1a-structuring-element-together">1.a. Structuring element together</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1b-class-instance">1.b. Class Instance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1c-methods">1.c. Methods</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-methods_2">OOP in Python: Methods</a>
+    <li class="toctree-l2"><a class="reference internal" href="#2-built-in-python">2. Built-in Python</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#example-of-a-method-with-3-arguments">Example of a method with \(3\) arguments</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2a-built-in-class">2.a. Built-in Class</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2b-good-practices">2.b. Good practices.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2c-operators">2.c. Operators.</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#oop-in-python-default-argument-values">OOP in Python: default argument values</a>
+    <li class="toctree-l2"><a class="reference internal" href="#3-lets-play">3. Let's Play</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#read-a-mp3-sound">Read a Mp3 sound</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python_1">Object-Oriented Programing in Python</a>
+    <li class="toctree-l3"><a class="reference internal" href="#manipulating-meta-data">Manipulating Meta-data</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python_2">Object-Oriented Programing in Python</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#object-oriented-programing-in-python_3">Object-Oriented Programing in Python</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#create-a-class-to-manipulate-point-cloud">Create a class to manipulate Point Cloud</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#create-a-class-to-manipulate-point-cloud_1">Create a class to manipulate Point Cloud</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cloud-construction-and-accessors">Cloud :: Construction and Accessors.</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cloud-more-usefull-elements">Cloud :: More usefull elements</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#create-a-class-to-manipulate-point-cloud_2">Create a class to manipulate Point Cloud</a>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -121,7 +111,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Basis</li>
-      <li class="breadcrumb-item active">OOP</li>
+      <li class="breadcrumb-item active">Object-Oriented Prog.</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -131,10 +121,12 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="object-oriented-programming">Object-Oriented Programming</h1>
-<p>Revisit OOP concept, by presenting them in Python. 
-Tutorials are based on <em>MP3</em> collection man.</p>
-<h2 id="object-oriented-programing-in-python">Object-Oriented Programing in Python</h2>
-<p><strong>class:</strong> first, a collection of class attribute and functions.</p>
+<p>This tutorial revisits <em>OOP</em> concepts, by presenting them in Python. 
+In a second part, an exercise is proposed to create a toolbox for <em>MP3</em> collection management.</p>
+<p>All the proposed pieces of code should be tested in a <code>script.py</code>.</p>
+<h2 id="1-object-oriented-programming-oop-in-python">1. Object-Oriented Programming (OOP) in Python</h2>
+<h3 id="1a-structuring-element-together">1.a. Structuring element together</h3>
+<p>First a <strong>class</strong> can be reduced to a collection of class attributes and functions.</p>
 <pre><code class="language-python"># Definition:
 class MyObjectType :
     world= &quot;world&quot;
@@ -149,10 +141,13 @@ class MyObjectType :
 hello= MyObjectType.function1()
 print( hello + ' ' + MyObjectType.function2() )
 </code></pre>
-<p>Still with indentation... </p>
-<hr />
-<h2 id="oop-in-python-class-and-instances">OOP in Python : Class and Instances</h2>
-<p>The possibility to instantiate objects.</p>
+<p>To notice the indentations that state for wath inside a class and the instructions of each class's function.
+In this exemple, <em>MyObjectType</em> is a class with one attribut (<em>world</em>) and two functions (<em>function1()</em>, <em>function2()</em>).</p>
+<h3 id="1b-class-instance">1.b. Class Instance</h3>
+<p>The main feature of <strong>class</strong> is the capacity to instantiate objects (<em>class instances</em>).
+An instance of a class is an object defined as a specific type.
+It is possible to associate attributes with an instance.
+In this case, instance-attribute values can be different for different instances of the same class (by opposition to class-attributes).</p>
 <pre><code class="language-python"># Definition:
 class MyObjectType :
     class_word= &quot;hello&quot;     # A class attribute
@@ -162,31 +157,17 @@ anInstance= MyObjectType()          # Instanciate a MyObjectType object
 
 anInstance.instance_word= &quot;world&quot;   # an instance attribute
 
+aSecondInstance= MyObjectType()
+aSecondInstance.instance_word= &quot;nobody&quot;
+
 assert( type(anInstance) is MyObjectType )
 print( anInstance.class_word + ' ' + anInstance.instance_word )
 </code></pre>
-<p>At this point: <code>anInstance.class_word is MyObjectType.class_word</code></p>
-<hr />
-<h2 id="oop-in-python-class-and-instances_1">OOP in Python : Class and Instances</h2>
-<div class="line">
-<div class="one2">
-
-<br />
-<br />
-
-### What is the output <br /> of this code ?
-
-<br />
-<br />
-
-A good way to manipulate a 
-class attribute: `type(anInstance).classAttribut`
-
-
-</div>
-<div class="one2">
-
-
+<p>At this point, <code>anInstance.class_word</code> is <code>MyObjectType.class_word</code>,
+and for no confusion, you should use <code>MyObjectType.class_word</code> to manipulate this attribut.</p>
+<p>Another good way to manipulate a class attribute: <code>type(anInstance).classAttribut</code>.
+Typically, nasty manipulation of class-attribut can transform them into instance attributes for specific instances that generate failure, difficult to debug...
+As in this example :</p>
 <pre><code class="language-python"># Definition:
 class MyObjectType :
     classAttribut= &quot;Void&quot;
@@ -197,20 +178,17 @@ anInstance= MyObjectType()
 MyObjectType.classAttribut= &quot;Hello&quot;
 print( anInstance.classAttribut )
 
-anInstance.classAttribut= &quot;World&quot;
+anInstance.classAttribut= &quot;World&quot;     # I should not do that...
 print( MyObjectType.classAttribut )
 
 MyObjectType.classAttribut= &quot;Hmmm&quot;
-print( anInstance.classAttribut )
+print( anInstance.classAttribut + &quot; - &quot; + MyObjectType.classAttribut )
 </code></pre>
-
-
-</div>
-</div>
-
-<hr />
-<h2 id="oop-in-python-methods">OOP in Python : Methods</h2>
-<p>Method: an <em>instance functions</em> (the current instance is <code>self</code> by convention)</p>
+<h3 id="1c-methods">1.c. Methods</h3>
+<p>The strength of <em>OOP</em> relies on the instances that define a context for the executions of functions associated to the class.
+A function associated to an instance is named a <strong>METHOD</strong>.
+In <em>Python</em>, a method is a class function where the instance is explicit as the first parameter.
+A convention supposes that this instance is named <em>self</em>.</p>
 <pre><code class="language-python"># Definition:
 class MyObjectType :
     def method(self) :
@@ -219,58 +197,153 @@ class MyObjectType :
 # Use:
 anInstance= MyObjectType() # Instanciate a MyObjectType
 
-v1= MyObjectType.method(anInstance)
-v2= anInstance.method()
+v1= anInstance.method()
+v2= MyObjectType.method(anInstance)
 
 if v1 == v2 :
     print( &quot;Hello World&quot; )
+
 print( f&quot;{MyObjectType.method}\nvs {anInstance.method}&quot;)
 </code></pre>
-<hr />
-<h2 id="oop-in-python-methods_1">OOP in Python: Methods</h2>
-<h3 id="method-versus-function">Method versus Function</h3>
+<p>As in this example, in <em>Python</em> a method can be called directly on an instance (<em>v1</em>) or as a class function (<em>v2</em>).
+In the first case, the method is bound to an instance :</p>
 <pre><code class="language-python"># Definition:
 class MyObjectType :
     def method(self) :
         return 42
 
-print( f&quot;{MyObjectType.method}\nvs\n{anInstance.method}&quot;)
+anInstance= MyObjectType()
+
+print( f&quot;{MyObjectType.method}\nvs\n{anInstance.method} ({anInstance})&quot;)
 </code></pre>
-<p>Output:</p>
-<pre><code>&lt;function MyObjectType.method at 0x7f36636e7a30&gt; 
-vs
-&lt;bound method MyObjectType.method
- of &lt;__main__.MyObjectType  object at 0x7f366368c310&gt;&gt;
-</code></pre>
-<hr />
-<h2 id="oop-in-python-methods_2">OOP in Python: Methods</h2>
-<p><br />
-<br />
-<br /></p>
-<h3 id="example-of-a-method-with-3-arguments">Example of a method with <span class="arithmatex">\(3\)</span> arguments</h3>
+<p>As a result, in <em>Python</em>, a method with <span class="arithmatex">\(3\)</span> arguments is defined by a function of <span class="arithmatex">\(4\)</span> arguments.</p>
 <pre><code class="language-python">    def aMethod(self, argument1, argument2, argument3) :
         pass
 </code></pre>
-<p><br />
-<br /></p>
 <hr />
-<h2 id="oop-in-python-default-argument-values">OOP in Python: default argument values</h2>
-<p><strong>Built-in Methods</strong>: Method already defined in python Objects</p>
+<h2 id="2-built-in-python">2. Built-in Python</h2>
+<p><em>Python</em> defines numerous tools natively. 
+Many of those tools rely on functions/methods associated with types.
+There are named <a href="https://docs.python.org/3/library/functions.html">built-in functions</a>.
+Those functions can be redefined (overridden) to attach a specific behavior to developer types (classes).</p>
+<h3 id="2a-built-in-class">2.a. Built-in Class</h3>
+<p>First of them are the <strong>built-in functions</strong> defined in <em>Python</em> objects:</p>
 <ul>
-<li><code>__init__(self)</code> : Instance constructor</li>
-<li><code>__del__(self)</code>  : Instance destructor</li>
-<li><code>__str__(self)</code>  : String generation</li>
+<li><code>__init__(self)</code> : Instance initialization, called at instance construction.</li>
+<li><code>__del__(self)</code>  : Instance destruction, called when a instance is deleted.</li>
+<li><code>__str__(self)</code>  : Transform an instance in a string</li>
 </ul>
-<p>Example:</p>
+<pre><code class="language-python"># Definition:
+class MyObjectType :
+
+    def __init__(self):
+        print('Initialization')
+
+    def __del__(self): 
+        print('Destruction')
+
+    def __str__(self):
+        return &quot;&gt; MyObjectType::instance &lt;&quot;
+
+# Use:
+anInstance= MyObjectType()
+print( anInstance )
+</code></pre>
+<p>To notice that it is posible to change the number of parameters in <code>__init__</code> to generate a constructor over parrameters.
+In general, all the instance attributs are created in the <code>__init__</code> method. But it is not mandatory (in fact in python, the number and definition of instance attributes are dynamic). 
+It is also possible to call the parent method when overriding with <a href="https://docs.python.org/3/library/functions.html#super"><code>super</code></a>.</p>
+<pre><code class="language-python"># Definition:
+class MyObjectType :
+
+    def __init__(self):
+        print('Initialization')
+
+    def __del__(self): 
+        print('Destruction')
+
+    def __str__(self):
+        return &quot;&gt; MyObjectType::instance &lt;&quot;
+
+# Definition:
+class ObjectSpecific(MyObjectType) :
+
+    def __init__(self, aNumber):
+        super(MyObjectType, self)._init__(self)
+        self._aNumber= aNumber
+
+    def __str__(self):
+        return f&quot;&gt; MyObjectType::instance-{self._aNumber} &lt;&quot;
+
+# Use:
+anInstance= MyObjectType(42)
+print( anInstance )
+</code></pre>
+<h3 id="2b-good-practices">2.b.  Good practices.</h3>
+<p>As we already see, several rules are more good practices than language constraints. </p>
+<ul>
+<li>The current instance, context for a method execution, is always named <em>self</em>.</li>
+<li><code>__init__</code> method (if defined) is your first method.</li>
+<li>Initialize your instance attributes into the <code>__init__</code> method.</li>
+<li>Attribute names start with <code>_</code>. </li>
+<li>Class names start with an Uppercase letter.</li>
+<li>etc.</li>
+</ul>
+<p>Most of those conventions are presented in the <a href="https://peps.python.org/pep-0008/">style guide for Python code</a></p>
+<h3 id="2c-operators">2.c.  Operators.</h3>
+<p>Finally, most of the operator can be redefined based on built-in function.
+For a complete list with other type built-in functions, see <a href="https://docs.python.org/3/library/stdtypes.html">docs.python.org</a></p>
+<p>An example with the addition:</p>
+<pre><code class="language-python">class Vector :
+
+    def __init__(self, x, y):
+        self._x= x
+        self._y= y
+
+    def __add__(self, another):
+        return Vector( self._x+another._x, self._y+another._y )
+
+    def __str__(self):
+        return f&quot;({self._x}, {self._y})&quot;
+
+# Use:
+a= Vector( 10.7, 8.0 )
+b= Vector( -2.1, 34.0 )
+print( f&quot;{a} + {b} = {a+b}&quot; )
+</code></pre>
+<hr />
+<h2 id="3-lets-play">3. Let's Play</h2>
+<p>We  now have an idea of what <em>OOP</em> is capable of in <em>Python</em>. 
+The exercise here is to put those notions in music.</p>
+<h3 id="read-a-mp3-sound">Read a Mp3 sound</h3>
+<ul>
+<li>https://pypi.org/project/playsound3/</li>
+<li>https://eyed3.readthedocs.io/en/latest - https://pypi.org/project/eyeD3/</li>
+</ul>
+<h3 id="manipulating-meta-data">Manipulating Meta-data</h3>
+<!---
+
+## OOP in Python: default argument values
+
+
+Example:
+
+
 <pre><code class="language-python">def aFunction() :
     anInstance= MyClass()      # call anInstance.__init__()
     print( anInstance )        # call anInstance.__str__()
     return True                # garbage call to anInsatnce.__del__()
 </code></pre>
-<hr />
-<h2 id="object-oriented-programing-in-python_1">Object-Oriented Programing in Python</h2>
-<p><br /></p>
-<p><strong>Constructor</strong>: <code>__init__</code> : initialize a new instance with potentially <span class="arithmatex">\(n\)</span> arguments</p>
+
+
+---
+
+## Object-Oriented Programing in Python
+
+<br />
+
+**Constructor**: `__init__` : initialize a new instance with potentially $n$ arguments
+
+
 <pre><code class="language-python">class MyClass() :
     def __init__ ( self, arg1, arg2 ) :
         self._attribut1= param1
@@ -278,71 +351,85 @@ vs
 
 anInstance= MyClass( &quot;Paul&quot;, &quot;Mouaddib&quot; )
 </code></pre>
-<p><br /></p>
-<p>In Python <code>__init__</code> method is unique (as all other methods)
-(i.e. no overloading)</p>
-<hr />
-<h2 id="object-oriented-programing-in-python_2">Object-Oriented Programing in Python</h2>
-<p>Function with a variable number of arguments  - <strong>Example:</strong></p>
+
+
+<br />
+
+In Python `__init__` method is unique (as all other methods)
+(i.e. no overloading)
+
+
+## Object-Oriented Programing in Python
+
+Function with a variable number of arguments  - **Example:**
+
+
 <pre><code>function(1, 2)
 function(1, 2, 3, 4)
 </code></pre>
-<p><strong>Definition:</strong> parameters with default values</p>
+
+
+**Definition:** parameters with default values
+
+
 <pre><code class="language-python">def aFuncrion ( val1=1, val2=0, val3=0, val4=1 ) :
     return (val1+ val1+ val1) * val4
 </code></pre>
-<p><strong>Alternative Run:</strong></p>
+
+
+**Alternative Run:**
+
+
 <pre><code>function( val4=8 )
 </code></pre>
-<hr />
-<h2 id="object-oriented-programing-in-python_3">Object-Oriented Programing in Python</h2>
-<p><strong>Good Practices:</strong></p>
-<ul>
-<li>Use <code>self</code>.</li>
-<li>Prefer instance method (at least <code>self</code> argument).</li>
-<li>Name your attributes starting with <code>_</code>.</li>
-<li>Never access class attributes from instances directly.
-(Better <code>Class._att</code> or <code>type(instance)._att</code> than <code>instance._att</code>).</li>
-<li><code>__init__</code> method (if defined) is your first method.</li>
-<li>Initialize your instance attributes into <code>__init__</code> method.</li>
-<li>...</li>
-</ul>
-<hr />
-<!-- --------------------------------------------------------------- -->
 
-<p><img alt="bg" src="../style/bg-toc3.svg" /></p>
-<p><br /></p>
-<ul>
-<li>OOP in Python</li>
-<li><strong>Let's Play</strong></li>
-</ul>
-<hr />
-<!-- --------------------------------------------------------------- -->
 
-<h2 id="create-a-class-to-manipulate-point-cloud">Create a class to manipulate Point Cloud</h2>
-<p><br />
-<br /></p>
-<ul>
-<li><strong>Initialize your working space</strong></li>
-<li>Define <strong>instance attributes</strong></li>
-<li>Propose some <strong>initialization</strong></li>
-<li>Provide <strong>accessors</strong></li>
-<li>Customize <strong>built-in methods</strong></li>
-<li>Develope some <strong>usefull methods</strong></li>
-<li>...</li>
-</ul>
-<hr />
-<!-- --------------------------------------------------------------- -->
 
-<h2 id="create-a-class-to-manipulate-point-cloud_1">Create a class to manipulate Point Cloud</h2>
-<ul>
-<li><strong>Initialize your working space</strong> - two files in a same directory: <ul>
-<li><code>myCloud.py</code> with <em>class definition</em>.</li>
-<li><code>test_myCloud.py</code> a <em>test script</em> with instanciation and call to methods.</li>
-</ul>
-</li>
-</ul>
-<p></br ></p>
+--- 
+
+## Object-Oriented Programing in Python
+
+
+**Good Practices:**
+
+- Use `self`.
+- Prefer instance method (at least `self` argument).
+- Name your attributes starting with `_`.
+- Never access class attributes from instances directly.
+(Better `Class._att` or `type(instance)._att` than `instance._att`).
+- ...
+
+
+
+
+---
+<!-- --------------------------------------------------------------- - ->
+
+## Create a class to manipulate Point Cloud
+
+<br />
+<br />
+
+- **Initialize your working space**
+- Define **instance attributes**
+- Propose some **initialization**
+- Provide **accessors**
+- Customize **built-in methods**
+- Develope some **usefull methods**
+- ...
+
+
+---
+<!-- --------------------------------------------------------------- - ->
+
+## Create a class to manipulate Point Cloud
+
+- **Initialize your working space** - two files in a same directory: 
+    - `myCloud.py` with _class definition_.
+    - `test_myCloud.py` a _test script_ with instanciation and call to methods.
+
+</br >
+
 <div class="line">
 <div class="one2">
 
@@ -370,15 +457,18 @@ assert( type(aCloud) == mc.Cloud )
 </div>
 </div>
 
-<p>Then execute: <code>python3 test_myCloud.py</code></p>
-<hr />
-<!-- --------------------------------------------------------------- -->
+Then execute: `python3 test_myCloud.py`
 
-<h2 id="cloud-construction-and-accessors">Cloud :: Construction and Accessors.</h2>
-<ul>
-<li>As a first functionality the possibility of <em>adding</em> and <em>access</em> points.</li>
-</ul>
-<p>The <code>test_cloud.py</code> will be:</p>
+---
+<!-- --------------------------------------------------------------- - ->
+
+## Cloud :: Construction and Accessors.
+
+- As a first functionality the possibility of _adding_ and _access_ points.
+
+The `test_cloud.py` will be:
+
+
 <pre><code class="language-python">import myCloud as mc
 
 aCloud= mc.Cloud()
@@ -392,32 +482,34 @@ assert( aCloud.point(0) == (3,8) )
 
 ...
 </code></pre>
-<hr />
-<!-- --------------------------------------------------------------- -->
 
-<h2 id="cloud-more-usefull-elements">Cloud :: More usefull elements</h2>
-<ul>
-<li><strong>Random generator</strong> - generate randomly a point cloud of <span class="arithmatex">\(n\)</span> points.</li>
-<li><strong>Print function</strong> - overdefine <code>__str__</code> in an informative, not too long way.<ul>
-<li>Exemple: <code>print( aCloud )  &gt; [(12.8, 8.5), (7.8, 0.5), ...](100)</code></li>
-</ul>
-</li>
-</ul>
-<hr />
-<!-- --------------------------------------------------------------- -->
 
-<h2 id="create-a-class-to-manipulate-point-cloud_2">Create a class to manipulate Point Cloud</h2>
-<p><br />
-<br /></p>
-<ul>
-<li><strong>More Accessors:</strong><ul>
-<li><em>listX():</em> return a list of the <em>x</em> values of all points (<strong>&amp;</strong> <em>listY():</em> reciprocally)</li>
-</ul>
-</li>
-<li><strong>Computation:</strong> - <em>average():</em>, <em>standardDeviation()</em>, <em>minXPoint():</em>, ...</li>
-<li>... </li>
-</ul>
-<p><br /></p>
+---
+<!-- --------------------------------------------------------------- - ->
+
+## Cloud :: More usefull elements
+
+- **Random generator** - generate randomly a point cloud of $n$ points.
+- **Print function** - overdefine `__str__` in an informative, not too long way.
+    - Exemple: `print( aCloud )  > [(12.8, 8.5), (7.8, 0.5), ...](100)`
+
+---
+<!-- --------------------------------------------------------------- - ->
+
+## Create a class to manipulate Point Cloud
+
+<br />
+<br />
+
+- **More Accessors:**
+    - *listX():* return a list of the *x* values of all points (**&** *listY():* reciprocally)
+- **Computation:** - *average():*, *standardDeviation()*, *minXPoint():*, ...
+- ... 
+
+<br />
+
+
+-->
               
             </div>
           </div><footer>

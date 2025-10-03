@@ -52,43 +52,43 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">OS & language</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#at-the-beginning-was-the-shell">At the beginning was the Shell :</a>
+    <li class="toctree-l2"><a class="reference internal" href="#1-at-the-beginning-was-the-shell">1. At the beginning was the Shell :</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#some-vocabulary">Some Vocabulary:</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#first-bash-commands">First BASH Commands.</a>
+    <li class="toctree-l2"><a class="reference internal" href="#2-first-bash-commands">2. First BASH Commands.</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#the-file-system">The File System</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2a-the-file-system">2.a. The File System</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mastering-commands">Mastering Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2b-mastering-commands">2.b. Mastering Commands</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#some-triks">Some triks :</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2c-some-triks">2.c. Some triks :</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#users-session">Users session</a>
+    <li class="toctree-l2"><a class="reference internal" href="#3-users-session">3. Users session</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#session">session</a>
+    <li class="toctree-l3"><a class="reference internal" href="#3a-session">3.a. session</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#user-group-and-rules">User, Group and Rules</a>
+    <li class="toctree-l3"><a class="reference internal" href="#3b-user-group-and-rules">3.b. User, Group and Rules</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#the-processes">The Processes</a>
+    <li class="toctree-l2"><a class="reference internal" href="#4-the-processes">4. The Processes</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#codes-programs-and-scripts">Codes, Programs and Scripts</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#python-programming-languages">Python Programming Languages</a>
+    <li class="toctree-l2"><a class="reference internal" href="#5-python-programming-languages">5. Python Programming Languages</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#sequential-instructions">Sequential Instructions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4a-sequential-instructions">4.a Sequential Instructions</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#loop-control">loop control</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4b-loop-control">4.b loop control</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#going-further">Going further...</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4c-going-further">4.c Going further...</a>
     </li>
         </ul>
     </li>
@@ -96,7 +96,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../basis-01-exo/">First exos</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../basis-02-poo/">OOP</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-02-poo/">Object-Oriented Prog.</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Good practice</span></p>
@@ -133,7 +133,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="the-basics-the-computer-and-the-program">The basics: The computer and the program</h1>
-<h2 id="at-the-beginning-was-the-shell">At the beginning was the Shell :</h2>
+<h2 id="1-at-the-beginning-was-the-shell">1. At the beginning was the Shell :</h2>
 <p><strong>A computer program that exposes an operating system's services to a human user or other programs.</strong> (<a href="https://en.wikipedia.org/wiki/Shell_(computing)">Wikipedia - Sep. 2023</a>) (also named <em>a terminal</em>)</p>
 <p><img alt="" src="../basis-figs/bash_screenshot.png" /></p>
 <h3 id="some-vocabulary">Some Vocabulary:</h3>
@@ -141,11 +141,12 @@
 <li><strong>Prompt</strong>: A command prompt (or just prompt) state in the command-line interface indicating readiness to accept commands. </li>
 <li><strong>Command</strong>: an instruction received via an external interface that directs the behavior of a computer program. In other terms, a call to a program with potentially specific attributes.</li>
 </ul>
-<h2 id="first-bash-commands">First <em>BASH</em> Commands.</h2>
-<p><a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> is the most popular Unix/Linux shell, available by default on most Linux distribution. 
+<hr />
+<h2 id="2-first-bash-commands">2. First <em>BASH</em> Commands.</h2>
+<p><a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> is the most popular Unix/Linux shell, available by default on most Linux distributions. 
 It is also natively supported on Apple, and versions of Bash can be installed with tools like <a href="https://en.wikipedia.org/wiki/MinGW">MinGW</a> on Windows </p>
 <p>However, most of the commands presented here exist in other Shell or have some equivalents.</p>
-<h3 id="the-file-system">The File System</h3>
+<h3 id="2a-the-file-system">2.a. The File System</h3>
 <p>First of all, some commands allow a user to navigate in file systems et interact with it.</p>
 <ul>
 <li><strong>ls</strong> - list directory elements</li>
@@ -169,38 +170,39 @@ It is also natively supported on Apple, and versions of Bash can be installed wi
 <li><strong>~</strong> - the user directory (home) - example: <code>cd ~/Documents</code></li>
 <li><strong>CApitAl Letters maTer</strong> - example: <code>cd ~/Documents</code> <span class="arithmatex">\(\neq\)</span> <code>cd ~/documents</code></li>
 </ul>
-<h3 id="mastering-commands">Mastering Commands</h3>
+<h3 id="2b-mastering-commands">2.b. Mastering Commands</h3>
 <p>Most of the commands accept arguments and options. With a simplistic vision, the argument gives a target to the command execution, while options permit the user to change the context execution of the command. </p>
 <p>Classical syntax: <code>command --option -o argument</code> - example: <code>ls -a ~</code></p>
 <p>Some commands permit manipulating the command collection.</p>
 <ul>
-<li><strong>man</strong> - command and library manuel - example: <code>man cp</code></li>
-<li><strong>apropos</strong> - search in the manuels - example: <code>apropos search</code></li>
+<li><strong>man</strong> - command and library manual - example: <code>man cp</code></li>
+<li><strong>apropos</strong> - search in the manuals - example: <code>apropos search</code></li>
 <li><strong>whereis</strong> - find the location of a resource - example: <code>whereis python3</code></li>
 <li><strong>alias</strong> - create our own command - example: <code>alias listall="ls -a"</code></li>
 </ul>
-<h3 id="some-triks">Some triks :</h3>
+<h3 id="2c-some-triks">2.c. Some triks :</h3>
 <ul>
-<li><em>tabulation</em>: auto-complete the command line or list the possibilities</li>
-<li><em>!xx</em>: run again the last command starting with <code>xx</code></li>
-<li><em>ctrl-r</em>: search for a command in command history</li>
-<li><em>Q</em>: quit a runnig program (in most programs)</li>
-<li><em>ctr-c</em>: terminate a running program</li>
-<li><em>~/.bashrc</em>: file: user configuration routine</li>
+<li><strong>tabulation</strong>: auto-complete the command line or list the possibilities.</li>
+<li><strong>!xx</strong>: run again the last command starting with <code>xx</code>.</li>
+<li><strong>ctrl-r</strong>: search for a command in command history.</li>
+<li><strong>Q</strong>: quit a running program (in most programs).</li>
+<li><strong>ctr-c</strong>: terminate a running program.</li>
+<li><strong>~/.bashrc</strong>: file: user configuration routine.</li>
 </ul>
-<h2 id="users-session">Users session</h2>
+<hr />
+<h2 id="3-users-session">3. Users session</h2>
 <p>On Linux, users are clearly identified everywhere.
 All resources have owners, and users can be limited in their capacities on the system.
 Users can be artificially set, they are not necessarily real human beings.</p>
-<h3 id="session">session</h3>
+<h3 id="3a-session">3.a. session</h3>
 <p>A session is an active connection to a system or program.</p>
 <ul>
 <li><strong>who</strong> - list the open session in a computer</li>
 <li><strong>su</strong> : start a new session as a specific user - example: <code>su bob</code></li>
 <li><strong>ssh</strong> - open a session in a distant computer following the ssh protocol</li>
 </ul>
-<p>A user session is associate to an environement.
-computer system or set of systems in which a computer program or software component is deployed and executed (<a href="https://en.wikipedia.org/wiki/Deployment_environment">Wikipedia Sept. 2023</a>).</p>
+<p>A user session is associated with an environment.
+I.e. a computer system or set of systems in which a computer program or software component is deployed and executed (<a href="https://en.wikipedia.org/wiki/Deployment_environment">Wikipedia Sept. 2023</a>).</p>
 <ul>
 <li><strong>env</strong> - list the environment variable.</li>
 <li><strong>$</strong> - access a variable - example: <code>echo $PATH</code></li>
@@ -210,7 +212,7 @@ computer system or set of systems in which a computer program or software compon
 <li><strong>export</strong> - create a new variable - example: <code>export MYBIN=~/bin</code></li>
 <li><strong>~/.bashrc</strong> (file): user configuration commands.</li>
 </ul>
-<h3 id="user-group-and-rules">User, Group and Rules</h3>
+<h3 id="3b-user-group-and-rules">3.b. User, Group and Rules</h3>
 <p><em>Users</em> are structured with <em>groups</em>.
 Users as groups have a name and a number
 A <em>user</em> is defined with a primary <em>group</em>, its main group, but a <em>group</em> can include several users.
@@ -229,12 +231,13 @@ List command with the <code>-l</code> option gives ownership and authorization i
 <li><strong>chown</strong> : change the owner </li>
 <li><strong>sudo</strong> : excute a command as a <em>root</em> user (administrator) if granted - example <code>sudo gedit /etc/passwd</code>.</li>
 </ul>
-<h2 id="the-processes">The Processes</h2>
+<hr />
+<h2 id="4-the-processes">4. The Processes</h2>
 <p>Finally, the Operating System (OS) is mainly a process manager...
 An OS offers an environment to create and execute programs.
 Typically, the language <em>C</em> is first developed in parallel to <em>Unix</em> to provide a powerful language to the OS, and to use it for the <em>OS</em> core processes.</p>
 <p>Today, systems have evolved significantly and allow complex architecture with several processes running in parallel and potentially in virtual machines.
-Similarly than <em>ls</em>, <strong>ps</strong> list the local processes (ie. the children processes of the bash shell. 
+Similarly to <em>ls</em>, <strong>ps</strong> list the local processes (ie. the children processes of the bash shell). 
 For instance: </p>
 <pre><code class="language-shell">gedit aFile.txt &amp;
 ps
@@ -258,10 +261,11 @@ As for other commands, <strong>ps</strong> accepts options, for instance,  addin
 <li><strong>Scripts</strong>: Interpretable pieces of code by a program. Typically, <em>Python</em> is a scripting language.
 file: hello.py</li>
 </ul>
-<h2 id="python-programming-languages">Python Programming Languages</h2>
+<hr />
+<h2 id="5-python-programming-languages">5. Python Programming Languages</h2>
 <p>Python is a high level programming language. 
-Its allows for abstracted data structures, includes core tools like <em>dynamic type</em>, <em>garbage collector</em>, <em>Object-Oriented Programming</em> (OOP) and a lot more with a large collection of libraries.</p>
-<p>The language is interpreted, and <em>python3</em> designs the programming language but also the interpreter process (<a href="https://fr.wikipedia.org/wiki/CPython">cpython</a>), allowing to read and execute <em>Python</em> instructions.</p>
+Its allows for abstracted data structures, includes core tools like <em>dynamic type</em>, <em>garbage colector</em>, <em>Object-Oriented Programming</em> (OOP) and a lot more with a large collection of libraries.</p>
+<p>The language is interpreted, and <em>python3</em> designs the programming language but also the interpreter process (<a href="https://fr.wikipedia.org/wiki/CPython">cpython</a>), allowing reading and executing <em>Python</em> instructions.</p>
 <ul>
 <li>Code source on <a href="https://github.com/python/cpython">github.com</a> - 63.5% Python / 34.6% C </li>
 </ul>
@@ -279,7 +283,7 @@ Its allows for abstracted data structures, includes core tools like <em>dynamic 
 <li><strong>Use a virtual machine</strong> (including Garbage Collector)</li>
 <li><strong>Not natively efficient</strong> (but compatible with C and C++ libs)</li>
 </ul>
-<h3 id="sequential-instructions">Sequential Instructions</h3>
+<h3 id="4a-sequential-instructions">4.a Sequential Instructions</h3>
 <p><em>Python</em> is structured with sequential instructions:</p>
 <pre><code class="language-python"># Some comments...
 
@@ -308,7 +312,7 @@ print( &quot;Result: &quot; + str(b) )
 <li>Block separation is delimited with space or tabulation indentation.</li>
 <li>Functions need to be defined prior to be used.</li>
 </ul>
-<h3 id="loop-control">loop control</h3>
+<h3 id="4b-loop-control">4.b loop control</h3>
 <p>Loops allow for repeating an instruction sequence until a specific state is reached (<em>while</em>) or by visiting a collection of objects (<em>for</em>).
 The <em>while</em> instruction (<em>WHILE condition DO something</em>) is the simplest available loop control:</p>
 <pre><code class="language-python">b= 0
@@ -317,7 +321,7 @@ while b &lt;= 40 :
 
 print( &quot;Result: &quot; + str(b) )
 </code></pre>
-<p>The <em>for</em> instruction allows for visiting each element of an iterable collection, for instance a list.</p>
+<p>The <em>for</em> instruction allows for visiting each element of an iterable collection, for instance, a list.</p>
 <pre><code class="language-python">aList= [2, 10, 18, 4, 8]
 b= 0
 for value in aList :
@@ -325,7 +329,7 @@ for value in aList :
 
 print( &quot;Result: &quot; + str(b) )
 </code></pre>
-<h3 id="going-further">Going further...</h3>
+<h3 id="4c-going-further">4.c Going further...</h3>
 <p>It is not the purpose here, to provide an entire course on <em>Python</em>. 
 There are huge resources on the internet, both more complete and well organized, starting with the official <em>Python</em> documentation <a href="https://docs.python.org/3/">https://docs.python.org/3/</a>.
 We highly recommend searching the web to increase your knowledge.</p>

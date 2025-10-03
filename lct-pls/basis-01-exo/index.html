@@ -54,35 +54,15 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">First exos</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#exercise-search-for-a-users-groups">Exercise: Search for a User's Groups</a>
+    <li class="toctree-l2"><a class="reference internal" href="#1-exercise-search-for-a-users-groups">1. Exercise: Search for a User's Groups</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#initialize-your-project">Initialize your project:</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#load-ressources">Load ressources</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#search-for-a-specific-word-user-name-in-a-lines">Search for a specific word (user name) in a lines</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#reduce-to-users-groups">Reduce to user's Groups</a>
-    </li>
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exercise-script-as-a-shell-command">Exercise: Script as a shell command</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#get-user-name-as-a-command-argument">Get user name as a command argument</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#in-the-shell">In the Shell</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#anywhere">Anywhere</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#anytime">Anytime</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exercise-increased-command">Exercise: Increased Command</a>
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../basis-02-poo/">OOP</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../basis-02-poo/">Object-Oriented Prog.</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Good practice</span></p>
@@ -119,7 +99,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="system-and-python-basis-exercises">System and Python Basis - Exercises</h1>
-<h2 id="exercise-search-for-a-users-groups">Exercise: Search for a User's Groups</h2>
+<h2 id="1-exercise-search-for-a-users-groups">1. Exercise: Search for a User's Groups</h2>
 <p>Create a script returning the names (print) of all groups associated with the user.</p>
 <p>Always process in an incremental way:</p>
 <ul>
@@ -128,6 +108,16 @@
 <li>Test the solution at each step</li>
 </ul>
 <h3 id="initialize-your-project">Initialize your project:</h3>
+<h1 id="system-and-python-basis-exercises_1">System and Python Basis - Exercises</h1>
+<h2 id="1-exercise-search-for-a-users-groups_1">1. Exercise: Search for a User's Groups</h2>
+<p>Create a script returning the names (print) of all groups associated with the user.</p>
+<p>Always process in an incremental way:</p>
+<ul>
+<li>Decompose the module to develop</li>
+<li>Implement it step by step</li>
+<li>Test the solution at each step</li>
+</ul>
+<h3 id="initialize-your-project_1">Initialize your project:</h3>
 <ul>
 <li>Make a new directory : <code>python-data-science</code> for instance.</li>
 <li>Edit a new Python file: <code>search-group.py</code> with <em>gedit</em> for instance.</li>
@@ -152,7 +142,8 @@ and one of them seems very interesting: <code>find()</code>.</p>
 <li>Select only the primary group name in <code>/etc/passwd</code> file for the user <code>bob</code>.</li>
 <li>Select each group name in <code>/etc/groups</code>, each time <code>bob</code> is present.</li>
 </ul>
-<h2 id="exercise-script-as-a-shell-command">Exercise: Script as a shell command</h2>
+<hr />
+<h2 id="2-exercise-script-as-a-shell-command">2. Exercise: Script as a shell command</h2>
 <p>The goal is to transform <code>search-group.py</code> code into a shell command, executable like anyother.</p>
 <h3 id="get-user-name-as-a-command-argument">Get user name as a command argument</h3>
 <p>For that, use the <code>sys.argv</code> from the Python package <code>sys</code>. This variable provides the list of the command line arguments.</p>
@@ -178,16 +169,101 @@ To make them automatically defined, you may add the appropriate lines to your lo
 This file allows the users to tune their bash shell at start time.</p>
 <h2 id="exercise-increased-command">Exercise: Increased Command</h2>
 <ul>
-<li><code>split()</code> is restrictive to much for extracting some element from a string ? Take a look at Regular Expression in Python <a href="https://www.w3schools.com/python/python_regex.asp">w3school</a></li>
+<li><code>split()</code> is restrictive much for extracting some element from a string ? Take a look at Regular Expression in <em>Python</em> <a href="https://www.w3schools.com/python/python_regex.asp">w3school</a></li>
 <li>Handle bugs (no user name in arguments, ...)</li>
-<li>Add options to your command: <em>--help</em> or <em>-h</em> for help, <strong>-i</strong> for printing group ids, <strong>-t</strong> to test if the user is in a specific group, ...</li>
+<li>
+<p>Add options to your command: <em>--help</em> or <em>-h</em> for help, <strong>-i</strong> for printing group ids, <strong>-t</strong> to test if the user is in a specific group, ...</p>
+</li>
+<li>
+<p>Make a new directory : <code>python-data-science</code> for instance.</p>
+</li>
+<li>Edit a new Python file: <code>search-group.py</code> with <em>gedit</em> for instance.</li>
+<li>Test a <em>hello-world</em> script <code>python3 search-group.py</code></li>
 </ul>
+<!--
+
+### Load ressources
+
+- Open a file and read-it line by line
+- Apply it to `/etc/passwd` then `/etc/group`
+
+I do not know how to open a file ? search the web... [w3schools](https://www.w3schools.com/python/python_file_handling.asp)
+
+
+### Search for a specific word (user name) in a lines
+
+- Detect for `bob` user in lines
+- Print only lines with `bob` inside
+
+There is a lot of string methods in Python (for instance, still in [W3School](https://www.w3schools.com/python/python_strings_methods.asp))
+and one of them seems very interesting: `find()`.
+
+Another one `split()` allows for decomposing a long string regarding a separator character.
+
+
+### Reduce to user's Groups
+
+- Select only the primary group name in `/etc/passwd` file for the user `bob`.
+- Select each group name in `/etc/groups`, each time `bob` is present.
+
+
+---
+
+##  2. Exercise: Script as a shell command
+
+
+The goal is to transform `search-group.py` code into a shell command, executable like anyother.
+
+
+### Get user name as a command argument
+
+
+For that, use the `sys.argv` from the Python package `sys`. This variable provides the list of the command line arguments.
+
+
+### In the Shell
+
+We aim to call our program by masking the need for the _Python3_ interpreter. 
+Like that: 
+
+
+<pre><code class="language-shell">search-user bob
+</code></pre>
+
+
+- Version 1 : By using an `alias` (typically `alias search-user='python3 search-user.py'`)
+- Version 2 : By using a [shebang](https://fr.wikipedia.org/wiki/Shebang), to identify the interpreter inside the Python script, and by setting the script executable `chmod +x`.
+
+
+### Anywhere
+
+The script is only accessible from the current directory. 
+Resolve this problem
+
+- Version 1 : Modify the `alias` definition with a global path to the script.
+- Version 2 : Add the current directory to the _PATH_ variable (`export PATH=$PATH:~/path/to/`)
+
+
+### Anytime
+
+The _alais_ or _exports_ are not available in a new shell. 
+To make them automatically defined, you may add the appropriate lines to your local `.bashrc` file. 
+This file allows the users to tune their bash shell at start time.
+
+
+## Exercise: Increased Command
+
+- `split()` is restrictive for extracting some element from a string ? Take a look at Regular Expression in _Python_ [w3school](https://www.w3schools.com/python/python_regex.asp)
+- Handle bugs (no user name in arguments, ...)
+- Add options to your command: *--help* or *-h* for help, **-i** for printing group ids, **-t** to test if the user is in a specific group, ...
+
+-->
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../basis-01-system/" class="btn btn-neutral float-left" title="OS & language"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../basis-02-poo/" class="btn btn-neutral float-right" title="OOP">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../basis-02-poo/" class="btn btn-neutral float-right" title="Object-Oriented Prog.">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
