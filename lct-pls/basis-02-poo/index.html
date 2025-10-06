@@ -271,14 +271,14 @@ class MyObjectType :
 class ObjectSpecific(MyObjectType) :
 
     def __init__(self, aNumber):
-        super(MyObjectType, self)._init__(self)
+        super(MyObjectType, self).__init__()
         self._aNumber= aNumber
 
     def __str__(self):
         return f&quot;&gt; MyObjectType::instance-{self._aNumber} &lt;&quot;
 
 # Use:
-anInstance= MyObjectType(42)
+anInstance= ObjectSpecific(42)
 print( anInstance )
 </code></pre>
 <h3 id="2b-good-practices">2.b.  Good practices.</h3>
