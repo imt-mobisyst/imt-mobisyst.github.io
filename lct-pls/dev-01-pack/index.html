@@ -59,10 +59,16 @@
               </ul>
               <p class="caption"><span class="caption-text">Good practice</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../dev-00-cairo/">Graphic Interlude</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dev-02-tools/">Develloper tools</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Packaging</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-classical-package-strucure">1. Classical package strucure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-local-import">2. local import</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dev-03-integ/">Integration</a>
@@ -96,7 +102,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="python-package-and-builtin-functions">Python package and Builtin functions</h2>
+                <h1 id="python-packaging">Python packaging.</h1>
+<p>Until now, all our <em>Python</em> components have been defined in a unique file <code>scene2d.py</code>.
+By growing in complexity, most of the project relies on several source files. 
+Then your <em>Python</em> package would be all the content of an entire directory.</p>
+<p>Here, the goal would be to create shape classes, in our <em>scene2d</em> packages.</p>
+<h2 id="1-classical-package-strucure">1. Classical package strucure</h2>
+<p>Classically the package is in a source (src) directory.
+It is composed with <code>__init__.py</code> files defined (potentially empty) in each pkg directory. 
+This file marks a <em>Python</em> package. It would  also be the imported file when you will <code>import pkg</code>.</p>
+<pre><code class="language-verbatim">workspace
+    src
+    └── pkg
+        ├── __init__.py
+        ├── module1.py
+        └── subpkg
+            ├── __init__.py
+            └── module2.py
+</code></pre>
+<p>In our case it should be :</p>
+<pre><code class="language-verbatim">scene-prj
+    src
+    └── scene2d
+        ├── __init__.py
+        ├── camera.py
+</code></pre>
+<p>Naturally, the Camera class should be defined on <code>camera.py</code>.</p>
+<h2 id="2-local-import">2. local import</h2>
+<p>Inside the package, it is possible to use local imports. 
+Imports based on '.' this position '..' the parent position.
+For instance, a <code>from . import camera</code> will import the content of <code>camera.py</code>.</p>
+<p>This way, the <code>__init__.py</code> file can redefine the Camera to make it available from an import of <code>scene2d</code>. </p>
+<pre><code class="language-python">from . import camera
+
+Camera= camera.Camera
+</code></pre>
+<p>At this point, <em>Pytest</em> should work again just by changing <code>import scene2d</code> by <code>import src.scene2d</code> in the test files.</p>
+<ol>
+<li>Implement Shapes</li>
+</ol>
+<p>Ask the teacher...</p>
               
             </div>
           </div><footer>

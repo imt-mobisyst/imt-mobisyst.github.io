@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Integration - PythonLibs-Science</title>
+    <title>Graphic Interlude - PythonLibs-Science</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Integration";
-        var mkdocs_page_input_path = "dev-03-integ.md";
+        var mkdocs_page_name = "Graphic Interlude";
+        var mkdocs_page_input_path = "dev-00-cairo.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -59,15 +59,21 @@
               </ul>
               <p class="caption"><span class="caption-text">Good practice</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../dev-00-cairo/">Graphic Interlude</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Graphic Interlude</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-get-started">1. Get started:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-ressource">2. Ressource:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-play-with-it">3. Play with it:</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dev-02-tools/">Develloper tools</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dev-01-pack/">Packaging</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Integration</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../dev-03-integ/">Integration</a>
                   </li>
               </ul>
               <ul>
@@ -89,7 +95,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Good practice</li>
-      <li class="breadcrumb-item active">Integration</li>
+      <li class="breadcrumb-item active">Graphic Interlude</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -98,16 +104,74 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="integration">Integration</h1>
-<p>Python project. pip. pyproject file and pipy...</p>
+                <h1 id="graphic-interlude-with-cairo">Graphic Interlude with Cairo</h1>
+<p>This tutorial is a short parenthesis to present <a href="https://cairographics.org">cairo</a> one of the numerous libraries allowing drawing.
+<em>Cairo</em> is a library written in <em>C</em>, dedicated to vectorial 2D drawing.
+As with all <em>C</em> libraries, it is simple to port <em>Cairo</em> to other programming languages and to <em>Python</em> in particular.</p>
+<h2 id="1-get-started">1. Get started:</h2>
+<p>In follow, a simple example is drawing a line, a rectangle. a triangle and a circle.
+The <em>Cairo Python</em> package can be installed with <em>pip</em>  (<code>pip install pycairo</code>).</p>
+<pre><code class="language-python">import cairo, math
+
+filePath= &quot;drawing.png&quot;
+canvas= cairo.ImageSurface( cairo.Format.RGB24, 600, 400 )
+context= cairo.Context( canvas )
+
+# A Line
+context.move_to( 0, 0 )
+context.line_to( 200, 100 )
+
+context.set_line_width( 4 )
+context.set_source_rgb( 0.6, 1 , 0 )
+context.stroke()
+
+# A Rectangle :
+context.move_to( 100, 110 )
+context.line_to( 500, 110 )
+context.line_to( 500, 290 )
+context.line_to( 100, 290 )
+context.close_path()
+
+context.set_line_width( 3 )
+context.set_source_rgb( 0.7, 0.7, 1.0 )
+context.fill_preserve()
+context.set_source_rgb( 0, 0.1 , 0.8 )
+context.stroke()
+
+# A triangle :
+context.move_to( 300, 180 )
+context.line_to( 350, 220 )
+context.line_to( 250, 220 )
+context.close_path()
+
+context.set_source_rgb( 0, 0.1 , 0.8 )
+context.fill()
+
+# A triangle :
+context.arc(450, 150, 20, 0, 2.0*math.pi)
+
+context.set_source_rgb( 0.8, 0.1 , 0 )
+context.stroke()
+
+canvas.write_to_png( filePath )
+</code></pre>
+<p>Notice the particular syntax. 
+First you move your context (a kind of pencil) on a surface, then you fill and/or stroke the shape you drawn.
+Filling or stroking also erases the 'pencil' movement, except if you use preserve functions.</p>
+<h2 id="2-ressource">2. Ressource:</h2>
 <ul>
-<li><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">Packaging Python Projects</a></li>
+<li><em>Pip</em> page: <a href="https://pypi.org/project/pycairo/">pypi.org/project/pycairo</a></li>
+<li>Official page: <a href="https://cairographics.org">cairographics.org</a></li>
+<li><em>Python</em> tutorial: <a href="https://www.tortall.net/mu/wiki/CairoTutorial">on tortall.net</a></li>
 </ul>
+<h2 id="3-play-with-it">3. Play with it:</h2>
+<p>Try to draw something relaxing, a tree for instance.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../dev-01-pack/" class="btn btn-neutral float-left" title="Packaging"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../basis-02-poo/" class="btn btn-neutral float-left" title="Object-Oriented Prog."><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dev-02-tools/" class="btn btn-neutral float-right" title="Develloper tools">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -130,8 +194,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../dev-01-pack/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../basis-02-poo/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../dev-02-tools/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

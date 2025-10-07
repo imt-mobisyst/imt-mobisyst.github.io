@@ -59,13 +59,31 @@
               </ul>
               <p class="caption"><span class="caption-text">Good practice</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../dev-00-cairo/">Graphic Interlude</a>
+                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Develloper tools</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#versionning">Versionning</a>
+    <li class="toctree-l2"><a class="reference internal" href="#1-versionning">1. Versionning</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1a-project-initialization">1.a Project initialization</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#test-driven-devellopement">Test-Driven Devellopement</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1b-the-camera-class">1.b The Camera Class</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#debugging">Debugging</a>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-test-driven-devellopement">2. Test-Driven Devellopement</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#2a-get-started">2.a Get Started</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2b-frame-transform">2.b Frame transform</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2b-drawing">2.b Drawing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2c-go-on">2.c Go on...</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-debugging">3. Debugging</a>
     </li>
     </ul>
                   </li>
@@ -103,23 +121,238 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="devellopers-tools">Develloper's tools</h1>
-<p>Mainly Versionning and Test Driven Devellopement.</p>
-<h2 id="versionning">Versionning</h2>
-<p>Keep traces of code changes.</p>
-<h2 id="test-driven-devellopement">Test-Driven Devellopement</h2>
-<p>Define test-cases before to code...</p>
-<h2 id="debugging">Debugging</h2>
-<p>Out of the scope but you can see : </p>
+<p>The idea here is to present briefly the main tools in the developer toolbox.
+It is mainly a question of <em>Versionning</em> and <em>Test-Driven-Devellopement</em>.</p>
+<p>In some way, they are philosophical tools. Their main reliance is on good practices (and a little on dedicated software).</p>
+<p><em>Versionning</em> tell you that you should adopt a developer behavior allowing you to keep the history of the development process (successive code changes). 
+At any time, you should be capable of returning the project to any previous state. </p>
+<p><em>Test-Driven-Devellopement</em> tell you that you should first develop the tests of the functionality before to implement it. 
+This way you start from an example of how to use it and which results the functionality should generate.</p>
+<p>Those two philosophies allow you to work in complete security. You can try things that could break everything. Tests will help in the repairing process, or versions will allow you to return to a working state.
+Naturally those philosophies come with software-tools to deploy. You have, for instance, <em>Git</em> for <em>Versionning</em>  and <em>Pytest</em> for <em>Test-Driven-Devellopement</em>.</p>
+<h2 id="1-versionning">1. Versionning</h2>
+<p>So the idea is to keep traces of code changes.
+But first, it starts with a project.
+The idea is to create a <em>Python</em> package (let's say scene2d), that represents a 2-dimensional vectorial scene. 
+I.e. a collection of shapes (points, lines, polygons, ...).</p>
+<h3 id="1a-project-initialization">1.a Project initialization</h3>
+<p>So first, we are required to create our project, with a <code>scene-prj</code> directory, a <code>README.md</code> file inside including a brief description of what we are attempting to do, and a <code>scene2d.py</code> file for our new <em>Python</em> package.</p>
+<p>This is our initial state. And we want to save it.
+To achieve it, we will use <em>git</em> :</p>
+<ul>
+<li>Official webpage: <a href="https://git-scm.com">git-scm.com</a></li>
+<li>On Windows, typically: <a href="https://git-scm.com/downloads/win">git-scm.com</a> or <a href="https://gitforwindows.org/">gitforwindows.org</a></li>
+<li>And some basis in less than 30 minutes: <a href="https://git-scm.com/videos">git-scm.com/videos</a></li>
+</ul>
+<p>So, with your favorite shell, you initialize a <em>git</em> repository:</p>
+<pre><code class="language-sh">cd scene-prj
+ls .
+| README.md scene2d.py
+cat README.md
+| # Scene2d
+|
+| A python package to model a 2 dimentional scene as a collection of shapes. 
+git init .
+</code></pre>
+<p>As <em>Git</em> informs you, <em>Git</em> works with different branches. 
+Each branch matches a specific version of the project. 
+Typically you can have <code>master</code> for the main branch shared with all the users, <code>beta</code> for the beta-test version, and <code>dev</code> for the in-development branch.
+You can also have a branch per target: <code>window</code>, <code>linux</code> or <code>mac</code> a branch per contributor in the project, etc.
+By default, <code>git init</code> creates a unique empty branch: <code>master</code>.</p>
+<p>The command <code>git status</code> allows developers to get the status of the repository (a repository can be seen as a versioned directory).
+At this time, status should state that <em>README.md</em> and <em>scene2d.py</em> are not included to keep changes.</p>
+<p>We should add them, and commit to recording those new files and their content.</p>
+<pre><code class="language-sh">git add README.md scene2d.py
+git commit
+</code></pre>
+<p>Potentially, this command requires some information about the author. 
+You should provide them as recommended and commit again.</p>
+<p>The commit command opens an editor to allow you to define a commit message. 
+Here you can write "initial commit" and save. 
+Those messages serve to remember the status of the project at commit time. 
+Finally, the command <code>log</code> permits listing the history of commits.
+Only one for now.</p>
+<pre><code class="language-sh">git log
+| commit a6e5dc1b0fd47f22416e66787dd6c13f8b365fdd (HEAD -&gt; master)
+| Author: guillaumeLozenguez &lt;guillaume@drods.net&gt;
+| Date:   Tue Oct 7 16:57:42 2025 +0200
+| 
+|    initial commit
+</code></pre>
+<h3 id="1b-the-camera-class">1.b The Camera Class</h3>
+<p>As a first functionality, the <em>scene2d</em> project should be capable of drawing different shapes.
+However, our scene should be defined in a Cartesian space, with floating-point values. 
+By opposition, the drawing is in pixels.
+Furthermore, the Cartesian basis of our scene is not necessarily the same as in the drawing. </p>
+<p>We imagine including that functionality into a class <em>Camara</em> defined with a <em>scale</em> (a number of pixels per scene unit - meters for instance) and <em>position</em>.
+So we initialize such a new class in our <code>scene2d.py</code>.</p>
+<pre><code class="language-python">class Camera :
+    def __init__(self)
+        self._scale= 10
+        self._position_x= 0.0
+        self._position_y= 0.0
+</code></pre>
+<p>At this point, a <code>git status</code> should inform us that the file <code>scene2d.py</code> is modified.
+If you want to record those modifications, we should add again <code>scene2d.py</code> to be included in the next commit then commit.
+A short way to do that is to use a <em>add-all</em> option (<code>-a</code>). 
+It is also possible to feed the commit with the commit message, by using the option <code>-m</code>.</p>
+<p>So : </p>
+<pre><code class="language-sh">git commit -a -m &quot;new Camera class&quot;
+</code></pre>
+<p>For a complete description of commit options, see <a href="https://git-scm.com/docs/git-commit">git-scm.com/docs</a>.</p>
+<p>Now the <code>git log</code> command should state <em>2</em> commits. 
+Notice that each commit comes with an identifier, <em>a6e5dc1b0fd47f22416e66787dd6c13f8b365fdd</em> in my case, for the first commit.
+This identifier allows you to retrieve previous versions of your code. </p>
+<p>For instance, with a :</p>
+<pre><code class="language-sh">git checkout a6e5dc1b0
+</code></pre>
+<p>my <code>scene2d.py</code> is empty, as in my initial commit.
+A <code>git checkout master</code> returns the code in the last version in the timeline on the <em>master</em> branch (our unique branch at this point).</p>
+<p>For more about <em>Git</em>, you can search all the <em>Git</em> commands at <a href="https://git-scm.com/docs">git-scm.com/docs</a>.</p>
+<h2 id="2-test-driven-devellopement">2. Test-Driven Devellopement</h2>
+<p>Define test-cases before to code.
+The main idea of develloping program is to implement functionalities incrementally to allow our program to grow in complexity.
+With tests, you create scripts that will test each of your functionalities in any direction possible.</p>
+<p>Test-Driven Development (<em>TDD</em>) goes further. 
+It invites developers to create the tests before creating a functionality.
+This process, in this order, forces the developers to clearly define a context of execution for the desired functionality.</p>
+<p>More on <em>TDD</em> on <a href="https://en.wikipedia.org/wiki/Test-driven_development">wikipedia.org</a>.</p>
+<p>Professor's advice: It seems to cost you a lot at the beginning to create a test before of the functionality.
+In fact, in a professional life, developing <em>TDD</em> reflexes will save you and your team many times.</p>
+<h3 id="2a-get-started">2.a Get Started</h3>
+<p>Again, <em>Python</em> comes with several tools for automatic testing. 
+Here we propose to use <em>pytest</em>.
+For a complete introduction of the tool, see <a href="https://en.wikipedia.org/wiki/Pytest">wikipedia.org</a>.</p>
+<p><em>Pytest</em> can be installed with pip (what a surprise...).</p>
+<p>By default, tests are implemented on specific <em>Python</em> test files.
+Those files will always be named as <code>test_something.py</code>. 
+This way, <em>pytest</em> will recognize those files as resources to test.
+To notice that <em>pytest</em> will test all <code>test_...py</code> files in an alphabetic order. 
+So we recommend adopting specific naming rules to control the order the tests are executed.</p>
+<p>Let start with a first test file <code>test_01_package.py</code>. 
+This test tests the existence of our package and its components.
+Tests are <em>Python</em> functions with no argument.
+As for file names, function names should start with <code>test_</code>.</p>
+<p>Exemple for our <code>test_01_package.py</code>.</p>
+<pre><code class="language-python">def test_import():
+    import scene2d
+
+import scene2d
+def test_camera():
+    camera= scene2d.Camera()
+</code></pre>
+<p>You can test a specific file with <code>pytest test_01_package.py</code> or an entire directory tree with <code>pytest</code> alone.
+<em>Pytest</em> also accepts arguments, such as <em>-x</em> to stop on the first failure.</p>
+<p>At this point, test should fail. A <code>:</code> is missing after <code>def __init__(self)</code> of the <em>Camera</em> class. Correct the file and try again.</p>
+<p>You can commit after adding <em>test_01_package.py</em> with a commit message: <em>'first tests'</em>.
+In fact, you can commit as often as possible.
+Git records only modifications in the files, and frequent commits will not cost a lot more space than rare commits.</p>
+<h3 id="2b-frame-transform">2.b Frame transform</h3>
+<p>So the first functionality of our camera is to be capable of transforming coordinates in the scene into pixels in the drawing.
+As a first approximation, the test can be worded in usual english: </p>
+<pre><code class="language-verbatim">It is possible to define a Camera.
+The Camera has a drawing surface (by default 600x400).
+The Camera has a position (by default (0, 0) ).
+(The position points the location in the center of the image)
+So transforming origin position should retrun (300, 200).
+The Camera has a scale (number of pixel per scene unit).
+The default scale is 10 pixels.
+So the transfrom of (1.0, 1.0) should be (310, 190)
+(y-axis is in the oposit direction in a drawing).
+</code></pre>
+<p>To define this test, we will use the <code>assert</code> instruction. 
+<code>Assert</code> is a built-in instruction in <em>Python</em>, testing for a condition, and stopping the execution of the program if the condition is false (failure).</p>
+<p>Example in <a href="https://www.w3schools.com/python/ref_keyword_assert.asp">w3schools.com</a>.</p>
+<p>So, our new <code>test_02_camera.py</code> will be: </p>
+<pre><code class="language-python">def test_defaultCamera():
+    camera= scene2d.Camera()
+    assert type(camera) == scene2d.Camera
+    x, y= camera.position()
+    assert (x, y) == (0.0, 0.0)
+    assert camera.scale() == 10
+
+def test_defaultTransform():
+    camera= scene2d.Camera()
+    assert camera.pixel(0.0, 0.0) == (300, 200)
+    assert camera.pixel(0.0, 0.0) == (310, 190)
+</code></pre>
+<p>At this point, <code>pytest -x</code> should fail.
+The first error is that the <code>position</code> method is not implemented.
+To leverage this error, we can implement this method by returning the coordinates.
+The second error will point to the <code>scale</code> accessor method, etc.</p>
+<p>At the end of this debugging process, your code should not fail in any way. 
+This will indicate you terminate to implement the functionality. 
+It is a good time to commit.</p>
+<p>Before going on to another functionality, it is possible to add more tests to validate that, the transformation operates with different camera positions and scalings. 
+That's supposed to test the possibility to modify the camera attributes and that the transform computations remain ok.</p>
+<h3 id="2b-drawing">2.b Drawing</h3>
+<p>For a complete <em>Camera</em> class, we suppose the capability to effectively draw some vector-graphics in a file (based on the <em>cairo</em> librairy for instance).</p>
+<pre><code class="language-verbatim">It is possible to instanciate a Camera.
+The camera point to a file ('output.png' by default).
+It is possible to use the Camera to draw a line.
+It is possible to use the Camera to draw the frame basis.
+</code></pre>
+<p>So, in a new <code>test_03_drawing.py</code> file: </p>
+<pre><code class="language-python">def test_drawLine():
+    camera= scene2d.Camera()
+    assert camera.file() == &quot;output.png&quot;
+    camera.drawLine( (-3.0, -5.0), (3.0, 5.0) )
+    camera.save()
+
+    outputFile= open( &quot;output.png&quot;, mode='rb' ).read()
+    refsFile= open( &quot;resources/02-line.png&quot;, mode='rb' ).read()
+    assert shotFile == refsFile 
+
+def test_drawBasis():
+    camera= scene2d.Camera()
+    camera.setPosition( 2.0, 1.5 )
+    camera.setScale( 50 )
+    camera.drawBasis()
+    camera.save()
+
+    outputFile= open( &quot;output.png&quot;, mode='rb' ).read()
+    refsFile= open( &quot;resources/02-basis.png&quot;, mode='rb' ).read()
+    assert shotFile == refsFile 
+</code></pre>
+<p>The tests mainly rely on comparing <code>.png</code> bitmap.
+To do that, we open the bitmap in <em>read bit</em> mode and perform a comparison.
+Potentially, the test fails because the test is wrong. 
+In our case, at some point, the tests should fails on <code>open("resources/02-line.png")</code>.</p>
+<p>When you are satisfied with the generated <em>output.png</em> (a beautiful black line under a white background, for instance), 
+then you copy-paste this file as <em>02-line.png</em> into a new <em>resources</em> directory.
+<em>Pytest</em> should pass to the next failure.
+In other words, defining the tests helps you in the process of implementing the functionality. 
+However, the test implementation can evolve with the implementation of the functionnality.</p>
+<p>Is everything ok ? Then commit. 
+Attention, the <code>output.png</code> file should not be included in your <em>Git</em> repository. 
+This file is generated, there is no need to save it.</p>
+<p>Look at <a href="https://git-scm.com/docs/gitignore">gitignore</a> to do that properly.</p>
+<h3 id="2c-go-on">2.c Go on...</h3>
+<p>Let apply this methodology (define a test and use the test to implement a functionality) for several more functionalities: </p>
+<ul>
+<li>Drawing polydones and circles.</li>
+<li>Changing the drawing color (stroke and/or fill colors).</li>
+</ul>
+<h2 id="3-debugging">3. Debugging</h2>
+<p>Investigate debugging tools is out of the scope of this lecture. 
+However you can see : </p>
 <ol>
-<li>Wath your favorit editor is capable of: <a href="https://code.visualstudio.com/docs/python/debugging">code.visualstudio.com</a>.</li>
-<li>The <em>Python</em> debuger lib: <a href="https://docs.python.org/3/library/pdb.html">pdb</a></li>
-<li>And potentially the main <em>Python</em>  <a href="https://docs.python.org/3/library/profile.html">profiler</a>.</li>
+<li>What your favorite editor is capable of: <a href="https://code.visualstudio.com/docs/python/debugging">code.visualstudio.com</a>.</li>
+<li>The <em>Python</em> debugger lib: <a href="https://docs.python.org/3/library/pdb.html">pdb</a></li>
+<li>And potentially a <em>Python</em> <a href="https://docs.python.org/3/library/profile.html">profiler</a>.</li>
 </ol>
+<p>At our level, we just expect good behavior: </p>
+<p>In case of a bug, it is expected to isolate the bug. 
+So first, create a new test-case that reproduces the detected problem.
+At this step, the test should fail. 
+Commit. Then, correct the bug. Commit.</p>
+<p>This way you continuously improve your test-pool and you guarantee clean future developments.
+If any modification in the code generates again a bug already encountered, this bug will be automatically detected.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../basis-02-poo/" class="btn btn-neutral float-left" title="Object-Oriented Prog."><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dev-00-cairo/" class="btn btn-neutral float-left" title="Graphic Interlude"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../dev-01-pack/" class="btn btn-neutral float-right" title="Packaging">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -143,7 +376,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../basis-02-poo/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../dev-00-cairo/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../dev-01-pack/" style="color: #fcfcfc">Next &raquo;</a></span>
