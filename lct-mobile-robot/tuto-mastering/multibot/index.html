@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>MultiRobot - Lct. Mobile-Robot</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MultiRobot";
+        var mkdocs_page_input_path = "tuto-mastering/multibot.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Lct. Mobile-Robot
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../../..">MobiSyst <</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Intro</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Kick-off</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/basics/">OS and Shell</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/first-contact/">Nodes and Topics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/package/">ROS Package</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/move/">Move the Robot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-kick-off/simulation/">Simulation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Level-up</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/range-sensor/">Range Sensor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/reactive/">Reactive Move</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/parameters/">Parameters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/camera-driver/">Camera Driver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/vision/">Vision</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mastering</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../slam/">S.L.A.M</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../vision/">Image processing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../transform/">Move To</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">MultiRobot</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Challenge</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/kick-off/">Kick-off</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-1on2/">Challenge 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/challenge-2on2/">Challenge 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge/d-day/">Demo-Day</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Water Polutent</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../challenge-water/kick-off/">Kick-off</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendix</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/faq/">F.A.Q</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../pdf/"></a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Lct. Mobile-Robot</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mastering</li>
+      <li class="breadcrumb-item active">MultiRobot</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="multi-robot-architecture">Multi-Robot Architecture</h1>
+<p>A natural evolution of ROS2 architectures consists in deploying multi-robot solutions.
+However, several robots will necessarily generate duplicated needs in topic connections.
+Typically, each robot should have its own mounted laser.
+The difficulty in multi-robot architectures is to control message isolation.</p>
+<h2 id="ros2-basic-solution">ROS2 Basic Solution</h2>
+<p>ROS2 natively supports two solutions to isolate topics: <em>namespaces</em> and <em>domain IDs</em>.
+<em>Namespace</em>, on one hand, applies to topic names to differentiate topic ownership or context.
+For instance, for laser scans, we can declare <em>robot1</em> and <em>robot2</em>, and scan topics will appear as <em>robot1/scan</em> and <em>robot2/scan</em>.
+Note that namespaces should also affect <em>frame IDs</em> to differentiate frames attached to <em>robot1</em> from those attached to <em>robot2</em>.</p>
+<p>The main inconvenience of the <em>namespace</em> solution is that everything is visible to every nodes on every machines, with an impact on the network discovery process.
+On the other hand, <em>domain IDs</em> allow isolated topics with dedicated ports on the network interface.
+The counterpart is that robots evolving with their own <em>domain IDs</em> cannot communicate with each other.</p>
+<p>This tutorial proposes a solution to leverage the <em>domain ID</em> counterpart.
+For more details on the <em>namespace</em> solution, you can refer to the <a href="https://docs.ros.org/en/rolling/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html#namespaces">large projects section</a> in the official documentation.
+More solutions are proposed in our <a href="https://imt-mobisyst.github.io/pkg-multibot/">multibot package</a>.</p>
+<h2 id="multi-domain-ids">Multi-Domain IDs</h2>
+<p>The solution is trivial.
+It consist in isolate robot "private" information in its own <em>domain ID</em>, and to use a second, shared <em>domaim ID</em> for information to share with the other robots.</p>
+<p>However, at some point we will require some node capable to communicate on the both <em>domains</em>.
+In fact, it is impossible in <em>ROS2</em>.
+The solution consist in defining a process based on several nodes each attached to a different <em>domain ID</em>.</p>
+<p>So:</p>
+<ol>
+<li>Define a process with tow nodes, one on each domain ID.</li>
+<li>Spin each node independantly.</li>
+</ol>
+<h3 id="ros2-tools-for-multi-node-processes">ROS2 tools for multi-node processes</h3>
+<p>To do that, we need to manipulate three ROS2 classes.
+The well-known <em>Node</em>, the <em>Context</em> defining a frame for nodes (typically a link to a domain), and the <em>Executor</em> in charge of managing events (subscriptions to timers and topics).</p>
+<p>By default, the <em>Context</em> and the <em>Executor</em> are globally defined, with hidden calls to them.</p>
+<h3 id="context-node-and-executor">Context, Node and Executor</h3>
+<p>The idea is to create a <em>Context</em> for each <em>domain ID</em> we want to reach (different from the default one, i.e. the one defined through an environment variable).</p>
+<pre><code class="language-python">from rclpy.context import Context
+context42 = Context()
+context42.init(domain_id= 42)            
+</code></pre>
+<p>Then, we can define a node attached to this specific context: </p>
+<pre><code class="language-python">node42= Node( f&quot;nodeOn42&quot;, context=context42 )
+</code></pre>
+<p>This node will subscribe and publish on the <em>domain ID</em> <span class="arithmatex">\(42\)</span>.</p>
+<p>Finally, since we want to manage objects defined with several nodes, we need to 'spin' them using a <em>ROS2</em> executor.
+The simplest way is to use the globally defined one.</p>
+<pre><code class="language-python">rclpy.init()
+executor= rclpy.get_global_executor()
+</code></pre>
+<p>Then, attach all the nodes to the executor and spin them (process them indefinitely).</p>
+<pre><code class="language-python">executor.add_node( node1 )
+executor.add_node( node2 )
+...
+executor.add_node( node42 )
+
+# Infinite loop:
+executor.spin()
+</code></pre>
+<p>Don forget a clean end: </p>
+<pre><code class="language-python">node1.destroy_node()
+node2.destroy_node()
+...
+node42.destroy_node()
+rclpy.shutdown()
+</code></pre>
+<h3 id="example-of-publisher">Example of publisher</h3>
+<p>Here a simple example publishing a short mesage on <span class="arithmatex">\(2\)</span> topics defined on <span class="arithmatex">\(2\)</span> <em>ROS2</em> domains.</p>
+<pre><code class="language-python">#!/usr/bin/python3
+import rclpy
+from rclpy.node import Node
+from rclpy.context import Context
+from std_msgs.msg import String
+
+def main():
+    tester= Pub()
+    tester.process()
+
+class StringCallBack():
+    def __init__(self, pub, msg):
+        self._publisher= pub
+        self._msg= String()
+        self._msg.data= msg
+
+    def __call__(self):
+        self._publisher.publish( self._msg )
+
+class Pub():
+    def __init__(self):
+        pass
+
+    def process(self):
+        # Ros initialization
+        rclpy.init()
+        executor= rclpy.get_global_executor()
+
+        self._nodes= []
+        self._test_publishers= []
+
+        for domId, msg, freq in zip( [14, 42], ['salut', 'nounou'], [2.0, 0.3] ) :
+            rosContext = Context()
+            rosContext.init(domain_id= domId)
+            node= Node( f&quot;multipub{domId}&quot;, context=rosContext )
+            publisher= node.create_publisher( String, 'test', 10 )
+            node.create_timer( freq, StringCallBack( publisher, msg ) )
+
+            executor.add_node( node )
+            self._nodes.append( node )
+
+        # Infinite loop:
+        executor.spin()
+
+        # Clean stop:
+        for node in self._nodes :
+            node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<h3 id="example-of-subscriber">Example of subscriber</h3>
+<p>And the subscriber capable of merging the mesages.</p>
+<pre><code class="language-python">#!/usr/bin/python3
+import rclpy
+from rclpy.node import Node
+from rclpy.context import Context
+from std_msgs.msg import String
+
+def main():
+    tester= Sub()
+    tester.process()
+
+class StringCallBack():
+    def __init__( self, domainId ):
+        self.domainId= domainId
+
+    def __call__(self, aString):
+        print( f&quot;{aString.data} (from {self.domainId})&quot; )
+
+class Sub():
+    def __init__(self):
+        pass
+
+    def process(self):
+        # Ros initialization
+        rclpy.init()
+        executor= rclpy.get_global_executor()
+
+        self._nodes= []
+        self._test_publishers= []
+
+        for domId in [14, 42] :
+            rosContext = Context()
+            rosContext.init(domain_id= domId)
+            node= Node( f&quot;test{domId}&quot;, context=rosContext )
+            node.create_subscription( String, &quot;test&quot;, StringCallBack(domId), 10 )
+
+            executor.add_node( node )
+            self._nodes.append( node )
+
+        # Infinite loop:
+        executor.spin()
+
+        # Clean stop:
+        for node in self._nodes :
+            node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../transform/" class="btn btn-neutral float-left" title="Move To"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../challenge/kick-off/" class="btn btn-neutral float-right" title="Kick-off">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../transform/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../challenge/kick-off/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Parameters - Lct. Mobile-Robot</title>
+    <title>Kick-off - Lct. Mobile-Robot</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Parameters";
-        var mkdocs_page_input_path = "tuto-level-up/parameters.md";
+        var mkdocs_page_name = "Kick-off";
+        var mkdocs_page_input_path = "challenge-water/kick-off.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -62,16 +62,16 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../range-sensor/">Range Sensor</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/range-sensor/">Range Sensor</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../reactive/">Reactive Move</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/reactive/">Reactive Move</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../camera-driver/">Camera Driver</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/camera-driver/">Camera Driver</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../vision/">Vision</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuto-level-up/vision/">Vision</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Mastering</span></p>
@@ -97,8 +97,8 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Water Polutent</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../challenge-water/kick-off/">Kick-off</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Kick-off</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendix</span></p>
@@ -126,8 +126,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Level-up</li>
-      <li class="breadcrumb-item active">Parameters</li>
+          <li class="breadcrumb-item">Water Polutent</li>
+      <li class="breadcrumb-item active">Kick-off</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -136,131 +136,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="handle-ros-parameters">Handle ROS parameters</h1>
-<p>Node piece of programs accepts the argument to be parametrized, speed, name of the topic, frequencies or whatever.
-This tutorial visits how ROS2 handle parameters...
-But first, let see how to read <code>Python3</code> script arguments. </p>
-<h2 id="python3-arguments">Python3 arguments</h2>
-<p>It is very common to add arguments in the command line while starting a program or a script.
-Most of the Linux commands accept arguments. </p>
-<p>In python, the arguments can be read with the <code>sys</code> python package, on a <code>argv</code> list (argument values).</p>
-<p>lets initialize a <code>test-script.py</code></p>
-<pre><code class="language-python">import sys
-
-print( sys.argv )
-</code></pre>
-<p>and try: </p>
-<pre><code class="language-sh">python3 test-script.py -r salut nounou 42
-</code></pre>
-<p>You notice that the executed script itself is the first argument (at indice <span class="arithmatex">\(0\)</span>).</p>
-<h2 id="use-ros2-parameters">Use ROS2 Parameters</h2>
-<p><em>ROS2</em> provides parameter management on top of command arguments.
-Typically, it is possible to list the parameters with <code>ros2 param list</code> command.
-Start a turtlesim in a terminal an search for trutlesim parameters in another.</p>
-<p>To activate parameters (and topic remapping) <code>ros2 run</code> command needs <code>--ros-args</code> attributes, <br />
-then the syntax is <code>-p parameter_name:=value</code>.</p>
-<p>For instance, to set a beautiful orange on the turtlesim background: </p>
-<pre><code class="language-sh">ros2 run turtlesim turtlesim_node --ros-args \
-    -p background_r:=100 \
-    -p background_g:=60 \
-    -p background_b:=0
-</code></pre>
-<p>In <em>YAML</em> launch file parameters should be defined on a <code>param</code> list. </p>
-<pre><code class="language-yaml">launch:
-- node: 
-    pkg: turtlesim
-    exec: turtlesim_node
-    name: orange_simu
-    param:
-    - { name: &quot;background_r&quot;, value: 100 }
-    - { name: &quot;background_g&quot;, value: 60 }
-    - { name: &quot;background_b&quot;, value: 0 }
-</code></pre>
-<!--
-Furthermore it is also possible to define arguments in the _YAML_ launch file.
-
-
-<pre><code class="language-yaml">launch:
-
-- arg:
-    name: &quot;world&quot;
-    default: &quot;$(find-pkg-share basic_node)/world/basic.world&quot;
-
-- node: 
-    pkg: stage_ros2
-    exec: stage_ros2
-    name: stage
-    param:
-    - { name: &quot;use_static_transformations&quot;, value: true }
-    -
-      name: &quot;world_file&quot;
-      value: &quot;$(var world)&quot;
-</code></pre>
-
--->
-
-<h2 id="python3-integration">Python3 Integration</h2>
-<p>The ROS2 client API (Python3 as C++) provides tools to declare and read <em>ROS2</em> parameters value.</p>
+                <h1 id="autonomous-search-of-polutent">Autonomous Search of Polutent</h1>
+<h2 id="vrx-simulator">VRX Simulator</h2>
+<p>First you need a simulator. Try to follow the readme file to configure your machine with this one: </p>
 <ul>
-<li><code>declare_parameter</code> method attached to a <code>Node</code> instance, declare a ROS variable.
-On a simple usage, it takes 2 parameters:<ul>
-<li>The variable name to use.</li>
-<li>A default value <strong>(ATTENTION, ROS parameter has type, so <span class="arithmatex">\(10\)</span> is different of <span class="arithmatex">\(10.0\)</span>)</strong></li>
+<li><a href="https://github.com/osrf/vrx">Virtual RobotX</a>.</li>
 </ul>
-</li>
-<li><code>get_parameter( 'variable_name' )</code> returning a parameter instance, with <code>aParameter.value</code> the value.</li>
-</ul>
-<p>(To notice that a <code>aParameter.get_parameter_value()</code> exists and returns an object containing the parameter value on diferent possible types: 
-<code>[bool_value, integer_value, double_value, string_value, byte_array_value, bool_array_value, integer_array_value, double_array_value, string_array_value]</code>)</p>
-<p>For instance, a node initialization with an integer parameters lookalike:</p>
-<pre><code class="language-python"># Initialize ROS node with ROS client
-rclpy.init()
-rosNode= Node( &quot;myOneParameterNode&quot; )
-
-# Node Parameters : 
-rosNode.declare_parameter( 'my_parameter', 10 )
-aProgramVariable= rosNode.get_parameter( 'my_parameter' ).value
-
-print( f&quot;&gt; Parameter value: {aProgramVariable}&quot; )
-
-# Start infinite loop
-rclpy.spin(rosNode)
-
-# Clean everything and switch the light off
-rosNode.destroy_node()
-rclpy.shutdown()
-</code></pre>
-<p>Add this node to your <em>tutorial_pkg</em> and test it.</p>
-<pre><code class="language-sh"># Shell-1
-ros2 run tutorial_pkg oneParamNode
-
-# Shell-2
-ros2 param list
-
-# Shell-1
-ros2 run tutorial_pkg oneParamNode --ros-args -p my_parameter:=42
-
-# Shell-1
-ros2 run tutorial_pkg oneParamNode --ros-args -p my_parameter:=&quot;42&quot;
-
-# Shell-1
-ros2 run tutorial_pkg oneParamNode --ros-args -p my_parameter:=&quot;quarante-deux&quot;
-</code></pre>
-<p>Implements ROS parameters to set-up the message to be sent by your talker node (cf. <em>Node and Topic</em> tutorial).
-Ideally, the node parameter is read each times, before to publish the message to guaranty to sent the last message in case of parameter modification.</p>
-<pre><code class="language-sh"># With Node: 'myTalker' and parameter 'message'
-ros2 param set myTalker message &quot;New important information to broadcast...&quot;
-</code></pre>
-<!--
-Optionally, it is possible to process _on-the-go_ parameter modification by defining callback function triggered on a parameter event. For more detail, see the official documentation:
-- https://docs.ros.org/en/iron/Concepts/Basic/About-Parameters.html
--->
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../reactive/" class="btn btn-neutral float-left" title="Reactive Move"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../camera-driver/" class="btn btn-neutral float-right" title="Camera Driver">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../challenge/d-day/" class="btn btn-neutral float-left" title="Demo-Day"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../appendix/installation/" class="btn btn-neutral float-right" title="Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -283,10 +170,10 @@ Optionally, it is possible to process _on-the-go_ parameter modification by defi
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../reactive/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../challenge/d-day/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../camera-driver/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../appendix/installation/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
