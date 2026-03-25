@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>mb6 ros-workspace</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> mb6 ros-workspace
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../.">MobiSyst <</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Install</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="configure-pi3/">On Pi3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="configure-pi4/">On Pi4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="configure-station/">Station</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/">Manual Install</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Robots</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="robot-pibot/">Pibot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="robot-ezbot/">Ezbot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="robot-stage/">Stage</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Packages</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="pkg-basic/">Basic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="pkg-multibot/">Multibot</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="f.a.q/">F.A.Q</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">mb6 ros-workspace</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mobisyst-ros2-workspace-documentation">MobiSyst ROS2 Workspace - Documentation</h1>
+<p>Curent version: <strong>Ubuntu-24.04 LTS</strong> / <strong>ROS2 jazzy</strong></p>
+<p><em>mb6-space</em> regroups elements for playing with the mobile robots of IMT Nord Europe.
+It is the master project on the top off sub-projects, dedicated to robots platform, software modules or scenario applications.</p>
+<p>It does not include code but mostly documentation and command tools.</p>
+<h2 id="install">Install</h2>
+<p>You have first to clone the mb6-space repo...</p>
+<pre><code class="language-sh">git clone https://github.com/imt-mobisyst/mb6-space.git
+cd mb6-space
+</code></pre>
+<p>Then, you will mainlly need <strong>ROS2</strong>.
+You can rely on <a href="install/">install section</a> to get specific instruction depending on the targeted machine.
+However the following scripts provide shortcuts.</p>
+<p>On a <em>x86</em> machine you also can get help from the communty: <a href="https://ubuntu.com/">official website</a> - <a href="https://www.ubuntu-fr.org/">french community</a></p>
+<p>Some install script for classical install:</p>
+<ul>
+<li><a href="./bin/install-ros">install-ros</a> - setup <code>apt</code> to target offical ROS repo and install ros minimal elements</li>
+<li><a href="./bin/install-gazebo">install-gazebo</a> - install ROS-Gazebo</li>
+<li><a href="./bin/install-realsense">install-realsense</a> - install dev. environement: RealSense</li>
+</ul>
+<p>Otherwize, you can go through the manual instructions or execute the appropriate install scrips in <a href="./bin">bin</a> directory:</p>
+<pre><code class="language-sh">pip install toml toml-cli
+./bin/set-mb6-bashrc
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+source ~/.bashrc
+=======
+source ./bin/run-commands.bash
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; e3a88b186cb508ebdcd3dee7b5fcce55900d97cb
+</code></pre>
+<h2 id="get-started">Get started.</h2>
+<p><code>ROS2</code> works with several environement variables. 
+You can change the variables easily by editing your <code>./config.toml</code> and source again the <code>./bin/run-commands.bash</code>.</p>
+<pre><code class="language-sh">gedit ./config.toml
+sources ./bin/run-commands.bash
+</code></pre>
+<p>One simple example for ros package to install is <code>pkg-basic</code> defining basic functionalities.
+To notice that most of our packages come with an install script for dependencies.</p>
+<p>so:</p>
+<pre><code class="language-sh">git clone https://github.com/imt-mobisyst/pkg-basic.git
+./pkg-basic/bin/install
+colcon build
+sources ./bin/run-commands.bash
+ros2 launch basic_node parasit_launch.yaml
+</code></pre>
+<p>The same install instructions can be applied to most of the MobiSyst ROS2 packages.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="configure-pi3/" class="btn btn-neutral float-right" title="On Pi3">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="configure-pi3/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-03-25 10:12:42.252656+00:00
+-->
