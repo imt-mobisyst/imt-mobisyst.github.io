@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>In Real - multibot</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "In Real";
+        var mkdocs_page_input_path = "arch_real.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> multibot
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../..">MobiSyst <</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Multi-Domain</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../domid_index/">Presentation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Isolation Methods</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../arch_index/">Presentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arch_install/">Install</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arch_methods/">Methods</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arch_simulation/">In Real</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">In Real</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">multibot</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Isolation Methods</li>
+      <li class="breadcrumb-item active">In Real</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="real-robot-demos">Real robot demos</h1>
+<p>These are the commands to run the warehouse demo on real robots.</p>
+<h2 id="setup">Setup</h2>
+<p><img alt="Real Robot Image" src="../img/real-robots.svg" /></p>
+<p>We are using 3 Kobuki robots, each with a Raspberry PI 3B mounted on top and running the drivers (for the motors and the 2D Lidar). Each robot is connected (either with a cable or trough the wifi network) to a controller PC (Dell XPS 13 7390) running the high level control (nav2, multi-robot communication etc.).</p>
+<blockquote>
+<p>[!NOTE]
+To run these demos, you'll have to :
+- clone the <a href="https://github.com/imt-mobisyst/mb6-space">mb6-space</a> repository on the PIs, and checkout on the <code>multibot_arch</code> branch
+- clone this repository on the operator and controller PCs</p>
+</blockquote>
+<h2 id="methods">Methods</h2>
+<h3 id="1-namespaces">1. Namespaces</h3>
+<blockquote>
+<p>⚠️ NOT WORKING</p>
+</blockquote>
+<p>On the Raspberry PI : Uncomment this line in the <code>mb6-space/bin/start-tbot.sh</code> file</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=99 ros2 launch multibot_arch multibot.launch.py type:=&quot;namespace&quot;
+</code></pre>
+<p>On the operator PC :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_namespace_operator.py
+</code></pre>
+<p>On the Controller PCs :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_namespace_launch.py robot_id:=22
+ros2 launch multibot_arch warehouse_namespace_launch.py robot_id:=23
+ros2 launch multibot_arch warehouse_namespace_launch.py robot_id:=24
+</code></pre>
+<h3 id="2-domain-id-bridge">2. Domain ID Bridge</h3>
+<p>On the Raspberry PI : Uncomment this line in the <code>mb6-space/bin/start-tbot.sh</code> file</p>
+<pre><code class="language-bash">ros2 launch multibot_arch multibot.launch.py type:=&quot;domain_id&quot;
+</code></pre>
+<p>On the operator PC :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_bridge_operator.py
+</code></pre>
+<p>On the Controller PCs :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_bridge_launch.py robot_id:=22 operator_domain_id:=99
+ros2 launch multibot_arch warehouse_bridge_launch.py robot_id:=23 operator_domain_id:=99
+ros2 launch multibot_arch warehouse_bridge_launch.py robot_id:=24 operator_domain_id:=99
+</code></pre>
+<h3 id="3-fastdds-discovery-servers">3. FastDDS Discovery servers</h3>
+<blockquote>
+<p>⚠️ HALF WORKING</p>
+</blockquote>
+<p>On the Raspberry PI : Uncomment this line in the <code>mb6-space/bin/start-tbot.sh</code> file</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=99 ros2 launch multibot_arch multibot.launch.py type:=&quot;discovery&quot;
+</code></pre>
+<p>On the operator PC :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_dds_operator.py
+</code></pre>
+<p>On the Controller PCs :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_dds_launch.py robot_id:=22 robot_ip:=10.89.5.22 subnet_dds_server:=&quot;10.89.5.90:11811&quot; use_bridge:=false
+ros2 launch multibot_arch warehouse_dds_launch.py robot_id:=23 robot_ip:=10.89.5.23 subnet_dds_server:=&quot;10.89.5.90:11811&quot; use_bridge:=false
+ros2 launch multibot_arch warehouse_dds_launch.py robot_id:=24 robot_ip:=10.89.5.24 subnet_dds_server:=&quot;10.89.5.90:11811&quot; use_bridge:=false
+</code></pre>
+<blockquote>
+<p>Notes : 
+- <code>robot_ip</code> should be <code>192.168.1.1</code> when connected in ethernet
+- <code>use_bridge:=true</code> creates an infinite loop</p>
+</blockquote>
+<h3 id="4-dds-partitions">4. DDS partitions</h3>
+<blockquote>
+<p>⚠️ NOT WORKING</p>
+</blockquote>
+<p>On the Raspberry PI : Uncomment this line in the <code>mb6-space/bin/start-tbot.sh</code> file</p>
+<pre><code class="language-bash">ROS_DOMAIN_ID=99 ros2 launch multibot_arch multibot.launch.py type:=&quot;partitions&quot;
+</code></pre>
+<p>On the operator PC :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_partition_operator.py
+</code></pre>
+<p>On the Controller PCs :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_partition_launch.py robot_id:=22
+ros2 launch multibot_arch warehouse_partition_launch.py robot_id:=23
+ros2 launch multibot_arch warehouse_partition_launch.py robot_id:=24
+</code></pre>
+<h3 id="5-zenoh-dds-bridge">5. Zenoh DDS Bridge</h3>
+<p>On the Raspberry PI : Uncomment this line in the <code>mb6-space/bin/start-tbot.sh</code> file :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch multibot.launch.py type:=&quot;zenoh&quot;
+</code></pre>
+<p>On the operator PC :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_zenoh_operator.py
+</code></pre>
+<p>On the Controller PCs :</p>
+<pre><code class="language-bash">ros2 launch multibot_arch warehouse_zenoh_launch.py robot_id:=22 robot_ip:=10.89.5.22 operator_ip:=10.89.5.90
+ros2 launch multibot_arch warehouse_zenoh_launch.py robot_id:=23 robot_ip:=10.89.5.23 operator_ip:=10.89.5.90
+ros2 launch multibot_arch warehouse_zenoh_launch.py robot_id:=24 robot_ip:=10.89.5.24 operator_ip:=10.89.5.90
+</code></pre>
+<blockquote>
+<p>Note : <code>robot_ip</code> should be <code>192.168.1.1</code> when connected in ethernet</p>
+</blockquote>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../arch_simulation/" class="btn btn-neutral float-left" title="In Real"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../arch_simulation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
