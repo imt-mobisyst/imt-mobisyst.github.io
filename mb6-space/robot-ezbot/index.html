@@ -63,7 +63,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../robot-pibot/">Pibot</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Ezbot</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Ezbot</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../robot-stage/">Stage</a>
                   </li>
@@ -103,7 +103,78 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="ezbot-robot">Ezbot Robot</h1>
+<p><em>Ezbot</em> is a mobile robot built on top of a <a href="https://www.ez-wheel.com/en/development-kit-for-agv-and-amr">stater kit</a> of <em>ez-wheel</em>.
+The kit include an on-board computer runing a <a href="https://docs.ros.org/">ROS2</a> control architecture.</p>
+<p><img alt="Picture of a Ezbot" src="./figs/naked-ezbot.png" /></p>
+<p>A <strong>ezbot</strong> is automaticaly configured on <code>IOT IMT Nord Europe</code> <em>WiFi</em> with a fixed <em>IP</em>: <code>10.89.5.XX</code> ; or to the <code>mobi-iot</code> <em>WiFi</em>.</p>
+<h2 id="get-started-wirred">Get Started (Wirred)</h2>
+<p>Connect the robot with <em>RJ45</em> cable and turn-on the robot, the control software is started in a docker.</p>
+<p>You have to configure a fixed ip-adress on your conputer :</p>
+<blockquote>
+<p>Ip: 192.168.50.1 : 255.255.255.0 : 192.168.50.1</p>
+</blockquote>
+<p>The robot itself is on <em>192.168.50.2</em>.
+Then configure the appropriate <em>ROS_DOMAIN_ID</em> and you are good to go.</p>
+<h2 id="enter-in-the-robot-docker">Enter in the robot docker</h2>
+<pre><code class="language-sh">ssh swd_sk@192.168.50.2
+docker exec -it -u swd_sk ros-humble bash
+docker restart ros-humble
+</code></pre>
+<p>At this point the robot is ready to be controled. </p>
+<p>The operator from its computer station need to identify and configure the <em>Pibot</em> domain identifier (Domain_ID) and then start a <em>teleop</em> for instance.</p>
+<h3 id="connecting-a-pc-operator">Connecting a PC operator</h3>
+<p><em>Pibot</em> is automaticly connected to <code>IOT IMT Nord Europe</code> <em>WiFi</em> (be sure that your computer is on the same network) with a <em>Domain_ID</em> matching its <em>Pibot</em> number. 
+For instance <code>pibot22</code> is configured with <code>22</code>.</p>
+<p>On your <em>ROS</em> terminal:</p>
+<pre><code class="language-sh">export ROS_DOMAIN_ID=22
+ros2 node list
+ros2 topic list 
+</code></pre>
+<p>At this point, you can verify that laser is publishing data into the <code>/scan</code> topic and that <code>multiplexer</code> node is started.
+The multiplexer from <a href="https://github.com/imt-mobisyst/pkg-basic">basic_node</a> package, listen to several command sources to select the most appropriate one. </p>
+<p>So you can take control with a classical <em>teleop</em> node connected to the <code>multi/cmd_teleop</code> topic, start slam capability etc...</p>
+<pre><code class="language-sh">ros2 run teleop_twist_keyboard teleop_twist_keyboard cmd_vel:=/multi/cmd_teleop
+ros2 launch slam_toolbox online_sync_launch.py
+...
+</code></pre>
+<p>To notice that your autonomous control should send velocity messages to <code>multi/cmd_nav</code> (<code>/multi/cmd_teleop</code> is reserved to human teleoperation).</p>
+<h3 id="classic-configuration">Classic Configuration</h3>
+<p>From <em>mb6_space</em> directory, it is possible to configure once for all the <code>ROS_DOMAIN_ID</code> by editing the <code>config.toml</code> and sourcing <code>./bin/run-commands.bash</code></p>
+<pre><code class="language-sh">cd /path/to/mb6_space
+gedit config.toml
+source ./bin/run-commands.bash
+</code></pre>
+<p>Each new terminal will be open on the same configuration.
+You can then, connect your __pibotXX_ with <code>rviz2</code>.</p>
+<pre><code class="language-sh">rviz2 rviz-conf/simple-pibot.rviz
+</code></pre>
+<p>you can also try a <em>SLAM</em>: </p>
+<pre><code class="language-sh"># Terminal 1
+ros2 launch slam_toolbox online_sync_launch.py
+
+# Terminal 2
+rviz2 rviz-conf/pibot-with-map.rviz
+</code></pre>
+<h2 id="get-started-hard-linked">Get Started (hard linked)</h2>
+<p>It is possible to login with <code>ssh</code> on a pibotXX with <code>bot</code> user (administrator) or <code>ros</code> account.</p>
+<h2 id="lancer-un-une-configuration-ros">Lancer un une configuration ROS</h2>
+<p><code>nohup</code>.</p>
+<h2 id="pibot-configuration">Pibot Configuration</h2>
+<p><em>Pibot</em> relies on several ros packages: </p>
+<ul>
+<li>[mb6-space] on the pibot branch for install and service configuration.</li>
+<li><a href="https://github.com/imt-mobisyst/pkg-tbot">pkg-tbot</a> for <em>Kobuki</em> + laser drivers and configurations.</li>
+<li><a href="https://github.com/imt-mobisyst/pkg-basic">pkg-basic</a> to allow basic/simple controls and tools.</li>
+</ul>
+<h2 id="shutdown-check-list">Shutdown Check List</h2>
+<ol>
+<li>Connectect the <em>Pibot</em> with <em>SSH</em>.</li>
+<li><code>sudo poweroff</code> ou <code>sudo shutdown -h now</code>.</li>
+<li>Wait to be sure the shutdown process is terminated.</li>
+<li>Switch-off the robot.</li>
+<li>Plug the robot to permit its recharge.</li>
+</ol>
               
             </div>
           </div><footer>
