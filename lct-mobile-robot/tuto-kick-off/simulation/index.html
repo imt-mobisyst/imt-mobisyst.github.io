@@ -149,13 +149,19 @@ It exsits several simulators:</p>
 <h2 id="stage-simulator">Stage Simulator</h2>
 <h2 id="installing-stage">Installing Stage</h2>
 <p>Here the commands:</p>
-<pre><code class="language-console">sudo apt install -y git cmake g++ libjpeg8-dev libpng-dev libglu1-mesa-dev libltdl-dev libfltk1.1-dev
+<pre><code class="language-console">sudo apt install -y \
+    git cmake g++ \
+    libjpeg8-dev libpng-dev \
+    libglu1-mesa-dev libltdl-dev libfltk1.*-dev
 mkdir pkg-stage
 cd pkg-stage
 git clone --branch ros2 https://github.com/tuw-robotics/Stage.git
 git clone --branch humble https://github.com/tuw-robotics/stage_ros2.git
 cd ..
-colcon build --cmake-args -DOpenGL_GL_PREFERENCE=LEGACY
+colcon build \
+    --cmake-args -DOpenGL_GL_PREFERENCE=LEGACY \
+    --packages-select stage
+source ./build/setup.bash
 colcon build --packages-select stage_ros2
 </code></pre>
 <h2 id="first-launch-exercices">First Launch &amp; Exercices</h2>
@@ -177,23 +183,16 @@ Gazebo is integrated with ROS and supports various robots out of the box.</p>
 You can see videos online (<a href="https://www.youtube.com/watch?v=v6-heLIg85o">example</a>) and even load the maps and robot model that are available.</p>
 <h2 id="gazebo-installation">Gazebo Installation</h2>
 <p>Verify that <em>Gazebo</em> is installed using:</p>
-<pre><code class="language-console">dpkg -l | grep gazebo
+<pre><code class="language-gz">dpkg -l | grep gz
+ros2 pkg prefix ros_gz
 </code></pre>
-<p>You should have at least the following packages:</p>
-<pre><code>ii  gazebo                                          11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - Binaries
-ii  gazebo-common                                   11.10.2+dfsg-1                          all          Open Source Robotics Simulator - Shared files
-ii  gazebo-plugin-base                              11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - base plug-ins
-ii  libgazebo-dev                                   11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - Development Files
-ii  libgazebo11:amd64                               11.10.2+dfsg-1                          amd64        Open Source Robotics Simulator - shared library
-ii  ros-iron-gazebo-dev                             3.7.0-3jammy.20230622.191804            amd64        Provides a cmake config for the default version of Gazebo for the ROS distribution.
-ii  ros-iron-gazebo-msgs                            3.7.0-3jammy.20231117.090251            amd64        Message and service data structures for interacting with Gazebo from ROS2.
-ii  ros-iron-gazebo-plugins                         3.7.0-3jammy.20231117.111548            amd64        Robot-independent Gazebo plugins for sensors, motors and dynamic reconfigurable components.
-ii  ros-iron-gazebo-ros                             3.7.0-3jammy.20231117.104944            amd64        Utilities to interface with Gazebo through ROS.
-ii  ros-iron-gazebo-ros-pkgs                        3.7.0-3jammy.20231117.114324            amd64        Interface for using ROS with the Gazebo simulator.
-ii  ros-iron-turtlebot3-gazebo                      2.2.5-4jammy.20231117.114359            amd64        Gazebo simulation package for the TurtleBot3
+<p>It should point severals <code>jazzy-gz</code> and <code>ros-gz</code> packages, then where <code>ros-gz</code> is installed.
+In fact, the meta package to install is <code>ros-gz</code>.</p>
+<pre><code class="language-sh">sudo apt install ros-jazzy-ros-gz
 </code></pre>
-<p>Install missing packages using:</p>
-<pre><code class="language-console">sudo apt install &lt;pakage_name&gt;
+<p>To notice that, at anytime, and mainly when <code>colcon build</code> points missing dependancy, it is possible to install them using:</p>
+<pre><code class="language-sh">sudo apt install &lt;pakage_name&gt;
+source /opt/ros/jazzy/setup.bash # or ./your_workspace/install/setup.bash 
 </code></pre>
 <h2 id="launch-your-first-gazebo-simulation">Launch your first Gazebo Simulation</h2>
 <p>We propose some configuration into a <code>pkg-tsim</code> project, including a <code>tbot_sim</code> <em>ROS2</em> package.</p>
