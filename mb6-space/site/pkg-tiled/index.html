@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>static ip eth0 systemd-networkd - mb6 ros-workspace</title>
+    <title>Packages: Tiled - mb6 ros-workspace</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "static ip eth0 systemd-networkd";
-        var mkdocs_page_input_path = "configure-pi3-DHCP.md";
+        var mkdocs_page_name = "Packages: Tiled";
+        var mkdocs_page_input_path = "pkg-tiled.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -70,9 +70,11 @@
               </ul>
               <p class="caption"><span class="caption-text">Packages</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../pkg-basic/">Basic</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../pkg-index/">Overview</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../pkg-multibot/">Multibot</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../pkg-basic/">pkg Basic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pkg-multibot/">pkg Multibot</a>
                   </li>
               </ul>
               <ul>
@@ -93,7 +95,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">static ip eth0 systemd-networkd</li>
+      <li class="breadcrumb-item active">Packages: Tiled</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -102,94 +104,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="static-ip-eth0-systemd-networkd">static ip eth0 systemd-networkd</h1>
-<pre><code>root@pibot22:$ sudo vim /etc/systemd/network/eth0-config.network
-[Match]
-Name=enxb827ebd3b57c
-
-[Link]
-Name=eth0
-
-[Network]
-Address=192.168.1.1/24
-Gateway=192.168.1.1
-DNS=192.168.1.1
-</code></pre>
-<pre><code>systemctl restart systemd-networkd
-</code></pre>
-<pre><code>networkctl list
-networkctl status
-</code></pre>
-<h1 id="netplan-static-ip-eth0">Netplan static ip eth0</h1>
-<pre><code>bot@pibot22:discovery(SUBNET),domain(22):~
-$ cat /etc/netplan/50-cloud-init.yaml
-# This file is generated from information provided by the datasource.  Changes
-# to it will not persist across an instance reboot.  To disable cloud-init's
-# network configuration capabilities, write a file
-# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
-# network: {config: disabled}
-network:
-    version: 2
-    wifis:
-        renderer: networkd
-        wlan0:
-            access-points:
-                IoT IMT Nord Europe:
-                    password: c454079ec3ae4199b6bb654c299fa08a87c0923657e911a0c9be552e282a07eb
-            dhcp4: true
-            optional: true
-    ethernets:
-      renderer: networkd
-      eth0:
-        addresses:
-          - 192.168.1.1/24
-
-
-# DHCP server Kea
-
-</code></pre>
-<p>sudo apt install kea</p>
-<pre><code>
-</code></pre>
-<p>root@pibot22:/etc/kea# cat kea-dhcp4.conf
-{</p>
-<h1 id="dhcpv4-configuration-starts-on-the-next-line">DHCPv4 configuration starts on the next line</h1>
-<p>"Dhcp4": {</p>
-<h1 id="first-we-set-up-global-values">First we set up global values</h1>
-<pre><code>"valid-lifetime": 4000,
-"renew-timer": 1000,
-"rebind-timer": 2000,
-</code></pre>
-<h1 id="next-we-set-up-the-interfaces-to-be-used-by-the-server">Next we set up the interfaces to be used by the server.</h1>
-<pre><code>"interfaces-config": {
-    "interfaces": [ "eth0" ]
-},
-</code></pre>
-<h1 id="and-we-specify-the-type-of-lease-database">And we specify the type of lease database</h1>
-<pre><code>"lease-database": {
-    "type": "memfile",
-    "persist": true,
-    "name": "/tmp/kea-leases4.csv",
-    "lfc-interval": 1800,
-    "max-row-errors": 100
-},
-</code></pre>
-<h1 id="finally-we-list-the-subnets-from-which-we-will-be-leasing-addresses">Finally, we list the subnets from which we will be leasing addresses.</h1>
-<pre><code>"subnet4": [
-    {
-        "subnet": "192.168.1.0/24",
-        "pools": [
-            {
-                 "pool": "192.168.1.50 - 192.168.1.200"
-            }
-        ]
-    }
-]
-</code></pre>
-<h1 id="dhcpv4-configuration-ends-with-the-next-line">DHCPv4 configuration ends with the next line</h1>
-<p>}</p>
-<p>}
-```</p>
+                <h1 id="packages-tiled">Packages: Tiled</h1>
+<p>This packages mostly defines nodes on top of the <a href="https://github.com/imt-mobisyst/tiledland">tiledland</a> solution.</p>
               
             </div>
           </div><footer>
@@ -221,7 +137,6 @@ network:
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
-      <script src="../javascripts/mathjax.js"></script>
       <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
