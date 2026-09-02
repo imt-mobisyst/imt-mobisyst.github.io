@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>TiledLand: Polygon-based simulation engine. - Tiled-Land</title>
+    <title>TiledLand: a Polygon-based Multi-Agents Simulation Engine. - Tiled-Land</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "TiledLand: Polygon-based simulation engine.";
+        var mkdocs_page_name = "TiledLand: a Polygon-based Multi-Agents Simulation Engine.";
         var mkdocs_page_input_path = "pypip-index.md";
         var mkdocs_page_url = null;
       </script>
@@ -44,12 +44,39 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">Core Components</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../scene/">Scene</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Tiled Entity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../main-agent.md">Agents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-rendering/">Rendering</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent-Based Modeling</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Interactive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Classical GUI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web App</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Multithreading</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../geometry/">Geometry</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../web/">webapp</a>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">F.A.Q</a>
                 </li>
               </ul>
       </div>
@@ -66,7 +93,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">TiledLand: Polygon-based simulation engine.</li>
+      <li class="breadcrumb-item active">TiledLand: a Polygon-based Multi-Agents Simulation Engine.</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -75,35 +102,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="tiledland-polygon-based-simulation-engine">TiledLand: Polygon-based simulation engine.</h1>
-<p>The main idea is to model a plan world as a collection of convex-polygons objects.
-The world is mainly composed of an environnement and items and agents distributed inside it with convex-based interconnected tiles for the environment.</p>
+                <h1 id="tiledland-a-polygon-based-multi-agents-simulation-engine">TiledLand: a Polygon-based Multi-Agents Simulation Engine.</h1>
+<p>The main idea is to model a plan world as a collection of structured convex-polygons objects.
+The world is mainly composed of an environnement with items and agents distributed inside it.
+The environment is composed by interconnected convex-polygons: <em>Tiles</em>.</p>
 <p>Its is more a sandbox project to test approaches than an optimized, ready-to-use and well documented toolbox.</p>
-<p>The project relies on <a href="https://pypi.org/project/pycairo/">Cairo</a> library for rendering example, <a href="https://pypi.org/project/PyYAML">pyyaml</a> to read <em>yaml</em> configuration files and <a href="https://github.com/ktorz-net/hacka-py">hacka</a> for distributed game programming.</p>
-<h2 id="not-what-are-you-looking-for">Not what are you looking for ?</h2>
-<p>You can look at concurrent/complementary projects:</p>
-<ul>
-<li><a href="https://box2d.org">Box2d</a> a 2d physics game engine</li>
-<li><a href="https://www.pygame.org">pygame</a> a python-based game engine</li>
-<li><a href="https://www.raylib.com/">raylib</a> a simple cross language game engine</li>
-<li><a href="https://pypi.org/project/shapely">shapely</a> to manipulate in python geometric objects in the cartesian plane (based on <a href="https://libgeos.org/">GEOS</a>)</li>
-<li><a href="https://www.cgal.org">cgal</a> another Computational Geometry Algorithms Library (c++)</li>
-</ul>
-<h2 id="install">Install</h2>
-<p>The <em>Tiled-Land</em> project can be installed with <em>pip</em>.</p>
-<pre><code class="language-sh">pip install tiledland
-</code></pre>
-<p>For in-dev version, refer to github repository : <a href="https://www.github.com/imt-mobisyst/tiled-land">imt-mobisyst/tiled-land</a>.</p>
-<h3 id="get-started">Get started</h3>
-<p>The <code>demo</code> directory include simple examples for <em>TiledLand</em>.
-Most of the demonstrations generate a scene, rendered in a <code>shot-demo.png</code> file.</p>
-<p>In <em>VisualStudio Code</em> terminal for instance:</p>
-<pre><code class="language-shell">cd demo
-python3 01-grid-scene.py 
-code shot-demo.png
-python3 02-hexa-world.py
-python3 03-loading-gridmap.py 
-</code></pre>
+<p>The documention can be found on <a href="https://imt-mobisyst.github.io/tiledland">imt-mobisyst.github.io/tiledland</a>.</p>
               
             </div>
           </div><footer>
