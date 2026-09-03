@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Tiled Entity - Tiled-Land</title>
+    <title>First is the Entity - Tiled-Land</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Tiled Entity";
+        var mkdocs_page_name = "First is the Entity";
         var mkdocs_page_input_path = "core-entity.md";
         var mkdocs_page_url = null;
       </script>
@@ -46,7 +46,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Core Components</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Tiled Entity</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">First is the Entity</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
                   </li>
@@ -57,7 +57,7 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Then, Agents</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Interactive</span></p>
@@ -92,7 +92,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Core Components</li>
-      <li class="breadcrumb-item active">Tiled Entity</li>
+      <li class="breadcrumb-item active">First is the Entity</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -102,7 +102,11 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="entity-the-root-tiledland-object">Entity : the root TiledLand Object</h1>
-<p>An entity is mainly an object defined by a geometrical shape (itself a convexe polygon).</p>
+<p>An entity is mainly an object defined by a geometrical shape (itself a convexe polygon) somewhere in the environement.</p>
+<p>The important feature to remenber about Entities is that it is composed in fact of 2 shapes. 
+The first shape - the reference shape - should remain fixe. It can be the same for several entities.
+Then the second shape - the projected shape - is a copie of the reference shape at a specific location en rotation in the environement. </p>
+<p>Successive transformations can be destructive on shape definition. The dualality reference/projection prevents those destructions.</p>
               
             </div>
           </div><footer>
