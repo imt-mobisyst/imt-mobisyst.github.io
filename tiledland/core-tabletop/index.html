@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Tiles and Tabletop - Tiled-Land</title>
+    <title>Tiles and Tabletop - TiledLand</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Tiled-Land
+          <a href=".." class="icon icon-home"> TiledLand
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -44,38 +44,49 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Core Components</span></p>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">First is the Entity</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Entities</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Tiles and Tabletop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-rendering/">Rendering</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-maps/">Maps</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Agent-Based Modeling</span></p>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Then, Agents</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-serialization/">Serialization</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Interactive</span></p>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Classical GUI</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-rendering/">Rendering</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web App</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Desktop Interface</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Multithreading</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Execution and Concurrency</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../geometry/">Geometry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../faq/">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -84,14 +95,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Tiled-Land</a>
+          <a href="..">TiledLand</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Core Components</li>
+          <li class="breadcrumb-item">Spatial Model</li>
       <li class="breadcrumb-item active">Tiles and Tabletop</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -101,18 +112,71 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="tiles-and-tabletop">Tiles and Tabletop</h1>
-<p>The central concept in <em>TiledLand</em> is the tabletop, a map of the envorinnement composed of convex poligonal cells, the tiles.
-The tabletops allows for modeling localized (potentially mobile) entities in an environement. </p>
-<h1 id="tiles">Tiles</h1>
-<h1 id="tabletop">Tabletop</h1>
-<h1 id="set-a-population">Set a population</h1>
+                <h1 id="tiles-and-tabletops">Tiles and Tabletops</h1>
+<p><code>Tile</code> inherits from <code>Entity</code> and adds a list of neighbors and a collection of entities. <code>Tabletop</code> gathers these tiles and provides operations on their graph and content.</p>
+<h2 id="building-the-tabletop">Building the Tabletop</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>initLine(size, tileSize=1.0, separation=0.1, connect=True)</code></td>
+<td>Line of tiles</td>
+</tr>
+<tr>
+<td><code>initGrid(matrix, tileSize=1.0, separation=0.1, connect=True)</code></td>
+<td>Rectangular grid</td>
+</tr>
+<tr>
+<td><code>initHexa(matrix, tileSize=1.0, separation=0.1, connect=True)</code></td>
+<td>Hexagonal grid</td>
+</tr>
+<tr>
+<td><code>fromShapes(shapes, group=0)</code></td>
+<td>Tabletop built from polygons</td>
+</tr>
+<tr>
+<td><code>createTile(shape, group=0)</code></td>
+<td>Adding a tile</td>
+</tr>
+</tbody>
+</table>
+<p>Initialization methods replace existing tiles. <code>fromShapes()</code> does not automatically build connections.</p>
+<pre><code class="language-python">from tiledland import Tabletop
+
+plateau = Tabletop().initHexa([[0, 0], [0, -1]])
+assert plateau.numberOfTiles() == 3
+for tuile in plateau.tiles():
+    print(tuile.index(), tuile.adjacencies())
+</code></pre>
+<h2 id="connections">Connections</h2>
+<p><code>connect(a, b)</code> creates a directed connection from <code>a</code> to <code>b</code>. To allow both directions, also add <code>connect(b, a)</code>.</p>
+<pre><code class="language-python">from tiledland import Tabletop
+
+plateau = Tabletop().initLine(2, connect=False)
+plateau.connect(1, 2)
+assert plateau.isEdge(1, 2)
+assert not plateau.isEdge(2, 1)
+plateau.connect(2, 1)
+</code></pre>
+<p><code>adjacencies(i)</code> provides neighbor identifiers; <code>edges()</code> provides source-target pairs. <code>neighbours(i)</code> adds a relative movement and a clock direction for each neighbor.</p>
+<p><code>connectAllClose(distance)</code> connects tiles whose geometric distance is strictly lower than the threshold. This search examines all pairs; its cost increases rapidly with the number of tiles.</p>
+<h2 id="tile-content">Tile Content</h2>
+<p><code>tileAppendEntity(i, objet)</code> adds and centers the object. <code>entity(i, j)</code> finds the entity with index <code>j</code> in tile <code>i</code>. <code>tileRemoveEntity(i, j)</code> returns the removed entity or <code>None</code> if it does not exist. <code>tileMoveEntity(i, j, cible)</code> removes and then adds the object at the destination.</p>
+<p>Indices start at <strong>1</strong>. Validate identifiers before accessing collections: accessors are not all validity controls and a null index may select the last element through Python indexing.</p>
+<p><code>tiles()</code>, <code>entities()</code>, and <code>adjacencies()</code> expose modifiable internal collections. Modifying them directly can desynchronize counters or selectors; prefer model operations.</p>
+<h2 id="clock-directions">Clock Directions</h2>
+<p>Constants <code>Action.DIR_N</code>, <code>DIR_E</code>, <code>DIR_S</code>, and <code>DIR_W</code> are respectively 12, 3, 6, and 9. Intermediate directions divide the turn into twelve sectors. This referencing does not replace path planning. Oriented movements still have limits described in the <a href="../limitations/">dedicated page</a>.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../core-entity/" class="btn btn-neutral float-left" title="First is the Entity"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../core-rendering/" class="btn btn-neutral float-right" title="Rendering">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../core-entity/" class="btn btn-neutral float-left" title="Entities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../core-geometry/" class="btn btn-neutral float-right" title="Geometry">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -138,7 +202,7 @@ The tabletops allows for modeling localized (potentially mobile) entities in an 
       <span><a href="../core-entity/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../core-rendering/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../core-geometry/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -146,8 +210,6 @@ The tabletops allows for modeling localized (potentially mobile) entities in an 
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
-      <script src="../javascripts/mathjax.js"></script>
-      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Polygonal world simulation and multi-agent systems in Python" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Tiled-Land</title>
+    <title>TiledLand</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> Tiled-Land
+          <a href="." class="icon icon-home"> TiledLand
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -44,38 +44,49 @@
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Core Components</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="core-entity/">First is the Entity</a>
+                <li class="toctree-l1"><a class="reference internal" href="getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="core-entity/">Entities</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="core-tabletop/">Tiles and Tabletop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="core-rendering/">Rendering</a>
+                  <li class="toctree-l1"><a class="reference internal" href="core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="core-maps/">Maps</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Agent-Based Modeling</span></p>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="as-land/">Land and Actors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="as-agent/">Then, Agents</a>
+                  <li class="toctree-l1"><a class="reference internal" href="as-agent/">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="as-serialization/">Serialization</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Interactive</span></p>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="ihm-gui/">Classical GUI</a>
+                  <li class="toctree-l1"><a class="reference internal" href="ihm-rendering/">Rendering</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="ihm-web/">Web App</a>
+                  <li class="toctree-l1"><a class="reference internal" href="ihm-gui/">Desktop Interface</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="ihm-thread/">Multithreading</a>
+                  <li class="toctree-l1"><a class="reference internal" href="ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ihm-thread/">Execution and Concurrency</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="geometry/">Geometry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="faq/">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="development/">Development</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -84,7 +95,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">Tiled-Land</a>
+          <a href=".">TiledLand</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -100,77 +111,68 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="tiledland-a-polygon-based-simulation-engine">TiledLand: A Polygon-Based Simulation Engine.</h1>
-<p>This project is a <code>Python</code> package oriented toward multi-agent simulation relying on convex polygonal objects.
-The main idea is to model a planar world (the land) as a collection of convex-polygon cells (the tiles).
-Then, the land is mainly composed of a tabletop - interconnected tiles - and agents distributed inside it.</p>
-<p>To notice that, <em>TiledLand</em> is more a sandbox project to test approaches than an optimized, ready-to-use and well documented toolbox.</p>
-<ul>
-<li>On github: <a href="https://github.com/imt-mobisyst/tiledland">imt-mobisyst/tiledland</a></li>
-<li>On PyPip: <a href="https://pypi.org/project/tiledland/">project tiledland</a></li>
-</ul>
-<h2 id="not-what-are-you-looking-for">Not what are you looking for ?</h2>
-<p>You can look at concurrent/complementary projects:</p>
-<ul>
-<li><a href="https://box2d.org">box2d</a> - 2d physics game engine (in <em>C</em> language but with a lot of binds)</li>
-<li><a href="https://www.pygame.org">pygame</a> - python-based game engine</li>
-<li><a href="https://www.raylib.com/">raylib</a> - simple cross language game engine</li>
-<li><a href="https://pypi.org/project/shapely">shapely</a> to manipulate, in python geometric objects in the Cartesian plane (based on <a href="https://libgeos.org/">GEOS</a>).</li>
-<li><a href="https://www.cgal.org">cgal</a> another Computational Geometry Algorithms Library (c++)</li>
-</ul>
-<h2 id="install">Install</h2>
-<p>The project and its dependencies can be installed with the <em>pip</em> tool.</p>
-<pre><code class="language-sh">pip install tiledland
-</code></pre>
-<p>For information, <em>TiledLand</em> relies on <a href="https://pypi.org/project/PyYAML">pyyaml</a> to read <em>yaml</em> configuration files, on <a href="https://github.com/ktorz-net/hacka-py">hacka</a> for distributed game programming, and on  <a href="https://pypi.org/project/pycairo/">Cairo</a> library for <em>PNG</em> image rendering. </p>
-<p>You can also install <em>TiledLand</em> from source: <a href="https://github.com/imt-mobisyst/tiledland">github.com - tiledland</a>.</p>
-<h2 id="get-started">Get started</h2>
-<p>Then, as an example, the following code will generate a grid-tabletop with several entities.
-The tabletop is then rendered as a <em>png</em> graphic.</p>
-<pre><code class="language-python">#!/usr/bin/python3
-import tiledland as tll
-
-# Create a new land (a tiled tabletop and entities inside it) :
-tabletop= tll.Tabletop()
-tabletop.initGrid([
-    [0, 1, 1, -1, 0, 0, 0, 0], # -1 : means no cell at this selector
-    [5, -1, 0, 2, 0, -1, 5, 0], # 0 - n : give the group identifier
-    [0, 0, 0, -1, 0, 1, 1, 0], # of the cell to create.
-    [0, 4, 0, -1, 0, 2, 1, 6],
-    [-1, -1, 0, 0, 0, -1, -1, -1]
-])
-
-# Define a small shape for our entities...
-shape= tll.Convex().initRegular( 0.4, 5 )
-
-# Add several entities associate to different groups...
-tabletop.tileAppendEntity( 8, tll.Entity(1, shape, name=&quot;A1&quot;) )
-tabletop.tileAppendEntity( 16, tll.Entity(1, shape, name=&quot;A2&quot;) )
-tabletop.tileAppendEntity( 4, tll.Entity(2, shape, name=&quot;B1&quot;) )
-tabletop.tileAppendEntity( 19, tll.Entity(2, shape, name=&quot;B2&quot;) )
-tabletop.tileAppendEntity( 24, tll.Entity(3, shape, name=&quot;C1&quot;) )
-tabletop.tileAppendEntity( 28, tll.Entity(3, shape, name=&quot;C2&quot;) )
-
-# Create an artist to render this tabletop:
-tll.draw( tabletop, &quot;shot-demo.png&quot;, 800, 600 )
-
-print( f&quot;You can open now the './shot-demo.png' file.&quot; )
-</code></pre>
-<h2 id="structure">Structure</h2>
-<p><em>TiledLand</em> is structured with several sub-modules, each one dedicated to a functionality.</p>
-<ul>
-<li><em>geometry</em> :  Polygon-based objects and the tabletop definition.</li>
-<li><em>artist</em> : for rendering geometry objects</li>
-<li><em>core</em> : Build on top of <code>geometry</code> and <code>artist</code>, it defines the main tiledland elements: <code>entities</code>, <code>tiles</code> and <code>tabletops</code>.</li>
-<li><em>agent system</em> : A upper-layer built on top of <em>TiledLand core</em>  elements with <code>land</code> and <code>agents</code> for agent-based modeling.</li>
-<li><em>games</em> : few example games.</li>
-<li><em>interfaces</em> : offering tools making <em>TiledLand</em> easily integrable with external solutions like ROS2, Web IHM (with Remi). To notice that <em>TiledLand</em> is not dependent on the Python packages targeted with <em>interface</em> components.</li>
-</ul>
+                <h1 id="tiledland">TiledLand</h1>
+<p>TiledLand is a Python library for simulating flat worlds composed of convex polygonal tiles. Each tile can contain mobile objects; its connections to other tiles form a movement graph.</p>
+<p><img alt="" src="fig-tiledland-01.png" /></p>
+<p>The project is used to experiment with geometry, navigation, and multi-agent systems. This documentation describes the local code of version <strong>0.1.6</strong>, including its current capabilities and limitations.</p>
+<h2 id="getting-started">Getting Started</h2>
+<ol>
+<li><a href="getting-started/">Install the library and create your first scene</a>.</li>
+<li><a href="core-entity/">Understand entities</a> and <a href="core-tabletop/">tiles and tabletops</a>.</li>
+<li><a href="core-rendering.md">Produce an SVG or PNG rendering</a>.</li>
+<li><a href="as-land/">Associate bodies with actors</a> and <a href="as-agent/">program a decision</a>.</li>
+</ol>
+<h2 id="model-organization">Model Organization</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Point</code>, <code>Line</code>, <code>Convex</code>, <code>Box</code>, <code>Grid</code></td>
+<td>Geometry and discrete maps</td>
+</tr>
+<tr>
+<td><code>Entity</code></td>
+<td>Object with a shape, position, and orientation</td>
+</tr>
+<tr>
+<td><code>Tile</code></td>
+<td>Entity representing an area, its neighbors, and its content</td>
+</tr>
+<tr>
+<td><code>Tabletop</code></td>
+<td>Collection of tiles and connection graph</td>
+</tr>
+<tr>
+<td><code>Actor</code></td>
+<td>Association between an agent and one or more bodies</td>
+</tr>
+<tr>
+<td><code>Land</code></td>
+<td>Board, body models, and actor collection</td>
+</tr>
+<tr>
+<td><code>Agent</code>, <code>Action</code></td>
+<td>Behavioral sketch using state machines</td>
+</tr>
+<tr>
+<td><code>Artist</code></td>
+<td>Rendering on a graphic medium</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scope">Scope</h2>
+<p>Scene constructions, transformations, and renderings already allow for experiments. The <code>Agent</code> layer remains partial; the examples in this documentation avoid its currently defective methods. Consult the <a href="limitations/">known limitations</a> before building a simulation loop.</p>
+<p>The <a href="geometry.md">geometry</a>, <a href="maps.md">map import</a>, <a href="serialization.md">serialization</a>, and <a href="api/">practical reference</a> pages complete the journey. The <a href="development/">contribution guide</a> explains how to test and build this documentation.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="core-entity/" class="btn btn-neutral float-right" title="First is the Entity">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="getting-started/" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -194,7 +196,7 @@ print( f&quot;You can open now the './shot-demo.png' file.&quot; )
     
     
     
-      <span><a href="core-entity/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="getting-started/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -202,8 +204,6 @@ print( f&quot;You can open now the './shot-demo.png' file.&quot; )
     <script>var base_url = ".";</script>
     <script src="js/theme_extra.js"></script>
     <script src="js/theme.js"></script>
-      <script src="javascripts/mathjax.js"></script>
-      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="search/main.js"></script>
     <script>
         jQuery(function () {
@@ -216,5 +216,5 @@ print( f&quot;You can open now the './shot-demo.png' file.&quot; )
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-09-03 19:00:11.191093+00:00
+Build Date UTC : 2026-09-29 16:24:21.281399+00:00
 -->

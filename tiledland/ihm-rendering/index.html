@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Rendering - TiledLand</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Rendering";
+        var mkdocs_page_input_path = "ihm-rendering.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TiledLand
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Entities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-maps/">Maps</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-serialization/">Serialization</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Rendering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Desktop Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Execution and Concurrency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TiledLand</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Display and Interfaces</li>
+      <li class="breadcrumb-item active">Rendering</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="svg-and-png-rendering">SVG and PNG Rendering</h1>
+<p><code>Artist</code> transforms world coordinates into image coordinates and delegates drawing to a support. SVG allows vector display; PNG uses Cairo.</p>
+<h2 id="simple-export">Simple Export</h2>
+<pre><code class="language-python">from tiledland import Tabletop, draw
+
+plateau = Tabletop().initGrid([[0, 1], [2, 0]])
+draw(plateau, &quot;plateau.svg&quot;, 640, 480)
+draw(plateau, &quot;plateau.png&quot;, 640, 480)
+</code></pre>
+<p>Dimensions are in pixels. Explicitly choose a <code>.svg</code> or <code>.png</code> extension. The export writes the indicated file and can replace an existing file.</p>
+<h2 id="rendering-control">Rendering Control</h2>
+<pre><code class="language-python">from tiledland import Tabletop, createArtistSVG
+
+plateau = Tabletop().initLine(3)
+artist = createArtistSVG(&quot;detail.svg&quot;, 800, 300)
+artist.fit(plateau)
+plateau.renderOn(artist)
+artist.flip()
+</code></pre>
+<p><code>fit()</code> adapts the framing to the object. <code>renderOn()</code> draws the elements; <code>flip()</code> finalizes the support rendering. An empty tabletop is not a good starting point for calculating framing: add tiles first.</p>
+<h2 id="colors">Colors</h2>
+<p><code>Brush(fill, stroke, width)</code> describes the fill, the outline, and its thickness. Foreground and background palettes assign colors to groups. To customize an entity, use <code>setBrush()</code> with a new brush rather than modifying a shared brush.</p>
+<pre><code class="language-python">from tiledland import Entity, Brush, draw
+
+objet = Entity(name=&quot;Objet&quot;)
+objet.setBrush(Brush(fill=0x44AA88, stroke=0x114433, width=2))
+draw(objet, &quot;objet.svg&quot;, 400, 400)
+</code></pre>
+<p>To integrate the result into an application, see the <a href="../ihm-web/">web interface</a> and <a href="../ihm-gui/">desktop interface</a> pages.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../as-serialization/" class="btn btn-neutral float-left" title="Serialization"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ihm-gui/" class="btn btn-neutral float-right" title="Desktop Interface">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../as-serialization/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ihm-gui/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>TiledLand: a Polygon-based Multi-Agents Simulation Engine. - Tiled-Land</title>
+    <title>TiledLand: Simulation of Polygonal Worlds - TiledLand</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "TiledLand: a Polygon-based Multi-Agents Simulation Engine.";
+        var mkdocs_page_name = "TiledLand: Simulation of Polygonal Worlds";
         var mkdocs_page_input_path = "pypip-index.md";
         var mkdocs_page_url = null;
       </script>
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Tiled-Land
+          <a href=".." class="icon icon-home"> TiledLand
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -44,38 +44,49 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Core Components</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">First is the Entity</a>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Entities</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-rendering/">Rendering</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-maps/">Maps</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Agent-Based Modeling</span></p>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Then, Agents</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-serialization/">Serialization</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Interactive</span></p>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Classical GUI</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-rendering/">Rendering</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web App</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Desktop Interface</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Multithreading</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Execution and Concurrency</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../geometry/">Geometry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../faq/">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -84,14 +95,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Tiled-Land</a>
+          <a href="..">TiledLand</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">TiledLand: a Polygon-based Multi-Agents Simulation Engine.</li>
+      <li class="breadcrumb-item active">TiledLand: Simulation of Polygonal Worlds</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -100,12 +111,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="tiledland-a-polygon-based-multi-agents-simulation-engine">TiledLand: a Polygon-based Multi-Agents Simulation Engine.</h1>
-<p>The main idea is to model a plan world as a collection of structured convex-polygons objects.
-The world is mainly composed of an environnement with items and agents distributed inside it.
-The environment is composed by interconnected convex-polygons: <em>Tiles</em>.</p>
-<p>Its is more a sandbox project to test approaches than an optimized, ready-to-use and well documented toolbox.</p>
-<p>The documention can be found on <a href="https://imt-mobisyst.github.io/tiledland">imt-mobisyst.github.io/tiledland</a>.</p>
+                <h1 id="tiledland-simulation-of-polygonal-worlds">TiledLand: Simulation of Polygonal Worlds</h1>
+<p>TiledLand is an experimental Python library that represents flat environments using interconnected convex polygonal tiles. Entities can be placed and moved within these tiles.</p>
+<p>The project offers geometric primitives, rectangular and hexagonal constructions, map conversions, SVG and PNG rendering, and a basis for experimenting with multi-agent systems.</p>
+<p>Python 3.10 or later is required. Declared dependencies are hacka, pyyaml, pycairo, and msgpack. The agents layer remains under development.</p>
+<p>Project documentation contains a quick start, concepts, examples, and known limits. In a clone of the repository, build the site with MkDocs from <code>mkdocs.yml</code>.</p>
               
             </div>
           </div><footer>
@@ -137,8 +147,6 @@ The environment is composed by interconnected convex-polygons: <em>Tiles</em>.</
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
-      <script src="../javascripts/mathjax.js"></script>
-      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

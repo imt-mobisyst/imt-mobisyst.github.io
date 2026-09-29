@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Land and Actors - Tiled-Land</title>
+    <title>Land and Actors - TiledLand</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Tiled-Land
+          <a href=".." class="icon icon-home"> TiledLand
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -44,38 +44,49 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Core Components</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">First is the Entity</a>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Entities</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-rendering/">Rendering</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-maps/">Maps</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Agent-Based Modeling</span></p>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Land and Actors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Then, Agents</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-serialization/">Serialization</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Interactive</span></p>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Classical GUI</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-rendering/">Rendering</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web App</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Desktop Interface</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Multithreading</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Execution and Concurrency</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../geometry/">Geometry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../faq/">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -84,14 +95,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Tiled-Land</a>
+          <a href="..">TiledLand</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Agent-Based Modeling</li>
+          <li class="breadcrumb-item">Simulation</li>
       <li class="breadcrumb-item active">Land and Actors</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -101,14 +112,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="land-and-actors-an-introduction-to-agent-modeling">Land and Actors - An introduction to Agent-Modeling</h1>
-<p>A <em>Land</em> is a supper-object that integrate a model of an environnement (a tabletop with all thes tiles and entities its includes) linked to an agents collections. </p>
+                <h1 id="land-and-actors">Land and Actors</h1>
+<p>A <code>Land</code> associates a <code>Tabletop</code>, a bank of entity models, and a list of actors. An <code>Actor</code> links an agent to several bodies. Bodies are the entities actually placed on the tabletop.</p>
+<h2 id="adding-an-actor">Adding an Actor</h2>
+<pre><code class="language-python">from tiledland import Land, Tabletop, Entity, Convex, Agent, draw
+
+land = Land(
+    tabletop=Tabletop().initLine(3),
+    bankOfEntities=[Entity(shape=Convex().initArrowTip(0.6), name=&quot;Robot&quot;)],
+)
+acteur_id = land.appendActor(Agent(), tileIds=[1], bodyIds=[0])
+corps = land.body(acteur_id)
+assert corps.location() == 1
+land.tabletop().tileMoveEntity(corps.location(), corps.index(), 2)
+assert corps.location() == 2
+draw(land.tabletop(), &quot;acteur.svg&quot;, 800, 300)
+</code></pre>
+<p><code>bodyIds</code> selects models from the bank; <code>tileIds</code> selects placement tiles. Both lists must have the same length: the implementation iterates through them using <code>zip</code> and therefore ignores excess elements.</p>
+<h2 id="identifiers">Identifiers</h2>
+<p>Actor 0 is reserved during initialization. Added actors receive identifiers starting from 1. In an actor, <code>body(1)</code> designates the first body. Bank models use indexing starting from 0 and <code>bankEntity()</code> applies a modulo to the bank size: provide a non-empty bank and explicit identifiers.</p>
+<p><code>popSimpleActor(agent, tuile)</code> creates an actor with one body. <code>popActorBody(acteur, tuile, entityNum)</code> adds a body to an existing actor. <code>actor(id).bodies()</code> allows enumerating its bodies.</p>
+<h2 id="limits">Limits</h2>
+<p>The presence of an agent in <code>Land</code> does not trigger any automatic perception-decision-action loop. The application must orchestrate the simulation flow. Provide an explicit bank as in the example: the default parameter currently shares objects between instances.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../core-rendering/" class="btn btn-neutral float-left" title="Rendering"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../as-agent/" class="btn btn-neutral float-right" title="Then, Agents">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../core-maps/" class="btn btn-neutral float-left" title="Maps"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../as-agent/" class="btn btn-neutral float-right" title="Agents and Decisions">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -131,7 +162,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../core-rendering/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../core-maps/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../as-agent/" style="color: #fcfcfc">Next &raquo;</a></span>
@@ -142,8 +173,6 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
-      <script src="../javascripts/mathjax.js"></script>
-      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

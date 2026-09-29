@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Known Limits - TiledLand</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Known Limits";
+        var mkdocs_page_input_path = "limitations.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TiledLand
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Entities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-maps/">Maps</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-serialization/">Serialization</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-rendering/">Rendering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Desktop Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Execution and Concurrency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TiledLand</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Known Limits</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="known-limits">Known Limits</h1>
+<p>This page describes the state of the examined code, not fixed features. Regression tests added to the project make several defects visible.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Current Limit</th>
+<th>Practice to Adopt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Agent.decide()</code></td>
+<td>Returns <code>None</code> after state execution</td>
+<td>Explicitly use <code>runStateProcessus()</code></td>
+</tr>
+<tr>
+<td><code>Agent.copy()</code></td>
+<td>Fails with a <code>Tabletop</code>; incorrect assignment of the tabletop copy</td>
+<td>Explicitly build a new agent</td>
+</tr>
+<tr>
+<td><code>Agent.perceive()</code> / <code>HackaAgent</code></td>
+<td>Features not implemented</td>
+<td>Define perception and transport in the application</td>
+</tr>
+<tr>
+<td><code>Entity.setShapeArrowTip()</code></td>
+<td>Incorrect call to the shape constructor</td>
+<td>Use <code>setReferenceShape(Convex().initArrowTip(...))</code></td>
+</tr>
+<tr>
+<td><code>Entity.setProjectedShape()</code></td>
+<td>Does not reset the effective orientation attribute</td>
+<td>Prefer a reference shape and <code>setPose()</code></td>
+</tr>
+<tr>
+<td>Default <code>Land</code> bank</td>
+<td>List and models shared between instances</td>
+<td>Provide a new list of new entities</td>
+</tr>
+<tr>
+<td>Copies and collections</td>
+<td>Some internal data remains shared or directly modifiable</td>
+<td>Explicitly define object ownership</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tabletop-restoration">Tabletop Restoration</h2>
+<p>Verification of examples revealed that <code>dataTreeCopy()</code> fails on a tabletop containing an entity: <code>Tile.setIndex()</code> calls <code>Entity.setArea()</code>, a missing method. The serialization example is therefore limited to a tabletop without entities.</p>
+<h2 id="movements-and-orientations">Movements and Orientations</h2>
+<p>A reading of <code>tileOrientEntity()</code> and <code>tileRotateEntity()</code> shows that they select the first entity of the tile instead of passing the requested index. <code>tileClockMoveEntity()</code> also performs a rotation call with the target identifier after the movement. These points must be corrected and tested before relying on these methods in scenes with multiple bodies. Tutorials use direct movement and transformations on the entity itself.</p>
+<h2 id="scale-and-robustness">Scale and Robustness</h2>
+<p><code>connectAllClose()</code> compares pairs of tiles, which represents a quadratic cost in the number of tiles even before the cost of polygonal distances. Measure times on target maps before sizing an experiment.</p>
+<p>Several validations rely on <code>assert</code>. The Python <code>-O</code> option disables them; it can even remove calls placed in an assertion, such as a tile creation in <code>fromGridRectangles()</code>. Do not use this mode for this version.</p>
+<h2 id="tests">Tests</h2>
+<p>During the initial audit, before the local correction of <code>perceivedBody()</code>, the suite with the new tests showed: <strong>137 successes, 8 failures, 7 tests excluded</strong> by the <code>not long</code> filter. The failures are defects expected by the audit but remain true failures: they are not masked by <code>xfail</code>. This historical balance is not the result of the corrected version. <code>perceivedBody()</code> now returns the body in the local code; rerun the suite to obtain an updated balance.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

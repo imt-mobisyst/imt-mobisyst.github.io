@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>F.A.Q - Tiled-Land</title>
+    <title>FAQ - TiledLand</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "F.A.Q";
+        var mkdocs_page_name = "FAQ";
         var mkdocs_page_input_path = "faq.md";
         var mkdocs_page_url = null;
       </script>
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Tiled-Land
+          <a href=".." class="icon icon-home"> TiledLand
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -44,38 +44,49 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Core Components</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">First is the Entity</a>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Entities</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-rendering/">Rendering</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-maps/">Maps</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Agent-Based Modeling</span></p>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Then, Agents</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-agent/">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-serialization/">Serialization</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Interactive</span></p>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Classical GUI</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-rendering/">Rendering</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web App</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Desktop Interface</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Multithreading</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Execution and Concurrency</a>
                   </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../geometry/">Geometry</a>
-                </li>
-              </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -84,14 +95,15 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Tiled-Land</a>
+          <a href="..">TiledLand</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">F.A.Q</li>
+          <li class="breadcrumb-item">--- --- --- --- --- --- --- --- ---</li>
+      <li class="breadcrumb-item active">FAQ</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -100,17 +112,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="frequent-asked-question">Frequent Asked Question</h1>
-<h2 id="install">Install</h2>
-<h3 id="i-have-some-trouble-with-the-dependency-to-python-bind-to-cairo-librairy-pycairo">I have some trouble with the dependency to python bind to Cairo librairy (pycairo).</h3>
-<p>This dependency is not hardly mandatory, but all example and demonstration manipulating <em>PNG</em> image will fail.
-It is possible to dissable <em>pycairo</em> dependency in the dependancy lists of the <code>pyproject.toml</code> file, and install your local modified version of tiledland (<code>pip install /path/to/your/cloned/tiledland</code>)
-By doing so, nly <em>SVG</em> rendering will remain available.</p>
+                <h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
+<h2 id="why-does-the-installation-fail-on-cairo">Why does the installation fail on Cairo?</h2>
+<p><code>pycairo</code> is a declared dependency. Depending on the environment, its compilation requires Cairo system components and Python development headers. Examine the installation message and prepare these components using the platform's tools.</p>
+<p>SVG support does not import Cairo in its main rendering path, but the standard project installation always requires <code>pycairo</code>, and ROS map imports use Cairo. There is currently no official "SVG only" installation option.</p>
+<h2 id="why-does-an-old-example-call-a-missing-method">Why does an old example call a missing method?</h2>
+<p>Some demonstrations use <code>popAgentOn</code>, <code>setAgentFactory</code>, or <code>setMatter</code>, which are absent from the current core API. Start with the <a href="../getting-started/">getting started guide</a>, whose Python blocks have been executed on local sources.</p>
+<h2 id="why-does-my-object-change-position-after-being-added">Why does my object change position after being added?</h2>
+<p><code>tileAppendEntity()</code> places the entity at the center of the tile. For a different position within the area, define the pose after adding. Geometry and logical ownership are not automatically resynchronized when moving an entity directly.</p>
+<h2 id="does-a-group-represent-an-obstacle">Does a group represent an obstacle?</h2>
+<p>Not by itself. The group is a category used notably for appearance. Accessibility, collision, and movement rules must be established by the scenario.</p>
+<h2 id="why-does-decide-not-return-any-action">Why does <code>decide()</code> not return any action?</h2>
+<p>This is a current defect. The <a href="../as-agent/">agents</a> page shows the direct use of <code>runStateProcessus()</code>.</p>
+<h2 id="how-to-launch-the-documentation">How to launch the documentation?</h2>
+<p>From the repository: <code>python -m mkdocs serve</code>. Dependencies and static construction are described in the <a href="../development/">contribution guide</a>.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../geometry/" class="btn btn-neutral float-left" title="Geometry"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api/" class="btn btn-neutral float-left" title="Practical Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../development/" class="btn btn-neutral float-right" title="Development">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -133,8 +154,10 @@ By doing so, nly <em>SVG</em> rendering will remain available.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../geometry/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../api/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../development/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -142,8 +165,6 @@ By doing so, nly <em>SVG</em> rendering will remain available.</p>
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
-      <script src="../javascripts/mathjax.js"></script>
-      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Then, Agents - Tiled-Land</title>
+    <title>Agents and Decisions - TiledLand</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Then, Agents";
+        var mkdocs_page_name = "Agents and Decisions";
         var mkdocs_page_input_path = "as-agent.md";
         var mkdocs_page_url = null;
       </script>
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Tiled-Land
+          <a href=".." class="icon icon-home"> TiledLand
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -44,38 +44,49 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Core Components</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">First is the Entity</a>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Spatial Model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-entity/">Entities</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../core-tabletop/">Tiles and Tabletop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../core-rendering/">Rendering</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-geometry/">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-maps/">Maps</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Agent-Based Modeling</span></p>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../as-land/">Land and Actors</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Then, Agents</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Agents and Decisions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../as-serialization/">Serialization</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Interactive</span></p>
+              <p class="caption"><span class="caption-text">Display and Interfaces</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Classical GUI</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-rendering/">Rendering</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web App</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-gui/">Desktop Interface</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Multithreading</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-web/">Web Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ihm-thread/">Execution and Concurrency</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">--- --- --- --- --- --- --- --- ---</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../geometry/">Geometry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../faq/">F.A.Q</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Practical Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -84,15 +95,15 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Tiled-Land</a>
+          <a href="..">TiledLand</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Agent-Based Modeling</li>
-      <li class="breadcrumb-item active">Then, Agents</li>
+          <li class="breadcrumb-item">Simulation</li>
+      <li class="breadcrumb-item active">Agents and Decisions</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -101,14 +112,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="agent-in-tiledland">Agent in Tiledland.</h1>
-<p>An <em>Agent</em> is pretty much nothing in <em>TiledLand</em> so you can create any thing you want about this concept...</p>
+                <h1 id="agents-and-decisions">Agents and Decisions</h1>
+<p>The <code>Agent</code> class offers a minimal state machine. A state is a function that receives the agent and produces an <code>Action</code>. <code>Action</code> preserves an identifier and attributes: <code>WAIT=0</code>, <code>MOVE=1</code>, <code>ROTATE=2</code>.</p>
+<h2 id="executing-a-state">Executing a State</h2>
+<pre><code class="language-python">from tiledland import Agent, Action
+
+def aller_est(agent):
+    agent.setStateProcessus(Agent.stateInfinitWait)
+    return Action(Action.MOVE, Action.DIR_E)
+
+agent = Agent(state=aller_est)
+action = agent.runStateProcessus()
+assert action.identifier() == Action.MOVE
+assert action.attribute(0) == Action.DIR_E
+assert agent.runStateProcessus().identifier() == Action.WAIT
+</code></pre>
+<p>The default agent starts in <code>stateInitialize</code>, which produces a wait and then selects <code>stateInfinitWait</code>. <code>setStateProcessus()</code> accepts a function or a bound method.</p>
+<h2 id="application-responsibility">Application Responsibility</h2>
+<p>An action is an intention; it does not modify the world. The application must read its identifier, determine a destination, verify the rules, and then modify the tabletop. An explicit loop for movement on a graph can be:</p>
+<pre><code class="language-python">from tiledland import Agent, Action, Entity, Tabletop
+
+plateau = Tabletop().initLine(2)
+corps = plateau.tileAppendEntity(1, Entity())
+agent = Agent(state=lambda agent: Action(Action.MOVE, 2))
+action = agent.runStateProcessus()
+if action.identifier() == Action.MOVE:
+    destination = action.attribute(0)  # Local convention: tile identifier.
+    if plateau.isEdge(corps.location(), destination):
+        plateau.tileMoveEntity(corps.location(), corps.index(), destination)
+assert corps.location() == 2
+</code></pre>
+<p>This example explicitly chooses a tile as an action attribute; the previous example chose a direction. <code>Action</code> does not impose a schema: fix a convention in each simulation.</p>
+<h2 id="current-state">Current State</h2>
+<p><code>perceive()</code> does not yet update perception. <code>decide()</code> currently returns <code>None</code>, even when a state produces an action; therefore, examples use <code>runStateProcessus()</code>. <code>perceivedBody()</code> returns the body in the corrected local code. Copying an agent with a tabletop still has defects. <code>HackaAgent</code> is an empty class, without an operational distributed transport. See <a href="../limitations/">tests and limits</a>.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../as-land/" class="btn btn-neutral float-left" title="Land and Actors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../ihm-gui/" class="btn btn-neutral float-right" title="Classical GUI">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../as-serialization/" class="btn btn-neutral float-right" title="Serialization">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -134,7 +176,7 @@
       <span><a href="../as-land/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../ihm-gui/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../as-serialization/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -142,8 +184,6 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
-      <script src="../javascripts/mathjax.js"></script>
-      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {
