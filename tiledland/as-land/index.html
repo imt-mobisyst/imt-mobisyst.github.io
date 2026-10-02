@@ -115,17 +115,17 @@
                 <h1 id="land-and-actors">Land and Actors</h1>
 <p>A <code>Land</code> associates a <code>Tabletop</code>, a bank of entity models, and a list of actors. An <code>Actor</code> links an agent to several bodies. Bodies are the entities actually placed on the tabletop.</p>
 <h2 id="adding-an-actor">Adding an Actor</h2>
-<pre><code class="language-python">from tiledland import Land, Tabletop, Entity, Convex, Agent, draw
+<pre><code class="language-python">from tiledland import Land, Tabletop, Mobile, Convex, Agent, draw
 
 land = Land(
     tabletop=Tabletop().initLine(3),
-    bankOfEntities=[Entity(shape=Convex().initArrowTip(0.6), name=&quot;Robot&quot;)],
+    bankOfEntities=[Mobile(shape=Convex().initArrowTip(0.6), name=&quot;Robot&quot;)],
 )
 acteur_id = land.appendActor(Agent(), tileIds=[1], bodyIds=[0])
 corps = land.body(acteur_id)
-assert corps.location() == 1
-land.tabletop().tileMoveEntity(corps.location(), corps.index(), 2)
-assert corps.location() == 2
+assert corps.enclave() == 1
+land.tabletop().tileMoveEntity(corps.enclave(), corps.index(), 2)
+assert corps.enclave() == 2
 draw(land.tabletop(), &quot;acteur.svg&quot;, 800, 300)
 </code></pre>
 <p><code>bodyIds</code> selects models from the bank; <code>tileIds</code> selects placement tiles. Both lists must have the same length: the implementation iterates through them using <code>zip</code> and therefore ignores excess elements.</p>

@@ -117,7 +117,7 @@
 <h2 id="entity-round-trip">Entity Round-trip</h2>
 <pre><code class="language-python">from tiledland import Entity
 
-source = Entity(group=2, name=&quot;Robot&quot;).setPosition(1.0, 2.0)
+source = Entity(group=2, name=&quot;Robot&quot;).setCoordinates(1.0, 2.0)
 arbre = source.asDataTree()
 restauree = Entity().fromDataTree(arbre)
 assert restauree.name() == &quot;Robot&quot;
@@ -136,7 +136,7 @@ copie.clear()
 assert source.numberOfTiles() == 2
 </code></pre>
 <p>Restoring a tabletop containing entities currently fails: <code>Tile.setIndex()</code> calls a missing <code>Entity.setArea()</code> method. This example is therefore limited to tabletops without entities.</p>
-<p><code>Tabletop</code> exposes <code>dataTreeCopy()</code> via <code>AbsEntity</code>, and not <code>copy()</code>. Subclasses and their additional attributes are not automatically preserved: define an explicit format before serializing custom business objects. Defects in managing shared shapes make a check for data independence necessary for advanced uses.</p>
+<p><code>Tabletop</code> exposes <code>dataTreeCopy()</code>, and not <code>copy()</code>. Subclasses and their additional attributes are not automatically preserved: define an explicit format before serializing custom business objects. Defects in managing shared shapes make a check for data independence necessary for advanced uses.</p>
               
             </div>
           </div><footer>

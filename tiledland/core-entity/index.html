@@ -113,7 +113,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="entities-and-transformations">Entities and Transformations</h1>
-<p>An <code>Entity</code> has a name, a group, a reference shape, a position, an orientation, and a selector <code>(location, index)</code>.</p>
+<p>An <code>Entity</code> has a name, a group, a reference shape, a position, an orientation, and a selector <code>(location, index)</code>. The <code>Mobile</code> class is a specialized <code>Entity</code> used for objects that change position frequently (e.g., robots).</p>
 <h2 id="two-shape-representations">Two Shape Representations</h2>
 <p>The <strong>reference shape</strong> describes the object in its local coordinate system. The <strong>projected shape</strong> represents this shape after rotation and translation in the world. Pose transformations rebuild the projection from the reference.</p>
 <pre><code class="language-python">import math
@@ -136,7 +136,7 @@ assert objet.position().asTuple() == (3.0, 1.0)
 original = Entity(name=&quot;Original&quot;)
 copie = original.copy()
 copie.setReferenceShape(Convex().initSquare(0.4))
-copie.setPosition(2.0, 0.0)
+copie.setCoordinates(2.0, 0.0)
 assert original.position().asTuple() == (0.0, 0.0)
 </code></pre>
 <p>For an arrow, use <code>setReferenceShape(Convex().initArrowTip(...))</code>. The <code>setShapeArrowTip()</code> method is currently defective. <code>setProjectedShape()</code> also has a problem when a previous orientation is non-zero: see the <a href="../limitations/">limits</a>.</p>

@@ -132,9 +132,9 @@ robot = tild.Entity(
     name=&quot;Robot&quot;,
 )
 plateau.tileAppendEntity(1, robot)
-tild.draw(plateau, &quot;premiere-scene.svg&quot;, 800, 500)
+tild.quickDraw(plateau, &quot;&quot;, &quot;premiere-scene.svg&quot;, 800, 500)
 assert plateau.numberOfTiles() == 5
-assert robot.location() == 1
+assert robot.enclave() == 1
 print(&quot;Scene saved to premiere-scene.svg&quot;)
 </code></pre>
 <p>Open the SVG in a browser. Positive or zero values in the matrix designate the groups of the tiles; <code>-1</code> leaves an empty spot. A group is a category that notably influences the color: it does not automatically constitute a movement prohibition rule.</p>
@@ -143,9 +143,9 @@ print(&quot;Scene saved to premiere-scene.svg&quot;)
 
 plateau = tild.Tabletop().initLine(3)
 robot = plateau.tileAppendEntity(1, tild.Entity(name=&quot;Robot&quot;))
-plateau.tileMoveEntity(robot.location(), robot.index(), 2)
+plateau.tileMoveEntity(robot.enclave(), robot.index(), 2)
 assert robot.selector() == (2, 1)
-tild.draw(plateau, &quot;deplacement.svg&quot;, 800, 300)
+tild.quickDraw(plateau, &quot;&quot;, &quot;deplacement.svg&quot;, 800, 300)
 </code></pre>
 <p>This operation replaces the entity at the center of the target tile. It does not control the existence of an edge between the two tiles. To respect the graph, verify <code>plateau.isEdge(depart, arrivee)</code> before movement.</p>
 <p>Continue with <a href="../core-tabletop/">tabletop concepts</a> and <a href="core-rendering.md">rendering</a>.</p>
