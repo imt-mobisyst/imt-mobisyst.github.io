@@ -58,7 +58,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../move/">Move the Robot</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Simulation</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Simulation</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
@@ -204,7 +204,7 @@ source ./install/setup.bash
 <p>Then, you can launch a preconfigured simulation:</p>
 <pre><code class="language-console">ros2 launch tbot_sim challenge-1.launch.py
 </code></pre>
-<p>Look at the content of this launch file <a href="https://bitbucket.org/imt-mobisyst/pkg-tsim/src/master/tbot_sim/launch/challenge-1.launch.py">here</a>.
+<p>Look at the content of this launch file <a href="https://github.com/imt-mobisyst/pkg-tsim/blob/master/tbot_sim/launch/challenge-1.launch.py">here</a>.
 We can see that Gazebo/ROS supports loading a world file describing the simulation environment and spawn elements such as robots.
 This simulation spawns a robot configured like a <code>tbot</code> i.e. it is equipped with a laser range finder and a camera (kinect).
 The interaction with the simulation will operate through ROS topics as it would be with a real robot with real equipment.</p>
@@ -237,8 +237,8 @@ Launch it:</p>
 <p>Create a launch file that starts the appropriate configuration: the <code>challenge-1</code>, a configured <code>rviz2</code> displaying laser scans and the <code>teleop</code>.
 We will prefer YAML format for launch file.</p>
 <p>All the information you need are in the tutorials :
-- <a href="https://docs.ros.org/en/iron/Tutorials/Intermediate/Launch/Launch-Main.html">Launch file documentation</a>
-- <a href="https://docs.ros.org/en/iron/How-To-Guides/Launch-file-different-formats.html">Launch examples</a></p>
+- <a href="https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Launch-Main.html">Launch file documentation</a>
+- <a href="https://docs.ros.org/en/jazzy/How-To-Guides/Launch-file-different-formats.html">Launch examples</a></p>
 <p>Create <code>$ROS_WORKSPACE/pkg-tsim/tbot_sim/launch/tutosim_launch.yaml</code>
 Add this code into this file to:</p>
 <pre><code class="language-yaml">launch:
@@ -252,7 +252,7 @@ Add this code into this file to:</p>
     name: &quot;rviz2&quot;
 
 - executable:
-    cmd: gnome-terminal --tab -e 'ros2 run  teleop_twist_keyboard teleop_twist_keyboard'
+    cmd: gnome-terminal --tab -- ros2 run teleop_twist_keyboard teleop_twist_keyboard
 </code></pre>
 <p>Exercise: modify this launch file so that <code>rviz</code> loads a saved configuration file when it starts. This configuration file should add the laser data, ...</p>
               

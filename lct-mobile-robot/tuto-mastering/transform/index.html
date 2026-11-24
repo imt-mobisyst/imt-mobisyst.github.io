@@ -80,7 +80,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vision/">Image processing</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Move To</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Move To</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../multibot/">MultiRobot</a>
                   </li>
@@ -173,7 +173,7 @@ Try by modifying the global frame with the frame of the laser.</p>
 <h3 id="transform-tools">Transform tools</h3>
 <p>The package <code>tf2_tools</code> provides with a process that generates a graph of the connection between the frames.</p>
 <pre><code class="language-console">#third console
-ros2 run tf2_tools view_frames.py
+ros2 run tf2_tools view_frames
 evince frames.pdf
 </code></pre>
 <p>In <em>ROS</em> <code>tf</code> stand for transformation.
@@ -181,12 +181,12 @@ It is a central tool permitting getting space-temporal information from a frame 
 It supposes that specific messages are published into dedicated topic <code>tf</code>.
 At this step, no transform are published...</p>
 <p>It is possible to generate a static transformation (it supposes that the laser is fixed in the environment at a specific position)</p>
-<pre><code class="language-console">ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 1 &quot;map&quot; &quot;laser&quot;
+<pre><code class="language-console">ros2 run tf2_ros static_transform_publisher --x 0 --y 0 --z 0 --qx 0 --qy 0 --qz 0 --qw 1 --frame-id map --child-frame-id laser
 </code></pre>
 <p>You can validate with <code>view_frame</code> that the 2 frames ares connected and that laser scan are displayed in <em>rviz</em>.</p>
-<p>The first 3 numbers fix the translation.
-It is the potion of the <code>laser</code> center into <code>map</code>. The next 4 numbers give the rotation.</p>
-<p>In fact, the publisher generates a <a href="https://docs.ros.org/en/jade/api/geometry_msgs/html/msg/TransformStamped.html">TransfromStamped mesage</a> and the rotation is based on quaternion definition (cf. <a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">wikipedia</a> for details...)
+<p><code>--x --y --z</code> fix the translation.
+It is the position of the <code>laser</code> center into <code>map</code>. <code>--qx --qy --qz --qw</code> give the rotation (or <code>--roll --pitch --yaw</code>).</p>
+<p>In fact, the publisher generates a <a href="https://docs.ros.org/en/jazzy/p/geometry_msgs/msg/TransformStamped.html">TransformStamped message</a> and the rotation is based on quaternion definition (cf. <a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">wikipedia</a> for details...)
 Display the frames in <em>rviz2</em> (add &gt; axes &gt; set reference frame) and play with different configurations (kill and restart the <code>static_transform_publisher</code>).</p>
 <h3 id="tbot-configuration">tbot configuration</h3>
 <p>For a simple robot, it can be dozens of frames and it grows with robot parts (legs, arms).
@@ -197,14 +197,14 @@ Connect the robot (via the <code>ROS_DOMAIN_ID</code>) and Generate the frame gr
 So set the fixed frame in rviz on <code>odom</code>, the laser scans appear.
 Connect to tf topic and all the frame axis appear too.</p>
 <ul>
-<li>Oficial documentation about tf2: <a href="https://docs.ros.org/en/iron/Tutorials/Intermediate/Tf2/Tf2-Main.html">docs.ros.org</a>.</li>
+<li>Oficial documentation about tf2: <a href="https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Tf2-Main.html">docs.ros.org</a>.</li>
 </ul>
 <p>Bonus: it is possible to visualize the robot in <em>rviz2</em>: add &gt; robot description (select the appropriate topic).</p>
 <h3 id="transform-a-pose-in-a-specific-frame">Transform a pose in a specific frame.</h3>
 <p>Naturally, <em>ROS</em> also provide C++ and Python library to manipulate transformation and permits developers to get pose coordinate from a frame to another.</p>
 <p>The idea is to a declare a tf2 listener, an object that will subscribe to transform topics and maintain transformation data.
 Then it is possible to recompute pose coordinates in any connected frames.</p>
-<p>More on : <a href="http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20listener%20%28Python%29">wiki.ros.org</a>.</p>
+<p>More on : <a href="https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Listener-Py.html">docs.ros.org</a>.</p>
 <p>The idea in our context is to develop a node <code>localGoal</code> that will remember a pose in a global frame and publish at a given frequence the pose in another local frame.</p>
 <p>For our new node, we have to declare the elements permitting the node to listen and keep the transformation available, a <code>listerner</code> and a <code>buffer</code>.</p>
 <pre><code class="language-python"># Transform tool (suppose that ros2 is initialized):
@@ -257,7 +257,7 @@ try:
                 'base_link',
                 'odom',
                 currentTime)
-except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):TransformException as tex:
+except tf2_ros.TransformException as tex:
     self._node.get_logger().info( f&quot;Could not transform poses from 'odom' into 'base_link': {tex}&quot;)
     return
 ...
@@ -267,6 +267,7 @@ The pose transformation is already defined in a ros method of <code>tf2_geometry
 <pre><code class="language-console">sudo apt update
 sudo apt install python3-tf2-geometry-msgs
 </code></pre>
+<p>Notice that <code>do_transform_pose</code> takes a <code>Pose</code> (use <code>do_transform_pose_stamped</code> for a <code>PoseStamped</code>).</p>
 <pre><code class="language-python">...
 # Compute goal into local coordinates
 myGoalPoseInBaseLink = tf2_geometry_msgs.do_transform_pose(

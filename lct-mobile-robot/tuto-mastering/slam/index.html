@@ -76,7 +76,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Mastering</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">S.L.A.M</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">S.L.A.M</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vision/">Image processing</a>
                   </li>
@@ -243,11 +243,11 @@ Then, map can be saved using:
 <p><strong>In simulation</strong>, we do the same steps, but the time is simulated:</p>
 <pre><code>ros2 launch nav2_bringup localization_launch.py map:=/home/bot/map.yaml autostart:=True use_sim_time:=True
 
-rviz2 --ros-args --remap use_sim_time:=True
+rviz2 --ros-args -p use_sim_time:=True
 </code></pre>
 <h2 id="bag-files-ros2-bag">Bag files (<code>ros2 bag</code>)</h2>
 <p>Working in simulation is nice but we can do better and work directly on real data using the <code>ros2 bag</code> command tool.
-The idea is to record some topics (all data that goes through) into a <a href="http://wiki.ros.org/Bags">bag file</a> and play them later on.
+The idea is to record some topics (all data that goes through) into a <a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">bag file</a> and play them later on.
 Bag files are really useful to test algorithms on real data sets that have been recorded in a specific location and with  specific sensors.
 Moreover, there are a lot of public datasets available:</p>
 <ul>
@@ -256,7 +256,7 @@ Moreover, there are a lot of public datasets available:</p>
 <li>[http://www.ipb.uni-bonn.de/datasets/]</li>
 <li>[http://car.imt-lille-douai.fr/polyslam/]</li>
 </ul>
-<p>Use the <a href="https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">tutorial on rosbag</a> to learn how to use it.</p>
+<p>Use the <a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">tutorial on rosbag</a> to learn how to use it.</p>
 <blockquote>
 <p>Work: Launch the challenge 2 simulation, record <code>/tf</code> and <code>/scan</code> into a rosbag and teleop the robot all around the map. You now have a dataset ready to do offline SLAM.</p>
 </blockquote>

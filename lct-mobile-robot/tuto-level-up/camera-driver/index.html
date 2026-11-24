@@ -69,7 +69,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Camera Driver</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Camera Driver</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vision/">Vision</a>
                   </li>
@@ -152,7 +152,7 @@ By searching for <code>libsdl2</code> with Ubuntu-Aptitude we will find several 
 <li>and some extra libs.</li>
 </ul>
 <p>Other wise, we have to build/compile the driver from source code.
-In case of realsense, <a href="https://github.com/IntelRealSense/librealsense">librealsense</a> recommand to use <code>vcpkg</code> to build and install it.</p>
+In case of realsense, <a href="https://github.com/IntelRealSense/librealsense">librealsense</a> is packaged for ROS2: <code>sudo apt install ros-jazzy-librealsense2 ros-jazzy-realsense2-camera</code>.</p>
 <p>Normally, after installation, you can run a small script to request the cam (more on <a href="https://dev.intelrealsense.com/docs/python2">dev.intelrealsense.com</a>):</p>
 <pre><code class="language-python">#!/usr/bin/env python3
 
@@ -305,7 +305,7 @@ pipeline.stop()
 <p>Considering previous developed <em>ROS2</em> <em>Node</em> :</p>
 <ul>
 <li>We want to keep the control on the infinite loop.</li>
-<li>We will publish <code>sensor_msgs/image</code>. The <a href="https://github.com/ros2/common_interfaces/tree/galactic/sensor_msgs">ros2 documentation</a> is verry poor, but <a href="http://wiki.ros.org/sensor_msgs?distro=noetic"><em>ROS1</em> wiki</a> remains valuable.</li>
+<li>We will publish <code>sensor_msgs/image</code>. See the <a href="https://docs.ros.org/en/jazzy/p/sensor_msgs/">sensor_msgs documentation</a>.</li>
 </ul>
 <h3 id="node-structure">Node structure:</h3>
 <p>To control the infinite loop we will prefer <code>spin_once</code> to <code>spin</code>.
@@ -373,7 +373,7 @@ Starting from the blanc class <code>Realsence</code>, you can fill the different
 <pre><code class="language-python">msg.header.stamp = node.get_clock().now().to_msg()
 </code></pre>
 <p>Then it is possible to feed <code>sensor_msgs/image</code> attributs (starting with <code>msg.encoding= "bgr8"</code> seems a good idea.)</p>
-<p>However, a librairy provides some tool to work both with ROS and OpenCV (<a href="http://wiki.ros.org/cv_bridge">cv_bridge</a>).
+<p>However, a librairy provides some tool to work both with ROS and OpenCV (<a href="https://docs.ros.org/en/jazzy/p/cv_bridge/">cv_bridge</a>).
 The code for image to ROS message is:</p>
 <pre><code class="language-python">from cv_bridge import CvBridge
 

@@ -63,7 +63,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Level-up</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Range Sensor</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Range Sensor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../reactive/">Reactive Move</a>
                   </li>
@@ -186,7 +186,7 @@ ROS driver for hokuyo laser range is embedded in the urg_node package
 
 
 Specifying the `serial_port` file requires to activate arguments with `--ros-args` and pass a file path using `-p` parameter command line flag. 
-All of this is specific to [ROS parameters](https://docs.ros.org/en/iron/Concepts/Basic/About-Parameters.html).
+All of this is specific to [ROS parameters](https://docs.ros.org/en/jazzy/Concepts/Basic/About-Parameters.html).
 
 From that point data are streamed in `/scan` topic.
 
@@ -209,7 +209,7 @@ Warning: the scan topic and/or the laser-scan frame can have different names.
 <pre><code class="language-python">ros2 run tutorial_pkg scan_echo
 </code></pre>
 <ul>
-<li>Connect <a href="https://docs.ros2.org/iron/api/sensor_msgs/msg/LaserScan.html">sensor_msgs LaserScan</a>.</li>
+<li>Connect <a href="https://docs.ros.org/en/jazzy/p/sensor_msgs/msg/LaserScan.html">sensor_msgs LaserScan</a>.</li>
 <li>Log continuously the received data</li>
 </ul>
 <pre><code class="language-python">#!python3
@@ -229,7 +229,7 @@ rosNode.create_subscription( LaserScan, 'scan', scan_callback, 10)
 
 rclpy.spin( rosNode )
 
-scanInterpret.destroy_node()
+rosNode.destroy_node()
 rclpy.shutdown()
 </code></pre>
 <p>Test your <code>scan_echo</code> node, with the <em>pibot</em> and on simulations.</p>
@@ -255,16 +255,19 @@ To log a sample of the point cloud:</p>
 <pre><code class="language-python">sample= [ [ round(p[0], 2), round(p[1], 2) ] for p in  obstacles[10:20] ]
 self.get_logger().info( f&quot; obs({len(obstacles)}) ...{sample}...&quot; )
 </code></pre>
-<p>Finally, it is possible to publish this result in a <code>PointCloud</code> message and to visualize it on <em>rviz2</em> in a superposition of the LaserScan. </p>
-<p><em>PointCloud</em> is based on <code>geometry_msgs.Point32</code> with float coordinate.
-The creation of <em>Point32</em> will require explicite cast.</p>
-<pre><code class="language-python">aPoint= Point32()
-aPoint.x= (float)(math.cos(angle) * aDistance)
-aPoint.y= (float)(math.sin( angle ) * aDistance)
-aPoint.z= (float)(0)
+<p>Finally, it is possible to publish this result in a <code>PointCloud2</code> message and to visualize it on <em>rviz2</em> in a superposition of the LaserScan.</p>
+<p>The <code>sensor_msgs_py</code> package provides a helper to build a <em>PointCloud2</em> from a list of <span class="arithmatex">\((x, y, z)\)</span> points (coordinates are cast to <code>float32</code>):</p>
+<pre><code class="language-python">from sensor_msgs.msg import PointCloud2
+from sensor_msgs_py import point_cloud2
+
+aPublisher= rosNode.create_publisher( PointCloud2, 'cloud', 10 )
+...
+points= [ [p[0], p[1], 0.0] for p in obstacles ]
+cloud= point_cloud2.create_cloud_xyz32( scanMsg.header, points )
+aPublisher.publish( cloud )
 </code></pre>
 <ul>
-<li><em>PointCloud</em> mesage as part of the <a href="https://index.ros.org/p/sensor_msgs">sensor_msgs pkg</a> (yes we are using the deprecated one, and we should not)</li>
+<li><em>PointCloud2</em> message as part of the <a href="https://docs.ros.org/en/jazzy/p/sensor_msgs/">sensor_msgs pkg</a> (the former <em>PointCloud</em> message is deprecated)</li>
 </ul>
               
             </div>

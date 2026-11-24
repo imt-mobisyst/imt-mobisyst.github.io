@@ -78,7 +78,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../slam/">S.L.A.M</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Image processing</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Image processing</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../transform/">Move To</a>
                   </li>
@@ -146,11 +146,8 @@ However it requires to process the images to extract pertinent information like 
 <p>The command <code>whereis</code> permit to localize a command (like <code>python3</code> interpreter). If python3 is correctly installed, its execution would not be empty:</p>
 <pre><code class="language-bash">whereis python3
 </code></pre>
-<p>Python uses its own package managers <code>pip</code> to install libraries. So just to be sure you can:</p>
-<pre><code class="language-bash">sudo apt install python3 pip
-</code></pre>
-<p>Then we can use pip to install required modules:</p>
-<pre><code class="language-bash">pip3 install numpy==1.26.4 opencv-python opencv-contrib-python scikit-learn scipy matplotlib psutil scikit-image 
+<p>On Ubuntu 24.04, <code>pip</code> refuses to install packages system-wide (PEP 668). Install the required modules with <code>apt</code> (Ubuntu 24.04 already provides <code>numpy</code> 1.26.4, compatible with ROS2 Jazzy and <code>cv_bridge</code>):</p>
+<pre><code class="language-bash">sudo apt install python3-numpy python3-opencv python3-sklearn python3-scipy python3-matplotlib python3-psutil python3-skimage
 </code></pre>
 <p>Now normally you can load the different modules, for instance:</p>
 <pre><code class="language-python">import cv2
@@ -166,15 +163,14 @@ from sklearn import preprocessing
 <p>It is possible to access the camera's video streams via the Realsense sensor (if it is available) or simulation.</p>
 <p><strong>Gazebo</strong> is capable of simulating robot vision (classical and 3D sensor).</p>
 <p>Launch a simulation :</p>
-<p>'''bash
-roslaunch larm chalenge-2.launch
-'''</p>
-<p>Observe the topic and mainly the one published the images (<code>camera/rgb/image_raw</code>) with <code>rostopic list</code>,  <code>rostopic info</code> and  <code>rostopic hz</code>.</p>
+<pre><code class="language-bash">ros2 launch tbot_sim challenge-2.launch.py
+</code></pre>
+<p>Observe the topic and mainly the one published the images (<code>camera/rgb/image_raw</code>) with <code>ros2 topic list</code>, <code>ros2 topic info</code> and <code>ros2 topic hz</code> (the topic name depends on the simulation configuration).</p>
 <p>Image are published as 'sensor_msgs/Image' message type in <code>camera/rgb/image_raw</code></p>
 <ul>
-<li><a href="https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/Image.html">ROS doc</a></li>
+<li><a href="https://docs.ros.org/en/jazzy/p/sensor_msgs/msg/Image.html">ROS doc</a></li>
 </ul>
-<p>If you echo the messages of the image topic (<code>rostopic echo camera/rgb/image_raw</code>), you can observe the following structure of the message</p>
+<p>If you echo the messages of the image topic (<code>ros2 topic echo camera/rgb/image_raw --no-arr</code>), you can observe the following structure of the message</p>
 <pre><code>std_msgs/Header header
 uint32 height
 uint32 width
@@ -183,7 +179,7 @@ uint8 is_bigendian
 uint32 step
 uint8[] data
 </code></pre>
-<p>The pixel values are stored in a uint8 array. Several tools are availbale to convert a ROS image to OpenCV image (for instance <a href="http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython">cv_bridge</a>)</p>
+<p>The pixel values are stored in a uint8 array. Several tools are availbale to convert a ROS image to OpenCV image (for instance <a href="https://docs.ros.org/en/jazzy/p/cv_bridge/">cv_bridge</a>)</p>
 <h3 id="image-from-realsense-camera-sensor">Image from Realsense camera sensor</h3>
 <p>The following code is able to connect the Realsense camera and to acquire the depth and the color stream. A configuration step is done. Both depth and color images are aligned to make that all pixels of a depth image correpond to all pixels of the corresponding color image.</p>
 <pre><code class="language-python">
